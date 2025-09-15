@@ -14,34 +14,35 @@
 
 - 🍃 Spring
   - [SpringFramework](Backend/Spring/SpringFramework.md)：全家桶介绍、Bean、IoC、AOP、JDBC、Resource、Validator、Junit、Maven
-  - [SpringMVC：架构介绍、基于 web.xml 和 springMVC.xml 配置、基于注解配置、@RequestMapping、拦截器、异常处理器、请求域共享数据、视图映射、数据读入与写出、文件下载与上传](Backend/Spring/SpringMVC.md)  
-  - [MyBatis：Mapper、mybatis-config.xml、传递值、返回值、多表映射、动态语句、批量执行、分页机制](Backend/Spring/MyBatis.md)  
-  - [MyBatis-Plus：BaseMapper、IService、Wrapper、实体类注解、MyBatisX](Backend/Spring/MyBatis-Plus.md)  
-  - [SSM：依赖整理、全注解配置、编码流程](Backend/Spring/SSM.md)  
-  - [SpringBoot：pom.xml、application.yml、启动类、读取配置、项目打包、整合 SSM](Backend/Spring/SpringBoot.md)  
-  - [SpringCloud：单机/集群/分布式架构、微服务定义、Nacos Discovery、Nacos Config、OpenFeign、Sentinel、Gateway、Filter、Seata](Backend/Spring/SpringCloud.md)  
+  - [SpringMVC](Backend/Spring/SpringMVC.md)：架构介绍、基于 web.xml 和 springMVC.xml 配置、基于注解配置、@RequestMapping、拦截器、异常处理器、请求域共享数据、视图映射、数据读入与写出、文件下载与上传
+  - [MyBatis](Backend/Spring/MyBatis.md)：Mapper、mybatis-config.xml、传递值、返回值、多表映射、动态语句、批量执行、分页机制 
+  - [MyBatis-Plus](Backend/Spring/MyBatis-Plus.md)：BaseMapper、IService、Wrapper、实体类注解、MyBatisX
+  - [SSM](Backend/Spring/SSM.md)：依赖整理、全注解配置、编码流程
+  - [SpringBoot](Backend/Spring/SpringBoot.md)：pom.xml、application.yml、启动类、读取配置、项目打包、整合 SSM
+  - [SpringCloud](Backend/Spring/SpringCloud.md)：单机/集群/分布式架构、微服务定义、Nacos Discovery、Nacos Config、OpenFeign、Sentinel、Gateway、Filter、Seata
 
 - 🛠 Middleware
-  - [Redis：缓存、基本命令、九大数据类型、Persistence、Transaction、Pipeline、Replication、Sentinel、Cluster、SpringBoot 集成、BigKey、双写一致性、高级数据结构应用、Lua、分布式锁、三大问题与三大方案、过期策略、底层分析](Backend/Middleware/Redis.md)
-  - [RabbitMQ：消息中间件、体系架构、交互流程、SpringBoot 集成、消息可靠性、延迟消息、优先级队列](Backend/Middleware/RabbitMQ.md)  
-
-- ⚙️ DevOps
-
-  - Linux
-  - Docker
+  - [Redis](Backend/Middleware/Redis.md)：缓存、基本命令、九大数据类型、Persistence、Transaction、Pipeline、Replication、Sentinel、Cluster、SpringBoot 集成、BigKey、双写一致性、高级数据结构应用、Lua、分布式锁、三大问题与三大方案、过期策略、底层分析
+  - [RabbitMQ](Backend/Middleware/RabbitMQ.md)：消息中间件、体系架构、交互流程、SpringBoot 集成、消息可靠性、延迟消息、优先级队列
 
 - 🚀 Projects  
 
-  - [Sky-Take-Out](Backend/苍穹外卖.md)  
-  - [黑马点评](Backend/黑马点评.md)  
+  - [苍穹外卖](Backend/Project/苍穹外卖.md)：项目设计、代码设计、DTO 和 VO、业务处理、Nginx、RESTful、PageHelper、SLF4J、JWT、Swagger、OSS、@AutoFill、@ExceptionHandler、HttpClient、SpringCache、SpringTask、WebSocket、ECharts、POI
+
+  - [黑马点评](Backend/Project/黑马点评.md)：Nginx 代理、令牌拦截器、序号生成器、防穿透、防击穿、防竞争、滚动分页、位置查询、签到记录、访问统计
+
+- ⚙️ DevOps
+
+    - Linux
+    - Docker
 
 - 📊 Data Analysis
 
-    - [NumPy](Data/DataAnalysis/NumPy Note.md)  
+    - [NumPy](Data/NumPy.md)：
 
-    - [Pandas](Data/DataAnalysis/Pandas Note.md)  
+    - [Pandas](Data/Pandas.md)：
 
-    - [Hadoop](Data/hadoop/hadoop.md)  
+    - [Hadoop](Data/hadoop.md)：
 
 
 ## Learning Path
