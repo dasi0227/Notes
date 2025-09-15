@@ -13,7 +13,7 @@
   - to be updated
 
 - 🍃 Spring
-  - [SpringFramework：全家桶介绍、Bean、IoC、AOP、JDBC、Resource、Validator、Junit、Maven](Backend/Spring/SpringFramework.md)  
+  - [SpringFramework](Backend/Spring/SpringFramework.md)：全家桶介绍、Bean、IoC、AOP、JDBC、Resource、Validator、Junit、Maven
   - [SpringMVC：架构介绍、基于 web.xml 和 springMVC.xml 配置、基于注解配置、@RequestMapping、拦截器、异常处理器、请求域共享数据、视图映射、数据读入与写出、文件下载与上传](Backend/Spring/SpringMVC.md)  
   - [MyBatis：Mapper、mybatis-config.xml、传递值、返回值、多表映射、动态语句、批量执行、分页机制](Backend/Spring/MyBatis.md)  
   - [MyBatis-Plus：BaseMapper、IService、Wrapper、实体类注解、MyBatisX](Backend/Spring/MyBatis-Plus.md)  
