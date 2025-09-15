@@ -191,7 +191,7 @@ public String testAnnotation(
 }
 ```
 
-### POJO
+### 注入对象
 
 - 必须有无参构造器，因为 Spring 会先用 new User() 实例化对象
 - 必须有 setter，因为 Spring 通过反射注入值

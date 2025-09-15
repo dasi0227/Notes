@@ -4,7 +4,7 @@
 
 ## 概念
 
-### Spring
+### Spring 全家桶
 
 Spring 是一个开源的 Java 应用框架，旨在简化企业级 Java 开发，其核心在于通过**松耦合设计和面向切面编程**，使得应用更加可测试、可维护、可扩展
 
@@ -36,13 +36,6 @@ Spring 是一个开源的 Java 应用框架，旨在简化企业级 Java 开发�
 - **组件化**：按照功能模块拆分为多个子组件（Core、Beans、Context、AOP、JDBC、ORM、Web、Security）
 - **一站式**：覆盖从核心容器到 Web MVC、数据访问、事务管理、安全、批处理、集成消息、云原生等全套企业级功能
 
-### Bean
-
-Bean 就是由 Spring IoC 容器直接管理的对象
-
-- Bean 是容器的最基本单位，只要一个对象交给了 Spring 管理，它就可以称作为 Bean
-- 本质上就是一个普通的 Java 对象，只不过完全由容器负责它的生命周期
-
 
 
 ## IoC
@@ -57,6 +50,13 @@ IoC 的可实现性
 
 - Java 规范**要求【类名】和【文件名】严格对应**，也就是类 Foo 必须放在 Foo.java（编译后是 Foo.class）
 - Java 规范**要求【包路径】与【文件存储路径】严格对应**，也就是包 com.dasi.service 必须对应目录 …/com/dasi/service/
+
+### Bean
+
+Bean 就是由 Spring IoC 容器直接管理的对象
+
+- Bean 是容器的最基本单位，只要一个对象交给了 Spring 管理，它就可以称作为 Bean
+- 本质上就是一个普通的 Java 对象，只不过完全由容器负责它的生命周期
 
 ### XML 配置 Bean
 

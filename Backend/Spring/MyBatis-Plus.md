@@ -62,7 +62,7 @@ public class Main {
 
 ## 基于 Mapper 的 API
 
-### 使用
+### BaseMapper
 
 一般场景下需要写好 Mapper 接口中的抽象方法，然后完成 XML 文件中的 SQL 语句映射，现在只需要**将 Mapper 接口类继承自 MyBatis-Plus 提供的通用 Mapper 接口 BaseMapper\<T> （泛型传递数据库表对应的实体类）**，就可以省略基本 CRUD 方法的编写和 SQL 语句的映射，直接注入 Mapper 对象调用内置的方法即可
 
@@ -134,7 +134,7 @@ IPage<T> selectPage(IPage<T> page, @Param(Constants.WRAPPER) Wrapper<T> queryWra
 
 ## 基于 Service 的 API
 
-### 使用
+### IService
 
 一般场景下，后端逻辑是控制层方法调用业务层方法调用持久层方法，而在业务层方法中如果前后没有增强逻辑，只是返回调用持久层方法的结果时，可以直接**让 Service 接口继承 MyBatis-Plus 提供的通用接口 IService\<T> ，并在实现类中继承 MyBatis 写好的 ServiceImpl<M, T>（其中 M 是实体类对应的 Mapper 接口，T 是数据库表对应的实体类）**，就可以直接在业务层注入 Service 对象调用内置方法
 
@@ -364,9 +364,3 @@ List<Employee> employees = employeeMapper.selectList(lambdaQueryWrapper);
     - options：选择 Lombok 和 Model（生成 `@Data` 注解）
     - template：选择 MyBatis-Plus 3（生成继承 `BaseMapper` 的接口）
 6. 进入自动生成的 mapper 接口 → 编写 MyBatisX 提供的方法 → 点击 `Option +。Enter` → 选择 `Generate MyBatis Sql` → 会自动在对应的 Mapper XML 文件中生成 SQL 映射标签
-
-
-
-
-
-### 

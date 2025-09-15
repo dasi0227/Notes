@@ -6,41 +6,43 @@
 
 ## Contents
 
-📂 Backend  
-- 📘 JavaSE  
-  - [JDBC](Backend/JavaSE/JDBC.md)  
-  - [OOP](Backend/JavaSE/oop.md)  
-  - [Thread](Backend/JavaSE/thread.md)  
-- 🌐 JavaWeb  
-  - [Servlet](Backend/JavaWeb/servlet.md)  
-  - [Session](Backend/JavaWeb/session.md)  
-- ⚙️ Frameworks  
-  - [Spring Framework](Backend/SpringFramework.md)  
-  - [Spring MVC](Backend/SpringMVC.md)  
-  - [Spring Boot](Backend/SpringBoot.md)  
-  - [Spring Cloud](Backend/SpringCloud.md)  
-  - [MyBatis](Backend/MyBatis.md)  
-  - [MyBatis-Plus](Backend/MyBatis-Plus.md)  
-- 🛠 Middleware  
-  - [Redis](Backend/Redis.md)  
-  - [RabbitMQ](Backend/RabbitMQ.md)  
-- 📌 Projects  
+- ☕️ JavaSE
+  - to be updated
+
+- 🌐 Web
+  - to be updated
+
+- 🍃 Spring
+  - [SpringFramework：全家桶介绍、Bean、IoC、AOP、JDBC、Resource、Validator、Junit、Maven](Backend/Spring/SpringFramework.md)  
+  - [SpringMVC：架构介绍、基于 web.xml 和 springMVC.xml 配置、基于注解配置、@RequestMapping、拦截器、异常处理器、请求域共享数据、视图映射、数据读入与写出、文件下载与上传](Backend/Spring/SpringMVC.md)  
+  - [MyBatis：Mapper、mybatis-config.xml、传递值、返回值、多表映射、动态语句、批量执行、分页机制](Backend/Spring/MyBatis.md)  
+  - [MyBatis-Plus：BaseMapper、IService、Wrapper、实体类注解、MyBatisX](Backend/Spring/MyBatis-Plus.md)  
+  - [SSM：依赖整理、全注解配置、编码流程](Backend/Spring/SSM.md)  
+  - [SpringBoot：pom.xml、application.yml、启动类、读取配置、项目打包、整合 SSM](Backend/Spring/SpringBoot.md)  
+  - [SpringCloud：单机/集群/分布式架构、微服务定义、Nacos Discovery、Nacos Config、OpenFeign、Sentinel、Gateway、Filter、Seata](Backend/Spring/SpringCloud.md)  
+
+- 🛠 Middleware
+  - [Redis：缓存、基本命令、九大数据类型、Persistence、Transaction、Pipeline、Replication、Sentinel、Cluster、SpringBoot 集成、BigKey、双写一致性、高级数据结构应用、Lua、分布式锁、三大问题与三大方案、过期策略、底层分析](Backend/Middleware/Redis.md)
+  - [RabbitMQ：消息中间件、体系架构、交互流程、SpringBoot 集成、消息可靠性、延迟消息、优先级队列](Backend/Middleware/RabbitMQ.md)  
+
+- ⚙️ DevOps
+
+  - Linux
+  - Docker
+
+- 🚀 Projects  
+
   - [Sky-Take-Out](Backend/苍穹外卖.md)  
   - [黑马点评](Backend/黑马点评.md)  
 
-📂 Data  
-- [NumPy](Data/DataAnalysis/NumPy Note.md)  
-- [Pandas](Data/DataAnalysis/Pandas Note.md)  
-- [Hadoop](Data/hadoop/hadoop.md)  
+- 📊 Data Analysis
 
-📂 Frontend  
-- [JavaScript](Frontend/JavaScript/)  
-- [Vue](Frontend/Vue/)  
+    - [NumPy](Data/DataAnalysis/NumPy Note.md)  
 
-📂 Others  
-- [Linux](Backend/linux.md)  
-- [Shell](Backend/shell.md)  
-- [Architecture Diagrams](drawio/)  
+    - [Pandas](Data/DataAnalysis/Pandas Note.md)  
+
+    - [Hadoop](Data/hadoop/hadoop.md)  
+
 
 ## Learning Path
 
@@ -126,7 +128,7 @@
 5. SpringBoot
     - 08.13：Main、application.yaml、整合 SSM、MyBatisX
 
-6. Sky-Take-Out
+6. 苍穹外卖
 
     - 08.15：环境搭建、接口测试搭建、项目结构搭建
 
@@ -190,25 +192,23 @@
 
     - 09.15：笔记总结
 
-11. Linux
-    - 09.16：
+To Be Continued...
 
-12. Kubernetes
+## TODO
 
-    - 09.17：
-
-    - 09.18：
-
-    - 09.19：
+1. 将博客笔记转移到 github 保存
+2. 学成在线项目
+3. 独立研发消息中台
+4. 笔记交易平台作为毕设
 
 ## About me
 
-\- 🎓 School: SYSU
+🎓 School: SYSU
 
-\- 💻 Major: Computer Science  
+💻 Major: Computer Science  
 
-\- 💬 WeChat: WanDasi24  
+💬 WeChat: WanDasi24  
 
-\- 📧 Email: [dasi0227@qq.com](mailto:dasi0227@qq.com) | [wanyw0227@gmail.com](mailto:wanyw0227@gmail.com)  
+📧 Email: [dasi0227@qq.com](mailto:dasi0227@qq.com) | [wanyw0227@gmail.com](mailto:wanyw0227@gmail.com)  
 
-\- 🌐 Blog: [https://dasi.plus](https://dasi.plus)  
+🌐 Blog: [https://dasi.plus](https://dasi.plus)  
