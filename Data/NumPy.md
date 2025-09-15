@@ -1,6 +1,6 @@
-## 0. 前言
+# Numpy
 
-在 python 中引用 numpy 库格式为 `import numpy as np`，所以本笔记都用 `np` 代替 `numpy`，同时省略了引入库语句
+> 在 python 中引用 numpy 库格式为 `import numpy as np`，所以本笔记都用 `np` 代替 `numpy`，同时省略了引入库语句
 
 ## 1. NumPy 基础
 
@@ -69,6 +69,8 @@ print(student['marks']) # -> [50.0 75.0]
 |`np.full(shape, value)`|创建指定值填充的数组|`np.full((2, 3), 7)` -> \[[7 7 7] [7 7 7]]|
 
 > 注意上面所有函数都可以传入参数 `dtype` 来指定数据类型
+
+
 
 ## 2. NumPy 操作
 
@@ -326,6 +328,8 @@ print(np.unique(a, return_counts=True)[1])
 # [3 2 2 1 1 1]
 ```
 
+
+
 ## 3. NumPy 运算
 
 ### 3.1 字符串运算
@@ -408,6 +412,8 @@ print(np.unique(a, return_counts=True)[1])
 | `np.where(condition)` | 返回数组中满足条件的索引 |
 | `np.extract(condition, a)` | 从 arr 中提取出满足条件的元素，返回一维数组 |
 
+
+
 ## 4. 随机模块
 
 | 函数 | 说明 |
@@ -419,6 +425,8 @@ print(np.unique(a, return_counts=True)[1])
 | `np.random.choice(a, shape, replace=True, p=None)` | 从一维数组 a 中随机抽取样本，shape 为输出样本的数量，replace 控制是否可重复抽样，p 为每个元素的概率分布 |
 | `np.random.shuffle(x)` | 原地随机打乱数组 x 的顺序（仅适用于一维或多维数组的第一个轴） |
 | `np.random.permutation(x)` | 返回 [0, x) 的随机排列 |
+
+
 
 ## 5. 注意
 

@@ -1,9 +1,10 @@
-## 0. 前言
+## Matplotlib
 
-在 python 中通常使用的是 Matplotlib 的子库 Pyplot，导入格式为 `import matplotlib.pyplot as plt`，同时在开始绘制图前，我们需要知道两个函数的作用
-1. `plt.figure(figsize)`：设置图形窗口的大小，一般在最一开始使用
-2. `plt.show()`：显示一个界面展示已经设置好要绘制的图，一般在最后使用
-
+> 在 python 中通常使用的是 Matplotlib 的子库 Pyplot，导入格式为 `import matplotlib.pyplot as plt`，同时在开始绘制图前，我们需要知道两个函数的作用
+>
+> 1. `plt.figure(figsize)`：设置图形窗口的大小，一般在最一开始使用
+> 2. `plt.show()`：显示一个界面展示已经设置好要绘制的图，一般在最后使用
+>
 > 为了方便，本笔记代码都用 `plt` 代替 `pyplot`，并且省略了 `plt.figure()` 、 `plt.show()` 和 引入库的语句
 
 ## 1. 线图 plot
@@ -231,6 +232,8 @@ plt.grid(axis='x', c='g', ls='-.', lw=2)
 ```
 ![](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/DataAnalysis/202504011117197.png)
 
+
+
 ## 2. 多图 subplot
 
 `plt.subplot(nrows, ncols, index)` 来绘制多个子图
@@ -276,6 +279,8 @@ plt.suptitle("RUNOOB subplot Test")
 ```
 ![](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/DataAnalysis/202504011117199.png)
 
+
+
 ## 3. 散点图 scatter
 
 `plt.scatter()` 用于绘制散点图，展示数据点之间的分布和相关性。散点图仅显示离散数据点，不连接线条，适合用于观察变量之间的关系和数据的离散性
@@ -320,6 +325,8 @@ plt.colorbar()
 ```
 ![](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/DataAnalysis/202504011117203.png)
 
+
+
 ## 4. 柱形图 bar/barh
 
 `plt.bar()`（用于垂直柱状图）和 `plt.barh()`（用于水平柱状图）用于绘制柱状图，展示不同类别数据之间的比较。柱状图通过条形的长度或高度来反映各类别的数值大小，适合比较不同分类数据的差异。
@@ -351,6 +358,8 @@ colors = ["#4CAF50","red","hotpink","#556B2F"]
 plt.bar(x, y, color=colors)
 ```
 ![](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/DataAnalysis/202504011117206.png)
+
+
 
 ## 5. 饼图 pie
 
@@ -389,6 +398,8 @@ explodes = [0, 0.2, 0, 0]
 plt.pie(x, explode=explodes, autopct='%0.1f', shadow=True, radius=1.3, startangle=90, counterclock=True)
 ```
 ![](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/DataAnalysis/202504011117210.png)
+
+
 
 ## 6. 直方图 hist
 
@@ -450,6 +461,8 @@ plt.hist([data1, data2], bins=30, histtype='barstacked', color=['skyblue', 'salm
 plt.title('barstacked')
 ```
 ![](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/DataAnalysis/202504011117213.png)
+
+
 
 ## 7. 图像处理 im
 

@@ -1,6 +1,6 @@
-## 0. 前言
+# Pandas
 
-在 python 中引用 numpy 库格式为 `import pandas as pd`，所以本笔记都用 `pd` 代替 `pandas`，同时省略了引入库语句
+> 在 python 中引用 numpy 库格式为 `import pandas as pd`，所以本笔记都用 `pd` 代替 `pandas`，同时省略了引入库语句
 
 ## 1. Pandas 简介
 
@@ -13,6 +13,8 @@ Pandas 一开始我以为是和熊猫有联系，或者像 Python 那样以蟒�
 - **数据可视化**：通过整合 Matplotlib 和 Seaborn 等库，可以进行数据可视化
 - **数据文件**：可以轻松读写 CSV、Excel、JSON 等多种文件格式
 - **数据缺失**：用 `pd.NA` 和 “NaN（Not a Number）” 表示缺失数据，而不是 None 、跳过或者报错
+
+
 
 ## 2. Series
 
@@ -177,6 +179,8 @@ print(my_series > 92)
 print(my_series[my_series > 92])
 ```
 ![](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/DataAnalysis/Pandas/202504061605245.png)
+
+
 
 ## 3. DataFrame
 
@@ -364,6 +368,8 @@ print(df.T)
 ```
 ![](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/DataAnalysis/Pandas/202504061605256.png)
 
+
+
 ## 4. CSV
 
 CSV（Comma-Separated Values）即逗号分隔值，其文件以纯文本形式存储表格数据，实际应用中，pandas 经常被用来对 csv 类型的表格数据进行处理。
@@ -417,6 +423,8 @@ DataFrame.to_csv(path_or_buf, sep=',', columns=None, header=True, index=True, en
 - quotechar：指定决定了在字段内部出现引号时，是自动重复引号（True），还是使用 escapechar 来转义
 - doublequote：True 表示当字段中出现引号字符时，会使用两个连续的引号来表示一个引号
 - escapechar：指定了用于转义特殊字符的字符
+
+
 
 ## 5. JSON
 
@@ -573,6 +581,8 @@ df.to_json('data.json', orient='records', lines=True)
 ```
 
 > 每个记录独占一行，不会被包含在一个外部的数组，即最外层没有方括号 []
+
+
 
 ## 6. 数据清洗
 
@@ -733,6 +743,8 @@ print(df.replace(to_replace=r'^B.*', value='B-fruit', regex=True))
 ```
 ![](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/DataAnalysis/Pandas/202504061605268.png)
 
+
+
 ## 7. 数据预处理
 
 ### 7.1 格式转换
@@ -852,6 +864,8 @@ print(df.sample(n=3, replace=True, axis=1))
 ```
 ![](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/DataAnalysis/Pandas/202504061605267.png)
 
+
+
 ## 8. 数值数据分析
 
 ### 8.1 排序
@@ -970,6 +984,8 @@ df = pd.DataFrame({
 print(pd.crosstab(df['Category'], df['Region']))
 ```
 ![](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/DataAnalysis/Pandas/202504061605273.png)
+
+
 
 ## 9. 时间序列分析
 
@@ -1116,7 +1132,7 @@ print(df.rolling('3D',min_periods=1).sum())
 
 > 窗口默认是右对齐的，即当前索引作为窗口末尾，除非使用 center 参数，无法实现左对齐
 
-### 9.6 可视化
+### 
 
 ## 10. 性能优化
 
