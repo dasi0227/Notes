@@ -73,7 +73,7 @@ JVM 内存：由 JVM 管理的内存，是预先设置好初始值和最大值�
 - 动态链接：存放当前栈帧能访问的运行时常量池中的符号引用，用于在运行时将符号引用解析为直接引用，从而快速定位调用目标
 - 方法返回地址：存放当前方法的调用方在字节码中的返回位置，用于在当前方法执行完后能够返回调用点继续执行
 
-![image-20250916234039981](../../../Library/Application%20Support/typora-user-images/image-20250916234039981.png)
+<img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509162340065.png" alt="image-20250916234039981" style="zoom:50%;" />
 
 
 
