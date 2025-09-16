@@ -7,13 +7,17 @@
 ## Contents
 
 - ☕️ JavaSE
-  - to be updated
+  - [Grammar](Backend/JavaSE/Grammar.md)：初识 Java、package、main、Java 开发流程、基础语法
+  - [OOP](Backend/JavaSE/OOP.md)：封装、继承、多态、重载、重写、Object 类、static、codeblock、加载顺序、interface
+  - [Class](Backend/JavaSE/Class.md)：Math、Arrays、System、BigDecimal、LocalDateTime、Enum、Exception、Wrapper、StringBuffer、Pattern、Matcher
+  - [Collection&Map](Backend/JavaSE/Collection&Map.md)：数组与集合、框架体系、Collection、Map、遍历手段、接口方法
+  - [Core](Backend/JavaSE/Core.md)：I/O、泛型、线程、反射、网络、JDBC
 - 🌐 Web
-  - [HTML](Backend/Web/HTML.md)：语法、JSON、BOM、DOM、Event、Ajax
-  - [CSS](Backend/Web/CSS.md)：语法、JSON、BOM、DOM、Event、Ajax
+  - [HTML](Backend/Web/HTML.md)：初识 Web 开发、超文本标记语言、结构、文本/列表/表格标签、多媒体标签、表单标签
+  - [CSS](Backend/Web/CSS.md)：样式、语法、选择器、优先级、文本属性、盒子模型、盒子排版
   - [JavaScript](Backend/Web/JavaScript.md)：语法、JSON、BOM、DOM、Event、Ajax、ES6
   - [Vue](Backend/Web/Vue.md)：前端工程化、Vue 框架、.vue 文件、模版语法、参数传递、路由、异步编程、CORS、Pinia 状态存储、Element-Plus
-  - [JavaWeb](Backend/Web/JavaWeb.md)：Web 应用、HTTP、Tomcat、路径配置、Servlet、请求和响应、Session、Listener、Filter
+  - [JavaWeb](Backend/Web/JavaWeb.md)：Web 应用、HTTP、Tomcat、路径配置、Servlet、Request、Response、Session、Listener、Filter
 - 🍃 Spring
   - [SpringFramework](Backend/Spring/SpringFramework.md)：全家桶介绍、Bean、IoC、AOP、JDBC、Resource、Validator、Junit、Maven
   - [SpringMVC](Backend/Spring/SpringMVC.md)：架构介绍、基于 web.xml 和 springMVC.xml 配置、基于注解配置、@RequestMapping、拦截器、异常处理器、请求域共享数据、视图映射、数据读入与写出、文件下载与上传
