@@ -2,50 +2,68 @@
 
 ## Overview
 
-个人学习笔记仓库，主要涵盖 **Java 基础、Web 开发、Spring 框架、前端、数据库、数据分析**等主题。
+个人学习笔记仓库，主要涵盖 **Java 基础、Web 开发、Spring 框架、数据、运维** 等主题。
 
 ## Contents
 
-- ☕️ JavaSE
-  - [Grammar](Backend/JavaSE/Grammar.md)：初识 Java、package、main、Java 开发流程、基础语法
-  - [OOP](Backend/JavaSE/OOP.md)：封装、继承、多态、重载、重写、Object 类、static、codeblock、加载顺序、interface
-  - [Class](Backend/JavaSE/Class.md)：Math、Arrays、System、BigDecimal、LocalDateTime、Enum、Exception、Wrapper、StringBuffer、Pattern、Matcher
-  - [Collection&Map](Backend/JavaSE/Collection&Map.md)：数组与集合、框架体系、Collection、Map、遍历手段、接口方法
-  - [Core](Backend/JavaSE/Core.md)：I/O、泛型、线程、反射、网络、JDBC
-- 🌐 Web
-  - [HTML](Backend/Web/HTML.md)：初识 Web 开发、超文本标记语言、结构、文本/列表/表格标签、多媒体标签、表单标签
-  - [CSS](Backend/Web/CSS.md)：样式、语法、选择器、优先级、文本属性、盒子模型、盒子排版
-  - [JavaScript](Backend/Web/JavaScript.md)：语法、JSON、BOM、DOM、Event、Ajax、ES6
-  - [Vue](Backend/Web/Vue.md)：前端工程化、Vue 框架、.vue 文件、模版语法、参数传递、路由、异步编程、CORS、Pinia 状态存储、Element-Plus
-  - [JavaWeb](Backend/Web/JavaWeb.md)：Web 应用、HTTP、Tomcat、路径配置、Servlet、Request、Response、Session、Listener、Filter
-- 🍃 Spring
-  - [SpringFramework](Backend/Spring/SpringFramework.md)：全家桶介绍、Bean、IoC、AOP、JDBC、Resource、Validator、Junit、Maven
-  - [SpringMVC](Backend/Spring/SpringMVC.md)：架构介绍、基于 web.xml 和 springMVC.xml 配置、基于注解配置、@RequestMapping、拦截器、异常处理器、请求域共享数据、视图映射、数据读入与写出、文件下载与上传
-  - [MyBatis](Backend/Spring/MyBatis.md)：Mapper、mybatis-config.xml、传递值、返回值、多表映射、动态语句、批量执行、分页机制 
-  - [MyBatis-Plus](Backend/Spring/MyBatis-Plus.md)：BaseMapper、IService、Wrapper、实体类注解、MyBatisX
-  - [SSM](Backend/Spring/SSM.md)：依赖整理、全注解配置、编码流程
-  - [SpringBoot](Backend/Spring/SpringBoot.md)：pom.xml、application.yml、启动类、读取配置、项目打包、整合 SSM
-  - [SpringCloud](Backend/Spring/SpringCloud.md)：单机/集群/分布式架构、微服务定义、Nacos Discovery、Nacos Config、OpenFeign、Sentinel、Gateway、Filter、Seata
-- 🛠 Middleware
-  - [Redis](Backend/Middleware/Redis.md)：缓存、基本命令、九大数据类型、Persistence、Transaction、Pipeline、Replication、Sentinel、Cluster、SpringBoot 集成、BigKey、双写一致性、高级数据结构应用、Lua、分布式锁、三大问题与三大方案、过期策略、底层分析
-  - [RabbitMQ](Backend/Middleware/RabbitMQ.md)：消息中间件、体系架构、交互流程、SpringBoot 集成、消息可靠性、延迟消息、优先级队列
-- 🚀 Projects  
+### ☕️ JavaSE
+
+- [Grammar](Backend/JavaSE/Grammar.md)：初识 Java、package、main、Java 开发流程、基础语法
+- [OOP](Backend/JavaSE/OOP.md)：封装、继承、多态、重载、重写、Object 类、static、codeblock、加载顺序、interface
+- [Class](Backend/JavaSE/Class.md)：Math、Arrays、System、BigDecimal、LocalDateTime、Enum、Exception、Wrapper、StringBuffer、Pattern、Matcher
+- [Collection&Map](Backend/JavaSE/Collection&Map.md)：数组与集合、框架体系、Collection、Map、遍历手段、接口方法
+- [Core](Backend/JavaSE/Core.md)：I/O、泛型、线程、反射、网络、JDBC
+
+### 🌐 Web
+
+- [HTML](Backend/Web/HTML.md)：初识 Web 开发、超文本标记语言、结构、文本/列表/表格标签、多媒体标签、表单标签
+- [CSS](Backend/Web/CSS.md)：样式、语法、选择器、优先级、文本属性、盒子模型、盒子排版
+- [JavaScript](Backend/Web/JavaScript.md)：语法、JSON、BOM、DOM、Event、Ajax、ES6
+- [Vue](Backend/Web/Vue.md)：前端工程化、Vue 框架、.vue 文件、模版语法、参数传递、路由、异步编程、CORS、Pinia 状态存储、Element-Plus
+- [JavaWeb](Backend/Web/JavaWeb.md)：Web 应用、HTTP、Tomcat、路径配置、Servlet、Request、Response、Session、Listener、Filter
+
+### 🍃 Spring
+
+- [SpringFramework](Backend/Spring/SpringFramework.md)：全家桶介绍、Bean、IoC、AOP、JDBC、Resource、Validator、Junit、Maven
+- [SpringMVC](Backend/Spring/SpringMVC.md)：架构介绍、基于 web.xml 和 springMVC.xml 配置、基于注解配置、@RequestMapping、拦截器、异常处理器、请求域共享数据、视图映射、数据读入与写出、文件下载与上传
+- [MyBatis](Backend/Spring/MyBatis.md)：Mapper、mybatis-config.xml、传递值、返回值、多表映射、动态语句、批量执行、分页机制 
+- [MyBatis-Plus](Backend/Spring/MyBatis-Plus.md)：BaseMapper、IService、Wrapper、实体类注解、MyBatisX
+- [SSM](Backend/Spring/SSM.md)：依赖整理、全注解配置、编码流程
+- [SpringBoot](Backend/Spring/SpringBoot.md)：pom.xml、application.yml、启动类、读取配置、项目打包、整合 SSM
+- [SpringCloud](Backend/Spring/SpringCloud.md)：单机/集群/分布式架构、微服务定义、Nacos Discovery、Nacos Config、OpenFeign、Sentinel、Gateway、Filter、Seata
+
+### 🛠 Middleware
+
+- [Redis](Backend/Middleware/Redis.md)：缓存、基本命令、九大数据类型、Persistence、Transaction、Pipeline、Replication、Sentinel、Cluster、SpringBoot 集成、BigKey、双写一致性、高级数据结构应用、Lua、分布式锁、三大问题与三大方案、过期策略、底层分析
+- [RabbitMQ](Backend/Middleware/RabbitMQ.md)：消息中间件、体系架构、交互流程、SpringBoot 集成、消息可靠性、延迟消息、优先级队列
+
+- 🚀 Projects
   - [苍穹外卖](Backend/Project/苍穹外卖.md)：项目设计、代码设计、DTO 和 VO、业务处理、Nginx、RESTful、PageHelper、SLF4J、JWT、Swagger、OSS、@AutoFill、@ExceptionHandler、HttpClient、SpringCache、SpringTask、WebSocket、ECharts、POI
   - [黑马点评](Backend/Project/黑马点评.md)：Nginx 代理、令牌拦截器、序号生成器、防穿透、防击穿、防竞争、滚动分页、位置查询、签到记录、访问统计
-- ⚙️ DevOps
-    - Linux
-    - Docker
-- 📊 Data Analysis
-    - [NumPy](Data/NumPy.md)：
-    - [Pandas](Data/Pandas.md)：
-    - [Hadoop](Data/hadoop.md)：
+
+### ⚙️ DevOps
+
+- Linux
+- Docker
+
+### 📊 Data Analysis
+
+- [NumPy](Data/NumPy.md)：
+- [Pandas](Data/Pandas.md)：
+- [Hadoop](Data/hadoop.md)：
 
 
 ## Learning Path
 
 1. JavaSE
 
-    - 04.14：Core、OOP
+    [x] 04.14：Core、OOP
+
+    > [!IMPORTANT]
+    >
+    > 啊？
+
+    
 
     - 04.15：异常、接口、包装类、枚举类
 
