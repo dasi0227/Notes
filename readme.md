@@ -37,9 +37,10 @@
 - [Redis](Backend/Middleware/Redis.md)：缓存、基本命令、九大数据类型、Persistence、Transaction、Pipeline、Replication、Sentinel、Cluster、SpringBoot 集成、BigKey、双写一致性、高级数据结构应用、Lua、分布式锁、三大问题与三大方案、过期策略、底层分析
 - [RabbitMQ](Backend/Middleware/RabbitMQ.md)：消息中间件、体系架构、交互流程、SpringBoot 集成、消息可靠性、延迟消息、优先级队列
 
-- 🚀 Projects
-  - [苍穹外卖](Backend/Project/苍穹外卖.md)：项目设计、代码设计、DTO 和 VO、业务处理、Nginx、RESTful、PageHelper、SLF4J、JWT、Swagger、OSS、@AutoFill、@ExceptionHandler、HttpClient、SpringCache、SpringTask、WebSocket、ECharts、POI
-  - [黑马点评](Backend/Project/黑马点评.md)：Nginx 代理、令牌拦截器、序号生成器、防穿透、防击穿、防竞争、滚动分页、位置查询、签到记录、访问统计
+### 🚀 Projects
+
+- [苍穹外卖](Backend/Project/苍穹外卖.md)：项目设计、代码设计、DTO 和 VO、业务处理、Nginx、RESTful、PageHelper、SLF4J、JWT、Swagger、OSS、@AutoFill、@ExceptionHandler、HttpClient、SpringCache、SpringTask、WebSocket、ECharts、POI
+- [黑马点评](Backend/Project/黑马点评.md)：Nginx 代理、令牌拦截器、序号生成器、防穿透、防击穿、防竞争、滚动分页、位置查询、签到记录、访问统计
 
 ### ⚙️ DevOps
 
@@ -195,12 +196,8 @@ To Be Continued...
 
 ## About me
 
-🎓 School: SYSU
-
 💻 Major: Computer Science  
 
-💬 WeChat: WanDasi24  
-
-📧 Email: [dasi0227@qq.com](mailto:dasi0227@qq.com) | [wanyw0227@gmail.com](mailto:wanyw0227@gmail.com)  
+📧 Email: [dasi0227@qq.com](mailto:dasi0227@qq.com)
 
 🌐 Blog: [https://dasi.plus](https://dasi.plus)  
