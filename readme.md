@@ -57,139 +57,132 @@
 
 1. JavaSE
 
-    - [x] 04.14：Core、OOP
-
-    - [x] 04.15：异常、接口、包装类、枚举类
-
-    - [x] 04.16：工具类、集合、泛型
-
-    - [x] 04.17：线程、坦克Demo1.0
-
-    - [x] 04.18：I/O、流、坦克Demo2.0
-
-    - [x] 04.19：网络
-
-    - [x] 04.20：多用户消息Demo1.0
-
-    - [x] 04.21：多用户消息Demo2.0
-
-    - [x] 04.22：反射、MySQL、JDBC、Druid
-
-    - [x] 04.23：DAO、正则表达式、满汉楼Demo
+- [x] 04.14：Core、OOP
+- [x] 04.15：异常、接口、包装类、枚举类
+- [x] 04.16：工具类、集合、泛型
+- [x] 04.17：线程、坦克Demo1.0
+- [x] 04.18：I/O、流、坦克Demo2.0
+- [x] 04.19：网络
+- [x] 04.20：多用户消息Demo1.0
+- [x] 04.21：多用户消息Demo2.0
+- [x] 04.22：反射、MySQL、JDBC、Druid
+- [x] 04.23：DAO、正则表达式、满汉楼Demo
 
 2. JavaWeb
 
-3. [x] 04.24：HTML、CSS、JS
-4. [x] 04.25：BOM、登陆页面Demo
-5. [x] 04.26：Tomcat、HTTP、Servlet
-6. [x] 04.28：XML、日程管理Demo1.0
-7. [x] 05.07：Session、Cookie、域、日程管理Demo2.0
-8. [x] 05.08：Filter、Listener、ajax、日程管理Demo4.0
-9. [x] 05.09：ES6、npm、Vite
-10. [x] 05.11：Vue、pinia
-11. [x] 05.12：route、SPA、axios、日程管理Demo5.0
-12. [x] 05.13：日程管理Demo7.0
-13. SpringFramework
+- [x] 04.24：HTML、CSS、JS
+- [x] 04.25：BOM、登陆页面Demo
+- [x] 04.26：Tomcat、HTTP、Servlet
+- [x] 04.28：XML、日程管理Demo1.0
+- [x] 05.07：Session、Cookie、域、日程管理Demo2.0
+- [x] 05.08：Filter、Listener、ajax、日程管理Demo4.0
+- [x] 05.09：ES6、npm、Vite
+- [x] 05.11：Vue、pinia
+- [x] 05.12：route、SPA、axios、日程管理Demo5.0
+- [x] 05.13：日程管理Demo7.0
 
-     - 05.14：Bean
+3. SpringFramework
 
-     - 05.15：IoC-XML
+- [x] 05.14：Bean
 
-     - 06.04：IoC-Annotation
+- [x] 05.15：IoC-XML
 
-     - 06.06：IoC 底层
+- [x] 06.04：IoC-Annotation
 
-     - 06.07：AOP
+- [x] 06.06：IoC 底层
 
-     - 06.08：Junit、JDBCTemplate
+- [x] 06.07：AOP
 
-     - 06.09：Transactional、Resource
+- [x] 06.08：Junit、JDBCTemplate
 
-     - 06.11：i18n、Validator
+- [x] 06.09：Transactional、Resource
 
-     - 06.12：Maven、Log4j、Junit
+- [x] 06.11：i18n、Validator
 
-14. SpringMVC
+- [x] 06.12：Maven、Log4j、Junit
 
-     - 08.06：RequestMapping、web.xml、Thymeleaf
+4. SpringMVC
 
-     - 08.07：ModelAndView、RESTful、消息转换器
+- [x] 08.06：RequestMapping、web.xml、Thymeleaf
 
-     - 08.08：Interceptor、异常处理器
+- [x] 08.07：ModelAndView、RESTful、消息转换器
 
-15. Mybatis
+- [x] 08.08：Interceptor、异常处理器
 
-     - 08.10：Mapper、多表映射、动态 SQL
+5. Mybatis
 
-     - 08.11：批量执行、分页机制、SSM、任务列表Demo
-     - 08.12：BaseMapper、IService、Wrapper、实体类注解
+- [x] 08.10：Mapper、多表映射、动态 SQL
 
-16. SpringBoot
-     - 08.13：Main、application.yaml、整合 SSM、MyBatisX
+- [x] 08.11：批量执行、分页机制、SSM、任务列表Demo
+- [x] 08.12：BaseMapper、IService、Wrapper、实体类注解
 
-17. 苍穹外卖
+6. SpringBoot
 
-     - 08.15：环境搭建、接口测试搭建、项目结构搭建
+- [x] 08.13：Main、application.yaml、整合 SSM、MyBatisX
 
-     - 08.16：B端（员工/分类/菜品/套餐/上传/店铺）、Redis
+7. 苍穹外卖
 
-     - 08.17：C端（微信/分类/菜品/套餐/店铺/购物车/地址）
+- [x] 08.15：环境搭建、接口测试搭建、项目结构搭建
 
-     - 08.18：C端（订单/支付）、B端（订单）、WebSocket
+- [x] 08.16：B端（员工/分类/菜品/套餐/上传/店铺）、Redis
 
-     - 08.19：B端（数据/工作台/导出）、完善、测试
+- [x] 08.17：C端（微信/分类/菜品/套餐/店铺/购物车/地址）
 
-     - 08.20：项目总结
+- [x] 08.18：C端（订单/支付）、B端（订单）、WebSocket
 
-18. Redis
+- [x] 08.19：B端（数据/工作台/导出）、完善、测试
 
-     - 08.24：概念、数据结构
+- [x] 08.20：项目总结
 
-     - 08.25：持久化、事务、管道
+8. Redis
 
-     - 08.26：复制、哨兵、集群
+- [x] 08.24：概念、数据结构
 
-     - 08.27：Spring 集成、BigKey、双写一致性、Canal
+- [x] 08.25：持久化、事务、管道
 
-     - 08.28：Geo/BitMap/HyperLogLog 原理、三大问题、三大兜底
+- [x] 08.26：复制、哨兵、集群
 
-     - 08.29：BloomFilter、分布式锁、Redlock、Redisson
+- [x] 08.27：Spring 集成、BigKey、双写一致性、Canal
 
-     - 08.30：过期策略、I/O 多路复用
+- [x] 08.28：Geo/BitMap/HyperLogLog 原理、三大问题、三大兜底
 
-19. RabbitMQ
+- [x] 08.29：BloomFilter、分布式锁、Redlock、Redisson
 
-     - 08.31：Docker、消息中间件、体系结构、Spring 集成
+- [x] 08.30：过期策略、I/O 多路复用
 
-     - 09.01：消息可靠性、延迟消息、优先级队列
+9. RabbitMQ
 
-20. 黑马点评
+- [x] 08.31：Docker、消息中间件、体系结构、Spring 集成
 
-     - 09.02：环境搭建、项目结构搭建、用户登录登出、安全查缓存
+- [x] 09.01：消息可靠性、延迟消息、优先级队列
 
-     - 09.03：秒杀库存、分布式锁、消息队列
+10. 黑马点评
 
-     - 09.04：点赞、排行榜、共同关注、推送、滚动分页
+- [x] 09.02：环境搭建、项目结构搭建、用户登录登出、安全查缓存
 
-     - 09.05：附近商户、用户签到、UV、PV
+- [x] 09.03：秒杀库存、分布式锁、消息队列
 
-     - 09.06：笔记总结
+- [x] 09.04：点赞、排行榜、共同关注、推送、滚动分页
 
-     - 09.09：笔记总结
+- [x] 09.05：附近商户、用户签到、UV、PV
 
-21. SpringCloud
+- [x] 09.06：笔记总结
 
-    - 09.10：概念、分布式架构、Nacos Discovery
+- [x] 09.09：笔记总结
 
-    - 09.11：Nacos Config、OpenFeign
+11. SpringCloud
 
-    - 09.12：Sentinel、Gateway
+- [x] 09.10：概念、分布式架构、Nacos Discovery
 
-    - 09.13：Seata
+- [x] 09.11：Nacos Config、OpenFeign
 
-    - 09.14：笔记总结
+- [x] 09.12：Sentinel、Gateway
 
-    - 09.15：笔记总结
+- [x] 09.13：Seata
+
+- [x] 09.14：笔记总结
+
+- [x] 09.15：笔记总结
 
 To Be Continued...
 
