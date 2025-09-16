@@ -57,143 +57,127 @@
 
 1. JavaSE
 
-    [x] 04.14：Core、OOP
+    - [x] 04.14：Core、OOP
 
-    > [!IMPORTANT]
-    >
-    > 啊？
+    - [x] 04.15：异常、接口、包装类、枚举类
 
-    
+    - [x] 04.16：工具类、集合、泛型
 
-    - 04.15：异常、接口、包装类、枚举类
+    - [x] 04.17：线程、坦克Demo1.0
 
-    - 04.16：工具类、集合、泛型
+    - [x] 04.18：I/O、流、坦克Demo2.0
 
-    - 04.17：线程、坦克Demo1.0
+    - [x] 04.19：网络
 
-    - 04.18：I/O、流、坦克Demo2.0
+    - [x] 04.20：多用户消息Demo1.0
 
-    - 04.19：网络
+    - [x] 04.21：多用户消息Demo2.0
 
-    - 04.20：多用户消息Demo1.0
+    - [x] 04.22：反射、MySQL、JDBC、Druid
 
-    - 04.21：多用户消息Demo2.0
-
-    - 04.22：反射、MySQL、JDBC、Druid
-
-    - 04.23：DAO、正则表达式、满汉楼Demo
+    - [x] 04.23：DAO、正则表达式、满汉楼Demo
 
 2. JavaWeb
 
-    - 04.24：HTML、CSS、JS
+3. [x] 04.24：HTML、CSS、JS
+4. [x] 04.25：BOM、登陆页面Demo
+5. [x] 04.26：Tomcat、HTTP、Servlet
+6. [x] 04.28：XML、日程管理Demo1.0
+7. [x] 05.07：Session、Cookie、域、日程管理Demo2.0
+8. [x] 05.08：Filter、Listener、ajax、日程管理Demo4.0
+9. [x] 05.09：ES6、npm、Vite
+10. [x] 05.11：Vue、pinia
+11. [x] 05.12：route、SPA、axios、日程管理Demo5.0
+12. [x] 05.13：日程管理Demo7.0
+13. SpringFramework
 
-    - 04.25：BOM、登陆页面Demo
+     - 05.14：Bean
 
-    - 04.26：Tomcat、HTTP、Servlet
+     - 05.15：IoC-XML
 
-    - 04.28：XML、日程管理Demo1.0
+     - 06.04：IoC-Annotation
 
-    - 05.07：Session、Cookie、域、日程管理Demo2.0
+     - 06.06：IoC 底层
 
-    - 05.08：Filter、Listener、ajax、日程管理Demo4.0
+     - 06.07：AOP
 
-    - 05.09：ES6、npm、Vite
+     - 06.08：Junit、JDBCTemplate
 
-    - 05.11：Vue、pinia
+     - 06.09：Transactional、Resource
 
-    - 05.12：route、SPA、axios、日程管理Demo5.0
+     - 06.11：i18n、Validator
 
-    - 05.13：日程管理Demo7.0
+     - 06.12：Maven、Log4j、Junit
 
-3. SpringFramework
+14. SpringMVC
 
-    - 05.14：Bean
+     - 08.06：RequestMapping、web.xml、Thymeleaf
 
-    - 05.15：IoC-XML
+     - 08.07：ModelAndView、RESTful、消息转换器
 
-    - 06.04：IoC-Annotation
+     - 08.08：Interceptor、异常处理器
 
-    - 06.06：IoC 底层
+15. Mybatis
 
-    - 06.07：AOP
+     - 08.10：Mapper、多表映射、动态 SQL
 
-    - 06.08：Junit、JDBCTemplate
+     - 08.11：批量执行、分页机制、SSM、任务列表Demo
+     - 08.12：BaseMapper、IService、Wrapper、实体类注解
 
-    - 06.09：Transactional、Resource
+16. SpringBoot
+     - 08.13：Main、application.yaml、整合 SSM、MyBatisX
 
-    - 06.11：i18n、Validator
+17. 苍穹外卖
 
-    - 06.12：Maven、Log4j、Junit
+     - 08.15：环境搭建、接口测试搭建、项目结构搭建
 
-3. SpringMVC
+     - 08.16：B端（员工/分类/菜品/套餐/上传/店铺）、Redis
 
-    - 08.06：RequestMapping、web.xml、Thymeleaf
+     - 08.17：C端（微信/分类/菜品/套餐/店铺/购物车/地址）
 
-    - 08.07：ModelAndView、RESTful、消息转换器
+     - 08.18：C端（订单/支付）、B端（订单）、WebSocket
 
-    - 08.08：Interceptor、异常处理器
+     - 08.19：B端（数据/工作台/导出）、完善、测试
 
-4. Mybatis
+     - 08.20：项目总结
 
-    - 08.10：Mapper、多表映射、动态 SQL
+18. Redis
 
-    - 08.11：批量执行、分页机制、SSM、任务列表Demo
-    - 08.12：BaseMapper、IService、Wrapper、实体类注解
+     - 08.24：概念、数据结构
 
-5. SpringBoot
-    - 08.13：Main、application.yaml、整合 SSM、MyBatisX
+     - 08.25：持久化、事务、管道
 
-6. 苍穹外卖
+     - 08.26：复制、哨兵、集群
 
-    - 08.15：环境搭建、接口测试搭建、项目结构搭建
+     - 08.27：Spring 集成、BigKey、双写一致性、Canal
 
-    - 08.16：B端（员工/分类/菜品/套餐/上传/店铺）、Redis
+     - 08.28：Geo/BitMap/HyperLogLog 原理、三大问题、三大兜底
 
-    - 08.17：C端（微信/分类/菜品/套餐/店铺/购物车/地址）
+     - 08.29：BloomFilter、分布式锁、Redlock、Redisson
 
-    - 08.18：C端（订单/支付）、B端（订单）、WebSocket
+     - 08.30：过期策略、I/O 多路复用
 
-    - 08.19：B端（数据/工作台/导出）、完善、测试
+19. RabbitMQ
 
-    - 08.20：项目总结
+     - 08.31：Docker、消息中间件、体系结构、Spring 集成
 
-7. Redis
+     - 09.01：消息可靠性、延迟消息、优先级队列
 
-    - 08.24：概念、数据结构
+20. 黑马点评
 
-    - 08.25：持久化、事务、管道
+     - 09.02：环境搭建、项目结构搭建、用户登录登出、安全查缓存
 
-    - 08.26：复制、哨兵、集群
+     - 09.03：秒杀库存、分布式锁、消息队列
 
-    - 08.27：Spring 集成、BigKey、双写一致性、Canal
+     - 09.04：点赞、排行榜、共同关注、推送、滚动分页
 
-    - 08.28：Geo/BitMap/HyperLogLog 原理、三大问题、三大兜底
+     - 09.05：附近商户、用户签到、UV、PV
 
-    - 08.29：BloomFilter、分布式锁、Redlock、Redisson
+     - 09.06：笔记总结
 
-    - 08.30：过期策略、I/O 多路复用
+     - 09.09：笔记总结
 
-8. RabbitMQ
-
-    - 08.31：Docker、消息中间件、体系结构、Spring 集成
-
-    - 09.01：消息可靠性、延迟消息、优先级队列
-
-9. 黑马点评
-
-    - 09.02：环境搭建、项目结构搭建、用户登录登出、安全查缓存
-
-    - 09.03：秒杀库存、分布式锁、消息队列
-
-    - 09.04：点赞、排行榜、共同关注、推送、滚动分页
-
-    - 09.05：附近商户、用户签到、UV、PV
-
-    - 09.06：笔记总结
-
-    - 09.09：笔记总结
-
-10. SpringCloud
+21. SpringCloud
 
     - 09.10：概念、分布式架构、Nacos Discovery
 
