@@ -29,7 +29,7 @@
 
 ### 关系
 
-![1fca36c97163446a532982b6cf7c0b57](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509162319588.png)
+<img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509162330784.png" alt="image-20250916233051698" style="zoom: 50%;" />
 
 
 
@@ -41,7 +41,9 @@ JVM 内存：由 JVM 管理的内存，是预先设置好初始值和最大值�
 
 本地内存：由进程管理的内存，是从操作系统动态分配的内存，主要有元空间和直接内存
 
-![6a0be5e333830c4f3dabb4539a828b3f](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509162319312.png)
+<img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509162331896.png" alt="image-20250916233140809" style="zoom: 50%;" />
+
+
 
 ### 线程
 
@@ -49,7 +51,7 @@ JVM 内存：由 JVM 管理的内存，是预先设置好初始值和最大值�
 
 线程是 JVM 中执行代码的最小单位，每个线程都有自己的执行上下文和内存空间，同时也与其他线程共享堆和本地内存
 
-![1f640cd558a36971e98a46136bb2d41e](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509162317380.png)
+<img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509162332105.png" alt="image-20250916233237006" style="zoom:50%;" />
 
 #### 程序计数器
 
@@ -71,7 +73,7 @@ JVM 内存：由 JVM 管理的内存，是预先设置好初始值和最大值�
 - 动态链接：存放当前栈帧能访问的运行时常量池中的符号引用，用于在运行时将符号引用解析为直接引用，从而快速定位调用目标
 - 方法返回地址：存放当前方法的调用方在字节码中的返回位置，用于在当前方法执行完后能够返回调用点继续执行
 
-
+![image-20250916234039981](../../../Library/Application%20Support/typora-user-images/image-20250916234039981.png)
 
 
 
