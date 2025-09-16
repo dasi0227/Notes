@@ -29,11 +29,14 @@
 - [SSM](Backend/Spring/SSM.md)：依赖整理、全注解配置、编码流程
 - [SpringBoot](Backend/Spring/SpringBoot.md)：pom.xml、application.yml、启动类、读取配置、项目打包、整合 SSM
 - [SpringCloud](Backend/Spring/SpringCloud.md)：单机/集群/分布式架构、微服务定义、Nacos Discovery、Nacos Config、OpenFeign、Sentinel、Gateway、Filter、Seata
+- SpringSecurity：待学习...
 
 ### 🛠 Middleware
 
 - [Redis](Backend/Middleware/Redis.md)：缓存、基本命令、九大数据类型、Persistence、Transaction、Pipeline、Replication、Sentinel、Cluster、SpringBoot 集成、BigKey、双写一致性、高级数据结构应用、Lua、分布式锁、三大问题与三大方案、过期策略、底层分析
 - [RabbitMQ](Backend/Middleware/RabbitMQ.md)：消息中间件、体系架构、交互流程、SpringBoot 集成、消息可靠性、延迟消息、优先级队列
+- Kafka：待学习...
+- Elasticsearch：待学习...
 
 ### 🚀 Projects
 
@@ -42,8 +45,10 @@
 
 ### ⚙️ DevOps
 
-- Linux
-- Docker
+- Linux：待学习
+- Docker：待学习
+- K8s：待学习
+- Prometheus：待学习
 
 ### 📊 Data Analysis
 
@@ -172,23 +177,34 @@
 11. SpringCloud
 
 - [x] 09.10：概念、分布式架构、Nacos Discovery
-
 - [x] 09.11：Nacos Config、OpenFeign
-
 - [x] 09.12：Sentinel、Gateway
-
 - [x] 09.13：Seata
-
 - [x] 09.14：笔记总结
-
 - [x] 09.15：笔记总结、搬迁到 Github
+
+12. 八股
+
+- [ ] 09.16
+- [ ] 09.17
+- [ ] 09.18
+- [ ] 09.19
+- [ ] 09.20
+- [ ] 09.21
+- [ ] 09.22
+- [ ] 09.23
+- [ ] 09.24
+- [ ] 09.25
+- [ ] 09.26
+- [ ] 09.27
 
 ## ToDo
 
-1. 将博客笔记转移到 Github
-2. 学成在线项目
-3. 独立研发消息中台项目
-4. 笔记交易平台项目作为毕设
+1. 待学习：SpringSecurity、Linux、Docker、K8s、Kafka、Prometheus、Elasticsearch
+2. 将博客笔记转移到 Github
+3. 学成在线项目
+4. 独立研发消息中台项目
+5. 笔记交易平台项目作为毕设
 
 ## About me
 
