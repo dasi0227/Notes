@@ -1,6 +1,6 @@
 ## Overview
 
-个人学习笔记仓库，主要涵盖 **Java 基础、Web 开发、Spring 框架、数据、运维** 等主题。
+个人学习笔记仓库，主要涵盖 **Java 基础、Web 开发、Spring 框架、八股、数据、运维** 等主题。
 
 ## Contents
 
@@ -29,7 +29,7 @@
 - [SSM](Backend/Spring/SSM.md)：依赖整理、全注解配置、编码流程
 - [SpringBoot](Backend/Spring/SpringBoot.md)：pom.xml、application.yml、启动类、读取配置、项目打包、整合 SSM
 - [SpringCloud](Backend/Spring/SpringCloud.md)：单机/集群/分布式架构、微服务定义、Nacos Discovery、Nacos Config、OpenFeign、Sentinel、Gateway、Filter、Seata
-- SpringSecurity：待学习...
+- [SpringSecurity](/Backend/SpringSecurity.md)：待学习...
 
 ### 🛠 Middleware
 
@@ -43,12 +43,24 @@
 - [苍穹外卖](Backend/Project/苍穹外卖.md)：项目设计、代码设计、DTO 和 VO、业务处理、Nginx、RESTful、PageHelper、SLF4J、JWT、Swagger、OSS、@AutoFill、@ExceptionHandler、HttpClient、SpringCache、SpringTask、WebSocket、ECharts、POI
 - [黑马点评](Backend/Project/黑马点评.md)：Nginx 代理、令牌拦截器、序号生成器、防穿透、防击穿、防竞争、滚动分页、位置查询、签到记录、访问统计
 
+### 📚 八股
+
+- [JVM](/Theory/JVM.md)：待学习...
+- [并发编程](/Theory/Concurrent.md)：待学习...
+- [集合框架](/Theory/Collection.md)：待学习...
+- [计算机网络](/Theory/CN.md)：待学习...
+- [操作系统](/Theory/OS.md)：待学习...
+- [数据库](/Theory/DataBase.md)：待学习...
+- [系统设计](/Theory/Design.md)：待学习...
+- [高性能](/Theory/Performance.md)：待学习...
+- [高可用](/Theory/Availability.md)：待学习...
+
 ### ⚙️ DevOps
 
-- Linux：待学习
-- Docker：待学习
-- K8s：待学习
-- Prometheus：待学习
+- [Linux](/DevOps/Linux.md)：待学习...
+- [Docker](/DevOps/Docker.md)：待学习...
+- [Kubernetes](/DevOps/Kubernetes.md)：待学习...
+- [Prometheus](/DevOps/Prometheus.md)：待学习...
 
 ### 📊 Data Analysis
 
@@ -183,10 +195,10 @@
 - [x] 09.14：笔记总结
 - [x] 09.15：笔记总结、搬迁到 Github
 
-12. 八股
+12. JVM
 
-- [ ] 09.16
-- [ ] 09.17
+- [x] 09.16：内存区域
+- [x] 09.17：垃圾回收
 - [ ] 09.18
 - [ ] 09.19
 - [ ] 09.20
