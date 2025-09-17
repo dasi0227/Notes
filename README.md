@@ -212,7 +212,7 @@
 
 ## ToDo
 
-1. 待学习：SpringSecurity、Linux、Docker、K8s、Kafka、Prometheus、Elasticsearch
+1. 待学习：八股、SpringSecurity、Linux、Docker、K8s、Kafka、Prometheus、Elasticsearch
 2. 将博客笔记转移到 Github
 3. 学成在线项目
 4. 独立研发消息中台项目
@@ -220,8 +220,11 @@
 
 ## About me
 
-💻 Major: Computer Science  
+💻 Major: [Computer Science](https://cse.sysu.edu.cn/)  
+
+🐙 Repo：[Github](https://github.com/dasi0227/Notes) ｜ [Gitee](https://gitee.com/dasi0227/Notes)
 
 📧 Email: [dasi0227@qq.com](mailto:dasi0227@qq.com)
 
-🌐 Blog: [https://dasi.plus](https://dasi.plus)  
+🌐 Blog: [dasi.plus](https://dasi.plus)  
+
