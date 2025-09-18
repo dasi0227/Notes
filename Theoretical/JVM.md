@@ -173,11 +173,11 @@ JDK 1.7 利用了堆的永久代来存储类的元数据，而 JDK 1.8 转移到
 
 ### 对象创建全过程
 
-#### 1. 类加载检查
+#### 1️⃣ 类加载检查
 
 虚拟机遇到一条 new 指令时，JVM 首先检查运行时常量池中是否有该类的符号引用，如果没有，则会通过类加载器将 .class 文件加载到元空间中，并创建对应的 Class 对象放在堆中
 
-#### 2. 内存分配
+#### 2️⃣ 内存分配
 
 虚拟机会在堆上为对象分配内存，所需的内存大小在类加载完成便可以确定
 
@@ -191,11 +191,11 @@ JDK 1.7 利用了堆的永久代来存储类的元数据，而 JDK 1.8 转移到
 - **CAS（Compare And Swap）**：一种乐观锁的实现方式，在分配内存前会比较分界指针是否等于预期值，如果不相等则会重新尝试分配内存，直到成功为止
 - **TLAB（Thread Local Allocation Buffer）**：虚拟机先为每个线程在堆中分配一小块私有的 Eden 区，又称为 TLAB，线程优先在各自的 TLAB 中分配内存给对象，如果 TLAB 不足，再退回到公共 Eden 区使用 CAS
 
-#### 3. 内存初始化零值
+#### 3️⃣ 内存初始化零值
 
 分配完内存之后，虚拟机会先将内存空间清零（int=0，引用=null），然后在对象头写入对象的元数据，这样子对象即使不赋初值，也可以程序访问到零值
 
-#### 4. 执行 init 方法
+#### 4️⃣ 执行 init 方法
 
 虚拟机会调用 \<init> 方法即类的构造方法，对类进行程序层面的初始化，逻辑由开发者指定
 
@@ -362,24 +362,45 @@ Z 的含义表示 Z 世代，即新一代垃圾回收器，最大的特点是**�
 
 类文件就是 .class 文件，是 Java 源代码通过 javac 编译后的产物，也是 JVM 直接识别并执行的二进制格式文件，并且严格遵守字节码结构规范
 
+```java
+ClassFile {
+    u4             magic;
+    u2             minor_version;
+    u2             major_version;
+    u2             constant_pool_count;
+    cp_info        constant_pool[constant_pool_count-1];
+    u2             access_flags;
+    u2             this_class;
+    u2             super_class;
+    u2             interfaces_count;
+    u2             interfaces[interfaces_count];
+    u2             fields_count;
+    field_info     fields[fields_count];
+    u2             methods_count;
+    method_info    methods[methods_count];
+    u2             attributes_count;
+    attribute_info attributes[attributes_count];
+}
+```
+
 ![e72fb8df7a7cc8ae16e81bb39ea0faaa](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509181059298.png)
 
 #### 魔数
 
-位于文件开头的 4 个字节，是固定值 0xCAFEBABE，用来标识这是一个合法的 Java 类文件，如果不是这个值 JVM 会拒绝加载
+`magic` 位于文件开头的 4 个字节，是固定值 0xCAFEBABE，用来标识这是一个合法的 Java 类文件，如果不是这个值 JVM 会拒绝加载
 
 #### 版本号
 
-前 2 个字节存**次版本号，记录了不同小更新或小补丁的版本**；后 2 个字节存**主版本号，记录了类文件由哪一代 JDK 编译器生成**，低版本的 JVM 无法运行高版本的 JDK 编译器生成的类文件
+前 2 个字节存**次版本号 `minor_version`，记录了不同小更新或小补丁的版本**；后 2 个字节存**主版本号 `major_version`，记录了类文件由哪一代 JDK 编译器生成**，低版本的 JVM 无法运行高版本的 JDK 编译器生成的类文件
 
 #### 常量池
 
-常量池主要存以下两部分内容
+`constant_pool_count`：占用 2 字节，表示类中常量的数量
 
-- 字面量：文本字符串，声明为 final 的常量值
-- 符号引用：类和接口的全限定名、字段的名称和描述符、方法的名称和描述符
+- **字面量**：文本字符串以及声明为 final 的常量值
+- **符号引用**：类和接口的全限定名、字段的名称和描述符、方法的名称和描述符
 
-常量池实际上是一个表结构，主要最多可以存 constant pool count - 1 个常量池项，因为索引值从 1 开始，索引 0 专门表示“没有引用任何常量”，每一个常量池项由 index + tag + info 组成，各占一个字节
+`cp_info constant_pool[]`：常量池实际上是一个表结构，最多可以存 constant_pool_count - 1 个常量池项，占用 2 字节，其中**有效常量值的索引值从 1 开始，索引 0 专门表示“没有引用任何常量”**，每一个常量池项都是 `cp_info` 元素，由 **tag + info** 组成
 
 | tag               | info                   |
 | ----------------- | ---------------------- |
@@ -394,33 +415,157 @@ Z 的含义表示 Z 世代，即新一代垃圾回收器，最大的特点是**�
 | 10（MethodRef）   | 方法的符号引用         |
 | 12（NameAndType） | 字段或方法的名字和类型 |
 
-#### 访问标志
+```text
+// String name = "dasi";
+#1  = String             #2
+#2  = Utf8               dasi
 
-占用 2 字节，每一位表示一个布尔属性，用来描述类或接口的修饰符特性
+// Integer age = 21;
+#3  = Integer            21
+#4  = Methodref          #5.#6
+#5  = Class              #7
+#6  = NameAndType        #8:#9
+#7  = Utf8               java/lang/Integer
+#8  = Utf8               valueOf
+#9  = Utf8               (I)Ljava/lang/Integer;
 
-| **标志名**     | **十六进制值** | **含义**                                      |
-| -------------- | -------------- | --------------------------------------------- |
-| ACC_PUBLIC     | 0x0001         | 声明这是一个 public 类                        |
-| ACC_FINAL      | 0x0010         | 声明这是一个 final 类                         |
-| ACC_SUPER      | 0x0020         | 声明调用父类方法时使用新的 invokespecial 语义 |
-| ACC_INTERFACE  | 0x0200         | 声明这是一个接口类                            |
-| ACC_ABSTRACT   | 0x0400         | 声明这是一个抽象类                            |
-| ACC_SYNTHETIC  | 0x1000         | 编译器自动生成的类                            |
-| ACC_ANNOTATION | 0x2000         | 声明这是一个注解类                            |
-| ACC_ENUM       | 0x4000         | 声明这是一个枚举类                            |
+// User user = new User(name, age);
+#10 = Class              #11
+#11 = Utf8               User
+#12 = Methodref          #10.#13
+#13 = NameAndType        #14:#15
+#14 = Utf8               <init>
+#15 = Utf8               (Ljava/lang/String;Ljava/lang/Integer;)V
+```
 
-#### 类信息
+#### 类头信息
 
-- this_class：占用 2 字节，指向常量池中的 Class 项，再通过 info 指向 Utf8 项，得到当前类名
-- super_class：占用 2 字节，指向常量池中的  Class 项，再通过 info 指向 Utf8 项，得到父类名
-- interfaces_count：占用 2 字节，存储类实现的接口数量
-- interfaces：是一个表，每个元素占用 2 字节，指向常量池中的 Class 项，再通过 info 指向 Utf8 项，得到接口名称
+类头信息指的就是大括号外的信息
 
+- `access_flags`：占用 2 字节，每一位表示一个布尔属性，用来描述类的修饰符标志信息
+- `this_class`：占用 2 字节，是常量池的索引，指向常量池中的 Class 项，再通过 info 指向 Utf8 项，得到当前类的全限定名
+- `super_class`：占用 2 字节，指向常量池中的  Class 项，再通过 info 指向 Utf8 项，得到父类的全限定名
+- `interfaces_count`：占用 2 字节，存储类实现的接口数量
+- `interfaces`：是一张表，**每个元素都是常量池索引**，占用 2 字节，指向常量池中的 Class 项，再通过 info 指向 Utf8 项，得到接口的全限定名
 
+#### 类体信息
+
+类体信息就是大括号里面的信息
+
+- `fields_count` / `methods_count`：占用 2 字节，表示类中字段/方法的数量，包括实例字段/方法和静态/方法
+
+- `field_info fields[]` / `method_info methods[]`：是一个数组，每个元素是一个 field_info / method_info 结构，用来描述一个具体的字段/方法
+
+    - **access_flags**：占用 2 字节，修饰符，如 public、private、protected、static、transient、final、volatile 等
+
+    - **name_index**：占用 2 字节，常量池的索引，指向 Utf8，表示字段/方法名
+
+    - **descriptor_index**：占用 2 字节，常量池索引，指向 Utf8，表示字段/方法的类型
+
+    - **attributes_count**：占用 2 字节，是字段/方法属性的数量
+
+    - **attribute_info attributes[]**：记录了字段/方法的额外信息，如 SourceFile、Deprecated、Synthetic 等
+
+- `Code`：方法的属性除了和字段一样的通用属性，最大不同在于其 **Code 属性存储了方法体的字节码指令**
+
+#### 属性信息
+
+除了字段和方法有属性信息外，类本身也可以有属性信息，直接用 `attributes_count` 和 `attribute_info attributes[]` 记录
+
+- `attribute_name_index`：常量池索引，指向 Utf8，表示属性名
+- `attribute_length`：属性数据的字节长度
+- `info[]`：具体的数据内容，不同属性的内容不同
+
+#### 访问标志对照表
+
+| **标志名**           | **十六进制值** | 类 (Class) | **字段 (Field)** | **方法 (Method)** | **含义**                                           |
+| -------------------- | -------------- | ---------- | ---------------- | ----------------- | -------------------------------------------------- |
+| **ACC_PUBLIC**       | 0x0001         | ✅          | ✅                | ✅                 | public 可见性                                      |
+| **ACC_PRIVATE**      | 0x0002         | ❌          | ✅                | ✅                 | private 可见性                                     |
+| **ACC_PROTECTED**    | 0x0004         | ❌          | ✅                | ✅                 | protected 可见性                                   |
+| **ACC_STATIC**       | 0x0008         | ❌          | ✅                | ✅                 | static 修饰符                                      |
+| **ACC_FINAL**        | 0x0010         | ✅          | ✅                | ✅                 | final 修饰符（类不可继承/字段不可变/方法不可覆盖） |
+| **ACC_SUPER**        | 0x0020         | ✅          | ❌                | ❌                 | 使用新的 invokespecial 语义（历史遗留）            |
+| **ACC_SYNCHRONIZED** | 0x0020         | ❌          | ❌                | ✅                 | 方法同步（monitorenter/monitorexit）               |
+| **ACC_VOLATILE**     | 0x0040         | ❌          | ✅                | ❌                 | 字段的 volatile 语义                               |
+| **ACC_BRIDGE**       | 0x0040         | ❌          | ❌                | ✅                 | 编译器生成的桥接方法（泛型擦除时使用）             |
+| **ACC_TRANSIENT**    | 0x0080         | ❌          | ✅                | ❌                 | 字段的 transient 修饰符（序列化时忽略）            |
+| **ACC_VARARGS**      | 0x0080         | ❌          | ❌                | ✅                 | 方法是可变参数（varargs）                          |
+| **ACC_NATIVE**       | 0x0100         | ❌          | ❌                | ✅                 | 方法是 native 方法（JNI）                          |
+| **ACC_INTERFACE**    | 0x0200         | ✅          | ❌                | ❌                 | 声明这是一个接口                                   |
+| **ACC_ABSTRACT**     | 0x0400         | ✅          | ❌                | ✅                 | 抽象类 / 抽象方法                                  |
+| **ACC_STRICT**       | 0x0800         | ❌          | ❌                | ✅                 | strictfp 修饰符（严格浮点语义）                    |
+| **ACC_SYNTHETIC**    | 0x1000         | ✅          | ✅                | ✅                 | 编译器自动生成，不出现在源码中                     |
+| **ACC_ANNOTATION**   | 0x2000         | ✅          | ❌                | ❌                 | 声明这是一个注解类型                               |
+| **ACC_ENUM**         | 0x4000         | ✅          | ✅                | ❌                 | 声明这是一个枚举类型/枚举字段                      |
+| **ACC_MODULE**       | 0x8000         | ✅          | ❌                | ❌                 | 声明这是一个模块（module-info）                    |
 
 ### 类加载过程
 
+#### 1️⃣ 加载
 
+1. 通过全类名找到 .class 文件（可能来自磁盘、网络或 jar 包），把字节码加载到内存
+2. 在元空间中生成该类的类元信息
+3. 在堆中生成一个该类的 Class 对象
+
+####2️⃣ 链接
+
+1. **验证**：确保字节码格式正确，符合 JVM 规范，避免按群问题，包括**文件格式、元数据、字节码、符号引用**
+2. 准备：正式为类变量/静态变量在元空间分配内存，并赋予零值/默认值，除非用了 final 关键字修饰，才会直接赋予字面量
+3. 解析：将常量池内的符号引用替换为直接引用，如类名 → 类元信息指针，字段名 → 内存偏移量，方法名 → 方法表入口地址
+
+#### 3️⃣ 初始化
+
+执行编译生成的 \<clinit> 方法，把静态变量赋值为源码里的初始值，并执行类中的静态代码块，但是初始化只有在以下情况才会触发
+
+- 创建类实例
+- 访问或修改类的静态字段（除 final）
+- 调用类的静态方法
+- 通过反射调用类
+- 初始化子类时，会初始化父类
+- JVM 启动时加载的主类
+- 调用接口的 default 方法
 
 ### 类加载器
+
+#### 定义
+
+类加载器是 JVM 中负责把类文件加载到内存的组件，负责完成整个加载流程
+
+- 在元空间中，每一个类的元信息都会记录它是由哪个类加载器加载的
+- 在堆中，每一个类的 Class 对象都有一个自己对应的 ClassLoader 的引用
+- 每一个类都必须通过某个类加载器加载
+- 一个类加载器对同一个类只会加载一次，不会重复加载
+- 相同的类文件可以被不同的类加载器加载，但是 JVM 会认为它们是不同的类
+- 类是按需加载的，只有在第一次使用时才会触发加载
+
+#### 内置
+
+- **BootstrapClassLoader**：由 C++ 编写，是最顶层的类加载器，负责加载 %JAVA_HOME%/lib 下的所有 jar 包和类，以及被 `-Xbootclasspath `参数指定路径下的所有类
+- **ExtensionClassLoader / PlatformClassLoader**：由 Java 编写，负责加载 %JAVA_HOME%/lib/ext 下的所有 jar 包和类，用于扩展 JDK 的功能
+- **Application ClassLoader**：由 Java 编写，是直接面向用户的类加载器，负责加载当前应用的类路径下的所有 jar 包和类
+
+> 无法在 Java 程序获取到 BootstrapClassLoader 对象，因为它是由 C++ 在底层实现的，在 Java 中没有对应的类
+
+#### 双亲委派模型
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
