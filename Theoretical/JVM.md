@@ -549,23 +549,157 @@ ClassFile {
 
 #### 双亲委派模型
 
+##### 定义
+
+双亲委派模型是 JVM 类加载机制的核心设计，不过需要注意的是，这里的双亲是 parent 的直译，同时并不是 Java 继承关系里的 extends 父类，而是 ClassLoader 抽象类中定义的父加载器引用
+
+```java
+public abstract class ClassLoader {
+  private final ClassLoader parent;
+  protected ClassLoader(ClassLoader parent) {
+       this(checkCreateClassLoader(), parent);
+  }
+  private ClassLoader(Void unused, ClassLoader parent) {
+    this.parent = parent;
+}
+  ...
+}
+```
+
+##### loadClass
+
+双亲委派模型的思想是，当一个类加载器接到类加载请求时，它不会自己先尝试加载，而是**把加载任务交给父加载器，如果父加载器做不到，才会亲自下场加载**，逻辑集中在 loadClass 方法
+
+```java
+protected Class<?> loadClass(String name, boolean resolve)
+    throws ClassNotFoundException
+{
+  	// 利用同步锁，保证多线程安全：同一个类名只会被加载一次
+    synchronized (getClassLoadingLock(name)) {
+        // 1. 检查是否已经加载过该类
+        Class c = findLoadedClass(name);
+        if (c == null) {
+            long t0 = System.nanoTime();
+            try {
+              	// 2. 检查是否有父加载器
+                if (parent != null) {
+                  	// 2.1 有的话则调用父加载器的 loadClass 方法
+                    c = parent.loadClass(name, false);
+                } else {
+                  	// 2.2 没有的话则直接交给 Bootstrap ClassLoader 加载
+                    c = findBootstrapClassOrNull(name);
+                }
+            } catch (ClassNotFoundException e) {
+                
+            }
+						// 3. 如果父加载器无法加载，则调用自己的 findClass 方法来加载
+            if (c == null) {
+                long t1 = System.nanoTime();
+                c = findClass(name);
+                sun.misc.PerfCounter.getParentDelegationTime().addTime(t1 - t0);
+                sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);
+                sun.misc.PerfCounter.getFindClasses().increment();
+            }
+        }
+      	// 4. 是否需要执行链接
+        if (resolve) {
+            resolveClass(c);
+        }
+      
+      	// 5. 返回加载得到的 Class 对象
+        return c;
+    }
+}
+```
+
+##### findClass
+
+因此为了自定义类加载器，只需要**继承 ClassLoader 抽象类并重写findClass(String name) 方法**，实际上我们只需要**定义如何找到类文件并读取字节码**，之后再通过统一的 defineClass 方法转换为 Class 对象
+
+```java
+private final String classPath = "/usr/dev/JVM";
+
+@Override
+protected Class<?> findClass(String name) throws ClassNotFoundException {
+    try {
+        // 1. 在自定义的目录下找字节码文件
+        String fileName = classPath + "/" + name.replace('.', '/') + ".class";
+        
+        // 2. 读取字节码到 byte[]
+        byte[] data = Files.readAllBytes(Paths.get(fileName));
+        
+        // 3. 定义类得到 Class 对象
+        return defineClass(name, data, 0, data.length);
+    } catch (IOException e) {
+        throw new ClassNotFoundException(name, e);
+    }
+}
+```
+
+##### Tomcat
+
+**如果要打破双亲委派模型，就必须重写 loadClass 方法**。而 Tomcat 作为一个 Web 容器，要同时运行多个应用，需要确保每个 WebApp 都有自己单独的类加载器，而且同一个类名在不同应用中可以共存。因此 Tomcat 在 JVM 内置类加载器（Bootstrap、Ext、App）之外，又增加了自己的类加载器层次，来实现 **多应用隔离**和**共享机制**
+
+| 类加载器                | 加载目录                       | 作用范围                            |                                |
+| ----------------------- | ------------------------------ | ----------------------------------- | ------------------------------ |
+| **CommonClassLoader**   | Tomcat/common/*                | 所有 Web 应用和 Tomcat 内部都能访问 | 公共依赖库，应用和容器共享     |
+| **CatalinaClassLoader** | Tomcat/server/*                | 仅 Tomcat 内部使用                  | 应用不可见，专供容器使用       |
+| **SharedClassLoader**   | Tomcat/shared/*                | 所有 Web 应用共享，Tomcat 内部不用  | 多应用共享依赖                 |
+| **WebAppClassLoader**   | Tomcat/webapps/{app}/WEB-INF/* | 仅当前 Web 应用可见                 | 打破双亲委派，支持隔离与热部署 |
+
+![image-20250918171525201](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509181715264.png)
 
 
 
+## 参数总结
 
+### 内存相关
 
+| **参数**                              | **作用**                          |
+| ------------------------------------- | --------------------------------- |
+| -Xms\<size>[unit]                     | 设置 JVM 初始堆大小               |
+| -Xmx\<size>[unit]                     | 设置 JVM 最大堆大小               |
+| -Xss\<size>[unit]                     | 设置线程的虚拟机栈大小            |
+| -Xmn\<size>[unit]                     | 设置新生代固定大小                |
+| -XX:NewSize=\<size>[unit]             | 设置新生代初始大小                |
+| -XX:MaxNewSize=\<size>[unit]          | 设置新生代最大大小                |
+| -XX:SurvivorRatio=\<ratio>            | 设置 Eden:Survivor 的内存大小比例 |
+| -XX:NewRatio=\<ratio>                 | 设置 Old:Young 的内存大小比例     |
+| -XX:MaxTenuringThreshold=\<threshold> | 设置新生代晋升为老年代的年龄阈值  |
+| -XX:MetaspaceSize                     | 设置元空间初始大小                |
+| -XX:MaxMetaspaceSize                  | 设置元空间最大大小                |
+| -XX:MaxDirectMemorySize               | 设置直接内存大小                  |
 
+### 垃圾回收器相关
 
+| **参数**                | **作用**             |
+| ----------------------- | -------------------- |
+| -XX:+UseSerialGC        | 使用 Serial 收集器   |
+| -XX:+UseParallelGC      | 使用 Parallel 收集器 |
+| -XX:+UseConcMarkSweepGC | 使用 CMS 收集器      |
+| -XX:+UseG1GC            | 使用 G1 收集器       |
+| -XX:+UseZGC             | 使用 ZGC             |
 
+### GC 日志相关
 
+| **参数**                           | **作用**                   |
+| ---------------------------------- | -------------------------- |
+| -XX:+PrintGC                       | 打印 GC 简要日志           |
+| -XX:+PrintGCDetails                | 打印 GC 详细日志           |
+| -XX:+PrintGCDateStamps             | 打印 GC 日志时间戳         |
+| -Xloggc:\<path>                    | 指定 GC 日志文件的输出路径 |
+| -XX:+PrintTenuringDistribution     | 打印对象年龄分布情况       |
+| -XX:+PrintReferenceGC              | 打印各种引用对象的处理情况 |
+| -XX:+PrintGCApplicationStoppedTime | 打印 GC 导致应用停顿的时间 |
 
+### 性能调优相关
 
-
-
-
-
-
-
-
-
+| **参数**                        | **作用**                           |
+| ------------------------------- | ---------------------------------- |
+| -XX:+HeapDumpOnOutOfMemoryError | 开启 OOM 时导出堆转储文件          |
+| -XX:HeapDumpPath=\<path>        | 指定 OOM 堆转储文件路径            |
+| -XX:+UseGCOverheadLimit         | 开启检查 GC 时间过多但回收效果太差 |
+| -XX:+PrintFlagsFinal            | 打印所有 JVM 参数及最终值          |
+| -XX:+PrintCommandLineFlags      | 打印显式和隐式使用的参数           |
+| -XX:+DisableExplicitGC          | 禁止 System.gc()                   |
 
