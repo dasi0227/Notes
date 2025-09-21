@@ -222,9 +222,11 @@
 
 💻 Major: [Computer Science](https://cse.sysu.edu.cn/)  
 
-🐙 Repo：[Github](https://github.com/dasi0227/Notes) ｜ [Gitee](https://gitee.com/dasi0227/Notes)
+📦 Repo：[Github](https://github.com/dasi0227/Notes) ｜ [Gitee](https://gitee.com/dasi0227/Notes)
 
-📧 Email: [dasi0227@qq.com](mailto:dasi0227@qq.com)
+📮 Email: [dasi0227@qq.com](mailto:dasi0227@qq.com)
 
 🌐 Blog: [dasi.plus](https://dasi.plus)  
+
+🧑‍💻 CSDN：[dasi0227](https://blog.csdn.net/m0_74766888)
 
