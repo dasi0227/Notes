@@ -1,20 +1,12 @@
-# Collection
-
-
+# JCF
 
 ![918bdc2b0fd7be877965381ac34bbec0](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509221449411.png)
 
 
 
-## 前置知识
+## 比较器
 
-### 迭代器
-
-
-
-### 比较器
-
-比较器是**用来比较两个相同类的对象“谁先谁后”，不能简单理解为“谁大谁小”**，因为排序规则完全可以不依赖于数值，而是任何自定义逻辑
+比较器是**用来比较两个相同类的对象“谁先谁后”的一种机制，不能简单理解为“谁大谁小”**，因为排序规则完全可以不依赖于数值，而是任何自定义逻辑
 
 | 接口               | 方法                     | 实现   | 数量         | 场景                                       |
 | ------------------ | ------------------------ | ------ | ------------ | ------------------------------------------ |
@@ -84,36 +76,124 @@ public class Employee implements Comparable<Employee> {
 }
 ```
 
-### fail-fast
-
-由于部分集合框架是不支持线程安全的，因此为了能够提前发现并发操作导致线程安全风险，底层会维护一个 modCount 来记录修改的次数
-
-1. 当调用 **iterator()** 创建迭代器时，会把 modCount 的当前值保存到 expectedModCoun
-2. 在迭代过程中都会检查 **expectedModCount == modCount**
-3. 如果不一致说明集合在迭代期间被**结构性修改**，立刻抛出 **ConcurrentModificationException** 异常
 
 
 
-## List
 
-### 定义
+## Collection
 
-**List 存储一个元素数组，强调连续性，可以通过索引访问元素，也可以放入重复元素，典型操作有：get、add、remove**
+### 关键 API
 
-### ArrayList
-
-#### 定义
+#### toArray
 
 **Array 是 Java 的一种基础数据结构，不是一个类**，用来存放固定长度、相同类型的数组，插入和删除需要手动移动元素，通过 `Type[] array = new Type[length]` 创建。
 
-因此为了提供更方便的数组使用，Java 在集合框架提供了 ArrayList 类
+Collection 提供了 toArray 函数，将集合元素重新封装为 Array 基础数据结构返回
+
+- `Object[] toArray()`：把集合中的所有元素复制到一个新的 Object[] 数组中，需要手动强转才能得到具体类型
+- `<T> T[] toArray(T[] a)`：把集合中的所有元素复制到一个指定类型的数组中，如果数组 a 不够大会新建一个和 a 类型相同、大小刚好的数组并返回
+
+#### stream
+
+stream() 是 Java8 引入的新特性，**可以把 Collection 对象转换成 Stream 对象**，而 Stream 是一种特殊的结构，它主要负责对数据执行链式、声明式操作，它不存储数据，只用于操作数据，也就是说数据只能被消费一次，用完需要重新生成
+
+Stream 操作的核心就是**让元素排列好，一个接一个地像流水线一样执行中间操作，而且每次中间操作的结果都是一个新的流，直到遇到终止操作才得到成品**
+
+> 链式调用的中间操作不会立即执行，而是做到终结操作才会触发执行
+
+假设有 nums = {1,2,3,4,5}
+
+- 过滤 filter（中间）：依次把元素传给 Predicate 函数，返回 true 的才保留到流
+
+    ```java
+    List<Integer> even = nums.stream()
+        .filter(n -> n % 2 == 0)
+        .collect(Collectors.toList());   // [2, 4]
+    ```
+
+- 映射 map（中间）：依次把元素传给 Function 函数，返回结果填充到流
+
+    ```java
+    List<Integer> double = nums.stream()
+        .map(n -> n * 2)
+        .collect(Collectors.toList());   // [2, 4, 6, 8, 10]
+    ```
+
+- 排序 sorted（中间）：传入一个 Comparator 对象，返回排序好的结果作为流
+
+    ```java
+    List<Integer> desc = nums.stream()
+        .sorted(Comparator.reverseOrder())
+        .collect(Collectors.toList());   // [5, 4, 3, 2, 1]
+    ```
+
+- 聚合 reduce（终结）：把初始值/上个值和当前值传给 BinaryOperator 函数，直到最后得到一个结果
+
+    ```java
+    // 求和：15
+    int sum = nums.stream().reduce(0, Integer::sum);
+    
+    // 求最大值：5
+    int max = nums.stream().reduce(Integer.MIN_VALUE, Integer::max);
+    
+    // 求最小值：1
+    int min = nums.stream().reduce(Integer.MAX_VALUE, Integer::min);
+    
+    // 求乘积：120
+    int product = nums.stream().reduce(1, (a, b) -> a * b);
+    ```
+
+- 收集 collect（终结）：把流中的元素收集为一个新集合，如果是 toMap 还需要传入两个 Function 表示如何生成键和值
+
+    ```java
+    // ArrayList([1, 2, 3, 4, 5])
+    List<Integer> list = nums.stream().collect(Collectors.toList());
+    
+    // HashSet([1, 2, 3, 4, 5])
+    Set<Integer> set = nums.stream().collect(Collectors.toSet());
+    
+    // HashMap({1=1, 2=2, 3=3, 4=4, 5=5})
+    Map<String, Integer> map = nums.stream().collect(Collectors.toMap(n -> n + "", n -> n));
+    ```
+
+- 遍历 forEach（终结）：对流中的每个数据执行 Consumer 函数
+
+    ```java
+    nums.stream().forEach(n -> System.out.println("元素: " + n));
+    ```
+
+#### iterator
+
+Iterator 是 Java 集合框架中的迭代器接口，用来遍历集合中的元素，所有继承了 Collection 接口的集合类（List、Set、Queue 等）都提供了 iterator() 方法，可以返回已经实现了 Iterator 接口的对象
+
+- `boolean hasNext()`：判断是否还有元素未遍历
+- `E next()`：返回下一个元素，并将指针向后移动
+- `default void forEachRemaining(Consumer<? super E> action)`：从当前位置开始，对剩余的每个元素执行指定操作
+
+由于迭代器不保证线程安全，因此当线程正在使用迭代器遍历集合时，集合可能会被其他线程**结构性修改（add / remove / clear 等）**，所以 Java 提供了一个 fail-fast 机制，在集合对象底层会维护一个 modCount 来记录修改的次数
+
+1. 当调用 iterator() 创建迭代器时，会把 modCount 的当前值保存到 expectedModCount
+2. 在迭代过程中都会检查 expectedModCount 是否等于 modCount
+3. 如果不一致说明集合在迭代期间被结构性修改，立刻抛出 **ConcurrentModificationException** 异常
+
+### List
+
+#### 定义
+
+**List 存储一个元素数组，强调连续性，可以通过索引访问元素，也可以放入重复元素，典型操作有：get、add、remove**
+
+#### ArrayList
+
+##### 定义
+
+为了提供比 Array 更方便的数组使用，Java 在集合框架提供了 ArrayList 类
 
 - 根据实际存储的元素**动态地扩容**，创建时允许不指定容量，默认容量为 10，每次扩容 1.5 倍
 - 只能**存储对象**，如果是基本数据类型需要**包装类**，同时允许使用**泛型**来确保类型安全
 - **线程不安全**，多线程同时对同一个 ArrayList 对象操作可能会导致数据不一致
 - ArrayList **在底层维护了一个 Array 数组 `Object[] elementData`** 表示存放的元素和一个整型 `int size` 表示存放元素的个数
 
-#### 构造函数
+##### 构造函数
 
 如果使用无参构造或者容量为 0 的有参构造，实际上都是**初始化了一个空数组**，只有在真正添加元素的时候才会分配内存
 
@@ -142,7 +222,7 @@ public ArrayList(int initialCapacity) {
 }
 ```
 
-#### 扩容机制 
+##### 扩容机制 
 
 扩容是在添加元素时触发的，它**在添加元素到数组之前必须确保容量足够**
 
@@ -213,9 +293,9 @@ public static native void arraycopy(
 );
 ```
 
-### LinkedList
+#### LinkedList
 
-#### 定义
+##### 定义
 
 LinkedList 是 Java 集合框架中基于双向链表实现的 List
 
@@ -240,7 +320,7 @@ private static class Node<E> {
 }
 ```
 
-#### 区别
+##### 区别
 
 | **特性**          | ArrayList              | LinkedList                       |
 | ----------------- | ---------------------- | -------------------------------- |
@@ -251,7 +331,7 @@ private static class Node<E> {
 | **线程安全性**    | 非线程安全             | 非线程安全                       |
 | **适用场景**      | 读多写少，频繁随机访问 | 写多读少，频繁插入删除           |
 
-#### 链接机制
+##### 链接机制
 
 当调用 add(element) 时，不指定插入位置默认插入到链表尾部，执行的是 linkLast 方法
 
@@ -364,15 +444,13 @@ E unlink(Node<E> x) {
 }
 ```
 
+### Set
 
-
-## Set
-
-### 定义
+#### 定义
 
 **Set 存储一个元素集合，强调唯一性和无序性，不能通过索引访问元素，不允许放入重复元素，典型操作有：contains、add、remove**
 
-### 实现类
+#### 实现类
 
 | **特性**          | **HashSet**            | **LinkedHashSet**      | **TreeSet**              |
 | ----------------- | ---------------------- | ---------------------- | ------------------------ |
@@ -383,15 +461,13 @@ E unlink(Node<E> x) {
 | **去重依据**      | hashCode() + equals()  | hashCode() + equals()  | Comparable / Comparator  |
 | **适用场景**      | 只关心去重，不关心顺序 | 需要去重且保持插入顺序 | 需要去重且保持自定义顺序 |
 
+### Queue
 
+#### 定义
 
-## Queue
+**Queue 存储一个元素序列，强调有序性和首尾操作，不能通过索引访问元素，但允许放入重复元素，典型操作有 offer、poll、peek**
 
-### 定义
-
-**Queue 存储一个元素序列，强调有序性和首尾操作，不能通过索引访问元素，但允许放入重复元素，典型操作有 offer、poll、peek、remove、element**
-
-### 实现类
+#### 实现类
 
 | **实现类**            | **底层结构**    | **线程安全** | **是否有界** | 出队顺序 |
 | --------------------- | --------------- | ------------ | ------------ | -------- |
@@ -400,106 +476,152 @@ E unlink(Node<E> x) {
 | PriorityQueue         | 二叉堆          | ❌            | ❌            | 比较     |
 | ConcurrentLinkedQueue | 单向链表 + CAS  | ✅            | ❌            | 插入     |
 | LinkedBlockingQueue   | 双向链表 + 双锁 | ✅            | ✅            | 插入     |
-| ArrayBlockingQueue    | 数组 + 单锁     | ✅            | ✅            | 插入     |
+| ArrayBlockingQueue    | 循环数组 + 单锁 | ✅            | ✅            | 插入     |
 | PriorityBlockingQueue | 二叉堆 + 单锁   | ✅            | ❌            | 比较     |
 
-### 阻塞队列
+#### 阻塞队列
 
-BlockingQueue 继承自 Queue，是 JUC 提供的接口，内部通过锁或 CAS 保证线程安全，主要拓展了：
+BlockingQueue 继承自 Queue，是 JUC 提供的接口，内部通过锁或 CAS 保证线程安全，最常用的就是生产者-消费者模型
 
 - 插入 put：当队列满时，阻塞直到有空位
 - 移除 take：当队列空时，阻塞直到有新元素
-- 超时机制：允许 offer 和 poll 设置 timeout
-
-阻塞队列最常用的就是生产者-消费者模型，这里主要分析 ArrayBlockingQueue
-
-- 构造函数
-
-  ```java
-  // capacity 表示队列初始容量，fair 表示 锁的公平性
-  public ArrayBlockingQueue(int capacity, boolean fair) {
-    //如果设置的队列大小小于0，则直接抛出IllegalArgumentException
-    if (capacity <= 0)
-        throw new IllegalArgumentException();
-    //初始化一个数组用于存放队列的元素
-    this.items = new Object[capacity];
-    //创建阻塞队列流程控制的锁
-    lock = new ReentrantLock(fair);
-    //用lock锁创建两个条件控制队列生产和消费
-    notEmpty = lock.newCondition();
-    notFull =  lock.newCondition();
-  }
-  ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Map
+- 超时 offer/poll ：允许设置 timeout
+
+| 操作类型   | 抛异常    | 返回值   | 限时                    | 条件变量 |
+| ---------- | --------- | -------- | ----------------------- | -------- |
+| 添加       | add(e)    | offer(e) | offer(e, timeout, unit) | put(e)   |
+| 获取并删除 | remove()  | poll()   | poll(timeout, unit)     | take()   |
+| 获取不删除 | element() | peek()   | -                       | -        |
+
+#### ArrayBlockingQueue
+
+字段
+
+```java
+// 底层用数组存放队列元素
+final Object[] items;
+
+// 下一个取出元素的位置，随着消费移动
+int takeIndex;
+
+// 下一个放入元素的位置，随着生产移动
+int putIndex;
+
+// 当前队列中已有元素的数量
+int count;
+
+// 负责阻塞消费
+private final Condition notEmpty;
+
+// 负责阻塞生产
+private final Condition notFull;
+```
+
+构造函数
+
+```java
+public ArrayBlockingQueue(int capacity, boolean fair) {
+  // 必须有容量
+  if (capacity <= 0)
+      throw new IllegalArgumentException();
+  // 创建数组
+  this.items = new Object[capacity];
+  // 创建 ReentrantLock
+  lock = new ReentrantLock(fair);
+  // 用 ReentrantLock 创建两个条件变量
+  notEmpty = lock.newCondition();
+  notFull =  lock.newCondition();
+}
+```
+
+put 方法
+
+```java
+public void put(E e) throws InterruptedException {
+    // 确保插入的元素不为空
+    checkNotNull(e);
+    
+  	// 获取锁
+    final ReentrantLock lock = this.lock;
+  	
+  	// 加锁
+    lock.lockInterruptibly();
+    try {
+      	// 如果当前存在元素数量=容量，则线程被阻塞到条件变量中
+        while (count == items.length)
+            notFull.await();
+	      // 否则元素入队
+        enqueue(e);
+    } finally {
+        // 解锁
+        lock.unlock();
+    }
+}
+
+private void enqueue(E x) {
+   	// 获取数组
+    final Object[] items = this.items;
+    
+  	// 往 putindex 位置添加元素
+    items[putIndex] = x;
+    
+  	// 更新 putindex 和 count
+    if (++putIndex == items.length)
+        putIndex = 0;
+    count++;
+    
+  	// 通知队列非空
+    notEmpty.signal();
+}
+```
+
+take 方法
+
+```java
+public E take() throws InterruptedException {
+    // 获取锁
+    final ReentrantLock lock = this.lock;
+
+    // 加锁
+    lock.lockInterruptibly();
+    try {
+      	// 如果当前存在元素数量=0，则线程被阻塞到条件变量中
+				while (count == 0)
+						notEmpty.await();
+      	// 否则元素出队
+      	return dequeue();
+    } finally {
+        // 解锁
+        lock.unlock();
+    }
+}
+
+private E dequeue() {
+    // 获取数组
+    final Object[] items = this.items;
+  
+    // 从 takeIndex 位置取出元素并置空
+    @SuppressWarnings("unchecked")
+    E x = (E) items[takeIndex];
+    items[takeIndex] = null;
+  
+    // 更新 putindex 和 count
+    if (++takeIndex == items.length)
+        takeIndex = 0;
+    count--;
+  
+    if (itrs != null)
+        itrs.elementDequeued();
+    
+  	// 通知队列非满
+    notFull.signal();
+    return x;
+}
+```
+
+
+
+## Map
 
 
 

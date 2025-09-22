@@ -202,8 +202,8 @@
 - [x] 09.18：JVM：类加载
 - [x] 09.19：并发编程：Thread、多线程、synchronized、volatile
 - [x] 09.21：并发编程：JUC、ThreadLocal、AQC
-- [ ] 09.22：
-- [ ] 09.23
+- [x] 09.22：集合框架：Collection、List、Set、Queue
+- [ ] 09.23：集合框架：Map、
 - [ ] 09.24
 - [ ] 09.25
 - [ ] 09.26
