@@ -8,9 +8,9 @@
 
 在 Java 中当运行一个 main 函数时，实际上就是开启了一个 JVM 进程，而 main 函数本身实际上只是一个主线程
 
-- 内核线程：由操作系统内核管理和调度的线程
-- 用户线程：由用户空间程序管理和调度的线程，可以实现与内核线程一对一、一对多、多对一的映射关系
-- Java 线程：是 JVM 提供的抽象，**通过 Thread 对象封装了对内核线程的使用**，开发者只需要操作 Thread API，不需要和底层 OS API 打交道
+- **内核线程**：由操作系统内核管理和调度的线程
+- **用户线程**：由用户空间程序管理和调度的线程，可以实现与内核线程一对一、一对多、多对一的映射关系
+- **Java 线程**：是 JVM 提供的抽象，**通过 Thread 对象封装了对内核线程的使用**，开发者只需要操作 Thread API，不需要和底层 OS API 打交道
 
 | 区别     | 进程                                                 | 线程                                                   |
 | -------- | ---------------------------------------------------- | ------------------------------------------------------ |
@@ -675,9 +675,8 @@ Executors 是 JUC 提供的一个工具类，主要用来快速创建线程池�
 
 ThreadLocal 本质上就是一个普通的 Java 泛型类，对外暴露了四个 API，其最核心的作用是**为每个线程提供独立的变量副本**
 
-- 同一个 ThreadLocal 对象，不同线程里存取的值互不干扰
-- 可以把与线程绑定的参数放到 ThreadLocal，从而在线程的任何地方和时间都可以直接获取
-- 不需要加锁，避免多线程环境下共享变量带来的并发安全问题 
+- **线程隔离**：同一个 ThreadLocal 对象，不同线程里存取的值互不干扰，避免多线程环境下共享变量带来的并发安全问题 
+- **上下文标记**：可以把与线程绑定的参数放到 ThreadLocal，从而在线程的任何地方和时间都可以直接获取
 
 ```java
 public class ThreadLocal<T> {
@@ -688,7 +687,7 @@ public class ThreadLocal<T> {
 }
 ```
 
-### 定义
+### ThreadLocalMap
 
 ThreadLocal 的底层原理，就是它还定义了一个静态内部类 **ThreadLocalMap**
 
@@ -749,15 +748,141 @@ ThreadLocal 的底层原理，就是它还定义了一个静态内部类 **Threa
     }
     ```
 
-![e34489aadc8912cbf4dd5e5bcd4b68f6](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509220007745.png)
+<img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509220007745.png" alt="e34489aadc8912cbf4dd5e5bcd4b68f6" style="zoom:50%;" />
+
+### InheritableThreadLocal
+
+InheritableThreadLocal 是 ThreadLocal 的一个子类，提供了一种方法**让子线程可以继承父线程的 ThreadLocal**
+
+1. Thread 类还有一个 inheritableThreadLocals 字段，区别于 threadLocals 字段（两个字段是独立的，不会互相拷贝）
+
+    ```java
+    class Thread implements Runnable {
+        ...
+        ThreadLocal.ThreadLocalMap threadLocals = null;
+        ThreadLocal.ThreadLocalMap inheritableThreadLocals = null;
+    }
+    ```
+
+2. 创建新线程时，会将父线程作为参数执行 `inheritThreadLocals`
+
+    ```java
+    private void init(ThreadGroup g, Runnable target, String name, long stackSize, AccessControlContext acc) {
+        ...
+        if (inheritThreadLocals && parent.inheritableThreadLocals != null)
+            this.inheritThreadLocals(parent);
+    }
+    ```
+
+3. 调用 ThreadLocal 类方法 `createInheritedMap `赋值给 inheritableThreadLocals 对象，传递父线程的 inheritableThreadLocals
+
+    ```java
+    void inheritThreadLocals(Thread parent) {
+        this.inheritableThreadLocals =
+            ThreadLocal.createInheritedMap(parent.inheritableThreadLocals);
+    }
+    ```
+
+4. 调用静态类的有参构造方法 `ThreadLocalMap`，传递父线程的 inheritableThreadLocals
+
+    ```java
+    static ThreadLocalMap createInheritedMap(ThreadLocalMap parentMap) {
+        return new ThreadLocalMap(parentMap);
+    }
+    ```
+
+5. 遍历父线程的 inheritableThreadLocals，对于每个 Entry 键保持一致，值根据 childValue() 决定
+
+    ```java
+    private ThreadLocalMap(ThreadLocalMap parentMap) {
+        Entry[] tab = parentMap.table;
+        int len = tab.length;
+        setThreshold(len);
+        table = new Entry[len];
+    
+        for (Entry e : tab) {
+            if (e != null) {
+                ThreadLocal key = e.get();
+                Object value = key.childValue(e.value); // 👈 调用 InheritableThreadLocal 的扩展点
+                table[...] = new Entry(key, value);
+            }
+        }
+    }
+
+6. 默认是直接返回父线程的值，也就是复用一个对象，相当于浅拷贝，可以重写来实现深拷贝
+
+    ```java
+    protected T childValue(T parentValue) {
+        return parentValue;
+    }
+    ```
 
 ### 内存泄漏
+
+ThreadLocalMap 中的 **key 实际上是 ThreadLocal 对象的弱引用，也就是说，如果除了 ThreadLocalMap 没有其他对象强引用 ThreadLocal 对象，那么 ThreadLocal 对象会被回收**
+
+此时 key = null 但是 value 存的值还在，又由于线程池里面的线程不会被销毁，所以 ThreadLocalMap 对象不会被回收，导致 **value 对象不会再被使用但是一直占据内存**
+
+最佳解决办法就是**通过 try-finally 使用 remove 方法**，保证每次使用完 ThreadLocal 都会清理 ThreadLocalMap 对应的 entry
+
+```java
+public void remove() {
+  	// 获取当前线程的 ThreadLocalMap
+    Thread t = Thread.currentThread();
+    ThreadLocalMap m = getMap(t);
+  	// 以当前 ThreadLocal 对象作为 key，删除 entry
+    if (m != null) {
+        m.remove(this);
+    }
+}
+```
 
 
 
 ## AQS
 
+### 定义
+
+**AQS（AbstractQueuedSynchronizer，抽象队列同步器）** 是 JUC 中实现各种锁和同步器的基础框架
+
+- **exclusiveOwnerThread**：独占模式下，记录当前持有锁的线程
+- **state 状态值**：一个 volatile int 值，用来表示资源状态（锁、计数器），提供原子操作 get、set 和 CAS
+- **CLH 双向队列**：一个 FIFO 队列，具有头尾指针，用来存储竞争失败的线程
+    - 初始化：只有一个空的 head = tail = new Node()
+    - 入队/阻塞：先令 tail.next = newNode，再令 newNode.prev = tail，最后令 tail = newNode
+    - 出队/唤醒：唤醒 head.next，然后令 head = head.next
+- **Node 线程节点**：每个等待的线程会被封装成一个 Node
+    - **waitStatus**：节点的等待状态，包括 INIT(0)、CANCELLED(1)、SIGNAL(-1)、CONDITION(-2)、PROPAGATE(-3)
+    - **prev / next**：双向链表的前驱节点和后继节点
+    - **thread**：当前节点封装的线程
+    - **nextWaiter**：在条件队列中使用，区分共享模式和独占模式
+- **获取/释放模版方法**：不同的同步器只需要重写 tryAcquire / tryRelease / tryAcquireShared / tryReleaseShared 来自定义 CLH 操作
+
+![image-20250922102049717](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509221020771.png)
+
+### ReentrantLock
+
+**可重入的独占锁，用于保证临界区的线程安全**
+
+- nextWaiter = null：独占模式
+- state：当前锁的持有次数，初始值为 0
+- tryAcquire：调用 lock() 时执行，如果 state == 0 会 CAS 为 1，如果已经持有锁会 state++，成功则返回 true，否则返回 false
+- tryRelease：调用 unlock() 时执行，直接 state--，此时如果 state == 0 会返回 true，否则返回 false
+
 ### Semaphore
+
+**计数信号量，用于限制同时访问资源的线程数量**
+
+- nextWaiter = SHARED：共享模式
+- state：当前可用的许可数量，初始值为 permits
+- tryAcquireShared：调用 acquire() 时执行，如果 state > 0 会 CAS 减少 1 并返回剩余许可数，否则返回 -1
+- tryReleaseShared：调用 release() 时执行，直接 CAS 增加 1，成功则返回 true，否则返回 false
 
 ### CountDownLatch 
 
+**倒计时门闩，用于等待线程完成**
+
+- nextWaiter = SHARED：共享模式
+- state：表示需要等待的事件数，初始值为 count
+- tryAcquireShared：调用 await() 时执行，如果 state == 0 会返回 1，否则返回 -1
+- tryReleaseShared：调用 countDown() 时执行，直接 CAS 减少 1，此时如果 count == 0 会返回 true，否则返回 false
