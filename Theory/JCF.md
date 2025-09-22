@@ -6,11 +6,99 @@
 
 
 
+## 前置知识
+
+### 迭代器
+
+
+
+### 比较器
+
+比较器是**用来比较两个相同类的对象“谁先谁后”，不能简单理解为“谁大谁小”**，因为排序规则完全可以不依赖于数值，而是任何自定义逻辑
+
+| 接口               | 方法                     | 实现   | 数量         | 场景                                       |
+| ------------------ | ------------------------ | ------ | ------------ | ------------------------------------------ |
+| **Comparable\<T>** | int compareTo(T o);      | 当前类 | 只能实现一个 | 让一个类自己具备比较内部元素的能力         |
+| **Comparator\<T>** | int compare(T o1, T o2); | 外部类 | 可以实现多个 | 让一个类使用外部定义的比较器来比较内部元素 |
+
+**Java 的所有包装类（Integer、Double、Long、Float、Short、Byte、Character、Boolean）都已经实现了Comparable\<T> 接口**，因此它们自带 compareTo(T other) 方法
+
+不过需要注意的是，**部分包装类中的 compare 方法不是实现 Comparator 接口重写的，而是自定义的静态方法**
+
+```java
+// 年龄比较：低于 18 一档，18-40 一档，40-60 一档，60 以上一档
+public class AgeComparator implements Comparator<Employee> {
+    @Override
+    public int compare(Employee e1, Employee e2) {
+      	int age1 = getAgeGroup(e1.getAge();
+				int age2 = getAgeGroup(e2.getAge();
+        return Integer.compare(age1, age2);
+    }
+  
+    private int getAgeGroup(int age) {
+        if (age < 18) return 0;
+        else if (age < 40) return 1;
+        else if (age < 60) return 2;
+        else return 3;
+    }
+}
+
+// 薪水比较：超过 10000 的扣 10%，低于 10000 的扣 5%
+public class SalaryComparator implements Comparator<Employee> {
+    @Override
+    public int compare(Employee e1, Employee e2) {
+      	double salary1 = getSalaryDeduct(e1.salary);
+        double salary2 = getSalaryDeduct(e2.salary);
+        return Double.compare(salary1, salary2);
+    }
+  
+    private double getSalaryDeduct(double salary) {
+        if (salary > 10000) {
+            return salary * 0.9;
+        } else {
+            return salary * 0.95;
+        }
+    }
+}
+
+public class Employee implements Comparable<Employee> {
+  	public String name;
+  	public int age;
+  	public Double salary;
+  
+  	// 引入外部比较器类
+  	private AgeComparator ageComparator = new AgeComparator();
+    private SalaryComparator salaryComparator = new SalaryComparator();
+  
+  	// 实现自己的比较器
+    @Override
+    public int compareTo(Employee other) {
+        int ageCmp = ageComparator.compare(this, other);
+      	if (ageCmp != 0) return ageCmp;
+      	
+       	int nameCmp = this.name.compareTo(other.name);
+      	if (nameCmp != 0) return nameCmp;
+      
+      	return salaryComparator.compare(this, other);
+    }	
+}
+```
+
+### fail-fast
+
+由于部分集合框架是不支持线程安全的，因此为了能够提前发现并发操作导致线程安全风险，底层会维护一个 modCount 来记录修改的次数
+
+1. 当调用 **iterator()** 创建迭代器时，会把 modCount 的当前值保存到 expectedModCoun
+2. 在迭代过程中都会检查 **expectedModCount == modCount**
+3. 如果不一致说明集合在迭代期间被**结构性修改**，立刻抛出 **ConcurrentModificationException** 异常
+
+
+
 ## List
 
 ### 定义
 
-存储一个**有序集合**，每个元素都有一个**索引**，允许存放重复的元素，可以按位置进行插入、删除和访问
+**List 存储一个元素数组，强调连续性，可以通过索引访问元素，也可以放入重复元素，典型操作有：get、add、remove**
 
 ### ArrayList
 
@@ -21,7 +109,6 @@
 因此为了提供更方便的数组使用，Java 在集合框架提供了 ArrayList 类
 
 - 根据实际存储的元素**动态地扩容**，创建时允许不指定容量，默认容量为 10，每次扩容 1.5 倍
-- 提供了丰富的 API 来执行数组操作，不用手动移动元素，包括 **add、get、set、remove、clear、contains、size、isEmpty**
 - 只能**存储对象**，如果是基本数据类型需要**包装类**，同时允许使用**泛型**来确保类型安全
 - **线程不安全**，多线程同时对同一个 ArrayList 对象操作可能会导致数据不一致
 - ArrayList **在底层维护了一个 Array 数组 `Object[] elementData`** 表示存放的元素和一个整型 `int size` 表示存放元素的个数
@@ -125,14 +212,6 @@ public static native void arraycopy(
     int length        // 复制的长度
 );
 ```
-
-#### fail-fast
-
-由于 ArrayList 是不支持线程安全的，因此为了能够提前发现并发操作导致线程安全风险，ArrayList 还会维护一个 modCount 来记录修改的次数
-
-1. 当调用 **iterator()** 创建迭代器时，会把 modCount 的当前值保存到 expectedModCoun
-2. 在迭代过程中都会检查 **expectedModCount == modCount**
-3. 如果不一致说明集合在迭代期间被**结构性修改**，立刻抛出 **ConcurrentModificationException** 异常
 
 ### LinkedList
 
@@ -289,19 +368,68 @@ E unlink(Node<E> x) {
 
 ## Set
 
+### 定义
+
+**Set 存储一个元素集合，强调唯一性和无序性，不能通过索引访问元素，不允许放入重复元素，典型操作有：contains、add、remove**
+
+### 实现类
+
+| **特性**          | **HashSet**            | **LinkedHashSet**      | **TreeSet**              |
+| ----------------- | ---------------------- | ---------------------- | ------------------------ |
+| **底层结构**      | HashMap                | LinkedHashMap          | TreeMap                  |
+| **元素顺序**      | 无序                   | 有序                   | 有序                     |
+| **允许 null**     | 允许 1 个 null 元素    | 允许 1 个 null 元素    | 不允许 null              |
+| **查找/插入效率** | O(1)                   | O(1)                   | O(log n)                 |
+| **去重依据**      | hashCode() + equals()  | hashCode() + equals()  | Comparable / Comparator  |
+| **适用场景**      | 只关心去重，不关心顺序 | 需要去重且保持插入顺序 | 需要去重且保持自定义顺序 |
 
 
 
+## Queue
 
+### 定义
 
+**Queue 存储一个元素序列，强调有序性和首尾操作，不能通过索引访问元素，但允许放入重复元素，典型操作有 offer、poll、peek、remove、element**
 
+### 实现类
 
+| **实现类**            | **底层结构**    | **线程安全** | **是否有界** | 出队顺序 |
+| --------------------- | --------------- | ------------ | ------------ | -------- |
+| LinkedList            | 双向链表        | ❌            | ❌            | 插入     |
+| ArrayDeque            | 循环数组        | ❌            | ❌            | 插入     |
+| PriorityQueue         | 二叉堆          | ❌            | ❌            | 比较     |
+| ConcurrentLinkedQueue | 单向链表 + CAS  | ✅            | ❌            | 插入     |
+| LinkedBlockingQueue   | 双向链表 + 双锁 | ✅            | ✅            | 插入     |
+| ArrayBlockingQueue    | 数组 + 单锁     | ✅            | ✅            | 插入     |
+| PriorityBlockingQueue | 二叉堆 + 单锁   | ✅            | ❌            | 比较     |
 
+### 阻塞队列
 
+BlockingQueue 继承自 Queue，是 JUC 提供的接口，内部通过锁或 CAS 保证线程安全，主要拓展了：
 
+- 插入 put：当队列满时，阻塞直到有空位
+- 移除 take：当队列空时，阻塞直到有新元素
+- 超时机制：允许 offer 和 poll 设置 timeout
 
+阻塞队列最常用的就是生产者-消费者模型，这里主要分析 ArrayBlockingQueue
 
+- 构造函数
 
+  ```java
+  // capacity 表示队列初始容量，fair 表示 锁的公平性
+  public ArrayBlockingQueue(int capacity, boolean fair) {
+    //如果设置的队列大小小于0，则直接抛出IllegalArgumentException
+    if (capacity <= 0)
+        throw new IllegalArgumentException();
+    //初始化一个数组用于存放队列的元素
+    this.items = new Object[capacity];
+    //创建阻塞队列流程控制的锁
+    lock = new ReentrantLock(fair);
+    //用lock锁创建两个条件控制队列生产和消费
+    notEmpty = lock.newCondition();
+    notFull =  lock.newCondition();
+  }
+  ```
 
 
 
