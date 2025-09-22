@@ -886,3 +886,4 @@ public void remove() {
 - state：表示需要等待的事件数，初始值为 count
 - tryAcquireShared：调用 await() 时执行，如果 state == 0 会返回 1，否则返回 -1
 - tryReleaseShared：调用 countDown() 时执行，直接 CAS 减少 1，此时如果 count == 0 会返回 true，否则返回 false
+
