@@ -46,8 +46,8 @@
 ### 📚 八股
 
 - [JVM](Theory/JVM.md)：JDK、JRE、JVM、内存布局、栈、堆、元空间、新生代、老年代、直接内存、对象内存、对象创建过程、垃圾回收、存活判定、GC 算法、垃圾收集器、类文件、类加载过程、类加载器、JVM 参数
-- [并发编程](Theory/Concurrent.md)：进程与线程、Thread API、Monitor、生命周期、多线程、JMM、线程安全、deadlock、consistency、volatile、synchronized、CAS、JUC、ReentrantLock、Atomic、Future、CompletableFuture、ThreadPoolExecutor、ThreadLocal、AQS
-- [集合框架](Theory/JCF.md)：比较器、Collection、stream、iterator、List、ArrayList、LinkedList、Set、Queue、BlockingQueue、Map、HashMap、ConcurrentHashMap、集合使用规范
+- [JUC](Theory/JUC.md)：进程与线程、Thread API、Monitor、生命周期、多线程、JMM、线程安全、deadlock、consistency、volatile、synchronized、CAS、JUC、ReentrantLock、Atomic、Future、CompletableFuture、ThreadPoolExecutor、ThreadLocal、AQS
+- [JCF](Theory/JCF.md)：比较器、Collection、stream、iterator、List、ArrayList、LinkedList、Set、Queue、BlockingQueue、Map、HashMap、ConcurrentHashMap、集合使用规范
 - [计算机网络](Theory/CN.md)：待学习...
 - [操作系统](Theory/OS.md)：待学习...
 - [数据库](Theory/DataBase.md)：待学习...
@@ -64,9 +64,9 @@
 
 ### 📊 Data Analysis
 
-- [NumPy](Data/NumPy.md)：
-- [Pandas](Data/Pandas.md)：
-- [Hadoop](Data/hadoop.md)：
+- [NumPy](Data/NumPy.md)：属性、数据类型、切片、索引、广播、迭代、修改形状、翻转、连接、分割、添加删除、字符串运算、数学运算、统计运算、线性代数运算、条件筛选运算
+- [Pandas](Data/Pandas.md)：Series、DataFrame、CSV 操作、JSON 操作、数据清洗、缺失值处理、重复值处理、异常值处理、替换值处理、数据预处理、格式转换、数值处理、类别处理、数据抽样、排序、聚合、透视、时间序列分析、性能优化
+- [Matplotlib](Data/Matplotlib.md)：plot、subplot、scatter、bar、barh、pie、hist、im
 
 
 ## Learning Path
