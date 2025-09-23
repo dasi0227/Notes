@@ -83,7 +83,7 @@ SpringCloudDemo
 └── pom.xml
 ```
 
-###POM 结构
+### POM 结构
 
 - 顶层：作为 **BOM（Bill Of Material，物料清单）**来集中管理依赖版本号，在 `<dependencyManagement>` 下引入或继承各种 BOM，可以**实现依赖版本的统一和对齐，避免不同模块间发生版本冲突，在子模块中无需重复声明版本号**
 
@@ -511,7 +511,7 @@ public ApplicationRunner applicationRunner(NacosConfigManager nacosConfigManager
     }
     ```
 
-###Fallback
+### Fallback
 
 可以给每一个 FeignClient 接口指定一个 fallback 类，该类需要实现  FeignClient 接口，是 Feign 在调用远程服务失败时的降级处理逻辑，即兜底操作
 
@@ -530,7 +530,7 @@ public class ProductFeignClientFallback implements ProductFeignClient {
 }
 ```
 
-###调用拦截
+### 调用拦截
 
 默认情况下，微服务间调用只会传输方法参数里的内容，而**前端请求头中的用户信息、Token、TraceId 等上下文信息不会自动透传**，因此 OpenFeign 提供了专用的拦截器接口 RequestInterceptor，只需要重写 apply 方法，就可以对请求进行拦截，并通过注入的 RequestTemplate 对象进行增强
 
@@ -1002,7 +1002,7 @@ public interface GatewayFilter extends ShortcutConfigurable {
 | 去掉请求路径的前 N 段 | StripPrefix       | num                | - StripPrefix=1                                      |
 | 使用正则重写路径      | RewritePath       | regex, replacement | \- RewritePath=/old/(?\<segment>.*), /new/${segment} |
 
-####自定义过滤器工厂
+#### 自定义过滤器工厂
 
 过滤器工厂和断言工厂类似，都是通过配置自动批量生成对应的过滤器，只需要继承 **AbstractGatewayFilterFactory** 类并实现几个部分，不再赘述
 

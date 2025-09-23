@@ -176,7 +176,7 @@ public class Application {
 }
 ```
 
-###RabbitTemplate
+### RabbitTemplate
 
 ```java
 public class Producer {
@@ -353,7 +353,7 @@ public DirectExchange directExchange() {
 
 ### 消息队列可靠性
 
-####持久化
+#### 持久化
 
 【问题】**默认情况下，MQ 会把消息存在内存之中，如果主机宕机，那么内存中的数据会丢失**
 

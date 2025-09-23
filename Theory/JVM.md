@@ -37,7 +37,7 @@ JVM 本质上只是一种思想和规范，具有很多实现如 HotSpot、JRock
 
 
 
-##内存
+## 内存
 
 ### 进程内存布局
 
@@ -220,7 +220,7 @@ JDK 1.7 利用了堆的永久代来存储类的元数据，而 JDK 1.8 转移到
 
 此前讲过 Minor GC 会清理新生代，每次清理后部分对象可能会晋升到老年代，而如果 Survivor-To 的内存不够，多余出来的对象可能也会被迫晋升到老年代。因此**为了保证老年代有足够的空间可以接受晋升的对象，在执行 Minor GC 之前，会检查老年代的连续空间是否大于新生代对象总大小或者历次晋升的平均大小，如果足够则进行 Minor GC，否则转而进行 Full GC**
 
-###存活判定
+### 存活判定
 
 #### 引用计数法
 
@@ -417,25 +417,25 @@ ClassFile {
 
 ```text
 // String name = "dasi";
-#1  = String             #2
-#2  = Utf8               dasi
+$1  = String             $2
+$2  = Utf8               dasi
 
 // Integer age = 21;
-#3  = Integer            21
-#4  = Methodref          #5.#6
-#5  = Class              #7
-#6  = NameAndType        #8:#9
-#7  = Utf8               java/lang/Integer
-#8  = Utf8               valueOf
-#9  = Utf8               (I)Ljava/lang/Integer;
+$3  = Integer            21
+$4  = Methodref          $5.$6
+$5  = Class              $7
+$6  = NameAndType        $8:$9
+$7  = Utf8               java/lang/Integer
+$8  = Utf8               valueOf
+$9  = Utf8               (I)Ljava/lang/Integer;
 
 // User user = new User(name, age);
-#10 = Class              #11
-#11 = Utf8               User
-#12 = Methodref          #10.#13
-#13 = NameAndType        #14:#15
-#14 = Utf8               <init>
-#15 = Utf8               (Ljava/lang/String;Ljava/lang/Integer;)V
+$10 = Class              $11
+$11 = Utf8               User
+$12 = Methodref          $10.$13
+$13 = NameAndType        $14:$15
+$14 = Utf8               <init>
+$15 = Utf8               (Ljava/lang/String;Ljava/lang/Integer;)V
 ```
 
 #### 类头信息
@@ -508,7 +508,7 @@ ClassFile {
 2. 在元空间中生成该类的类元信息
 3. 在堆中生成一个该类的 Class 对象
 
-####2️⃣ 链接
+#### 2️⃣ 链接
 
 1. **验证**：确保字节码格式正确，符合 JVM 规范，避免按群问题，包括**文件格式、元数据、字节码、符号引用**
 2. 准备：正式为类变量/静态变量在元空间分配内存，并赋予零值/默认值，除非用了 final 关键字修饰，才会直接赋予字面量

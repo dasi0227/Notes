@@ -4,7 +4,7 @@
 
 ## 概念
 
-###整合
+### 整合
 
 SSM 顾名思义指的是 Java Web 开发中的三大经典框架的整合，目的就是用 Spring 容器统一管理三层组件的 Bean
 
@@ -235,7 +235,7 @@ public class DataSourceJavaConfig {
 }
 ```
 
-###MapperJavaConfig
+### MapperJavaConfig
 
 ```java
 // 声明 MyBatis 的配置类，充当 mybatis-config.xml
@@ -283,7 +283,7 @@ public class MapperJavaConfig {
 }
 ```
 
-###ServiceJavaConfig
+### ServiceJavaConfig
 
 ```java
 // 声明 SpringFramework 的配置类，充当 spring-config.xml

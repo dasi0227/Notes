@@ -431,7 +431,7 @@ InvocationHandler invocationHandler = new InvocationHandler() {
 UserService proxy = (UserService) Proxy.newProxyInstance(classLoader, interfaces, invocationHandler);
 ```
 
-####CGLIB 动态代理
+#### CGLIB 动态代理
 
 代理流程
 

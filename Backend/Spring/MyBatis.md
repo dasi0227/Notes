@@ -2,7 +2,7 @@
 
 
 
-##概述
+## 概述
 
 **ORM**（Object-Relational Mapping，对象关系映射）：是一种程序设计思想，目标是**把面向对象编程中的对象和关系型数据库中表建立自动映射关系，使得程序员可以像操作对象一样操作数据库**
 
@@ -21,7 +21,7 @@
 
 
 
-##Mapper
+## Mapper
 
 ### 定义
 
@@ -114,7 +114,7 @@ Mapper 指的是 **SQL 映射器**，将 Java 方法映射为 SQL 语句
     2. 找到 id 与方法名一致的 SQL 语句
 4. 执行 SQL 语句，并将结果转换为 resultType 类型的对象返回
 
-###iBatis
+### iBatis
 
 iBatis 是 MyBatis 的前身，它不需要创建 Mapper 接口，也不需要在 XML 中设置 namespace 属性，而是**利用 sqlMapClient 的 API 根据字符串 id 找到对应 SQL 语句**
 

@@ -45,7 +45,7 @@
 
 ### 📚 八股
 
-- [JVM](Theory/JVM.md)：JDK、JRE、JVM、内存布局、栈、堆、元空间、新生代、老年代、直接内存、对象内存、、对象创建过程、垃圾回收、存活判定、GC 算法、垃圾收集器、类文件、类加载过程、类加载器、JVM 参数
+- [JVM](Theory/JVM.md)：JDK、JRE、JVM、内存布局、栈、堆、元空间、新生代、老年代、直接内存、对象内存、对象创建过程、垃圾回收、存活判定、GC 算法、垃圾收集器、类文件、类加载过程、类加载器、JVM 参数
 - [并发编程](Theory/Concurrent.md)：进程与线程、Thread API、Monitor、生命周期、多线程、JMM、线程安全、deadlock、consistency、volatile、synchronized、CAS、JUC、ReentrantLock、Atomic、Future、CompletableFuture、ThreadPoolExecutor、ThreadLocal、AQS
 - [集合框架](Theory/JCF.md)：比较器、Collection、stream、iterator、List、ArrayList、LinkedList、Set、Queue、BlockingQueue、Map、HashMap、ConcurrentHashMap、集合使用规范
 - [计算机网络](Theory/CN.md)：待学习...
