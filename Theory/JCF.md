@@ -170,6 +170,7 @@ Iterator 是 Java 集合框架中的迭代器接口，用来遍历集合中的�
 
 - `boolean hasNext()`：判断是否还有元素未遍历
 - `E next()`：返回下一个元素，并将指针向后移动
+- `void remove()`：在迭代过程中，安全地删除上一次由 next() 方法返回的元素
 - `default void forEachRemaining(Consumer<? super E> action)`：从当前位置开始，对剩余的每个元素执行指定操作
 
 由于迭代器不保证线程安全，因此当线程正在使用迭代器遍历集合时，集合可能会被其他线程**结构性修改（add / remove / clear 等）**，所以 Java 提供了一个 fail-fast 机制，在集合对象底层会维护一个 modCount 来记录修改的次数
