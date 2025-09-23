@@ -1,10 +1,14 @@
 # JCF
 
+
+
+## 前置知识
+
+### 类关系图
+
 ![918bdc2b0fd7be877965381ac34bbec0](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509221449411.png)
 
-
-
-## 比较器
+### 比较器
 
 比较器是**用来比较两个相同类的对象“谁先谁后”的一种机制，不能简单理解为“谁大谁小”**，因为排序规则完全可以不依赖于数值，而是任何自定义逻辑
 
@@ -75,8 +79,6 @@ public class Employee implements Comparable<Employee> {
     }	
 }
 ```
-
-
 
 
 
@@ -751,6 +753,49 @@ static class Node<K,V> implements Map.Entry<K,V> {
 
 ![image-20250923114637792](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509231146853.png)
 
+#### 计算原理
+
+##### 槽位计算
+
+由于 hash 是一个 int 值，有 40 多亿个不同值，显然无法直接作为索引，因此预先创建好一定长度的 table，将 hash 再次映射到槽位号
+
+- `index = hash % capacity`：传统方法是进行取余运算，得到的余数就是槽位号，但是 % 运算很慢
+- `index = (capacity - 1) & hash`：规定 capacity 是 2 的幂，那么 capacity - 1 的低位就全是 1，高位就全是 0，直接与 hash 值进行与运算，得到的值就是槽位号
+
+> 比如 32 =  0...0100000，那么 32 - 1 = 0...011111，与任何数做与运算的值都可以映射在 00000 到 11111 之间
+
+##### 哈希计算
+
+根据上面的分析，可以发现**计算槽位的时候实际只用到了 hash 的低位信息**，因此为了尽可能地避免哈希冲突，不能只用单纯的 hashCode，还需要把高位的信息也融合进低位
+
+1. `h = key.hashCode()`：这个方法是在顶层 Object 类里定义的本地方法，由 JVM 的 C/C++ 代码实现，会计算返回一个 32 位 int 整数
+2. `h' = h >>> 16`：把高 16 位移动到低 16 位的位置
+3. `hash = h ^ h'`：高 16 位保持不变，但是低 16 位会被扰动
+
+##### 迁移计算
+
+观察源码可以发现，**每次扩容都是原来的两倍，并且不支持自定义**，这是因为要保持容量是 2 的幂这个特性，把上面两个公式结合 `index = (capacity - 1) & (hashCode ^ (hashCode >>> 16))`，可以发现与运算的右操作数不会改变的，而与运算的左操作数的下一个高位从 0 变为 1，所以**与操作的结果只有一位可能会改变，而改变与否的依据则是 hash & oldCap 是否等于 0**，因此**要么 newIndex = oldIndex，要么 newIndex = oldIndex + oldCap**
+
+> oldCap = 16 = 00010000，16 - 1 = 00001111
+>
+> newCap = 32 = 00100000，32 - 1 = 00011111
+>
+> 对于 hash = 7 = 00000111
+>
+> ​	是否改变：00010000 & 00000111 = 00000000 == 0 -> false
+>
+> ​	扩容前 index = 00001111 & 00000111 = 7
+>
+> ​	扩容后 index = 00001111 & 00010111 = 7
+>
+> 对于 hash = 22 = 00010110
+>
+> ​	是否改变：00010000 & 00010110 = 00010000 != 0 -> true
+>
+> ​	扩容前 index = 00001111 & 00010110 = 6
+>
+> ​	扩容后 index = 00001111 & 00010110 = 22 = 6 + 16
+
 #### 源码分析
 
 ##### 字段
@@ -787,11 +832,7 @@ transient int size;
 transient int modCount;
 ```
 
-##### hash 方法
-
-1. 执行 h = key.hashCode()，这个方法是在顶层 Object 类里定义的本地方法，由 JVM 的 C/C++ 代码实现，会计算返回一个 32 位 int 整数
-2. 执行 h' = h >>> 16，把高 16 位移动到低 16 位的位置
-3. 执行 hash = h ^ h'，高 16 位保持不变，但是**低 16 位会被扰动，可以看作为融合了高位信息**
+##### hash
 
 ```java
 static final int hash(Object key) {
@@ -800,13 +841,9 @@ static final int hash(Object key) {
 }
 ```
 
-##### putVal 方法
+##### putVal
 
 ```java
-public V put(K key, V value) {
-    return putVal(hash(key), key, value, false, true);
-}
-
 final V putVal(int hash, K key, V value, boolean onlyIfAbsent, boolean evict) {
     Node<K,V>[] tab; Node<K,V> p; int n, i;
     
@@ -861,14 +898,9 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent, boolean evict) {
 }
 ```
 
-##### getNode 方法
+##### getNode
 
 ```java
-public V get(Object key) {
-    Node<K,V> e;
-    return (e = getNode(hash(key), key)) == null ? null : e.value;
-}
-
 final Node<K,V> getNode(int hash, Object key) {
     Node<K,V>[] tab; Node<K,V> first, e; int n; K k;
     
@@ -897,6 +929,8 @@ final Node<K,V> getNode(int hash, Object key) {
 ```
 
 ##### resize 方法
+
+
 
 ```java
 final Node<K,V>[] resize() {
@@ -989,33 +1023,41 @@ final Node<K,V>[] resize() {
 }
 ```
 
-##### 槽位计算
-
-由于 hash 是一个 int 值，有 40 多亿个不同值，显然无法直接作为索引，因此预先创建好一定长度的 table，将 hash 再次映射到槽位号
-
-- index = hash % capacity：传统方法是进行取余运算，得到的余数就是槽位号，但是 % 运算很慢
-- index = (capacity - 1) & hash：如果令 capacity 是 2 的幂，那么 capacity - 1 的低位就全是 1，高位就全是 0，直接与 hash 值进行与运算，得到的值就是槽位号
-
-> 比如 32 = 10000，那么 32 - 1 = 01111，与任何数做与运算的值都可以映射在 00000 到 01111 之间
-
 ### ConcurrentHashMap
 
-#### Hashtable 的弊端
+#### 线程安全原理
 
-Hashtable 是早期实现并发安全的一个手段，它通过**在所有关键方法上加 synchronized 关键字**来保证线程安全，这样只要一个线程执行了这些方法，其他线程必须等待，因此 Hashtable 相当于是对整个结构上了一个**全局锁**，即使两个线程操作不同的 bucket，也会互斥等待，大大降低了并发性能
+Hashtable 是早期实现并发安全的一个手段，它通过**在所有关键方法上加 synchronized 关键字**来保证线程安全，这样只要一个线程执行了这些方法，其他线程必须等待，因此 Hashtable 相当于是**方法级别的锁**，即使两个线程操作不同的 bucket，也会互斥等待，大大降低了并发性能 
+
+相比之下，ConcurrentHashMap 通过以下机制保障了线程安全
+
+- **使用 Unsafe 和 CAS**：提供了原子的获取值和更新值操作
+- **对 table 加上 volatile 关键字**：保证了任何线程都 table 的修改都可以被其他线程立马看到
+- **对 bucket 的头节点/根节点使用 synchronized**：桶级别的锁，不会干扰线程对其他桶的操作
+- 提供了 **putIfAbsent、computeIfAbsent、computeIfPresent** 等原子性的复合操作
+
+#### 协助迁移
+
+1. 当 size > threshold 时会触发扩容，线程会先创建一个 nextTable，容量为 table 的 2 倍
+2. 共享变量 transferIndex 保存了还未搬迁的最大下标，线程会从 transferIndex 里领取一个区间，然后负责该区间的桶迁移
+3. 线程会把负责区间的桶的头节点的 hash 设置为 MOVED(-1)
+4. 线程遍历桶内的链表或红黑树，根据规则将节点重新分配到 nextTable 中
+5. 此时如果别的线程获取到时间片，并且发现桶的头节点是 MOVED，它会调用 helpTransfer() 方法，领取新的区间，继续迁移
+6. 当一个桶迁移完成，会放置一个 ForwardingNode 占位，内部持有 nextTable 的引用，之后访问该桶的线程，会暂时去 nextTable 查找
+7. 当所有区间迁移完毕，会清空原先的 table，并把 nextTable 赋值给 table
 
 #### 源码分析
 
-##### casTabAt
+##### tabAt / casTabAt / setTabAt
 
-ConcurrentHashMap 具有一个静态 Unsafe 对象，底层封装了 CPU 的原子指令，用于在方法 casTabAt 中使用 compareAndSwapObject 方法更新 ConcurrentHashMap
+ConcurrentHashMap 具有一个静态 Unsafe 对象，底层封装了 CPU 的原子指令，通过**本地方法 getReferenceAcquire、putReferenceRelease 和 compareAndSetReference 实现获取、插入和更新键值对**
 
-- ABASE：数组第一个元素的内存偏移量
-- ASHIFT：数组索引的偏移量
-- casTabAt()：传入数组起始地址、槽位编号、期望 Node、更新 Node
-- compareAndSwapObject()：传入数组起始地址、槽位内存偏移量、期望 Node、更新 Node
+在 tabAt / casTabAt / setTabAt 中传入的只是槽位的编号，而 Unsafe 方法需要传入槽位的内存偏移量，因此首先需要得到每个 Node 的大小 scale
 
-所以关键就在于如何根据槽位编号 index 来计算得到槽位内存偏移量 offset，首先得到每个 Node 的大小 scale，由于 scale 是 2 的幂，那么 `address = base + index * scale = base + index << shift`，而 shift 就是 scale 中 1 后面 0 的个数，也就是 31 减去前导 0 的个数
+- 传统：`address = base + index * scale`
+- 改进：address `= base + index << shift`，这是因为 scale 是 2 的幂，**乘法运算可以直接变为左移位运算**，而 shift 就是 scale 中 1 后面 0 的个数，也就是 31 减去前导 0 的个数
+
+> 比如 2^5 = 32 = 0...0100000，1 后面有 几个 0 就是 2 的几次幂
 
 ```java
 private static final Unsafe U = Unsafe.getUnsafe();
@@ -1036,19 +1078,198 @@ static {
     ensureLoaded = ReservationNode.class;
 }
 
+static final <K,V> Node<K,V> tabAt(Node<K,V>[] tab, int i) {
+    return (Node<K,V>)U.getReferenceAcquire(tab, ((long)i << ASHIFT) + ABASE);
+}
+
 static final <K,V> boolean casTabAt(Node<K,V>[] tab, int i, Node<K,V> c, Node<K,V> v) {
-    return U.compareAndSwapObject(tab, ((long)i << ASHIFT) + ABASE, c, v);
+    return U.compareAndSetReference(tab, ((long)i << ASHIFT) + ABASE, c, v);
+}
+
+static final <K,V> void setTabAt(Node<K,V>[] tab, int i, Node<K,V> v) {
+    U.putReferenceRelease(tab, ((long)i << ASHIFT) + ABASE, v);
 }
 ```
 
 ##### putVal
 
 ```java
+final V putVal(K key, V value, boolean onlyIfAbsent) {
+    // ConcurrentHashMap 不允许 key 或 value 为 null
+    if (key == null || value == null) throw new NullPointerException();
+  
+  	// 计算哈希值
+    int hash = spread(key.hashCode());
+  
+  	// 无限循环实现自旋
+    int binCount = 0;
+    for (Node<K,V>[] tab = table;;) {
+        Node<K,V> f; int n, i, fh;
+      	// 初始化 table
+        if (tab == null || (n = tab.length) == 0)
+            tab = initTable();
+      	// 如果桶为空，则直接 CAS
+        else if ((f = tabAt(tab, i = (n - 1) & hash)) == null) {
+            if (casTabAt(tab, i, null, new Node<K,V>(hash, key, value, null)))
+                break;
+        }
+      	// 如果桶正在扩容，则协助扩容
+        else if ((fh = f.hash) == MOVED)
+            tab = helpTransfer(tab, f);
+      	// 如果桶此前有值
+        else {
+            V oldVal = null;
+            // 使用 synchronized 锁住当前桶的头节点/根节点
+            synchronized (f) {
+                if (tabAt(tab, i) == f) {
+                    // 链表
+                    if (fh >= 0) {
+                        binCount = 1;
+                      	// 尾插法
+                        for (Node<K,V> e = f;; ++binCount) {
+                            K ek;
+                          	// 存在键
+                            if (e.hash == hash &&
+                                ((ek = e.key) == key ||
+                                 (ek != null && key.equals(ek)))) {
+                                oldVal = e.val;
+                              	// 保持旧值
+                                if (!onlyIfAbsent)
+                                    e.val = value;
+                                break;
+                            }
+                            Node<K,V> pred = e;
+                          	// 不存在键
+                            if ((e = e.next) == null) {
+                                pred.next = new Node<K,V>(hash, key, value, null);
+                                break;
+                            }
+                        }
+                    }
+                  	// 红黑树
+                    else if (f instanceof TreeBin) {
+                        Node<K,V> p;
+                        binCount = 2;
+                        if ((p = ((TreeBin<K,V>)f).putTreeVal(hash, key, value)) != null) {
+                            oldVal = p.val;
+                            if (!onlyIfAbsent)
+                                p.val = value;
+                        }
+                    }
+                }
+            }
+            if (binCount != 0) {
+                if (binCount >= TREEIFY_THRESHOLD)
+                    treeifyBin(tab, i);
+                if (oldVal != null)
+                    return oldVal;
+              	// 跳出自旋
+                break;
+            }
+        }
+    }
+    addCount(1L, binCount);
+    return null;
+}
+```
+
+##### get
+
+```java
+public V get(Object key) {
+    Node<K,V>[] tab; Node<K,V> e, p; int n, eh; K ek;
+  	// 计算哈希值
+    int h = spread(key.hashCode());
+  
+  	// 槽位有元素
+    if ((tab = table) != null && (n = tab.length) > 0 &&
+        (e = tabAt(tab, (n - 1) & h)) != null) {
+        // 如果头节点就是目标，则直接返回值
+        if ((eh = e.hash) == h) {
+            if ((ek = e.key) == key || (ek != null && key.equals(ek)))
+                return e.val;
+        }
+      	// 如果头节点 hash < 0，说明正在扩容或者是红黑树，find 查找
+        else if (eh < 0)
+            return (p = e.find(h, key)) != null ? p.val : null;
+      	// 如果头节点 hash >= 0，说明是链表，遍历查找
+        while ((e = e.next) != null) {
+            if (e.hash == h &&
+                ((ek = e.key) == key || (ek != null && key.equals(ek))))
+                return e.val;
+        }
+    }
+  	// 槽位无元素
+    return null;
+}
 ```
 
 
 
+## 使用规范
 
+### 集合判空
+
+使用 isEmpty() 方法，而不是 size()==0 的方式，并且需要避免 NPE
+
+```java
+if (list == null || list.isEmpty()) { ... }
+```
+
+### 集合去重
+
+利用 Set 的唯一性，而不是循环判断添加
+
+```java
+List<Integer> distinctList = new ArrayList<>(new LinkedHashSet<>(list));
+```
+
+### 集合转 Map
+
+必须传入 mergeFunction 来处理 key 冲突
+
+```java
+Map<Integer, String> map = list.stream()
+    .collect(Collectors.toMap(
+        n -> n,                 // key
+        n -> "val" + n,         // value
+        (v1, v2) -> v1)					// 保留前者
+    );
+```
+
+### 集合转数组
+
+使用集合的 toArray 方法，传入类型一致，长度为 0 的数组
+
+```java
+String[] array = list.toArray(new String[0]);
+```
+
+### 数组转集合
+
+使用 Arrays.asList() 返回是  java.util.Arrays.ArrayList，是一个长度固定的数组，不允许 add、remove 和 clear，在底层是直接引用了传入的数组，set 会影响原始数组
+
+```java
+List list = Arrays.asList(array);
+```
+
+使用 ArrayList 的有参构造函数
+
+```java
+List<Integer> list = new ArrayList<>(Arrays.asList(array));
+```
+
+使用  Java8 提供的 Arrays.stream()，收集得到的是 ArrayList 类型
+
+```java
+List<Integer> list = Arrays.stream(array).collect(Collectors.toList());
+```
+
+使用 Java9 提供的 List.of() 返回的是 java.util.ImmutableCollections.ListN，是一个不可变数组，不允许 add、remove、clear 和 set
+
+```java
+List<Integer> list = List.of(array);
+```
 
 
 
