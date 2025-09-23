@@ -623,6 +623,84 @@ private E dequeue() {
 
 ## Map
 
+### 关键 API
+
+#### Entry
+
+Entry<K, V> 是 Map 的一个内部嵌套接口，用来表示 Map 中的一个键值对
+
+```java
+interface Entry<K, V> {
+  	// 返回 key
+    K getKey();
+  
+  	// 返回 value
+    V getValue();
+  	
+  	// 修改 value 并返回旧值
+    V setValue(V value);
+  
+  	// 按 key 的自然顺序返回一个比较器
+    public static <K extends Comparable<? super K>, V> Comparator<Map.Entry<K, V>> comparingByKey() {
+        return (Comparator<Map.Entry<K, V>> & Serializable)
+            (c1, c2) -> c1.getKey().compareTo(c2.getKey());
+    }
+  
+	  // 按 value 的自然顺序返回一个比较器
+    public static <K, V extends Comparable<? super V>> Comparator<Map.Entry<K, V>> comparingByValue() {
+        return (Comparator<Map.Entry<K, V>> & Serializable)
+            (c1, c2) -> c1.getValue().compareTo(c2.getValue());
+  }
+
+  	// 根据 key 使用自定义比较器返回一个比较器
+    public static <K extends Comparable<? super K>, V> Comparator<Map.Entry<K, V>> comparingByKey() {
+        return (Comparator<Map.Entry<K, V>> & Serializable)
+            (c1, c2) -> c1.getKey().compareTo(c2.getKey());
+    }
+
+  	// 根据 value 使用自定义比较器返回一个比较器
+    public static <K, V> Comparator<Map.Entry<K, V>> comparingByValue(Comparator<? super V> cmp) {
+        Objects.requireNonNull(cmp);
+        return (Comparator<Map.Entry<K, V>> & Serializable)
+            (c1, c2) -> cmp.compare(c1.getValue(), c2.getValue());
+    }
+}
+```
+
+#### 遍历
+
+Map 虽然没有 iterator() 方法来获得迭代器，但是有三种方法可以先获取到 Collection，再通过 iterator() / get() 来遍历
+
+- **entrySet()**：可以获得所有键值对的集合 `Set<Map.Entry<K,V>>`
+- **keySet()**：可以获取所有键的集合 `Set<K>`
+- **values()**：可以获取所有值的集合 `Collection<V>`
+
+### HashMap
+
+#### 定义
+
+数组+链表+红黑树
+
+#### 关键字段
+
+#### put 方法
+
+#### get 方法
+
+#### resize 方法
+
+### Hashtable 区别
+
+### ConcurrentHashMap
+
+
+
+
+
+
+
+
+
 
 
 
