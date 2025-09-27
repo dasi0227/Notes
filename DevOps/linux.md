@@ -1,4 +1,45 @@
-## Linux 介
+# Linux
+
+
+
+* [Linux](#linux)
+   * [Linux 介绍](#linux-介绍)
+      * [什么是 Linux](#什么是-linux)
+      * [组成](#组成)
+      * [开机](#开机)
+      * [命令元知识](#命令元知识)
+   * [Linux 文件/目录管理](#linux-文件目录管理)
+      * [系统目录介绍](#系统目录介绍)
+      * [查看目录内容：ls](#查看目录内容ls)
+      * [查看目录路径：pwd](#查看目录路径pwd)
+      * [切换目录路径：cd](#切换目录路径cd)
+      * [创建目录：mkdir](#创建目录mkdir)
+      * [销毁目录/文件：rm](#销毁目录文件rm)
+      * [复制目录/文件：cp](#复制目录文件cp)
+      * [更新文件：touch 和 mv](#更新文件touch-和-mv)
+   * [Linux 文本处理](#linux-文本处理)
+      * [文本显示：cat、less/more、head/tail](#文本显示catlessmoreheadtail)
+      * [文本搜索：grep](#文本搜索grep)
+      * [文本统计：wc、cut、uniq、sort](#文本统计wccutuniqsort)
+      * [文本修改](#文本修改)
+   * [Linux 用户管理](#linux-用户管理)
+      * [查看用户：groups、whoami、id](#查看用户groupswhoamiid)
+      * [用户操作：useradd、userdel、usermod、passwd](#用户操作useradduserdelusermodpasswd)
+      * [组操作：groupadd、groupdel、groupmod](#组操作groupaddgroupdelgroupmod)
+      * [将用户添加到组：gpsswd](#将用户添加到组gpsswd)
+   * [Linux 权限管理](#linux-权限管理)
+      * [修改权限：chmod](#修改权限chmod)
+* [将 file.txt 权限设置为 -rwxr-xr--](#将-filetxt-权限设置为--rwxr-xr--)
+* [将 file.txt 权限设置为 -rwxrwx---](#将-filetxt-权限设置为--rwxrwx---)
+      * [修改属：chgrp、chown](#修改属chgrpchown)
+      * [权限削减：umask](#权限削减umask)
+* [输出：只有自己可读可写](#输出只有自己可读可写)
+   * [Linux 软件包管理](#linux-软件包管理)
+   * [Linux 系统信息查看](#linux-系统信息查看)
+
+
+
+## Linux 介绍
 
 ### 什么是 Linux
 
@@ -93,6 +134,8 @@ Shell：负责**将文本命令转化为机器指令**，本义是外壳，又�
 - hostname：表示当前机器的主机名
 - path：显示当前工作目录的路径，其中 `~` 表示用户的主目录
 - symbol：用于指示命令行等待输入，`$` 表示为普通用户，`#` 表示为超级用户
+
+
 
 ## Linux 文件/目录管理
 
@@ -244,6 +287,8 @@ mv oldname.txt newname.txt
 |-n|禁止覆盖已有文件|
 |-v|显示操作过程|
 
+
+
 ## Linux 文本处理
 
 ### 文本显示：cat、less/more、head/tail
@@ -334,6 +379,8 @@ sort 用于对文本行进行排序，支持字典序、数字、反向等排序
 
 ### 文本修改
 
+
+
 ## Linux 用户管理
 
 ### 查看用户：groups、whoami、id
@@ -419,6 +466,8 @@ gpasswd [options] [username] [groupname]
 |-A 用户1,用户2|指定组管理员（逗号分隔）|
 |-M 用户列表|直接定义组成员（覆盖原有成员）|
 
+
+
 ## Linux 权限管理
 
 ### 修改权限：chmod
@@ -460,6 +509,8 @@ ls -l secret.txt
 -rw------- ...
 ```
 
+
+
 ## Linux 软件包管理
 
 apt 命令提供了查找、安装、升级、删除某一个、一组甚至全部软件包的命令，但大部分 apt 执行需要超级管理员权限
@@ -499,6 +550,8 @@ apt 命令提供了查找、安装、升级、删除某一个、一组甚至全�
 |list|列出包信息|
 |list --installed|查看已安装软件|
 |help|查看说明|
+
+
 
 ## Linux 系统信息查看
 

@@ -1,4 +1,22 @@
-## Collection & Map
+# Collection & Map
+
+
+
+* [Collection & Map](#collection-map)
+   * [定义](#定义)
+      * [数组与集合](#数组与集合)
+      * [框架体系](#框架体系)
+      * [业务选择](#业务选择)
+   * [Collection](#collection)
+      * [接口方法](#接口方法)
+      * [遍历手段](#遍历手段)
+      * [List 方法](#list-方法)
+      * [HashSet 底层](#hashset-底层)
+   * [Map](#map)
+      * [接口方法](#接口方法)
+      * [实现类对比](#实现类对比)
+      * [遍历手段](#遍历手段)
+      * [Properties](#properties)
 
 
 
@@ -113,7 +131,7 @@ for (String element : list) {
 - ListIterator<E> listIterator() / listIterator(int index)：获取 ListIterator，用于双向遍历
 - List<E> subList(int fromIndex, int toIndex)：获取子列表（from 包含，to 不含）
 
-###  HashSet 底层
+### HashSet 底层
 
 - HashSet 本质上就是一个没有值的 HashMap，add 的元素都被当作 key，值是固定占位符
 - 插入顺序不保证、查询速度飞快、允许存 null，但也只有一个
@@ -126,8 +144,6 @@ for (String element : list) {
     5. 如果存在 equals 返回 true → 视为重复，不加
     6. 如果全部 equals 返回 false → 加入桶链尾部
     7. 如果链表超过最大阈值，那么链表会自动进化为树
-
-
 
 
 

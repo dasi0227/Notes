@@ -1,3 +1,25 @@
+# Hadoop
+
+
+
+* [Hadoop](#hadoop)
+   * [Hadoop 概念](#hadoop-概念)
+   * [Hadoop 组成](#hadoop-组成)
+      * [HDFS](#hdfs)
+      * [Yarn](#yarn)
+      * [MapReduce](#mapreduce)
+      * [关系/整体流程](#关系整体流程)
+   * [大数据技术生态体系](#大数据技术生态体系)
+      * [数据来源层（Source）](#数据来源层source)
+      * [数据传输层（Ingestion）](#数据传输层ingestion)
+      * [数据存储层（Storage）](#数据存储层storage)
+      * [资源管理层](#资源管理层)
+      * [数据计算层](#数据计算层)
+      * [任务调度层](#任务调度层)
+      * [业务模型层](#业务模型层)
+
+
+
 ## Hadoop 概念
 
 什么是hadoop：是分布式系统基础架构，是一个技术生态圈，主要解决海量数据的存储、分析和计算
@@ -12,6 +34,8 @@ hadoop版本
 - hadoop 1.x：Common 辅助工具 + HDFS 数据存储 + MapReduce 计算-资源调度 + JobTracker 资源管理
 - hadoop 2.x：Common 辅助工具 + HDFS 数据存储 + Yarn 资源调度 + MapReduce 计算 + ResourceManager/NodeManager 资源管理
 - hadoop 3.x：核心组件与 hadoop 2.x 近似，但是支持多个 NameNode，对环境要求更广泛
+
+
 
 ## Hadoop 组成
 
@@ -52,6 +76,8 @@ hadoop版本
 4. 每个节点的 NodeManager 会监听 ResourceManager 的请求，启动本机上的 Container，同时 NodeManager 会监控 Container 的运行情况，并向 ResourceManager 和 ApplicationMaster 定期心跳
 5. Container 启动后执行具体的 Map 或 Reduce 任务Map Task 输出中间结果，Reduce Task 汇总处理后将最终结果通过 HDFS 写入系统此时，NameNode 会负责输出文件的块分配规划，具体数据则由对应的 DataNode 接收并写入磁盘
 6. 最后 ApplicationMaster 向 ResourceManager 报告任务完成，自我终结，同时所有 Container 被关闭，NodeManager 回收资源
+
+
 
 ## 大数据技术生态体系
 

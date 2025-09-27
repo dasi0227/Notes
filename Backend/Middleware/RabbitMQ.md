@@ -2,6 +2,49 @@
 
 
 
+* [RabbitMQ](#rabbitmq)
+   * [概述](#概述)
+      * [MQ](#mq)
+      * [消息中间件](#消息中间件)
+      * [Docker](#docker)
+* [安装](#安装)
+* [开启](#开启)
+   * [体系架构](#体系架构)
+      * [交互流程](#交互流程)
+      * [交换机模式](#交换机模式)
+      * [高可用方式](#高可用方式)
+   * [SpringBoot 集成](#springboot-集成)
+      * [pom.xml](#pomxml)
+      * [application.yml](#applicationyml)
+      * [RabbitConfig](#rabbitconfig)
+      * [MessageConverter](#messageconverter)
+      * [RabbitTemplate](#rabbittemplate)
+      * [@RabbitListener](#rabbitlistener)
+      * [@QueueBinding](#queuebinding)
+   * [消息可靠性](#消息可靠性)
+      * [生产者可靠性](#生产者可靠性)
+         * [重试连接](#重试连接)
+         * [生产者确认](#生产者确认)
+         * [备份交换机](#备份交换机)
+      * [消息队列可靠性](#消息队列可靠性)
+         * [持久化](#持久化)
+         * [惰性队列](#惰性队列)
+      * [消费者可靠性](#消费者可靠性)
+         * [消费者确认](#消费者确认)
+         * [失败消息处理](#失败消息处理)
+         * [业务幂等性](#业务幂等性)
+         * [限流](#限流)
+   * [延迟消息](#延迟消息)
+      * [死信交换机](#死信交换机)
+      * [延迟插件](#延迟插件)
+      * [拆分延迟](#拆分延迟)
+   * [优先级队列](#优先级队列)
+      * [定义](#定义)
+      * [队列优先级](#队列优先级)
+      * [消息优先级](#消息优先级)
+
+
+
 ## 概述
 
 ### MQ
@@ -618,4 +661,3 @@ rabbitTemplate.convertAndSend("priority.exchange", "priority.key", message, proc
     return processor;
 });
 ```
-

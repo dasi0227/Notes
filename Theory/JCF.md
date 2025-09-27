@@ -2,6 +2,68 @@
 
 
 
+* [集合框架](#集合框架)
+   * [前置知识](#前置知识)
+      * [类关系图](#类关系图)
+      * [比较器](#比较器)
+   * [Collection](#collection)
+      * [关键 API](#关键-api)
+         * [toArray](#toarray)
+         * [stream](#stream)
+         * [iterator](#iterator)
+      * [List](#list)
+         * [定义](#定义)
+         * [ArrayList](#arraylist)
+            * [定义](#定义)
+            * [构造函数](#构造函数)
+            * [扩容机制](#扩容机制)
+         * [LinkedList](#linkedlist)
+            * [定义](#定义)
+            * [区别](#区别)
+            * [链接机制](#链接机制)
+      * [Set](#set)
+         * [定义](#定义)
+         * [实现类](#实现类)
+      * [Queue](#queue)
+         * [定义](#定义)
+         * [实现类](#实现类)
+         * [阻塞队列](#阻塞队列)
+         * [ArrayBlockingQueue](#arrayblockingqueue)
+   * [Map](#map)
+      * [关键 API](#关键-api)
+         * [Entry](#entry)
+         * [遍历](#遍历)
+      * [实现类区别](#实现类区别)
+      * [HashMap](#hashmap)
+         * [结构](#结构)
+            * [Node](#node)
+            * [bucket](#bucket)
+         * [计算原理](#计算原理)
+            * [槽位计算](#槽位计算)
+            * [哈希计算](#哈希计算)
+            * [迁移计算](#迁移计算)
+         * [源码分析](#源码分析)
+            * [字段](#字段)
+            * [hash](#hash)
+            * [putVal](#putval)
+            * [getNode](#getnode)
+            * [resize 方法](#resize-方法)
+      * [ConcurrentHashMap](#concurrenthashmap)
+         * [线程安全原理](#线程安全原理)
+         * [协助迁移](#协助迁移)
+         * [源码分析](#源码分析)
+            * [tabAt / casTabAt / setTabAt](#tabat-castabat-settabat)
+            * [putVal](#putval)
+            * [get](#get)
+   * [使用规范](#使用规范)
+      * [集合判空](#集合判空)
+      * [集合去重](#集合去重)
+      * [集合转 Map](#集合转-map)
+      * [集合转数组](#集合转数组)
+      * [数组转集合](#数组转集合)
+
+
+
 ## 前置知识
 
 ### 类关系图
@@ -1271,12 +1333,6 @@ List<Integer> list = Arrays.stream(array).collect(Collectors.toList());
 ```java
 List<Integer> list = List.of(array);
 ```
-
-
-
-
-
-
 
 
 

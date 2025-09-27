@@ -2,6 +2,80 @@
 
 
 
+* [SpringFramework](#springframework)
+   * [概念](#概念)
+      * [Spring 全家桶](#spring-全家桶)
+      * [SpringFramework](#springframework)
+   * [IoC](#ioc)
+      * [定义](#定义)
+      * [Bean](#bean)
+      * [XML 配置 Bean](#xml-配置-bean)
+         * [手动装配](#手动装配)
+         * [自动装配](#自动装配)
+      * [注解配置 Bean](#注解配置-bean)
+         * [组件扫描](#组件扫描)
+         * [@Component](#component)
+         * [@Autowired](#autowired)
+         * [@Configuration](#configuration)
+      * [Bean 的生命周期](#bean-的生命周期)
+         * [获取 Bean](#获取-bean)
+         * [完整流程](#完整流程)
+      * [底层实现](#底层实现)
+         * [BeanFactory](#beanfactory)
+         * [IoC 的流程](#ioc-的流程)
+         * [字段注入的流程](#字段注入的流程)
+   * [AOP](#aop)
+      * [定义](#定义)
+      * [代理模式](#代理模式)
+         * [概念](#概念)
+         * [JDK 动态代理](#jdk-动态代理)
+         * [CGLIB 动态代理](#cglib-动态代理)
+      * [注解实现 AOP](#注解实现-aop)
+         * [切入点表达式语法](#切入点表达式语法)
+         * [@Before](#before)
+         * [@AfterReturning](#afterreturning)
+         * [@AfterThrowing](#afterthrowing)
+         * [@After](#after)
+         * [@Around](#around)
+         * [@Pointcut](#pointcut)
+         * [@Order](#order)
+         * [执行顺序](#执行顺序)
+   * [JDBC](#jdbc)
+      * [JdbcTemplate](#jdbctemplate)
+         * [意义](#意义)
+         * [XML 配置 DataSource](#xml-配置-datasource)
+         * [SQL 流程](#sql-流程)
+      * [@Transactional](#transactional)
+         * [意义](#意义)
+         * [propagation](#propagation)
+         * [isolation](#isolation)
+         * [timeout](#timeout)
+         * [readOnly](#readonly)
+         * [rollbackFor / noRollbackFor](#rollbackfor-norollbackfor)
+   * [Resource](#resource)
+      * [意义](#意义)
+      * [实现类](#实现类)
+      * [ResourceLoader](#resourceloader)
+      * [注册 Resource 对象的 Bean](#注册-resource-对象的-bean)
+   * [Validator](#validator)
+      * [意义](#意义)
+      * [绑定校验对象](#绑定校验对象)
+      * [校验注解](#校验注解)
+   * [i18n](#i18n)
+      * [含义](#含义)
+      * [Spring 国际化](#spring-国际化)
+   * [Junit](#junit)
+      * [意义](#意义)
+      * [使用](#使用)
+   * [Maven](#maven)
+      * [概念](#概念)
+      * [pom.xml](#pomxml)
+   * [Log4j](#log4j)
+      * [概述](#概述)
+      * [XML 配置](#xml-配置)
+
+
+
 ## 概念
 
 ### Spring 全家桶
@@ -959,7 +1033,7 @@ Resource resource = ctx.getResource("classpath:test.txt");
     System.out.println(emailResource.getEmail());
     ```
 
-    
+
 
 ## Validator
 

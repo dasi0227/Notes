@@ -2,6 +2,44 @@
 
 
 
+* [OOP](#oop)
+   * [三大要素](#三大要素)
+      * [封装](#封装)
+      * [继承](#继承)
+      * [重载与重写](#重载与重写)
+      * [多态](#多态)
+   * [Object 方法](#object-方法)
+      * [equals](#equals)
+      * [hashCode](#hashcode)
+      * [getClass](#getclass)
+      * [toString](#tostring)
+   * [static](#static)
+      * [类变量](#类变量)
+      * [类方法](#类方法)
+   * [codeblock](#codeblock)
+      * [普通代码块](#普通代码块)
+      * [构造代码块](#构造代码块)
+      * [静态代码块](#静态代码块)
+   * [加载顺序](#加载顺序)
+      * [类加载时机](#类加载时机)
+      * [static 和 codeblock](#static-和-codeblock)
+      * [例子说明](#例子说明)
+   * [特性](#特性)
+      * [final](#final)
+      * [abstract](#abstract)
+   * [Inner Class](#inner-class)
+      * [成员内部类](#成员内部类)
+      * [静态内部类](#静态内部类)
+      * [局部内部类](#局部内部类)
+      * [匿名内部类](#匿名内部类)
+   * [Interface](#interface)
+      * [定义](#定义)
+      * [implements](#implements)
+      * [多态](#多态)
+   * [单例设计模式](#单例设计模式)
+
+
+
 ## 三大要素
 
 1. **封装（Encapsulation）**：把属性（数据）和方法（操作）封装在类的内部 ➡️ 将数据进行私有化，将方法公有化，通过方法对数据进行操作
@@ -322,6 +360,8 @@ abstract 强制要求所有子类都必须要完成抽象的实现
 - 如果子类不是抽象类，并且要继承抽象父类，则必须重写实现它的所有抽象方法
 - 如果子类是抽象类，则可以直接继承抽象父类
 - 抽象方法不能用 private、final 和 static 修饰，否则就无法被重写，违背初衷
+
+
 
 ## Inner Class
 

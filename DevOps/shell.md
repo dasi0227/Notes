@@ -1,4 +1,19 @@
-## Shell 简介
+# shell
+
+
+
+* [shell](#shell)
+   * [shell 简介](#shell-简介)
+   * [Shell 变量](#shell-变量)
+      * [使用](#使用)
+      * [数据结构](#数据结构)
+      * [环境变量](#环境变量)
+      * [字符串](#字符串)
+      * [数组](#数组)
+
+
+
+## shell 简介
 
 Shell 本义外壳，是一种命令行解释器，可以将用户输入的文本命令转化为操作系统内核能够执行的机器指令，常见的有 bash、sh、zsh，每个运行中的 Shell 实例都是一个独立的进程
 
@@ -12,6 +27,8 @@ Shell 本义外壳，是一种命令行解释器，可以将用户输入的文�
   - `./script.sh`：创建一个新的 Shell 实例，根据 shebang 决定解释器，需要授予脚本执行权限，`chmod +x ./script.sh`
   - `bash script.sh`：创建一个新的 Shell 实例，直接指定解释器，无需给予脚本执行权限
   - `source script.sh` 或 `. script.sh`：在当前 Shell 执行，直接使用当前 Shell 环境的解释器，能直接影响当前环境的变量和设置
+
+
 
 ## Shell 变量
 
@@ -147,4 +164,3 @@ echo ${dict["name"]}    # 输出键对应的值：dasi
 echo ${!dict[@]}        # 输出全部键：age name
 echo ${dict[@]}         # 输出全部值：21 dasi
 ```
-

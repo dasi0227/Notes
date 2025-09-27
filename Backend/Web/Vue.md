@@ -2,6 +2,58 @@
 
 
 
+* [Vue](#vue)
+   * [前端工程化](#前端工程化)
+      * [定义](#定义)
+      * [Node.js](#nodejs)
+      * [npm](#npm)
+      * [Vite](#vite)
+   * [Vue 框架](#vue-框架)
+      * [概念](#概念)
+      * [组件](#组件)
+      * [工作流程](#工作流程)
+   * [.vue 文件](#vue-文件)
+      * [script 风格](#script-风格)
+      * [响应式数据](#响应式数据)
+      * [生命周期](#生命周期)
+   * [模板语法](#模板语法)
+      * [{{}}](#)
+      * [v-text](#v-text)
+      * [v-html](#v-html)
+      * [v-bind](#v-bind)
+      * [v-on](#v-on)
+      * [v-if/v-else](#v-ifv-else)
+      * [v-show](#v-show)
+      * [v-for](#v-for)
+      * [v-model](#v-model)
+      * [v-once](#v-once)
+      * [v-pre](#v-pre)
+      * [挂载](#挂载)
+   * [参数传递](#参数传递)
+      * [子传父：emit](#子传父emit)
+      * [父传子：prop](#父传子prop)
+      * [父子互传](#父子互传)
+      * [兄弟互传](#兄弟互传)
+   * [路由](#路由)
+      * [定义](#定义)
+      * [路由配置](#路由配置)
+      * [路由展示](#路由展示)
+      * [路由方式](#路由方式)
+      * [路由传参](#路由传参)
+      * [路由守卫](#路由守卫)
+   * [异步编程](#异步编程)
+      * [Promise](#promise)
+      * [async 和 await](#async-和-await)
+      * [Axios 请求](#axios-请求)
+      * [Axios 实例](#axios-实例)
+   * [CORS](#cors)
+      * [浏览器行为](#浏览器行为)
+      * [后端解决](#后端解决)
+   * [Pinia](#pinia)
+   * [Element-plus](#element-plus)
+
+
+
 ## 前端工程化
 
 ### 定义
@@ -1035,4 +1087,3 @@ console.log(userStore.username)
 ## Element-plus
 
 Element Plus 是为 Vue 3 打造的桌面端组件库，是原来 Element UI 的升级版：[官网链接](https://element-plus.org/zh-CN/)
-

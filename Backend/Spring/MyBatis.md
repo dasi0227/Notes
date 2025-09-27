@@ -2,6 +2,47 @@
 
 
 
+* [MyBatis](#mybatis)
+   * [概述](#概述)
+   * [Mapper](#mapper)
+      * [定义](#定义)
+      * [映射流程](#映射流程)
+      * [iBatis](#ibatis)
+   * [基本使用](#基本使用)
+      * [mybatis-config.xml](#mybatis-configxml)
+         * [environments](#environments)
+         * [mappers](#mappers)
+         * [settings](#settings)
+      * [传递值](#传递值)
+         * [方式](#方式)
+         * [类型](#类型)
+      * [返回值](#返回值)
+         * [默认别名](#默认别名)
+         * [类型别名](#类型别名)
+         * [字段别名](#字段别名)
+         * [集合类型](#集合类型)
+         * [获取自增长主键](#获取自增长主键)
+         * [selectKey 标签](#selectkey-标签)
+   * [多表映射](#多表映射)
+      * [定义](#定义)
+      * [一对一映射](#一对一映射)
+      * [一对多映射](#一对多映射)
+      * [自动映射](#自动映射)
+   * [动态语句](#动态语句)
+      * [\<if>](#if)
+      * [\<where>](#where)
+      * [\<set>](#set)
+      * [\<choose>](#choose)
+      * [\<sql>](#sql)
+   * [批量执行](#批量执行)
+      * [Executor](#executor)
+      * [\<foreach>](#foreach)
+   * [分页机制](#分页机制)
+      * [MySQL 实现](#mysql-实现)
+      * [PageHelper 插件实现](#pagehelper-插件实现)
+
+
+
 ## 概述
 
 **ORM**（Object-Relational Mapping，对象关系映射）：是一种程序设计思想，目标是**把面向对象编程中的对象和关系型数据库中表建立自动映射关系，使得程序员可以像操作对象一样操作数据库**
