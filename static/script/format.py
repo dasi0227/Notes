@@ -76,7 +76,7 @@ if __name__ == "__main__":
     curr_dir = os.path.dirname(os.path.abspath(__file__))
     root_dir = os.path.abspath(os.path.join(curr_dir, "../../"))
     for file_name in Path(root_dir).rglob("*.md"):
+        format_heading(file_name)
         if file_name.name.lower() == "readme.md":
             continue
-        format_heading(file_name)
         insert_toc(file_name)

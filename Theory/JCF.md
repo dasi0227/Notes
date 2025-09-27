@@ -1333,5 +1333,3 @@ List<Integer> list = Arrays.stream(array).collect(Collectors.toList());
 List<Integer> list = List.of(array);
 ```
 
-
-
