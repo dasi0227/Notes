@@ -212,10 +212,12 @@
 - [x] 09.21：并发编程：JUC、ThreadLocal、AQC
 - [x] 09.22：集合框架：Collection、List、Set、Queue
 - [x] 09.23：集合框架：Map、HashMap、ConcurrentHashMap
-- [ ] 09.24
-- [ ] 09.25
-- [ ] 09.26
-- [ ] 09.27
+- [x] 09.24：MySQL：基本概念与基本命令
+- [x] 09.25：MySQL：层级架构、字段类型、日志、锁
+- [x] 09.26：MySQL：MVCC、索引、存储结构、性能优化、SQL 优化
+- [ ] 09.28：
+- [ ] 09.29：
+- [ ] 09.30：
 
 
 
