@@ -747,7 +747,7 @@ public class FeignConfig {
 
 #### 熔断策略
 
-- **慢调用比例**：高于最大 RT的请求数 / 总请求数 > 比例阈值
+- **慢调用比例**：高于最大 RT 的请求数 / 总请求数 > 比例阈值
 - **异常比例**：异常请求数 / 总请求数 > 比例阈值
 - **异常数**：异常请求数 > 数量阈值
 
@@ -864,7 +864,7 @@ public String readFallback(Long id, Throwable t) {
 
 blockHandler / fallback 只能作用在某个资源方法上，而实际业务中不会给所有资源都设置异常回调逻辑，这时候就需要**实现 Sentinel 提供的 BlockExceptionHandler 接口，在整个应用层面捕获 BlockException 异常来进行全局统一处理**
 
-这个拦截发生在 Sentinel 层，还没有进入 Controller 和资源，**手里只有HttpServletResponse 对象，必须通过 PrintWriter 手动写回响应**
+这个拦截发生在 Sentinel 层，还没有进入 Controller 和资源，**手里只有 HttpServletResponse 对象，必须通过 PrintWriter 手动写回响应**
 
 需要注意的是，Sentinel 已经有一个 **DefaultBlockExceptionHandler** 类实现了该接口，所以为了保证自定义的异常处理类优先注入，需要加上 **@Primary** 注解
 
@@ -1190,8 +1190,8 @@ public class TokenGatewayFilterFactory extends AbstractGatewayFilterFactory<Toke
 
     ```mysql
     create table undo_log (
-        branch_id     bigint       not null, -- 分支事务id
-        xid           varchar(100) not null, -- 全局事务id
+        branch_id     bigint       not null, -- 分支事务 id
+        xid           varchar(100) not null, -- 全局事务 id
         context       varchar(128) not null, -- 上下文信息
         rollback_info longblob     not null, -- 回滚数据
         log_status    int          not null, -- 日志状态

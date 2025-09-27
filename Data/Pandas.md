@@ -397,7 +397,7 @@ df_pivot = df.pivot(index='date', columns='city', values='temperature')
 print("\nPivot 后的宽格式 DataFrame:")
 print(df_pivot)
 
-print("\n重置行索引后的 DataFrame:")
+print("\n 重置行索引后的 DataFrame:")
 df_reset = df_pivot.reset_index()
 print(df_reset)
 
@@ -476,7 +476,7 @@ DataFrame.to_csv(path_or_buf, sep=',', columns=None, header=True, index=True, en
 
 ## 5. JSON
 
-JSON（JavaScript Object Notation）即JavaScript 对象标记法，是轻量级的文本数据交换格式
+JSON（JavaScript Object Notation）即 JavaScript 对象标记法，是轻量级的文本数据交换格式
 
 下面使用菜鸟教程提供的 [JSON 数据](https://static.jyshare.com/download/sites.json)进行分析
 
@@ -656,13 +656,13 @@ df = pd.DataFrame({
 })
 print("原始")
 print(df)
-print("\n对行：any")
+print("\n 对行：any")
 print(df.dropna(axis=0, how='any'))
-print("\n对行：thresh=3")
+print("\n 对行：thresh=3")
 print(df.dropna(axis=0, thresh=3))
-print("\n对列：any")
+print("\n 对列：any")
 print(df.dropna(axis=1, how='any'))
-print("\n对列：all")
+print("\n 对列：all")
 print(df.dropna(axis=1, how='all'))
 ```
 ![](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/DataAnalysis/Pandas/202504061605260.png)
@@ -687,13 +687,13 @@ df = pd.DataFrame({
 })
 print("原始")
 print(df)
-print("\n填充 0")
+print("\n 填充 0")
 print(df.fillna(axis=0, value=0))
-print("\n每一行根据列标签填充")
+print("\n 每一行根据列标签填充")
 print(df.fillna(axis=0, value={"A":1, "B":2, "C":3, "D":4}))
-print("\n每一列向前填充")
+print("\n 每一列向前填充")
 print(df.fillna(axis=0, method="ffill"))
-print("\n每一列最多填充 2 个")
+print("\n 每一列最多填充 2 个")
 print(df.fillna(axis=0, value=0, limit=2))
 ```
 ![](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/DataAnalysis/Pandas/202504061605261.png)
@@ -720,13 +720,13 @@ df = pd.DataFrame({
 })
 print("原始")
 print(df)
-print("\n保留第一次")
+print("\n 保留第一次")
 print(df.drop_duplicates(keep='first'))
-print("\n保留最后一次")
+print("\n 保留最后一次")
 print(df.drop_duplicates(keep='last'))
-print("\n不保留")
+print("\n 不保留")
 print(df.drop_duplicates(keep=False))
-print("\n筛选")
+print("\n 筛选")
 print(df.drop_duplicates(keep='first', subset=["ID", "Name"], ignore_index=True))
 ```
 ![](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/DataAnalysis/Pandas/202504061605262.png)
@@ -782,11 +782,11 @@ df = pd.DataFrame({
 })
 print("单个值")
 print(df.replace(to_replace=0, value=pd.NA))
-print("\n多个值")
+print("\n 多个值")
 print(df.replace(to_replace=[0,1], value=pd.NA))
-print("\n字典")
+print("\n 字典")
 print(df.replace(to_replace={"Value": {0: pd.NA}, "Fruit": {"Berry": "Blueberry"}}))
-print("\n正则表达式")
+print("\n 正则表达式")
 print(df.replace(to_replace=r'^B.*', value='B-fruit', regex=True))
 ```
 ![](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/DataAnalysis/Pandas/202504061605268.png)
@@ -956,7 +956,7 @@ df = pd.DataFrame({
 })
 print("计算每个部门的平均薪资")
 print(df.groupby('Department').agg({'Salary':'mean'}))
-print("\n计算男性和女性的薪资标准差")
+print("\n 计算男性和女性的薪资标准差")
 print(df.groupby('Gender').agg({'Salary':'std'}))
 ```
 ![](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/DataAnalysis/Pandas/202504061605270.png)
@@ -965,7 +965,7 @@ print(df.groupby('Gender').agg({'Salary':'std'}))
 
 有时候我们不只是对分组的数据进行传统的求均值、最值等，而是按照自定义的逻辑，我们主要借助以下两个方法实现
 - `DataFrame.apply(func)`：对 DataFrame 的每个分组或每一行/列应用一个函数
-- `lambda 参数: 表达式`：快速定义一个匿名函数，对给定可迭代对象的每个元素应用指定的表达式
+- `lambda 参数: 表达式 `：快速定义一个匿名函数，对给定可迭代对象的每个元素应用指定的表达式
 
 ```python
 df = pd.DataFrame({
@@ -976,7 +976,7 @@ df = pd.DataFrame({
 })
 print("性别分组后排序")
 print(df.groupby('Gender').apply(lambda x: x.sort_values(by="Salary")))
-print("\n部门分组后计算总和扣除税收5%")
+print("\n 部门分组后计算总和扣除税收 5%")
 print(df.groupby('Department').apply(lambda x: x["Salary"].sum() * 0.95))
 ```
 ![](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/DataAnalysis/Pandas/202504061605271.png)
@@ -1013,7 +1013,7 @@ df = pd.DataFrame({
 })
 print("每个部门的平均工资")
 print(pd.pivot_table(df, values="Salary", index="Department", aggfunc='mean'))
-print("\n每个部门下每个性别的平均工资和津贴")
+print("\n 每个部门下每个性别的平均工资和津贴")
 print(pd.pivot_table(df, values=["Salary", "Bonus"], 
                      index="Department", columns="Gender", 
                      aggfunc="mean", fill_value=0, 
@@ -1053,12 +1053,12 @@ pandas 的时间数据对象类型为 `datetime64[ns]`，用于存储时间序�
 | MS | 月初 | 每月第一天 |
 | BM | 商业月末 | 每月最后一个工作日 |
 | BMS | 商业月初 | 每月第一个工作日 |
-| Q | 季度末 | 每年3/6/9/12月最后一天 |
-| QS | 季度初 | 每年1/4/7/10月第一天 |
+| Q | 季度末 | 每年 3/6/9/12 月最后一天 |
+| QS | 季度初 | 每年 1/4/7/10 月第一天 |
 | BQ | 商业季度末 | 季度最后一个工作日 |
 | BQS | 商业季度初 | 季度第一个工作日 |
-| Y | 年末 | 每年12月31日 |
-| YS | 年初 | 每年1月1日 |
+| Y | 年末 | 每年 12 月 31 日 |
+| YS | 年初 | 每年 1 月 1 日 |
 | BA | 商业年末 | 每年最后一个工作日 |
 | BAS | 商业年初 | 每年第一个工作日 |
 | H | 小时 | 每小时整点 |
@@ -1143,11 +1143,11 @@ df = pd.DataFrame({
     'bonus': np.random.randint(50, 200, 50)
 }, index=df_index)
 df_sample = df.resample(rule='W').mean()
-print("\n最初")
+print("\n 最初")
 print(df_sample)
-print("\n移动索引")
+print("\n 移动索引")
 print(df_sample.shift(freq='W'))
-print("\n移动数据")
+print("\n 移动数据")
 print(df_sample.shift(periods=1))
 ```
 ![](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/DataAnalysis/Pandas/202504061605277.png)

@@ -59,7 +59,7 @@ public class Main {
 
 SpringBoot 的配置文件主要是设置应用程序的关键参数，主要用于配制项目端口、应用名、日志级别、数据库连接信息以及第三方服务参数，**SpringBoot 已经提供了一些固定的键值来修改一些关键参数，同时也支持自定义键值，但是不能重名，**同时主配置文件名必须为以下两种格式
 
--  `application.properties` ：key 和 value之间只有一个等号
+-  `application.properties` ：key 和 value 之间只有一个等号
 
     ```properties
     # 服务器基础信息
@@ -72,7 +72,7 @@ SpringBoot 的配置文件主要是设置应用程序的关键参数，主要用
     dasi.scores=100,89,91
     ```
     
-- `application.yaml`：key 和 value之间必须有空格
+- `application.yaml`：key 和 value 之间必须有空格
 
     ```yaml
     # 服务器基础信息

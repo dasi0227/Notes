@@ -99,7 +99,7 @@ JS 的 switch 使用严格相等比较，不做类型转换
 JS 在 if(expr) 中会将 expr 做隐式转换，不要求一定是 boolean
 
 - ""、0、null、undefined、NaN 都当作 false
-- 非空字符串、非空对象、非0数值都当作 true
+- 非空字符串、非空对象、非 0 数值都当作 true
 
 ### 循环结构
 
@@ -130,7 +130,7 @@ for ... of ...：遍历可迭代对象的每个值
 
 - 直接字面量创建，没有类的概念
 - 属性和值均可在运行时增删改
-- 内部都是键值对的形式，通过 `变量名.属性名/键值` 进行赋值和引用
+- 内部都是键值对的形式，通过 ` 变量名.属性名/键值 ` 进行赋值和引用
 
 一个函数在通过 new 调用时，会作为构造函数，JavaScript 会按以下步骤创建并返回对象
 
@@ -199,7 +199,7 @@ String 和 Number
 - g：全局匹配，每次调用 exec，都会从上一次结束的位置继续搜索，直到返回 null
 - i：忽略大小写
 - m：多行模式
-- u：开启 Unicode 支持，处理中文字符和Emoji
+- u：开启 Unicode 支持，处理中文字符和 Emoji
 - s：点号.匹配包括换行在内的所有字符
 
 属性
@@ -434,9 +434,9 @@ DOM（Document Obejct Model）将 HTML/XML 文档抽象为一棵可编程的节�
 
 直接获取
 
-- 按照 ID 获取：document.getElementById(id)，返回 Element 或 null，注意这里Element不是复数形式，因为 id 唯一
+- 按照 ID 获取：document.getElementById(id)，返回 Element 或 null，注意这里 Element 不是复数形式，因为 id 唯一
 - 按照类名或许：document.getElementByClassName(className)，返回动态更新的 HTMLCollection
-- 按照name属性获取：document.getElementByName(name)，返回静态的 NodeList
+- 按照 name 属性获取：document.getElementByName(name)，返回静态的 NodeList
 - 按照 HTML 标签名获取：document.getElementByTagName(tagName)，返回动态更新的 HTMLCollection
 
 间接获取
@@ -710,7 +710,7 @@ console.log(sum([3, 4])); // 7
 
 // 对象参数
 function greet({ name, age = 21 }) {
-    console.log(`你好，${name}，${age} 岁`);
+    console.log(` 你好，${name}，${age} 岁 `);
 }
 greet({ name: 'dasi' }); // 你好，dasi，18 岁
 ```

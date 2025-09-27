@@ -180,7 +180,7 @@ JVM 内存：由 JVM 管理的内存，是预先设置好初始值和最大值�
 新生代存放刚刚创建的对象，其中又被细分为三部分
 
 - Eden：“伊甸园”是亚当和夏娃创造人类的地方，即 **JVM 创建对象的地方**，大部分对象第一次都会被分配到这里
-- Survivor：当 Eden 空间即将用尽的时候，JVM 会执行一次 Minor GC 清理 Eden 和 Survivor-From，没有被垃圾回收的“幸存者”将会被复制到 Survivor-To，然后 JVM 会**把 To 与 From 互换角色，从而保证每一次都有一个空的 Survivor-To 来接收幸存者**，因此S0/S1实际上没有任何区别，只不过在逻辑上交替作为 From 和 To
+- Survivor：当 Eden 空间即将用尽的时候，JVM 会执行一次 Minor GC 清理 Eden 和 Survivor-From，没有被垃圾回收的“幸存者”将会被复制到 Survivor-To，然后 JVM 会**把 To 与 From 互换角色，从而保证每一次都有一个空的 Survivor-To 来接收幸存者**，因此 S0/S1 实际上没有任何区别，只不过在逻辑上交替作为 From 和 To
 
 #### 老年代
 
@@ -621,7 +621,7 @@ $15 = Utf8               (Ljava/lang/String;Ljava/lang/Integer;)V
 
 #### 内置
 
-- **BootstrapClassLoader**：由 C++ 编写，是最顶层的类加载器，负责加载 %JAVA_HOME%/lib 下的所有 jar 包和类，以及被 `-Xbootclasspath `参数指定路径下的所有类
+- **BootstrapClassLoader**：由 C++ 编写，是最顶层的类加载器，负责加载 %JAVA_HOME%/lib 下的所有 jar 包和类，以及被 `-Xbootclasspath ` 参数指定路径下的所有类
 - **ExtensionClassLoader / PlatformClassLoader**：由 Java 编写，负责加载 %JAVA_HOME%/lib/ext 下的所有 jar 包和类，用于扩展 JDK 的功能
 - **Application ClassLoader**：由 Java 编写，是直接面向用户的类加载器，负责加载当前应用的类路径下的所有 jar 包和类
 
@@ -694,7 +694,7 @@ protected Class<?> loadClass(String name, boolean resolve)
 
 ##### findClass
 
-因此为了自定义类加载器，只需要**继承 ClassLoader 抽象类并重写findClass(String name) 方法**，实际上我们只需要**定义如何找到类文件并读取字节码**，之后再通过统一的 defineClass 方法转换为 Class 对象
+因此为了自定义类加载器，只需要**继承 ClassLoader 抽象类并重写 findClass(String name) 方法**，实际上我们只需要**定义如何找到类文件并读取字节码**，之后再通过统一的 defineClass 方法转换为 Class 对象
 
 ```java
 private final String classPath = "/usr/dev/JVM";

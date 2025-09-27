@@ -253,9 +253,9 @@ print(np.swapaxes(a, 0, 1))       # 将轴 1 和轴 0 互换
 
 |函数|说明|
 |-|-|
-|`np.broadcast_to(ndarray, shape)`|将数组中大小为1的维度广播到指定形状|
+|`np.broadcast_to(ndarray, shape)`|将数组中大小为 1 的维度广播到指定形状|
 |`np.expand_dims(ndarray, axis)`|在指定位置插入新的轴|
-|`np.squeeze(ndarray, axis)`|删除数组中大小为1的维度|
+|`np.squeeze(ndarray, axis)`|删除数组中大小为 1 的维度|
 
 ```python
 a = np.array([1, 2, 3])
@@ -337,9 +337,9 @@ print(np.delete(a,1,axis = 0))
 ```
 
 `np.unique(ndarray, return_index, return_inverse, return_counts)`：会展开成一维数组，返回排序好的去重元素
-- return_index：如果为true，返回新列表元素在旧列表中的位置（下标）
-- return_inverse：如果为true，返回旧列表元素在新列表中的位置（下标）
-- return_counts：如果为true，返回去重数组中的元素在原数组中的出现次数
+- return_index：如果为 true，返回新列表元素在旧列表中的位置（下标）
+- return_inverse：如果为 true，返回旧列表元素在新列表中的位置（下标）
+- return_counts：如果为 true，返回去重数组中的元素在原数组中的出现次数
 
 ```python
 a = np.array([5,2,6,2,7,5,6,8,2,9])
@@ -446,7 +446,7 @@ print(np.unique(a, return_counts=True)[1])
 | 函数 | 说明 |
 | --- | --- |
 | `np.random.rand(d0, d1, ...)` | 生成 [0,1) 之间均匀分布的随机浮点数数组，参数为数组各维度的大小 |
-| `np.random.randn(d0, d1, ...)` | 生成标准正态分布（均值为0，标准差为1）的随机数数组，参数为数组各维度的大小 |
+| `np.random.randn(d0, d1, ...)` | 生成标准正态分布（均值为 0，标准差为 1）的随机数数组，参数为数组各维度的大小 |
 | `np.random.normal(loc, scale, shape)` | 生成服从给定均值和标准差的正态分布/高斯分布的随机数，shape 指定输出数组的形状 |
 | `np.random.randint(low, high, shape)` | 从 [low, high) 区间内生成随机整数，shape 指定输出数组的形状 |
 | `np.random.choice(a, shape, replace=True, p=None)` | 从一维数组 a 中随机抽取样本，shape 为输出样本的数量，replace 控制是否可重复抽样，p 为每个元素的概率分布 |

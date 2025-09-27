@@ -228,7 +228,7 @@ Redis（Remote Dictionary Server）是一个开源的内存数据结构存储系
 
 适用：结构化数据存储、对象属性信息、配置中心
 
-产品：CF操作配置记录、淘宝商品详情页信息
+产品：CF 操作配置记录、淘宝商品详情页信息
 
 | 命令                                       | 功能                                    |
 | ------------------------------------------ | --------------------------------------- |
@@ -248,7 +248,7 @@ Redis（Remote Dictionary Server）是一个开源的内存数据结构存储系
 
 适用：关系计算、标签系统、去重
 
-实践：QQ共同好友、豆瓣兴趣标签集合
+实践：QQ 共同好友、豆瓣兴趣标签集合
 
 | 命令                                | 功能                                    |
 | :---------------------------------- | :-------------------------------------- |
@@ -269,7 +269,7 @@ Redis（Remote Dictionary Server）是一个开源的内存数据结构存储系
 
 适用：排行榜、任务调度、优先队列
 
-实践：网易云音乐热歌榜、王者荣耀巅峰排行榜、微博热搜榜、12306候补购票
+实践：网易云音乐热歌榜、王者荣耀巅峰排行榜、微博热搜榜、12306 候补购票
 
 | 命令                                         | 功能                                     |
 | :------------------------------------------- | :--------------------------------------- |
@@ -292,7 +292,7 @@ Redis（Remote Dictionary Server）是一个开源的内存数据结构存储系
 
 适用：签到统计、状态标记
 
-实践：小红书用户在线状态、贴吧连续签到统计、B站视频是否观看
+实践：小红书用户在线状态、贴吧连续签到统计、B 站视频是否观看
 
 | **命令**                                | **功能**                                           |
 | --------------------------------------- | -------------------------------------------------- |
@@ -336,7 +336,7 @@ Redis（Remote Dictionary Server）是一个开源的内存数据结构存储系
 
 ### Stream
 
-存储：消息流，每条消息都有一个唯一 ID和多个 field-value 记录
+存储：消息流，每条消息都有一个唯一 ID 和多个 field-value 记录
 
 适用：消息队列、事件溯源、日志收集
 
@@ -344,7 +344,7 @@ Redis（Remote Dictionary Server）是一个开源的内存数据结构存储系
 
 | **命令**                                                     | **功能**                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| **XADD** key ID field value [field value …]                  | 向流中追加一条消息（ID为 * 表示主键由 redis 自动生成）       |
+| **XADD** key ID field value [field value …]                  | 向流中追加一条消息（ID 为 * 表示主键由 redis 自动生成）       |
 | **XLEN** key                                                 | 获取流中的消息数量                                           |
 | **XRANGE** key start end [COUNT count]                       | 按 ID 正序获取消息（-/+ 表示最大和最小）                     |
 | **XREVRANGE** key end start [COUNT count]                    | 按 ID 倒序获取消息（-/+ 表示最大和最小）                     |
@@ -446,7 +446,7 @@ AOF（Append Only File）会把所有**写命令**记录到一个 **appendonly.a
 
 - `appendonly`：是否开启 AOF 持久化，开启后会优先使用 AOF 而不是 RDB
 - `appenddirname`：AOF 文件存储的路径（相对于 RDB 的路径 dir）
-- `appendfilename`：AOF 文件存储的名称，但是在 Redis7之后不再使用，而是默认使用以下三个
+- `appendfilename`：AOF 文件存储的名称，但是在 Redis7 之后不再使用，而是默认使用以下三个
     - `base.rdb`：保存基准快照
     - `incr.aof`：保存增量日志
     - `manifest`：保存文件清单，指导 Redis 如何使用 base.aof 和 incr.aof
@@ -563,7 +563,7 @@ cat batch.txt | redis-cli -a password --pipe
 - **同步请求 Slave → Master**：在 redis.conf 中，Slave 的 masterauth 需要与 Master 的 requirepass 一致
 - **数据传输 Master → Slave**：保持主从一致
 - Master 和 Slave 是相对的，**所有节点在一开始都是 Master**，同步请求后才会变成 Slave
-- **一个节点可以同时作为 Master 和 Slave**，形成链式关系，但数据会始终同步自最前o的 Master
+- **一个节点可以同时作为 Master 和 Slave**，形成链式关系，但数据会始终同步自最前 o 的 Master
 
 <img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/SpringMVC202508271625637.png" alt="04f28596-3eac-4659-b605-c60ea7f836d1" style="zoom:33%;" />
 
@@ -673,7 +673,7 @@ sentinel auth-pass mymaster <password>
     127.0.0.1:6381> REPLICAOF 127.0.0.1 6379
     ```
 
-4. 关闭 Redis-6379：存在延迟，哨兵正在执行转移，会发出 `Error: Server closed the connection` 异常，然后哨兵会选举 6380 作为新的 Master，并更新 6381为 6380 的 Slave
+4. 关闭 Redis-6379：存在延迟，哨兵正在执行转移，会发出 `Error: Server closed the connection` 异常，然后哨兵会选举 6380 作为新的 Master，并更新 6381 为 6380 的 Slave
 
 5. 重启 Redis-6379：存在延迟，哨兵正在执行恢复，仍然认为自己是 Master 角色，然后哨兵会将 6379 降级为 6380 的 Slave
 
@@ -789,7 +789,7 @@ appendonly yes
 | redis-cli --cluster **create** ip\:port … [**–cluster-replicas n**] | 创建集群，一次性添加多个节点，通过 n 指定每个 Master 对应多少个 Slave |
 | redis-cli --cluster check ip\:port                           | 检查集群整体状态                                             |
 | redis-cli --cluster **rebalance** ip:port                    | 自动均衡所有 Master 的槽分布                                 |
-| redis-cli --cluster **reshard** ip\:port                     | 将槽重新分配给其他节点，ip:port 是任意一个已存在集群中的节点即可，提示步骤为：<br />1. 输入迁移的槽数量<br />2. 输入迁移对象的节点ID<br />3. 输入从哪些节点迁出槽<br />4. 输入 yes 开始迁移 |
+| redis-cli --cluster **reshard** ip\:port                     | 将槽重新分配给其他节点，ip:port 是任意一个已存在集群中的节点即可，提示步骤为：<br />1. 输入迁移的槽数量<br />2. 输入迁移对象的节点 ID<br />3. 输入从哪些节点迁出槽<br />4. 输入 yes 开始迁移 |
 | redis-cli --cluster **add-node** ip\:port ip\:port [--cluster-slave] | 加节点到集群之中，默认是 Master，Slave 需要添加额外参数，第二个 ip\:port 是已经存在的节点作为“引荐人”提供集群入口 |
 | redis-cli --cluster **del-node** ip\:port node-id            | 从集群之中删节点，如果是 Master 需要先把槽分配出去，Slave 可以直接删 |
 
@@ -1176,7 +1176,7 @@ Canal 是阿里巴巴开源的 MySQL binlog 增量订阅 & 消费组件，核心
                                     throw new RuntimeException(e);
                                 }
                                 redisTemplate.opsForValue().set(redisKey, redisValue);
-                                System.out.println("写入Redis -> " + redisKey + " = " + redisValue);
+                                System.out.println("写入 Redis -> " + redisKey + " = " + redisValue);
                             }
                         });
                     }
@@ -1309,9 +1309,9 @@ local b = "hello"
 -- 条件
 
 if (a > 5) then
-    return "大于5"
+    return "大于 5"
 else
-    return "小于等于5"
+    return "小于等于 5"
 end
 
 -- 循环
@@ -1662,7 +1662,7 @@ public class RedisLock implements Lock {
 
 1. 加锁的时候，客户端会向所有 Redis 节点发起加锁请求 `SET key value NX PX exp`，而不是只是向 Master 节点，并且会生成一个全局唯一的随机值作为锁的 value
 2. 如果 Redis 统计到加锁成功的节点数多于一半，并且当前耗时小于锁的过期时间，则认为加锁成功，否则会释放已经加锁的节点
-3. 解锁的时候，客户端会向所有 Redis 节点发起解锁请求，利用 Lua 脚本来原子地检查 value his否一致并删除锁
+3. 解锁的时候，客户端会向所有 Redis 节点发起解锁请求，利用 Lua 脚本来原子地检查 value his 否一致并删除锁
 4. 解锁不要求 Redis 统计解锁结果，如果失败将不作任何处理，而是等待锁自然过期释放
 
 ### Redisson

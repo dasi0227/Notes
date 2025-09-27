@@ -56,13 +56,13 @@
 
 | 业务特点                 | 优先选择集合                                    | 理由                            |
 | ------------------------ | ----------------------------------------------- | ------------------------------- |
-| 需要快速查找、插入、删除 | HashMap、HashSet                                | 基于哈希表，时间复杂度接近O(1)  |
+| 需要快速查找、插入、删除 | HashMap、HashSet                                | 基于哈希表，时间复杂度接近 O(1)  |
 | 需要元素有序             | LinkedHashMap、LinkedHashSet、ArrayList         | 保留插入顺序，遍历顺序稳定      |
-| 需要排序                 | TreeMap、TreeSet                                | 基于红黑树，自动按key或元素排序 |
+| 需要排序                 | TreeMap、TreeSet                                | 基于红黑树，自动按 key 或元素排序 |
 | 需要频繁插入/删除        | LinkedList                                      | 链表结构，插入删除效率高        |
 | 需要频繁随机访问         | ArrayList                                       | 底层数组，按索引访问快          |
 | 要求线程安全             | ConcurrentHashMap、Collections.synchronizedList | 支持并发读写或同步操作          |
-| 键值对存储               | Map相关（HashMap、TreeMap）                     | 专门用于键值对映射              |
+| 键值对存储               | Map 相关（HashMap、TreeMap）                     | 专门用于键值对映射              |
 | 允许重复元素             | ArrayList、LinkedList                           | List 允许重复                   |
 | 不允许重复元素           | HashSet、TreeSet                                | Set 自动去重                    |
 | 先进先出队列结构         | Queue、LinkedList、ArrayDeque                   | 用于队列或缓冲场景              |
@@ -172,11 +172,11 @@ for (String element : list) {
 
 ### 实现类对比
 
-| 类名              | 是否线程安全 | 是否允许null键/值         | 是否有序       | 是否自动排序 | 底层结构         | 适用场景                  |
+| 类名              | 是否线程安全 | 是否允许 null 键/值         | 是否有序       | 是否自动排序 | 底层结构         | 适用场景                  |
 | ----------------- | ------------ | ------------------------- | -------------- | ------------ | ---------------- | ------------------------- |
-| HashMap           | 否           | 允许1个null键，多个null值 | 否             | 否           | 数组+链表/红黑树 | 最常用的Map，快速查找插入 |
+| HashMap           | 否           | 允许 1 个 null 键，多个 null 值 | 否             | 否           | 数组+链表/红黑树 | 最常用的 Map，快速查找插入 |
 | LinkedHashMap     | 否           | 允许                      | 是（插入顺序） | 否           | HashMap+双向链表 | 保持插入顺序，遍历稳定    |
-| TreeMap           | 否           | 键不能为null，值可为null  | 是（升序）     | 是（按key）  | 红黑树           | 需要有序的Map             |
+| TreeMap           | 否           | 键不能为 null，值可为 null  | 是（升序）     | 是（按 key）  | 红黑树           | 需要有序的 Map             |
 | Hashtable         | 是           | 不允许                    | 否             | 否           | 哈希表（早期）   | 老代码遗留，不推荐        |
 | ConcurrentHashMap | 是           | 不允许                    | 否             | 否           | 分段哈希+红黑树  | 并发安全场景推荐使用      |
 

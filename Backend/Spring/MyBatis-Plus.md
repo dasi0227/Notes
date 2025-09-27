@@ -354,7 +354,7 @@ List<Employee> employees = employeeMapper.selectList(lambdaQueryWrapper);
 
 ### @TableLogic
 
-指定当前字段是否作为**逻辑删除**的标志，即不真正从数据库删除记录，而是通过更新一个标志位字段表示已删除，其中 value 设置未删除时的值（默认0），delvalue 设置删除时的值（默认1）
+指定当前字段是否作为**逻辑删除**的标志，即不真正从数据库删除记录，而是通过更新一个标志位字段表示已删除，其中 value 设置未删除时的值（默认 0），delvalue 设置删除时的值（默认 1）
 
 - 在执行查询和删除操作时自动加上 `WHERE is_deleted = 0`
 

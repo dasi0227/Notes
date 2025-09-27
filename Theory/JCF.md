@@ -78,7 +78,7 @@
 | **Comparable\<T>** | int compareTo(T o);      | 当前类 | 只能实现一个 | 让一个类自己具备比较内部元素的能力         |
 | **Comparator\<T>** | int compare(T o1, T o2); | 外部类 | 可以实现多个 | 让一个类使用外部定义的比较器来比较内部元素 |
 
-**Java 的所有包装类（Integer、Double、Long、Float、Short、Byte、Character、Boolean）都已经实现了Comparable\<T> 接口**，因此它们自带 compareTo(T other) 方法
+**Java 的所有包装类（Integer、Double、Long、Float、Short、Byte、Character、Boolean）都已经实现了 Comparable\<T> 接口**，因此它们自带 compareTo(T other) 方法
 
 不过需要注意的是，**部分包装类中的 compare 方法不是实现 Comparator 接口重写的，而是自定义的静态方法**
 
@@ -1332,4 +1332,3 @@ List<Integer> list = Arrays.stream(array).collect(Collectors.toList());
 ```java
 List<Integer> list = List.of(array);
 ```
-

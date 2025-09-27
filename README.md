@@ -84,26 +84,26 @@
 - [x] 04.14：Core、OOP
 - [x] 04.15：异常、接口、包装类、枚举类
 - [x] 04.16：工具类、集合、泛型
-- [x] 04.17：线程、坦克Demo1.0
-- [x] 04.18：I/O、流、坦克Demo2.0
+- [x] 04.17：线程、坦克 Demo1.0
+- [x] 04.18：I/O、流、坦克 Demo2.0
 - [x] 04.19：网络
-- [x] 04.20：多用户消息Demo1.0
-- [x] 04.21：多用户消息Demo2.0
+- [x] 04.20：多用户消息 Demo1.0
+- [x] 04.21：多用户消息 Demo2.0
 - [x] 04.22：反射、MySQL、JDBC、Druid
-- [x] 04.23：DAO、正则表达式、满汉楼Demo
+- [x] 04.23：DAO、正则表达式、满汉楼 Demo
 
 2. JavaWeb
 
 - [x] 04.24：HTML、CSS、JS
-- [x] 04.25：BOM、登陆页面Demo
+- [x] 04.25：BOM、登陆页面 Demo
 - [x] 04.26：Tomcat、HTTP、Servlet
-- [x] 04.28：XML、日程管理Demo1.0
-- [x] 05.07：Session、Cookie、域、日程管理Demo2.0
-- [x] 05.08：Filter、Listener、ajax、日程管理Demo4.0
+- [x] 04.28：XML、日程管理 Demo1.0
+- [x] 05.07：Session、Cookie、域、日程管理 Demo2.0
+- [x] 05.08：Filter、Listener、ajax、日程管理 Demo4.0
 - [x] 05.09：ES6、npm、Vite
 - [x] 05.11：Vue、pinia
-- [x] 05.12：route、SPA、axios、日程管理Demo5.0
-- [x] 05.13：日程管理Demo7.0
+- [x] 05.12：route、SPA、axios、日程管理 Demo5.0
+- [x] 05.13：日程管理 Demo7.0
 
 3. SpringFramework
 
@@ -137,7 +137,7 @@
 
 - [x] 08.10：Mapper、多表映射、动态 SQL
 
-- [x] 08.11：批量执行、分页机制、SSM、任务列表Demo
+- [x] 08.11：批量执行、分页机制、SSM、任务列表 Demo
 - [x] 08.12：BaseMapper、IService、Wrapper、实体类注解
 
 6. SpringBoot
@@ -148,13 +148,13 @@
 
 - [x] 08.15：环境搭建、接口测试搭建、项目结构搭建
 
-- [x] 08.16：B端（员工/分类/菜品/套餐/上传/店铺）、Redis
+- [x] 08.16：B 端（员工/分类/菜品/套餐/上传/店铺）、Redis
 
-- [x] 08.17：C端（微信/分类/菜品/套餐/店铺/购物车/地址）
+- [x] 08.17：C 端（微信/分类/菜品/套餐/店铺/购物车/地址）
 
-- [x] 08.18：C端（订单/支付）、B端（订单）、WebSocket
+- [x] 08.18：C 端（订单/支付）、B 端（订单）、WebSocket
 
-- [x] 08.19：B端（数据/工作台/导出）、完善、测试
+- [x] 08.19：B 端（数据/工作台/导出）、完善、测试
 
 - [x] 08.20：项目总结
 

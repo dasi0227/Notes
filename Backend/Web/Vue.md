@@ -133,7 +133,7 @@ npm（Node Package Manager）是 Node.js 的包管理工具，职责是下载、
 依赖（dependency）：项目运行时所需要的外部包
 
 - package.json 中的 dependencies 字段：记录了项目运行时需要的包，会打包进最终项目中，每次运行 `npm install xxx`，都会自动添加一个记录，也可以自己手动添加
-- package.json 中的 devDependencies 字段：记录了项目开发时需要的包，通常是构建工具、测试框架、格式化器、打包器等，不会上传部署，每次运行 `npm install xxx包名 --save-dev`，都会自动添加一个记录
+- package.json 中的 devDependencies 字段：记录了项目开发时需要的包，通常是构建工具、测试框架、格式化器、打包器等，不会上传部署，每次运行 `npm install xxx 包名 --save-dev`，都会自动添加一个记录
 - node_modules 目录：是依赖的实际存储位置，通常不上传到 Git 仓库，只上传 package.json
 
 ### Vite
@@ -154,7 +154,7 @@ Vite 是一个现代前端构建工具，目标是提供更快、更轻量的开
 
 目录结构
 
-- public/：存放一些公共资源，不会被打包处理，如favicon、字体等，这些会直接复制到构建出的 dist/ 下
+- public/：存放一些公共资源，不会被打包处理，如 favicon、字体等，这些会直接复制到构建出的 dist/ 下
 - src/：存放项目的源代码
     - assets/：存放项目中需要引入的静态资源，如 img、svg、css、js 等
     - components/：存放可复用的小型 UI 组件，是最小功能单元，如按钮、输入框、Modal 等
@@ -395,7 +395,7 @@ watch(count, (newVal, oldVal) => {
 文本绑定：`v-text` 绑定响应式数据作为标签内的文本，原标签内的文字会被覆盖，如果需要拼接字符串需要在 v-text 中利用模板字符串
 
 ```html
-<p v-text="`当前用户为：${message}`"></p>
+<p v-text="` 当前用户为：${message}`"></p>
 ```
 
 ### v-html
@@ -813,18 +813,18 @@ Promise 是 JS 异步编程的一种解决方案，每个 Promise 对象代表�
 let promise = new Promise(function (resolve, reject) {
     flag = ... // 业务逻辑
     if (flag) {
-      resolve("成功执行1")
+      resolve("成功执行 1")
     } else {
       reject("失败执行")
     }
 })
 
-console.log("异步执行1")
+console.log("异步执行 1")
 
 promise.then(
   result => {
     console.log(result)
-    return "成功执行2"
+    return "成功执行 2"
   }
 ).then(
   result => {
@@ -836,7 +836,7 @@ promise.then(
   }
 )
 
-console.log("异步执行2")
+console.log("异步执行 2")
 ```
 
 ### async 和 await
@@ -954,11 +954,11 @@ const instance = axios.create({
 instance.interceptors.request.use(
     config => {
         console.log("请求拦截")
-        console.log(`要访问的URL：${config.baseURL + config.url}`)
+        console.log(` 要访问的 URL：${config.baseURL + config.url}`)
         return config
     },
     error => {
-        console.log(`错误信息：${error}`)
+        console.log(` 错误信息：${error}`)
         return Promise.reject(error)
     }
 )
@@ -966,11 +966,11 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
     response => {
         console.log("响应拦截")
-        console.log(`消息来源于：${response.data.from}`)
+        console.log(` 消息来源于：${response.data.from}`)
         return response.data
     },
     error => {
-        console.log(`错误信息：${error}`)
+        console.log(` 错误信息：${error}`)
         return Promise.reject(error)
     }
 )
@@ -1056,7 +1056,7 @@ export const definedUser = defineStore({
   }),
   getters: {
     welcomeMessage: (state) => {
-      return state.isLogin ? `欢迎回来，${state.username}！` : '请先登录'
+      return state.isLogin ? ` 欢迎回来，${state.username}！` : '请先登录'
     }
   }
   actions: {

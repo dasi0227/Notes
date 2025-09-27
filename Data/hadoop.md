@@ -21,15 +21,15 @@
 
 ## Hadoop 概念
 
-什么是hadoop：是分布式系统基础架构，是一个技术生态圈，主要解决海量数据的存储、分析和计算
+什么是 hadoop：是分布式系统基础架构，是一个技术生态圈，主要解决海量数据的存储、分析和计算
 
-hadoop优势
+hadoop 优势
 - 高可靠性：底层维护多个数据副本，即使某个计算元素或存储出现故障，也不会导致数据的丢失
 - 高扩展性：在集群间分配任务数据，可动态地增加或减少节点
 - 高效性：并行工作，加快任务处理
 - 高容错性：能够自动将失败的任务重新分配
 
-hadoop版本
+hadoop 版本
 - hadoop 1.x：Common 辅助工具 + HDFS 数据存储 + MapReduce 计算-资源调度 + JobTracker 资源管理
 - hadoop 2.x：Common 辅助工具 + HDFS 数据存储 + Yarn 资源调度 + MapReduce 计算 + ResourceManager/NodeManager 资源管理
 - hadoop 3.x：核心组件与 hadoop 2.x 近似，但是支持多个 NameNode，对环境要求更广泛
@@ -43,7 +43,7 @@ hadoop版本
 分布式文件系统（Hadoop Distributed File System, HDFS）：存储大规模数据它将大文件分割成多个数据块，然后分布式地存储在多台机器上
 - NameNode：管家，记录文件的元数据，如文件名、文件目录结构、文件属性，以及每个文件的块列表和块所在的 DataNode
 - DataNode：搬运工，在本地文件系统存储文件块数据，以及块数据的校验和，并定期向 NameNode 汇报状态
-- Secondary NameNode：每隔一段时间对NameNode的关键部分进行备份，防止NameNode挂掉
+- Secondary NameNode：每隔一段时间对 NameNode 的关键部分进行备份，防止 NameNode 挂掉
 
 ### Yarn
 
@@ -51,13 +51,13 @@ hadoop版本
 - ResourceManager：整个集群的老大，全局资源分配和调度的控制中心
 - NodeManager：单个节点的老大，汇报本地资源使用并管理任务容器
 - ApplicatinonMaster：单个任务/应用的老大，负责协调该应用在集群中的执行
-- Container：资源容器，封装了任务运行的资源（内存、CPU、磁盘、宽带等），是Application执行的地方
+- Container：资源容器，封装了任务运行的资源（内存、CPU、磁盘、宽带等），是 Application 执行的地方
 
 需要说明的是
 1. 集群可以支持多客户端访问
-2. 集群上可以运行多个ApplicatinonMaster
-3. 每个NodeManager可以有多个Container
-4. ApplicatinonMaster可以利用其它节点的Container执行
+2. 集群上可以运行多个 ApplicatinonMaster
+3. 每个 NodeManager 可以有多个 Container
+4. ApplicatinonMaster 可以利用其它节点的 Container 执行
 
 ### MapReduce
 
@@ -73,7 +73,7 @@ hadoop版本
 2. 客户端提交一个 MapReduce 作业到 YARN 集群，ResourceManager 接收任务，并先分配一个 Container 来运行 ApplicationMaster，ApplicationMaster 启动后会向 NameNode 查询数据块的位置，然后根据数据的物理分布，将 Map Task 安排在合适节点上
 3. ApplicationMaster 根据任务需要向 ResourceManager 请求执行 Map 和 Reduce 任务所需的 Container，ResourceManager 决定在哪些节点上分配资源，并通知对应节点的 NodeManager 启动 Container 以运行实际任务
 4. 每个节点的 NodeManager 会监听 ResourceManager 的请求，启动本机上的 Container，同时 NodeManager 会监控 Container 的运行情况，并向 ResourceManager 和 ApplicationMaster 定期心跳
-5. Container 启动后执行具体的 Map 或 Reduce 任务Map Task 输出中间结果，Reduce Task 汇总处理后将最终结果通过 HDFS 写入系统此时，NameNode 会负责输出文件的块分配规划，具体数据则由对应的 DataNode 接收并写入磁盘
+5. Container 启动后执行具体的 Map 或 Reduce 任务 Map Task 输出中间结果，Reduce Task 汇总处理后将最终结果通过 HDFS 写入系统此时，NameNode 会负责输出文件的块分配规划，具体数据则由对应的 DataNode 接收并写入磁盘
 6. 最后 ApplicationMaster 向 ResourceManager 报告任务完成，自我终结，同时所有 Container 被关闭，NodeManager 回收资源
 
 

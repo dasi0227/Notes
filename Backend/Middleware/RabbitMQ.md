@@ -529,7 +529,7 @@ public class IdempotentChecker {
 
 【问题】默认情况下，RabbitMQ 会尽可能地把队列里的所有消息都推送给消费者，而消费者的处理能力是有限的，可能会导致消息都堆积在内存中
 
-【解决】SpringAMQP 提供了 `prefetch` 参数来配置消费者的预取数，即同一时刻消费者最多能处理的消息数量，当前仅当上一批消息全部都处理完毕后（ack/nack/reject都算处理），才会分配下一批消息
+【解决】SpringAMQP 提供了 `prefetch` 参数来配置消费者的预取数，即同一时刻消费者最多能处理的消息数量，当前仅当上一批消息全部都处理完毕后（ack/nack/reject 都算处理），才会分配下一批消息
 
 ```yml
 spring:

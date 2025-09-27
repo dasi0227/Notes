@@ -70,7 +70,6 @@ Java 的 I/O 是基于流的，也就是将数据看作一连串的字节或字�
 
     - 标准输入：System.in 获取控制台输入或输入重定向的数据
 
-
 - 处理流：不与数据源打交道，而是包裹在节点流外面的工具流，用来增强功能，可以链式地把多种处理流组合起来，为最简单的节点流不断添加新能力
     - 转换流：InputStreamReader/OutputStreamWriter，将字节流转换为字符流
     - 缓冲流：BufferedInputStream/BufferedOutputStream/BufferedReader/BufferedWriter，为字节/字符流添加缓冲区
@@ -88,7 +87,7 @@ Java 的 I/O 是基于流的，也就是将数据看作一连串的字节或字�
 File 类不是文件内容的载体，而是对文件的抽象表示，本质是用于查询和操作文件的元信息，而不是修改其存储内容
 
 - 构造方法（假设工作目录是 "/Users/dasi/projects"）
-    - 一个路径（绝对or相对）："/Users/dasi/projects/data.txt" 或 "data.txt"
+    - 一个路径（绝对 or 相对）："/Users/dasi/projects/data.txt" 或 "data.txt"
     - 上级路径+一个文件名："/Users/dasi/projects" + "data.txt"
     - 上级路径+下级路径："/Users/dasi" + "projects/data.txt"
 - 核心方法
@@ -100,15 +99,15 @@ File 类不是文件内容的载体，而是对文件的抽象表示，本质是
     - mkdir()：创建单级目录
     - mkdirs()：递归创建目录
     - delete()：删除文件或清空目录
-    - renameTo：移动文件或重命名文件（相当于mv）
+    - renameTo：移动文件或重命名文件（相当于 mv）
     - length()：返回文件的字节大小，目录返回 0
     - lastModified：返回最后修改时间的时间戳
     - getName()：返回文件名（不含路径）
     - getPath()：返回路径
     - getAbsolutePath()：返回绝对路径
     - getParent()：返回上级目录
-    - list()：列出目录下所有文件的 String 名字数组，如果不是目录返回null
-    - listFiles()：列出目录下所有文件的 File 对象数组，如果不是目录返回null
+    - list()：列出目录下所有文件的 String 名字数组，如果不是目录返回 null
+    - listFiles()：列出目录下所有文件的 File 对象数组，如果不是目录返回 null
 
 > 目录也是特殊的文件，在这里如果没有特殊说明的时候不做区分
 
@@ -141,7 +140,7 @@ File 类不是文件内容的载体，而是对文件的抽象表示，本质是
 
 ### FileWriter
 
-- 构造函数可以传入参数 boolean append：true表示追加模式，false表示覆盖模式，不传入默认是覆盖模式
+- 构造函数可以传入参数 boolean append：true 表示追加模式，false 表示覆盖模式，不传入默认是覆盖模式
 - void write(int c)：写入单个字符
 - void write(char[] cbuf)：将整个字符数组写入
 - void write(char[] cbuf, int off, int len)：从 cbuf[off] 开始写入 len 个字符
@@ -276,7 +275,7 @@ thread.start();
 - Runnable 接口：很小，内部只有 run 方法，定义了一段可在独立线程中执行的逻辑
 - Thread 接口：很大，除了 run 还有很多其他方法
 - 上述做法的好处
-    1. 将任务和线程分离，让你的业务逻辑只关心实现run方法本身，而不必与线程创建、启动的细节耦合
+    1. 将任务和线程分离，让你的业务逻辑只关心实现 run 方法本身，而不必与线程创建、启动的细节耦合
     2. 任务类依然可以继承其他父类或实现更多接口
     3. 只需把同一个 Runnable 实例交给不同的 Thread 对象即可轻松共享状态，无需为每个线程都写一个新的子类
 
@@ -393,7 +392,7 @@ public static synchronized void bar() {}
 
 类加载器：Java 的一切都是类和对象，类加载器负责在运行时将字节码（.class 文件）加载到 JVM，并生成对应的 Class 对象
 
-- Bootstrap（引导）：用原生代码实现，加载 JRE 中最基础的核心库，如java.lang.*、java.util.*、java.io.*、java.net.* 等
+- Bootstrap（引导）：用原生代码实现，加载 JRE 中最基础的核心库，如 java.lang.*、java.util.*、java.io.*、java.net.* 等
 
 - Platform/Extension（平台/扩展）：由 Java 程序自己实现，加载 JRE 扩展目录下的类库，如第三方 JDBC 驱动、JVM 工具/监控 jar 等
 
@@ -469,11 +468,11 @@ Constructor
 
 ### 通过反射创建对象
 
-（假设对象是A）
+（假设对象是 A）
 
 1. 获取 Class 实例：forName
 2. 获取 Constructor 实例：getConstructor/getDeclaredConstructor
-3. private需要暴破：setAccessible(true)
+3. private 需要暴破：setAccessible(true)
 4. 创建 A 实例：newInstance(参数列表)
 
 ```java
@@ -504,14 +503,14 @@ public class instanceDemo {
         String userPath = "study.REFLECTION.ClassTest.ReflectInstance.User";
         // 1. 反射获取 Class 对象
         Class<?> userClass = Class.forName(userPath);
-        // 2. 无参public构造
+        // 2. 无参 public 构造
         Object o1 = userClass.newInstance();
         System.out.println(o1);
-        // 3. 有参public构造
+        // 3. 有参 public 构造
         Constructor<?> constructor1 = userClass.getConstructor(String.class);
         Object o2 = constructor1.newInstance("wyw");
         System.out.println(o2);
-        // 4. 有参private构造
+        // 4. 有参 private 构造
         Constructor<?> constructor2 = userClass.getDeclaredConstructor(int.class, String.class);
         constructor2.setAccessible(true);
         Object o3 = constructor2.newInstance(18, "jason");
@@ -567,13 +566,13 @@ public class instanceDemo {
 | 数据顺序 | 保证按发送顺序到达                                 | 无顺序保证：包可能乱序或丢失               |
 | 流量控制 | 有：基于滑动窗口控制发送速率                       | 无：发送速率由应用自主                     |
 | 拥塞控制 | 有：动态调整拥塞窗口                               | 无                                         |
-| 头部开销 | 20–60字节（含可选选项字段）                        | 固定8字节                                  |
+| 头部开销 | 20–60 字节（含可选选项字段）                        | 固定 8 字节                                  |
 | 传输效率 | 较低：额外的可靠性与控制开销                       | 较高：无额外控制，适合实时或小数据量应用   |
-| 应用场景 | 文件传输(FTP)、网页(HTTP/HTTPS)、邮件(SMTP/POP3)等 | 视频/语音(VoIP)、DNS查询、DHCP、在线游戏等 |
+| 应用场景 | 文件传输(FTP)、网页(HTTP/HTTPS)、邮件(SMTP/POP3)等 | 视频/语音(VoIP)、DNS 查询、DHCP、在线游戏等 |
 
 ### InetAddress
 
-位于 java.net 包里，本质是对一个 IP地址（IPv4或IPv6）和可选主机名（HostName）的封装，不含端口，也不带实际网络连接
+位于 java.net 包里，本质是对一个 IP 地址（IPv4 或 IPv6）和可选主机名（HostName）的封装，不含端口，也不带实际网络连接
 
 - IPv4：长度为 4 的 byte[] 存储 32 位地址
 - IPv6：长度为 16 的 byte[] 存储 128 位地址

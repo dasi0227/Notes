@@ -312,7 +312,7 @@ Thread t2 = new Thread(() -> { for (int i = 0; i < 1000; i++) c.increment(); });
 
 t1.start(); t2.start();
 t1.join(); t2.join();
-// 自增实际上是三条指令：读 → 加1 → 写
+// 自增实际上是三条指令：读 → 加 1 → 写
 // 对这个对象的复合操作不是原子的，结果会 < 2000
 System.out.println(c.count);
 ```
@@ -585,13 +585,13 @@ CompletableFuture.supplyAsync(() -> "Hello")
 | anyOf(...)                                    | 等待任意一个任务完成，有返回值     |
 
 ```java
-CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(() -> "任务1");
-CompletableFuture<String> cf2 = CompletableFuture.supplyAsync(() -> "任务2");
+CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(() -> "任务 1");
+CompletableFuture<String> cf2 = CompletableFuture.supplyAsync(() -> "任务 2");
 
 cf1.thenCombine(cf2, (r1, r2) -> r1 + " + " + r2)
    .thenAccept(s -> System.out.println("合并任务：" + s));
 
-cf1.thenCompose(r1 -> CompletableFuture.supplyAsync(() -> r1 + " -> 任务3"))
+cf1.thenCompose(r1 -> CompletableFuture.supplyAsync(() -> r1 + " -> 任务 3"))
    .thenAccept(s -> System.out.println("连接任务：" + s));
 
 CompletableFuture<Void> all = CompletableFuture.allOf(cf1, cf2);
@@ -831,7 +831,7 @@ InheritableThreadLocal 是 ThreadLocal 的一个子类，提供了一种方法**
     }
     ```
 
-3. 调用 ThreadLocal 类方法 `createInheritedMap `赋值给 inheritableThreadLocals 对象，传递父线程的 inheritableThreadLocals
+3. 调用 ThreadLocal 类方法 `createInheritedMap ` 赋值给 inheritableThreadLocals 对象，传递父线程的 inheritableThreadLocals
 
     ```java
     void inheritThreadLocals(Thread parent) {
