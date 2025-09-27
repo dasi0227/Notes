@@ -2,7 +2,6 @@
 
 
 
-* [Class](#class)
    * [常用类](#常用类)
       * [Math](#math)
       * [Arrays](#arrays)

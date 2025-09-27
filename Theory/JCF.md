@@ -2,7 +2,6 @@
 
 
 
-* [集合框架](#集合框架)
    * [前置知识](#前置知识)
       * [类关系图](#类关系图)
       * [比较器](#比较器)
@@ -1333,8 +1332,6 @@ List<Integer> list = Arrays.stream(array).collect(Collectors.toList());
 ```java
 List<Integer> list = List.of(array);
 ```
-
-
 
 
 

@@ -2,7 +2,6 @@
 
 
 
-* [Core](#core)
    * [I/O](#io)
       * [stream](#stream)
       * [File](#file)

@@ -14,13 +14,12 @@ def insert_toc(file_path):
 
     # --- 生成 TOC ---
     toc = []
-    pattern = re.compile(r"^(#{1,6})\s+(.*)")
+    pattern = re.compile(r"^(#{2,6})\s+(.*)")
     for line in lines:
         match = pattern.match(line)
         if match:
-            level = len(match.group(1)) - 1  # 一级标题算 0 缩进
+            level = len(match.group(1)) - 1
             title = match.group(2).strip()
-            # 转换为 GitHub 风格 anchor
             anchor = re.sub(r"[^\w\s-]", "", title).lower()
             anchor = re.sub(r"\s+", "-", anchor)
             toc.append(f"{'   ' * level}* [{title}](#{anchor})")

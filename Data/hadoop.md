@@ -2,7 +2,6 @@
 
 
 
-* [Hadoop](#hadoop)
    * [Hadoop 概念](#hadoop-概念)
    * [Hadoop 组成](#hadoop-组成)
       * [HDFS](#hdfs)

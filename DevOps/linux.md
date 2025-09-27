@@ -2,7 +2,6 @@
 
 
 
-* [Linux](#linux)
    * [Linux 介绍](#linux-介绍)
       * [什么是 Linux](#什么是-linux)
       * [组成](#组成)
@@ -29,11 +28,8 @@
       * [将用户添加到组：gpsswd](#将用户添加到组gpsswd)
    * [Linux 权限管理](#linux-权限管理)
       * [修改权限：chmod](#修改权限chmod)
-* [将 file.txt 权限设置为 -rwxr-xr--](#将-filetxt-权限设置为--rwxr-xr--)
-* [将 file.txt 权限设置为 -rwxrwx---](#将-filetxt-权限设置为--rwxrwx---)
       * [修改属：chgrp、chown](#修改属chgrpchown)
       * [权限削减：umask](#权限削减umask)
-* [输出：只有自己可读可写](#输出只有自己可读可写)
    * [Linux 软件包管理](#linux-软件包管理)
    * [Linux 系统信息查看](#linux-系统信息查看)
 

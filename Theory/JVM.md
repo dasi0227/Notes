@@ -2,7 +2,6 @@
 
 
 
-* [Java 虚拟机](#java-虚拟机)
    * [概念](#概念)
       * [JDK（Java Development Kit）](#jdkjava-development-kit)
       * [JRE（Java Runtime Environment）](#jrejava-runtime-environment)

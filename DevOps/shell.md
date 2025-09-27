@@ -2,7 +2,6 @@
 
 
 
-* [shell](#shell)
    * [shell 简介](#shell-简介)
    * [Shell 变量](#shell-变量)
       * [使用](#使用)

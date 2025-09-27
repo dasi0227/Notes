@@ -2,7 +2,6 @@
 
 
 
-* [Grammar](#grammar)
    * [初识 Java](#初识-java)
       * [基础知识](#基础知识)
       * [JVM](#jvm)
