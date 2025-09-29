@@ -108,35 +108,24 @@
 3. SpringFramework
 
 - [x] 05.14：Bean
-
 - [x] 05.15：IoC-XML
-
 - [x] 06.04：IoC-Annotation
-
 - [x] 06.06：IoC 底层
-
 - [x] 06.07：AOP
-
 - [x] 06.08：Junit、JDBCTemplate
-
 - [x] 06.09：Transactional、Resource
-
 - [x] 06.11：i18n、Validator
-
 - [x] 06.12：Maven、Log4j、Junit
 
 4. SpringMVC
 
 - [x] 08.06：RequestMapping、web.xml、Thymeleaf
-
 - [x] 08.07：ModelAndView、RESTful、消息转换器
-
 - [x] 08.08：Interceptor、异常处理器
 
 5. Mybatis
 
 - [x] 08.10：Mapper、多表映射、动态 SQL
-
 - [x] 08.11：批量执行、分页机制、SSM、任务列表 Demo
 - [x] 08.12：BaseMapper、IService、Wrapper、实体类注解
 
@@ -147,51 +136,34 @@
 7. 苍穹外卖
 
 - [x] 08.15：环境搭建、接口测试搭建、项目结构搭建
-
 - [x] 08.16：B 端（员工/分类/菜品/套餐/上传/店铺）、Redis
-
 - [x] 08.17：C 端（微信/分类/菜品/套餐/店铺/购物车/地址）
-
 - [x] 08.18：C 端（订单/支付）、B 端（订单）、WebSocket
-
 - [x] 08.19：B 端（数据/工作台/导出）、完善、测试
-
 - [x] 08.20：项目总结
 
 8. Redis
 
 - [x] 08.24：概念、数据结构
-
 - [x] 08.25：持久化、事务、管道
-
 - [x] 08.26：复制、哨兵、集群
-
 - [x] 08.27：Spring 集成、BigKey、双写一致性、Canal
-
 - [x] 08.28：Geo/BitMap/HyperLogLog 原理、三大问题、三大兜底
-
 - [x] 08.29：BloomFilter、分布式锁、Redlock、Redisson
-
 - [x] 08.30：过期策略、I/O 多路复用
 
 9. RabbitMQ
 
 - [x] 08.31：Docker、消息中间件、体系结构、Spring 集成
-
 - [x] 09.01：消息可靠性、延迟消息、优先级队列
 
 10. 黑马点评
 
 - [x] 09.02：环境搭建、项目结构搭建、用户登录登出、安全查缓存
-
 - [x] 09.03：秒杀库存、分布式锁、消息队列
-
 - [x] 09.04：点赞、排行榜、共同关注、推送、滚动分页
-
 - [x] 09.05：附近商户、用户签到、UV、PV
-
 - [x] 09.06：笔记总结
-
 - [x] 09.09：笔记总结
 
 11. SpringCloud
@@ -205,19 +177,19 @@
 
 12. 八股
 
-- [x] 09.16：JVM：内存布局
-- [x] 09.17：JVM：垃圾回收
-- [x] 09.18：JVM：类加载
-- [x] 09.19：并发编程：Thread、多线程、synchronized、volatile
-- [x] 09.21：并发编程：JUC、ThreadLocal、AQC
-- [x] 09.22：集合框架：Collection、List、Set、Queue
-- [x] 09.23：集合框架：Map、HashMap、ConcurrentHashMap
-- [x] 09.24：MySQL：基本概念与基本命令
-- [x] 09.25：MySQL：层级架构、字段类型、日志、锁
-- [x] 09.26：MySQL：MVCC、索引、存储结构、性能优化、SQL 优化
-- [ ] 09.28：
-- [ ] 09.29：
-- [ ] 09.30：
+- [x] 09.16：【JVM】内存布局
+- [x] 09.17：【JVM】垃圾回收
+- [x] 09.18：【JVM】类加载
+- [x] 09.19：【并发编程】Thread、多线程、synchronized、volatile
+- [x] 09.21：【并发编程】JUC、ThreadLocal、AQC
+- [x] 09.22：【集合框架】Collection、List、Set、Queue
+- [x] 09.23：【集合框架】Map、HashMap、ConcurrentHashMap
+- [x] 09.24：【MySQL】基本概念与基本命令
+- [x] 09.25：【MySQL】层级架构、字段类型、日志、锁
+- [x] 09.26：【MySQL】MVCC、索引、存储结构、性能优化、SQL 优化
+- [ ] 09.28：【设计模式】
+- [ ] 09.29：【计算机网络】
+- [ ] 09.30：【操作系统】
 
 
 

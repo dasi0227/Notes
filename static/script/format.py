@@ -90,14 +90,13 @@ def format_list(file: Path):
                 count += 1
                 j += 1
             # 下一个非空行也是列表
-            if j < n and lines[j].lstrip().startswith("- ") and count >= 2:
-                print(f"{file}: 第 {i} 列表行和第 {j} 列表行有 {count} 个空行，已压缩为 1 行")
-                new_lines.append("")
+            if j < n and lines[j].lstrip().startswith("- ") and count != 0:
+                print(f"{file}: 第 {i} 列表行和第 {j} 列表行有 {count} 个空行，已压缩为 0 行")
                 i = j
                 continue
         i += 1
 
-    file.write_text("\n".join(lines), encoding="utf-8")
+    file.write_text("\n".join(new_lines), encoding="utf-8")
 
 def format_space(file: Path):
     """
@@ -116,6 +115,7 @@ def format_space(file: Path):
 if __name__ == "__main__":
     curr_dir = os.path.dirname(os.path.abspath(__file__))
     root_dir = os.path.abspath(os.path.join(curr_dir, "../../"))
+    # root_dir = "./"
     for file in Path(root_dir).rglob("*.md"):
         format_heading(file)
         format_list(file)

@@ -357,7 +357,6 @@ List<Employee> employees = employeeMapper.selectList(lambdaQueryWrapper);
 指定当前字段是否作为**逻辑删除**的标志，即不真正从数据库删除记录，而是通过更新一个标志位字段表示已删除，其中 value 设置未删除时的值（默认 0），delvalue 设置删除时的值（默认 1）
 
 - 在执行查询和删除操作时自动加上 `WHERE is_deleted = 0`
-
 - 在执行删除操作时会自动加上 `SET is_deleted = 1`
 
 ### @Version
@@ -365,9 +364,7 @@ List<Employee> employees = employeeMapper.selectList(lambdaQueryWrapper);
 自动开启当前行的版本号记录，用于实现 MySQL 的乐观锁，防止并发更新时数据被覆盖，如果在更新时检查到版本不一致会更新失败
 
 - 不适用于 wrapper.set 单独传值的方式，因为乐观锁依赖于实体对象的 version 字段来自动生成
-
 - 在执行更新操作时会自动加上 `SET version = version + 1 WHERE version = ?`
-
 - 需要在 Main 中的 MyBatis 插件容器中注册乐观锁插件
 
     ```java

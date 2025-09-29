@@ -59,17 +59,11 @@
 Java 的 I/O 是基于流的，也就是将数据看作一连串的字节或字符，从源头到目标按顺序读写
 
 - 节点流：直接连接数据源的流，它是真正负责“和文件打交道”、“和内存通信”的那层
-
     - 文件系统：FileInputStream 连接到某个磁盘文件
-
     - 内存：ByteArrayInputStream、CharArrayReader 连接到内存中的某个数组
-
     - 网络连接：Socket.getInputStream() 连接远端主机发来的网络数据包
-
     - 管道：PipedInputStream 获取多线程间管道的数据
-
     - 标准输入：System.in 获取控制台输入或输入重定向的数据
-
 - 处理流：不与数据源打交道，而是包裹在节点流外面的工具流，用来增强功能，可以链式地把多种处理流组合起来，为最简单的节点流不断添加新能力
     - 转换流：InputStreamReader/OutputStreamWriter，将字节流转换为字符流
     - 缓冲流：BufferedInputStream/BufferedOutputStream/BufferedReader/BufferedWriter，为字节/字符流添加缓冲区
@@ -185,11 +179,9 @@ Java 泛型是一种参数化类型机制，可以在类、接口、方法中定
 - 泛型擦除：指定泛型类型是为了编译器而不是 JVM，也就是为了应付编译而不是应付运行，编译器会根据你传递的类型进行类型检查、自动类型推从而省去强转，编译通过后，编译器会直接用 Object 代替泛型参数
     - 不能 new T[]：因为运行时 T 已经被擦除，JVM 无法确定数组的真实类型
     - 不能 instanceof T：因为运行时没有 T 的类型信息，类型已被擦除，无法进行类型判断
-
 - 类加载机制：类先加载再使用，静态内容属于类，不依赖对象
     - 静态变量/方法不能使用类的 T：因为静态变量/方法属于类级别，而泛型 T 是对象级别，类加载时还无法解析 T
     - 没有指定泛型参数时，默认使用 Object
-
 - 泛型类型限制
     - 泛型只能是引用类型，不能是基本数据类型
     - 给泛型指定具体类型后，可以传入该类型或其子类类型
@@ -393,9 +385,7 @@ public static synchronized void bar() {}
 类加载器：Java 的一切都是类和对象，类加载器负责在运行时将字节码（.class 文件）加载到 JVM，并生成对应的 Class 对象
 
 - Bootstrap（引导）：用原生代码实现，加载 JRE 中最基础的核心库，如 java.lang.*、java.util.*、java.io.*、java.net.* 等
-
 - Platform/Extension（平台/扩展）：由 Java 程序自己实现，加载 JRE 扩展目录下的类库，如第三方 JDBC 驱动、JVM 工具/监控 jar 等
-
 - Application/System（应用/系统）：加载用户类路径下的所有类
 
 ### Class

@@ -87,7 +87,6 @@ Mapper 指的是 **SQL 映射器**，将 Java 方法映射为 SQL 语句
     ```
 
 - **映射配置文件**：写具体的 SQL 语句，将 SQL 和 Mapper 接口的抽象方法绑定
-
     - namespace 指定 Mapper 接口的全限定名
     - id 指定与 SQL 对应的 Mapper 接口 中的方法名
     - resultType 指定实体类的全限定名
@@ -190,7 +189,6 @@ User user = userMapper.getUser(1);
 配置多个数据库连接环境（如开发、测试、生产等）
 
 - `<environments default="...">`：用 default 属性指定当前使用的环境 ID
-
 - `<environment id="...">`：用 id 属性来标识一个特定的环境
 - `<transactionManager type="...">`：用 type 属性来设置事务管理方式（JDBC 自动；MANAGED 手动）
 - `<dataSource type="...">`：用 type 属性来设置数据库的连接信息（POOLED 使用连接池；UNPOOLED 不使用连接池）
@@ -768,7 +766,6 @@ SELECT * FROM [tableName] ORDER BY [colKey] LIMIT [rowOffset] [rowNum]
 1. 创建 PageHelper 对象，并且指定 pageNum 和 pageSize
 
     - rowOffset = (pageNum - 1) * pageSize
-
     - rowNum = pageSize
 
 2. 创建 PageInfo 对象，构造函数中传入结果列表对象

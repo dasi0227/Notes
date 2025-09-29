@@ -533,19 +533,12 @@ $15 = Utf8               (Ljava/lang/String;Ljava/lang/Integer;)V
 类体信息就是大括号里面的信息
 
 - `fields_count` / `methods_count`：占用 2 字节，表示类中字段/方法的数量，包括实例字段/方法和静态/方法
-
 - `field_info fields[]` / `method_info methods[]`：是一个数组，每个元素是一个 field_info / method_info 结构，用来描述一个具体的字段/方法
-
     - **access_flags**：占用 2 字节，修饰符，如 public、private、protected、static、transient、final、volatile 等
-
     - **name_index**：占用 2 字节，常量池的索引，指向 Utf8，表示字段/方法名
-
     - **descriptor_index**：占用 2 字节，常量池索引，指向 Utf8，表示字段/方法的类型
-
     - **attributes_count**：占用 2 字节，是字段/方法属性的数量
-
     - **attribute_info attributes[]**：记录了字段/方法的额外信息，如 SourceFile、Deprecated、Synthetic 等
-
 - `Code`：方法的属性除了和字段一样的通用属性，最大不同在于其 **Code 属性存储了方法体的字节码指令**
 
 #### 属性信息

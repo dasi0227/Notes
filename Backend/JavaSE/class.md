@@ -242,7 +242,6 @@ enum Season {
     - StackOverflowError：栈溢出，方法递归过深导致栈空间耗尽
     - OutOfMemoryError：内存溢出，数组开得过大导致内存资源耗尽
     - NoClassDefFoundError：类定义在运行时未找到
-
 - Exception：可以解决，修复后程序可以继续运行
     - 运行时异常（RuntimeException）：非受检异常，运行时才能发现出错
         - NullPointerException：空指针访问
@@ -521,7 +520,6 @@ StringBuffer 是 Java 提供的一个可变字符串类，底层用一个字符�
     - String pattern()：返回编译此 Pattern 时用的正则表达式字符串
     - int flags()：返回编译时使用的标志位
     - Matcher matcher(String input)：返回 Matcher 对象实例 
-
 - 标志位：
     - Pattern.CASE_INSENSITIVE：忽略大小写
     - Pattern.MULTILINE：多行模式，识别行首和行为，不仅限于输入的首尾

@@ -126,14 +126,11 @@ package com.example.myapp;
     - `ElementType.CONSTRUCTOR`：构造器
     - `ElementType.PARAMETER`：参数
     - `ElementType.ANNOTATION_TYPE`：注解类型（用于注解注解）
-
 - @Retention：注解在代码中的保留时长
     - `RetentionPolicy.SOURCE`：编译器阶段有效，class 文件中不保留（如 @Override）
     - `RetentionPolicy.CLASS`：编译进 class 文件，运行时不可见（默认）
     - `RetentionPolicy.RUNTIME`：运行时可通过反射读取（Spring 最爱）
-
 - @Documented：是否包含在 Javadoc 中，通常用于公共 API 注解，让它出现在文档中
-
 - @Inherited：子类是否可以继承父类的注解 只作用于类注解
 
 ### Java 开发流程
