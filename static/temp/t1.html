@@ -1,0 +1,139 @@
+<table border="1" style="text-align:center;">
+  <tr>
+    <th rowspan="2">次序</th>
+    <th rowspan="2">标志</th>
+    <th rowspan="2">序列号</th>
+    <th rowspan="2">确认号</th>
+    <th colspan="4">Server 确认</th>
+    <th colspan="4">Client 确认</th>
+  </tr>
+  <tr>
+    <th>Server 发送</th>
+    <th>Server 接收</th>
+    <th>Client 发送</th>
+    <th>Client 接收</th>
+    <th>Server 发送</th>
+    <th>Server 接收</th>
+    <th>Client 发送</th>
+    <th>Client 接收</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>SYN</td>
+    <td>x</td>
+    <td>0</td>
+    <td>❌</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>❌</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>SYN+ACK</td>
+    <td>y</td>
+    <td>x+1</td>
+    <td>❌</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>❌</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>ACK</td>
+    <td>x+1</td>
+    <td>y+1</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+  </tr>
+</table>
+
+<br>
+<br>
+<br>
+<br>
+
+<table border="1" style="text-align: center;">
+  <tr>
+    <th rowspan="2">次序</th>
+    <th rowspan="2">主动方状态</th>
+    <th rowspan="2">被动方状态</th>
+    <th rowspan="2">方向</th>
+    <th rowspan="2">标志</th>
+    <th rowspan="2">序列号</th>
+    <th rowspan="2">确认号</th>
+    <th colspan="2">主动方确认</th>
+    <th colspan="2">被动方确认</th>
+  </tr>
+  <tr>
+    <td>主动方结束</td>
+    <td>被动方结束</td>
+    <td>主动方结束</td>
+    <td>被动方结束</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>TRANSMIT → FIN_WAIT_1</td>
+    <td>TRANSMIT → TRANSMIT</td>
+    <td>主动关闭 → 被动关闭</td>
+    <td>FIN</td>
+    <td>u</td>
+    <td>-</td>
+    <td>❌</td>
+    <td>❌</td>
+    <td>✅</td>
+    <td>❌</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>FIN_WAIT_1 → FIN_WAIT_2</td>
+    <td>TRANSMIT → CLOSE_WAIT</td>
+    <td>被动关闭 → 主动关闭</td>
+    <td>ACK</td>
+    <td>-</td>
+    <td>u+1</td>
+    <td>✅</td>
+    <td>❌</td>
+    <td>✅</td>
+    <td>❌</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>FIN_WAIT_2 → FIN_WAIT_2</td>
+    <td>CLOSE_WAIT → LAST_ACK</td>
+    <td>被动关闭 → 主动关闭</td>
+    <td>FIN</td>
+    <td>v</td>
+    <td>-</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>❌</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>FIN_WAIT_2 → TIME_WAIT → CLOSED</td>
+    <td>LAST_ACK → CLOSED</td>
+    <td>主动关闭 → 被动关闭</td>
+    <td>ACK</td>
+    <td>-</td>
+    <td>v+1</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+  </tr>
+</table>
