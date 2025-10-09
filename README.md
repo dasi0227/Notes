@@ -57,7 +57,7 @@
 - [MySQL](Theory/MySQL.md)：基本概念、层级架构、字段类型、日志、事务、锁、MVCC、索引、存储结构、性能优化、SQL 优化
 - [设计模式](Theory/DesignMode.md)：SOLID 原则、设计模式、工厂、单例、代理、观察者、适配器、装饰器、责任链、策略、状态
 - [计算机网络](Theory/Network.md)：OSI 七层模型、HTTP、DNS、TCP、IP、NAT、ARP、网关、访问 URL 全流程
-- [操作系统](Theory/OS.md)：待学习...
+- [操作系统](Theory/OS.md)：内核、用户态和内核态、系统调用、进程、PCB、IPC、进程调度算法、特殊进程、死锁处理、内存分配、虚拟内存、缺页错误、页面置换算法、inode、链接、磁盘调度算法
 - [分布式](Theory/Distributed.md)：待学习...
 - [高性能](Theory/Performance.md)：待学习...
 - [高可用](Theory/Availability.md)：待学习...
@@ -191,7 +191,8 @@
 - [x] 09.29：【计算机网络】网络分层模型、HTTP、DNS
 - [x] 09.30：【计算机网络】TCP
 - [x] 10.01：【计算机网络】IP、NAT、ARP、网关
-- [ ] 10.02：【操作系统】IP、NAT、ARP、网关
+- [x] 10.04：【操作系统】内核、进程、死锁
+- [x] 10.09：【操作系统】内存管理、文件系统
 
 
 

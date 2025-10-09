@@ -9,6 +9,8 @@
       * [I 接口隔离原则](#i-接口隔离原则)
       * [D 依赖倒置原则](#d-依赖倒置原则)
    * [设计模式](#设计模式)
+      * [定义](#定义)
+      * [Spring 用到的](#spring-用到的)
    * [工厂模式 Factory](#工厂模式-factory)
       * [定义](#定义)
       * [简单工厂](#简单工厂)
@@ -31,6 +33,9 @@
       * [CGLIB](#cglib)
    * [观察者模式 Observer](#观察者模式-observer)
    * [装饰器模式 Decorator](#装饰器模式-decorator)
+   * [责任链模式 Chain of Responsibilit](#责任链模式-chain-of-responsibilit)
+   * [策略模式 Strategy](#策略模式-strategy)
+   * [状态模式 State](#状态模式-state)
 
 
 
@@ -156,8 +161,6 @@ class UserRepository {
 - 责任链模式：HandlerInterceptor 定义了拦截器，请求可逐层处理或中断
 - 策略模式：Resource 接口有 ClassPathResource、FileSystemResource、UrlResource 等实现
 - 模版方法模式：JdbcTemplate 和 RestTemplate 实现了固定流程，用户只需要传 SQL 和 URL
-
-
 
 
 
@@ -738,7 +741,7 @@ abstract class Handler {
     public abstract void handleRequest(int level);
 }
 
-// 具体处理器1
+// 具体处理器 1
 class LevelOneHandler extends Handler {
     @Override
     public void handleRequest(int level) {
@@ -750,7 +753,7 @@ class LevelOneHandler extends Handler {
     }
 }
 
-// 具体处理器2
+// 具体处理器 2
 class LevelTwoHandler extends Handler {
     @Override
     public void handleRequest(int level) {
