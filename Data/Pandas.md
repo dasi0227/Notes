@@ -101,12 +101,12 @@ print(my_series["school"], my_series["age"])
 
 ### 2.2 属性
 
-|属性|功能|
-|-|-|
-|index|获取索引|
-|values|获取数据，以 NumPy 形式返回|
-|size|获取元素个数，即行数|
-|name|获取名称|
+| **属性** | **功能** |
+| - | - |
+| **index** | 获取索引 |
+| **values** | 获取数据，以 NumPy 形式返回 |
+| **size** | 获取元素个数，即行数 |
+| **name** | 获取名称 |
 
 ```python
 student = 'Dasi'
@@ -122,12 +122,12 @@ print(my_series.name)
 
 ### 2.3 有关索引的方法
 
-|方法|功能|
-|-|-|
-|head(n)|获取前 n 行|
-|tail(n)|获取后 n 行|
-|iloc[]|通过位置索引来选择数据|
-|loc[]|通过标签索引来选择数据|
+| **方法** | **功能** |
+| - | - |
+| **head(n)** | 获取前 n 行 |
+| **tail(n)** | 获取后 n 行 |
+| **iloc[]** | 通过位置索引来选择数据 |
+| **loc[]** | 通过标签索引来选择数据 |
 ```python
 student = 'Dasi'
 exams = ['OS', 'DB', 'AI']
@@ -142,12 +142,12 @@ print(my_series.loc['DB'])
 
 ### 2.3 有关元素的方法
 
-|方法|功能|
-|-|-|
-|astype(dtype)|将元素转换为指定类型|
-|replace(to_replace, value)|将元素转换为指定值|
-|apply(func) 或 map(func)|将指定函数应用于每个元素|
-|shift(periods)|将元素向上（负数）或向下（正数）平移，超出会丢弃，空出会补 NaN|
+| **方法** | **功能** |
+| - | - |
+| **astype(dtype)** | 将元素转换为指定类型 |
+| **replace(to_replace, value)** | 将元素转换为指定值 |
+| **apply(func) 或 map(func)** | 将指定函数应用于每个元素 |
+| **shift(periods)** | 将元素向上（负数）或向下（正数）平移，超出会丢弃，空出会补 NaN |
 ```python
 def discount(x):
     return x * 0.95
@@ -166,12 +166,12 @@ print(my_series.shift(1))
 
 ### 2.4 有关 NaN 的方法
 
-|方法|功能|
-|-|-|
-|dropna()|删除 NaN 值对应的行|
-|fillna(value)|
-|isna()|返回一个布尔 Series 表示每个索引对应的值是否为 NaN|
-|notna()|返回一个布尔 Series 表示每个索引对应的值是否为 NaN|
+| **方法** | **功能** |
+| - | - |
+| **dropna()** | 删除 NaN 值对应的行 |
+| **fillna(value)** |
+| **isna()** | 返回一个布尔 Series 表示每个索引对应的值是否为 NaN |
+| **notna()** | 返回一个布尔 Series 表示每个索引对应的值是否为 NaN |
 ```python
 student = 'Dasi'
 exams = ['OS', 'DB', 'AI']
@@ -186,19 +186,19 @@ print(my_series.notna())
 
 ### 2.5 有关统计的方法
 
-|方法|功能|
-|-|-|
-|unique()|去重，返回唯一值组成的 Series|
-|value_counts()|返回每个唯一值个数组成的 Series|
-|sort_values()|对值进行排序|
-|sort_index()|对索引进行排序|
-|rank()|返回元素按值的排名，如果多个元素值相同，则会按照平均排名分配相同的排名值|
-|describe()|获取统计描述|
-|corr(series)|返回与另一个 Series 的皮尔逊相关系数|
-|cov(series)|返回与另一个 Series 的协方差|
-|diff(periods)|计算当前值与前一个值之间的差值|
-|cunsum()|返回累计和|
-|cumprod()|返回累计乘积|
+| **方法** | **功能** |
+| - | - |
+| **unique()** | 去重，返回唯一值组成的 Series |
+| **value_counts()** | 返回每个唯一值个数组成的 Series |
+| **sort_values()** | 对值进行排序 |
+| **sort_index()** | 对索引进行排序 |
+| **rank()** | 返回元素按值的排名，如果多个元素值相同，则会按照平均排名分配相同的排名值 |
+| **describe()** | 获取统计描述 |
+| **corr(series)** | 返回与另一个 Series 的皮尔逊相关系数 |
+| **cov(series)** | 返回与另一个 Series 的协方差 |
+| **diff(periods)** | 计算当前值与前一个值之间的差值 |
+| **cunsum()** | 返回累计和 |
+| **cumprod()** | 返回累计乘积 |
 
 ```python
 student = 'Dasi'
@@ -270,12 +270,12 @@ print(df['School'])
 ### 3.2 属性
 
 这里主要列举相比于 Series 多出来的属性
-|属性|功能|
-|-|-|
-|shape|返回元组 (行数, 列数)|
+| **属性** | **功能** |
+| - | - |
+| **shape** | 返回元组 (行数, 列数) |
 |columns|返回所有列标签
-|index|返回所有行标签|
-|dtypes|返回每一列的数据类型|
+| **index** | **返回所有行标签** |
+| **dtypes** | 返回每一列的数据类型 |
 
 ```python
 indices = ['Dasi', 'Jason', 'wyw']
@@ -429,18 +429,18 @@ CSV（Comma-Separated Values）即逗号分隔值，其文件以纯文本形式�
 ```python
 pd.read_csv(path_or_buf, sep=',', header='infer', names=None, usecols=None, dtype=None, nrows=None, skiprows=None, skipfooter=0, encoding=None, na_values=None)
 ```
-|参数|功能|
-|-|-|
-|sep|字段分隔符，默认是英文逗号','|
-|header|指定哪一行作为列标题，默认为 0 即第一行，可以设置为 None 表示没有标题|
-|names|传入一个列表自定义列名|
-|usecols|指定需要读取的列，可以传入列名的列表或列索引的列表|
-|dtype|将读取的数据转换为指定的数据类型，可以传入字典来为不同的列设置不同的数据类型|
-|nrows|指定只读取前 n 行数据|
-|skiprows|用于跳过文件开头的若干行数据，传入整数表示跳过前几行；也可以传入一个列表，指定需要跳过的具体行号。|
-|skipfooter|指定跳过文件末尾的若干行|
-|encoding|文件的编码格式，常用的有 utf-8 或 latin1|
-|na_values|传入一个列表指定哪些值被认为是缺失值|
+| **参数** | **功能** |
+| - | - |
+| **sep** | 字段分隔符，默认是英文逗号',' |
+| **header** | 指定哪一行作为列标题，默认为 0 即第一行，可以设置为 None 表示没有标题 |
+| **names** | 传入一个列表自定义列名 |
+| **usecols** | 指定需要读取的列，可以传入列名的列表或列索引的列表 |
+| **dtype** | 将读取的数据转换为指定的数据类型，可以传入字典来为不同的列设置不同的数据类型 |
+| **nrows** | 指定只读取前 n 行数据 |
+| **skiprows** | 用于跳过文件开头的若干行数据，传入整数表示跳过前几行；也可以传入一个列表，指定需要跳过的具体行号。 |
+| **skipfooter** | 指定跳过文件末尾的若干行 |
+| **encoding** | 文件的编码格式，常用的有 utf-8 或 latin1 |
+| **na_values** | 传入一个列表指定哪些值被认为是缺失值 |
 
 ```python
 df = pd.read_csv('nba.csv', sep=',', usecols=['Name', 'Age', 'Weight'], header=0, dtype={'Age': int, 'Weight': float}, nrows=100, na_values=['NA', '--', ''], encoding='utf-8')
@@ -453,14 +453,14 @@ print(df)
 ```python
 DataFrame.to_csv(path_or_buf, sep=',', columns=None, header=True, index=True, encoding=None, line_terminator=None)
 ```
-|参数|功能|
-|-|-|
-|sep|指定字段之间的分隔符，默认是英文逗号 `,`|
-|index|是否将行索引写入 CSV 文件，默认为 True|
-|header|是否将列标题写入 CSV 文件，默认为 True|
-|columns|指定要写入 CSV 文件的列的列表，若不指定则写入所有列|
-|line_terminator|指定行结束符，默认为 `\n`|
-|encoding|指定输出文件的编码格式|
+| **参数** | **功能** |
+| - | - |
+| **sep** | 指定字段之间的分隔符，默认是英文逗号 `,` |
+| **index** | 是否将行索引写入 CSV 文件，默认为 True |
+| **header** | 是否将列标题写入 CSV 文件，默认为 True |
+| **columns** | 指定要写入 CSV 文件的列的列表，若不指定则写入所有列 |
+| **line_terminator** | 指定行结束符，默认为 `\n` |
+| **encoding** | 指定输出文件的编码格式 |
 
 除了上述之外，to_csv() 还专门提供了处理引号的参数
 - quoting：决定了哪些字段会被包裹在引号中
@@ -516,26 +516,26 @@ JSON 按照我的理解就是嵌套键值对，当然官方说明是嵌套的对
 ```
 
 JSON 格式
-|格式|描述|结果|
-|-|-|-|
-|split|使用 index、columns 和 data 分割|{"index":["a","b"],"columns":["A","B"],"data":[[1,2],[3,4]]}|
-|records|每一行都是一个字典|[{"A":1,"B":2},{"A":3,"B":4}]|
-|index|索引为键，值为字典|{"a":{"A":1,"B":2},"b":{"A":3,"B":4}}|
-|columns|列名为键，值为字典|{"A":{"a":1,"b":3},"B":{"a":2,"b":4}}|
-|values|只有数据|[[1,2],[3,4]]|
+| **格式** | **描述** | **结果** |
+| - | - | - |
+| **split** | 使用 index、columns 和 data 分割 | {"index":["a","b"],"columns":["A","B"],"data":[[1,2],[3,4]]} |
+| **records** | 每一行都是一个字典 | [{"A":1,"B":2},{"A":3,"B":4}] |
+| **index** | 索引为键，值为字典 | {"a":{"A":1,"B":2},"b":{"A":3,"B":4}} |
+| **columns** | 列名为键，值为字典 | {"A":{"a":1,"b":3},"B":{"a":2,"b":4}} |
+| **values** | 只有数据 | [[1,2],[3,4]] |
 
 ### 5.2 read_json
 
 ```python
 pd.read_json(path_or_buf, orient=None, dtype=None, convert_axes=True, convert_dates=True, encoding=None, keep_default_na=True,)
 ```
-|参数|功能|
-|-|-|
-|orient|定义 JSON 数据的格式方式|
-|dtype|指定列的数据类型|
-|convert_axes|是否将轴转换为合适的数据类型|
-|convert_dates|是否将日期解析为日期类型|
-|keep_default_na|指定是否保留默认的 NA 值|
+| **参数** | **功能** |
+| - | - |
+| **orient** | 定义 JSON 数据的格式方式 |
+| **dtype** | 指定列的数据类型 |
+| **convert_axes** | 是否将轴转换为合适的数据类型 |
+| **convert_dates** | 是否将日期解析为日期类型 |
+| **keep_default_na** | 指定是否保留默认的 NA 值 |
 
 ```python
 '''
@@ -608,12 +608,12 @@ df = pd.json_normalize(
 ```python
 DataFrame.to_json(path_or_buf, orient=None, date_format=None, double_precision=10, force_ascii=True, date_unit='ms', default_handler=None)
 ```
-|参数|说明|
-|-|-|
-|orient|指定生成的 JSON 数据的结构方式|
-|default_handler|提供一个处理函数，将这些对象转换为可序列化的格式|
-|lines|布尔值，只适用于 records 格式，将每个 DataFrame 行生成一行 JSON 文本|
-|encoding|指定输出 JSON 文件的编码格式|
+| **参数** | **说明** |
+| - | - |
+| **orient** | 指定生成的 JSON 数据的结构方式 |
+| **default_handler** | 提供一个处理函数，将这些对象转换为可序列化的格式 |
+| **lines** | 布尔值，只适用于 records 格式，将每个 DataFrame 行生成一行 JSON 文本 |
+| **encoding** | 指定输出 JSON 文件的编码格式 |
 ```python
 df = pd.DataFrame({
     'Name': ['Alice', 'Bob', 'Charlie'],
@@ -639,13 +639,13 @@ df.to_json('data.json', orient='records', lines=True)
 ```python
 DataFrame.dropna(axis=0, how='any', thresh=None, subset=None, inplace=False)
 ```
-|参数|说明|
-|-|-|
-|axis|0 删除行，1 删除列|
-|how|`any` 只要存在至少一个缺失值就删除，`all` 表示只有当所有值都是缺失值才删除|
-|thresh|指定保留行或列所需的最少非缺失值数量|
-|subset|传递列字段组成的列表，仅在这些列上检查缺失值|
-|inplace|True 直接在原 DataFrame 上修改，False 返回修改后新的 DataFrame|
+| **参数** | **说明** |
+| - | - |
+| **axis** | 0 删除行，1 删除列 |
+| **how** | `any` 只要存在至少一个缺失值就删除，`all` 表示只有当所有值都是缺失值才删除 |
+| **thresh** | 指定保留行或列所需的最少非缺失值数量 |
+| **subset** | 传递列字段组成的列表，仅在这些列上检查缺失值 |
+| **inplace** | True 直接在原 DataFrame 上修改，False 返回修改后新的 DataFrame |
 
 ```python
 df = pd.DataFrame({
@@ -670,13 +670,13 @@ print(df.dropna(axis=1, how='all'))
 ```python
 DataFrame.fillna(axis=0, value=None, method=None, limit=None, inplace=False)
 ```
-|参数|说明|
-|-|-|
-|axis|0 填充行，1 填充列|
-|value|用来替换缺失值的值，可以是单个标量或标签为键的字典|
-|method|`ffill` 表示用前一个非空值填充缺失值，`bfill` 表示用后一个非空值填充缺失值|
-|limit|指定最大连续填充缺失值的数量|
-|inplace|True 直接在原 DataFrame 上修改，False 返回修改后新的 DataFrame|
+| **参数** | **说明** |
+| - | - |
+| **axis** | 0 填充行，1 填充列 |
+| **value** | 用来替换缺失值的值，可以是单个标量或标签为键的字典 |
+| **method** | `ffill` 表示用前一个非空值填充缺失值，`bfill` 表示用后一个非空值填充缺失值 |
+| **limit** | 指定最大连续填充缺失值的数量 |
+| **inplace** | True 直接在原 DataFrame 上修改，False 返回修改后新的 DataFrame |
 
 ```python
 df = pd.DataFrame({
@@ -705,12 +705,12 @@ print(df.fillna(axis=0, value=0, limit=2))
 ```python
 DataFrame.drop_duplicates(subset=None, keep='first', inplace='Fasle', ignore_index=False)
 ```
-|参数|说明|
-|-|-|
-|subset|传递列标签的列表，指定用来判定在该列上的取值是否重复|
-|keep|`first` 保留第一次出现的记录，`last` 保留最后一次出现的记录，`false` 不保留任何记录|
-|inplace|True 直接在原 DataFrame 上修改，False 返回修改后新的 DataFrame|
-|ignore_index|True 表示从 0 开始重置索引，False 返回原来的索引|
+| **参数** | **说明** |
+| - | - |
+| **subset** | 传递列标签的列表，指定用来判定在该列上的取值是否重复 |
+| **keep** | `first` 保留第一次出现的记录，`last` 保留最后一次出现的记录，`false` 不保留任何记录 |
+| **inplace** | True 直接在原 DataFrame 上修改，False 返回修改后新的 DataFrame |
+| **ignore_index** | True 表示从 0 开始重置索引，False 返回原来的索引 |
 
 ```python
 df = pd.DataFrame({
@@ -814,14 +814,14 @@ print(df)
 ```python
 pd.to_datetime(data, dayfirst=False, yearfirst=False, utc=None, format=None, exact=True, unit=None)
 ```
-|参数|说明|
-|-|-|
-|dayfirst|布尔值，表示第一部分为日，如 DD/MM/YYYY|
-|yearfirst|布尔值，表示第一部分为年，如 YYYY/MM/DD|
-|format|指定日期字符串的解析格式，如 `'%Y-%m-%d'`|
-|exact|布尔值，表示严格按照 `format` 指定的格式解析日期|
-|utc|布尔值，则返回带有 UTC 时区的日期时间|
-|unit|指定该数值表示的时间单位，如 `'s'`（秒）、`'ms'`（毫秒）、`'us'`（微秒）、`'ns'`（纳秒）|
+| **参数** | **说明** |
+| - | - |
+| **dayfirst** | 布尔值，表示第一部分为日，如 DD/MM/YYYY |
+| **yearfirst** | 布尔值，表示第一部分为年，如 YYYY/MM/DD |
+| **format** | 指定日期字符串的解析格式，如 `'%Y-%m-%d'` |
+| **exact** | 布尔值，表示严格按照 `format` 指定的格式解析日期 |
+| **utc** | 布尔值，则返回带有 UTC 时区的日期时间 |
+| **unit** | 指定该数值表示的时间单位，如 `'s'`（秒）、`'ms'`（毫秒）、`'us'`（微秒）、`'ns'`（纳秒） |
 ```python
 df = pd.DataFrame({
     "date": ["31/2020/12 12:30:00", "01/2021/01 18:48:23", "15/2021/06 01:05:06"]
@@ -871,13 +871,13 @@ print(df)
 ```python
 pd.get_dummies(data, prefix=None, prefix_sep='_', dummy_na=False, columns=None, sparse=False, drop_first=False, dtype=None)
 ```
-|参数|说明|
-|-|-|
-|columns|指定需要进行独热编码的列，否则对所有非数值型列进行编码|
-|prefix|为独热编码的列指定前缀，默认使用原列名|
-|prefix_sep|前缀和类别值的分隔符，默认为 '_'|
-|dummy_na|布尔值，指定是否为缺失值创建一个单独的独热编码列|
-|dtype|指定独热编码列的数据类型，通常是布尔类型或整数类型|
+| **参数** | **说明** |
+| - | - |
+| **columns** | 指定需要进行独热编码的列，否则对所有非数值型列进行编码 |
+| **prefix** | 为独热编码的列指定前缀，默认使用原列名 |
+| **prefix_sep** | 前缀和类别值的分隔符，默认为 '_' |
+| **dummy_na** | 布尔值，指定是否为缺失值创建一个单独的独热编码列 |
+| **dtype** | 指定独热编码列的数据类型，通常是布尔类型或整数类型 |
 ```python
 df = pd.DataFrame({
     "ID": [0, 1, 2, 3, 4],
@@ -894,14 +894,14 @@ print(df)
 ```python
 DataFrame.sample(n=None, frac=None, replace=False, weights=None, random_state=None, axis=None)
 ```
-|参数|说明|
-|-|-|
-|n|要抽取的样本数量|
-|frac|要抽取的样本比例|
-|axis|0 是对行进行采样，1 是对列进行采样|
-|replace|是否有放回抽样|
-|weights|每个样本的抽样权重|
-|random_state|控制随机种子，用于结果复现|
+| **参数** | **说明** |
+| - | - |
+| **n** | 要抽取的样本数量 |
+| **frac** | 要抽取的样本比例 |
+| **axis** | 0 是对行进行采样，1 是对列进行采样 |
+| **replace** | 是否有放回抽样 |
+| **weights** | 每个样本的抽样权重 |
+| **random_state** | 控制随机种子，用于结果复现 |
 ```python
 df = pd.DataFrame({
     "ID": range(10),
@@ -921,15 +921,15 @@ print(df.sample(n=3, replace=True, axis=1))
 ```python
 DataFrame.sort_values(by, axis=0, ascending=True, inplace=False, kind='quicksort', na_position='last', ignore_index=False, key=None)
 ```
-|参数|说明|
-|-|-|
-|by|用于排序的列名，可以是单个列名可以是列明列表|
-|axis|0 表示对列排序（默认），1 表示对行排序|
-|ascending|布尔值，True 表示升序（默认），False 表示降序|
-|inplace|布尔值，True 直接在原 DataFrame 修改，False 表示返回新对象（默认）|
-|kind|排序算法，有 `quicksort`（默认）, `mergesort`, `heapsort`|
-|ignore_index|True 表示返回结果的索引将被重置为默认的整数索引|
-|key|传递函数，用于在排序前对值进行映射|
+| **参数** | **说明** |
+| - | - |
+| **by** | 用于排序的列名，可以是单个列名可以是列明列表 |
+| **axis** | 0 表示对列排序（默认），1 表示对行排序 |
+| **ascending** | 布尔值，True 表示升序（默认），False 表示降序 |
+| **inplace** | 布尔值，True 直接在原 DataFrame 修改，False 表示返回新对象（默认） |
+| **kind** | 排序算法，有 `quicksort`（默认）, `mergesort`, `heapsort` |
+| **ignore_index** | True 表示返回结果的索引将被重置为默认的整数索引 |
+| **key** | 传递函数，用于在排序前对值进行映射 |
 ```python
 df = pd.DataFrame({
     "A": [3, 1, 2],
@@ -993,16 +993,16 @@ pd.pivot_table(data, aggfunc='mean',
 )
 ```
 
-|参数|说明|
-|-|-|
-|values|需要聚合的列，可以是单个列名或列名列表，如果不指定则默认是所有数值列|
-|index|指定作为行标签的列|
-|columns|指定作为列标签的列|
-|aggfunc|聚合函数或自定义函数|
-|fill_value|聚合结果中将缺失值替换为指定的值|
-|dropna|布尔值，True 会丢弃全部为 NaN 的列|
-|margins|布尔值，True 则会添加一行和一列显示汇总统计|
-|margins_name|设置汇总行和汇总列的名称|
+| **参数** | **说明** |
+| - | - |
+| **values** | 需要聚合的列，可以是单个列名或列名列表，如果不指定则默认是所有数值列 |
+| **index** | 指定作为行标签的列 |
+| **columns** | 指定作为列标签的列 |
+| **aggfunc** | 聚合函数或自定义函数 |
+| **fill_value** | 聚合结果中将缺失值替换为指定的值 |
+| **dropna** | 布尔值，True 会丢弃全部为 NaN 的列 |
+| **margins** | 布尔值，True 则会添加一行和一列显示汇总统计 |
+| **margins_name** | 设置汇总行和汇总列的名称 |
 ```python
 df = pd.DataFrame({
     "Department": ["HR", "Finance", "HR", "IT", "IT", "Finance"],
@@ -1043,42 +1043,42 @@ pandas 的时间数据对象类型为 `datetime64[ns]`，用于存储时间序�
 
 锚点：是时间周期对齐的“参考点”，对于不同的频率会自动对齐到下一个锚点
 
-| 频率代码 | 含义 | 默认锚点 |
-|-|-|-|
-| B | 工作日 | 周一到周五 |
-| D | 日历日 | 每天 |
-| W | 周 | 周日 |
-| W-MON~W-SUN | 星期 | 对应星期 |
-| M | 月末 | 每月最后一天 |
-| MS | 月初 | 每月第一天 |
-| BM | 商业月末 | 每月最后一个工作日 |
-| BMS | 商业月初 | 每月第一个工作日 |
-| Q | 季度末 | 每年 3/6/9/12 月最后一天 |
-| QS | 季度初 | 每年 1/4/7/10 月第一天 |
-| BQ | 商业季度末 | 季度最后一个工作日 |
-| BQS | 商业季度初 | 季度第一个工作日 |
-| Y | 年末 | 每年 12 月 31 日 |
-| YS | 年初 | 每年 1 月 1 日 |
-| BA | 商业年末 | 每年最后一个工作日 |
-| BAS | 商业年初 | 每年第一个工作日 |
-| H | 小时 | 每小时整点 |
-| T | 分钟 | 每分钟整点 |
-| S | 秒 | 每秒钟整点 |
-| L  | 毫秒 | 每毫秒 |
+| **频率代码** | **含义** | **默认锚点** |
+| - | - | - |
+| **B** | 工作日 | 周一到周五 |
+| **D** | 日历日 | 每天 |
+| **W** | 周 | 周日 |
+| **W-MON~W-SUN** | 星期 | 对应星期 |
+| **M** | 月末 | 每月最后一天 |
+| **MS** | 月初 | 每月第一天 |
+| **BM** | 商业月末 | 每月最后一个工作日 |
+| **BMS** | 商业月初 | 每月第一个工作日 |
+| **Q** | 季度末 | 每年 3/6/9/12 月最后一天 |
+| **QS** | 季度初 | 每年 1/4/7/10 月第一天 |
+| **BQ** | 商业季度末 | 季度最后一个工作日 |
+| **BQS** | 商业季度初 | 季度第一个工作日 |
+| **Y** | 年末 | 每年 12 月 31 日 |
+| **YS** | 年初 | 每年 1 月 1 日 |
+| **BA** | 商业年末 | 每年最后一个工作日 |
+| **BAS** | 商业年初 | 每年第一个工作日 |
+| **H** | 小时 | 每小时整点 |
+| **T** | 分钟 | 每分钟整点 |
+| **S** | 秒 | 每秒钟整点 |
+| **L** | 毫秒 | 每毫秒 |
 
 ### 9.2 生成时间序列
 
 ```python
 pandas.date_range(start, end=None, periods=None, freq='D', name=None, inclusive=None)
 ```
-|参数|功能|
-|-|-|
-|start|起始时间，字符串或 datetime 对象|
-|end|结束时间，字符串或 datetime 对象|
-|periods|要生成的时间点数量|
-|freq|生成频率|
-|name|返回的索引的名字|
-|inclusive|是否包含起始和结束时间，可以是 ‘both’, ‘neither’, ‘left’, ‘right’|
+| **参数** | **功能** |
+| - | - |
+| **start** | 起始时间，字符串或 datetime 对象 |
+| **end** | 结束时间，字符串或 datetime 对象 |
+| **periods** | 要生成的时间点数量 |
+| **freq** | 生成频率 |
+| **name** | 返回的索引的名字 |
+| **inclusive** | 是否包含起始和结束时间，可以是 ‘both’, ‘neither’, ‘left’, ‘right’ |
 
 ```python
 print(pd.date_range(start='2024-01-01', periods=7, freq='D'))
@@ -1130,12 +1130,12 @@ print(df.asfreq(freq='M'))
 ```python
 DataFrame.shift(periods=1, freq=None, axis=0, fill_value=None)
 ```
-|参数|功能|
-|-|-|
-|periods|根据给定的整数移动数据|
-|freq|根据给定的时间频率移动索引|
-|axis|0 表示遍历列，1 表示遍历行|
-|fill_value|指定缺失位置填充的值|
+| **参数** | **功能** |
+| - | - |
+| **periods** | 根据给定的整数移动数据 |
+| **freq** | 根据给定的时间频率移动索引 |
+| **axis** | 0 表示遍历列，1 表示遍历行 |
+| **fill_value** | 指定缺失位置填充的值 |
 ```python
 df_index = pd.date_range(start='2024-02-27', periods=50, freq='D')
 df = pd.DataFrame({
@@ -1157,15 +1157,15 @@ print(df_sample.shift(periods=1))
 ```python
 DataFrame.rolling(window=None, min_periods=None, step=None, center=False, on=None, axis=0, closed=None)
 ```
-|参数|功能|
-|-|-|
-|window|整数表示按行滑动，字符串表示按时间跨度滑动|
-|min_periods|窗口内最小有效值数量，否则为 NaN|
-|step|窗口移动的步长，只适用于整数滑动|
-|center|是否以当前行为中心滚动窗口|
-|on|指定哪一列作为时间索引，默认本身的索引|
-|closed|时间窗口边界是否闭合|
-|axis|0 表示遍历列，1 表示遍历行|
+| **参数** | **功能** |
+| - | - |
+| **window** | 整数表示按行滑动，字符串表示按时间跨度滑动 |
+| **min_periods** | 窗口内最小有效值数量，否则为 NaN |
+| **step** | 窗口移动的步长，只适用于整数滑动 |
+| **center** | 是否以当前行为中心滚动窗口 |
+| **on** | 指定哪一列作为时间索引，默认本身的索引 |
+| **closed** | 时间窗口边界是否闭合 |
+| **axis** | 0 表示遍历列，1 表示遍历行 |
 ```python
 df_index = pd.date_range(start='2024-02-27', periods=5, freq='D')
 df = pd.DataFrame({

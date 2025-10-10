@@ -53,11 +53,11 @@
 - **参数绑定**：MyBatis 会自动把 Java 对象的属性值绑定到 SQL 语句的占位符，无需手动操作
 - **动态 SQL**：可以使用标签，根据条件在运行时拼接 SQL 语句
 
-| 对比     | JDBC                               | MyBatis                                 | Hibernate                               |
+| **对比** | **JDBC** | **MyBatis** | **Hibernate** |
 | -------- | ---------------------------------- | --------------------------------------- | --------------------------------------- |
-| 本质     | 直接利用 JDBC 的 API               | 半自动 ORM 框架                         | 全自动 ORM 框架                         |
-| SQL 编写 | 手写 SQL + 手动拼接参数            | 支持动态 SQL，参数动态绑定              | 框架生成 SQL                            |
-| 特征     | 灵活度最高，但开发效率低、代码量大 | 保留 SQL 灵活性，并减少了 JDBC 重复劳动 | 开发效率高，但性能低、对 SQL 极其不敏感 |
+| **本质** | 直接利用 JDBC 的 API | 半自动 ORM 框架 | 全自动 ORM 框架 |
+| **SQL 编写** | 手写 SQL + 手动拼接参数 | 支持动态 SQL，参数动态绑定 | 框架生成 SQL |
+| **特征** | 灵活度最高，但开发效率低、代码量大 | 保留 SQL 灵活性，并减少了 JDBC 重复劳动 | 开发效率高，但性能低、对 SQL 极其不敏感 |
 
 
 
@@ -205,24 +205,24 @@ User user = userMapper.getUser(1);
 
 通过 `<setting name="..." value="..." />` 控制 MyBatis 的缓存策略、延迟加载、执行期类型等核心特性，一次性全局生效，所有映射器都会遵循
 
-| name                     | value | 意义                                                         |
+| **name** | **value** | **意义** |
 | ------------------------ | ----- | ------------------------------------------------------------ |
-| mapUnderscoreToCamelCase | false | 是否自动将数据库下划线命名映射为驼峰命名，如 emp_name → empName |
-| cacheEnabled             | true  | 是否开启全局二级缓存                                         |
-| lazyLoadingEnabled       | false | 是否启用延迟加载，即关联对象在真的用到时才查询               |
-| logImpl                  | /     | 指定日志实现类，常见的有 STDOUT_LOGGING、LOG4J2、SLF4J       |
-| defaultStatementTimeout  | /     | 设置 SQL 执行的超时时间                                      |
-| defaultExecutorType      | /     | 设置 SQL 的执行方式：SIMPLE 执行一次就创建一个 PS；REUSE 复用 PS；BATCH 缓存后批量处理 |
+| **mapUnderscoreToCamelCase** | false | 是否自动将数据库下划线命名映射为驼峰命名，如 emp_name → empName |
+| **cacheEnabled** | true | 是否开启全局二级缓存 |
+| **lazyLoadingEnabled** | false | 是否启用延迟加载，即关联对象在真的用到时才查询 |
+| **logImpl** | / | 指定日志实现类，常见的有 STDOUT_LOGGING、LOG4J2、SLF4J |
+| **defaultStatementTimeout** | / | 设置 SQL 执行的超时时间 |
+| **defaultExecutorType** | / | 设置 SQL 的执行方式：SIMPLE 执行一次就创建一个 PS；REUSE 复用 PS；BATCH 缓存后批量处理 |
 
 ### 传递值
 
 #### 方式
 
-| 对比     | #{}                    | ${}                         |
+| **对比** | **#{}** | **${}** |
 | -------- | ---------------------- | --------------------------- |
-| 替换方式 | 占位符 ?               | 字符串拼接                  |
-| 性质     | 安全、可以自动类型转换 | 有 SQL 注入风险、统一字符串 |
-| 场景     | 传递值                 | 传递表名、列名等 SQL 结构   |
+| **替换方式** | 占位符 ? | 字符串拼接 |
+| **性质** | 安全、可以自动类型转换 | 有 SQL 注入风险、统一字符串 |
+| **场景** | 传递值 | 传递表名、列名等 SQL 结构 |
 
 #### 类型
 
@@ -515,11 +515,11 @@ public interface EmpMapper {
 
 需要在 mybatis.config.xml 的 settings 中开启 **autoMappingBehavior**，但是无论是单层还是嵌套，**都需要有 \<id> 标签**
 
-| 值      | 含义                                       | 场景                                             |
+| **值** | **含义** | **场景** |
 | ------- | ------------------------------------------ | ------------------------------------------------ |
-| NONE    | 禁用自动映射，必须写 \<resultMap>          | 名称不一致，或者不满足驼峰式，需要自定义         |
-| PARTIAL | 只映射单层列，且没有在 \<resultMap> 中出现 | 不适用于嵌套映射，比如 association 和 collection |
-| FULL    | 映射所有列，即使在 \<resultMap> 中出现     | 适用于名称完全对应的情况                         |
+| **NONE** | 禁用自动映射，必须写 \<resultMap> | 名称不一致，或者不满足驼峰式，需要自定义 |
+| **PARTIAL** | 只映射单层列，且没有在 \<resultMap> 中出现 | 不适用于嵌套映射，比如 association 和 collection |
+| **FULL** | 映射所有列，即使在 \<resultMap> 中出现 | 适用于名称完全对应的情况 |
 
 
 

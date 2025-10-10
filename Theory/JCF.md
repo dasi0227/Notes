@@ -73,9 +73,9 @@
 
 比较器是**用来比较两个相同类的对象“谁先谁后”的一种机制，不能简单理解为“谁大谁小”**，因为排序规则完全可以不依赖于数值，而是任何自定义逻辑
 
-| 接口               | 方法                     | 实现   | 数量         | 场景                                       |
+| **接口** | **方法** | **实现** | **数量** | **场景** |
 | ------------------ | ------------------------ | ------ | ------------ | ------------------------------------------ |
-| **Comparable\<T>** | int compareTo(T o);      | 当前类 | 只能实现一个 | 让一个类自己具备比较内部元素的能力         |
+| **Comparable\<T>** | int compareTo(T o); | 当前类 | 只能实现一个 | 让一个类自己具备比较内部元素的能力 |
 | **Comparator\<T>** | int compare(T o1, T o2); | 外部类 | 可以实现多个 | 让一个类使用外部定义的比较器来比较内部元素 |
 
 **Java 的所有包装类（Integer、Double、Long、Float、Short、Byte、Character、Boolean）都已经实现了 Comparable\<T> 接口**，因此它们自带 compareTo(T other) 方法
@@ -386,14 +386,14 @@ private static class Node<E> {
 
 ##### 区别
 
-| **特性**          | ArrayList              | LinkedList                       |
+| **特性** | **ArrayList** | **LinkedList** |
 | ----------------- | ---------------------- | -------------------------------- |
-| **底层结构**      | Object[] elementData   | Node{prev,item,next}             |
-| **随机访问效率**  | O(1)，直接通过下标访问 | O(n)，必须遍历链表               |
-| **插入/删除效率** | O(n)，需要移动大量元素 | O(1)，只需修改前后指针           |
-| **空间占用**      | 紧凑存储               | 分散存储，多了 next 和 prev 引用 |
-| **线程安全性**    | 非线程安全             | 非线程安全                       |
-| **适用场景**      | 读多写少，频繁随机访问 | 写多读少，频繁插入删除           |
+| **底层结构** | Object[] elementData | Node{prev,item,next} |
+| **随机访问效率** | O(1)，直接通过下标访问 | O(n)，必须遍历链表 |
+| **插入/删除效率** | O(n)，需要移动大量元素 | O(1)，只需修改前后指针 |
+| **空间占用** | 紧凑存储 | 分散存储，多了 next 和 prev 引用 |
+| **线程安全性** | 非线程安全 | 非线程安全 |
+| **适用场景** | 读多写少，频繁随机访问 | 写多读少，频繁插入删除 |
 
 ##### 链接机制
 
@@ -516,14 +516,14 @@ E unlink(Node<E> x) {
 
 #### 实现类
 
-| **特性**          | **HashSet**            | **LinkedHashSet**      | **TreeSet**              |
+| **特性** | **HashSet** | **LinkedHashSet** | **TreeSet** |
 | ----------------- | ---------------------- | ---------------------- | ------------------------ |
-| **底层结构**      | HashMap                | LinkedHashMap          | TreeMap                  |
-| **元素顺序**      | 无序                   | 有序                   | 有序                     |
-| **允许 null**     | 允许 1 个 null 元素    | 允许 1 个 null 元素    | 不允许 null              |
-| **查找/插入效率** | O(1)                   | O(1)                   | O(log n)                 |
-| **去重依据**      | hashCode() + equals()  | hashCode() + equals()  | Comparable / Comparator  |
-| **适用场景**      | 只关心去重，不关心顺序 | 需要去重且保持插入顺序 | 需要去重且保持自定义顺序 |
+| **底层结构** | HashMap | LinkedHashMap | TreeMap |
+| **元素顺序** | 无序 | 有序 | 有序 |
+| **允许 null** | 允许 1 个 null 元素 | 允许 1 个 null 元素 | 不允许 null |
+| **查找/插入效率** | O(1) | O(1) | O(log n) |
+| **去重依据** | hashCode() + equals() | hashCode() + equals() | Comparable / Comparator |
+| **适用场景** | 只关心去重，不关心顺序 | 需要去重且保持插入顺序 | 需要去重且保持自定义顺序 |
 
 ### Queue
 
@@ -533,15 +533,15 @@ E unlink(Node<E> x) {
 
 #### 实现类
 
-| **实现类**            | **底层结构**    | **线程安全** | **是否有界** | 出队顺序 |
+| **实现类** | **底层结构** | **线程安全** | **是否有界** | **出队顺序** |
 | --------------------- | --------------- | ------------ | ------------ | -------- |
-| LinkedList            | 双向链表        | ❌            | ❌            | 插入     |
-| ArrayDeque            | 循环数组        | ❌            | ❌            | 插入     |
-| PriorityQueue         | 二叉堆          | ❌            | ❌            | 比较     |
-| ConcurrentLinkedQueue | 单向链表 + CAS  | ✅            | ❌            | 插入     |
-| LinkedBlockingQueue   | 双向链表 + 双锁 | ✅            | ✅            | 插入     |
-| ArrayBlockingQueue    | 循环数组 + 单锁 | ✅            | ✅            | 插入     |
-| PriorityBlockingQueue | 二叉堆 + 单锁   | ✅            | ❌            | 比较     |
+| **LinkedList** | 双向链表 | ❌ | ❌ | 插入 |
+| **ArrayDeque** | 循环数组 | ❌ | ❌ | 插入 |
+| **PriorityQueue** | 二叉堆 | ❌ | ❌ | 比较 |
+| **ConcurrentLinkedQueue** | 单向链表 + CAS | ✅ | ❌ | 插入 |
+| **LinkedBlockingQueue** | 双向链表 + 双锁 | ✅ | ✅ | 插入 |
+| **ArrayBlockingQueue** | 循环数组 + 单锁 | ✅ | ✅ | 插入 |
+| **PriorityBlockingQueue** | 二叉堆 + 单锁 | ✅ | ❌ | 比较 |
 
 #### 阻塞队列
 
@@ -551,11 +551,11 @@ BlockingQueue 继承自 Queue，是 JUC 提供的接口，内部通过锁或 CAS
 - 移除 take：当队列空时，阻塞直到有新元素
 - 超时 offer/poll ：允许设置 timeout
 
-| 操作类型   | 抛异常    | 返回值   | 限时                    | 条件变量 |
+| **操作类型** | **抛异常** | **返回值** | **限时** | **条件变量** |
 | ---------- | --------- | -------- | ----------------------- | -------- |
-| 添加       | add(e)    | offer(e) | offer(e, timeout, unit) | put(e)   |
-| 获取并删除 | remove()  | poll()   | poll(timeout, unit)     | take()   |
-| 获取不删除 | element() | peek()   | -                       | -        |
+| **添加** | add(e) | offer(e) | offer(e, timeout, unit) | put(e) |
+| **获取并删除** | remove() | poll() | poll(timeout, unit) | take() |
+| **获取不删除** | element() | peek() | - | - |
 
 #### ArrayBlockingQueue
 
@@ -741,13 +741,13 @@ Map 虽然没有 iterator() 方法来获得迭代器，但是有三种方法可�
 
 ### 实现类区别
 
-| **实现类**            | **底层结构**       | **是否有序**      | **线程安全** | **null 支持**                     | **适用场景**               |
+| **实现类** | **底层结构** | **是否有序** | **线程安全** | **null 支持** | **适用场景** |
 | --------------------- | ------------------ | ----------------- | ------------ | --------------------------------- | -------------------------- |
-| **HashMap**           | 数组 + 链表/红黑树 | 无序              | ❌            | 允许 1 个 null key，多 null value | 单线程                     |
-| **Hashtable**         | 数组 + 链表        | 无序              | ✅            | 不允许 null key / value           | 已经过时                   |
-| **TreeMap**           | 红黑树             | 按 key 自定义排序 | ❌            | 不允许 null key，允许 null value  | 需要排序和搜索             |
-| **LinkedHashMap**     | 数组 + 双向链表    | 保持插入顺序      | ❌            | 允许 1 个 null key，多 null value | 需要保持插入顺序和按序遍历 |
-| **ConcurrentHashMap** | 数组 + 链表/红黑树 | 无序              | ✅            | 不允许 null key / value           | 高并发                     |
+| **HashMap** | 数组 + 链表/红黑树 | 无序 | ❌ | 允许 1 个 null key，多 null value | 单线程 |
+| **Hashtable** | 数组 + 链表 | 无序 | ✅ | 不允许 null key / value | 已经过时 |
+| **TreeMap** | 红黑树 | 按 key 自定义排序 | ❌ | 不允许 null key，允许 null value | 需要排序和搜索 |
+| **LinkedHashMap** | 数组 + 双向链表 | 保持插入顺序 | ❌ | 允许 1 个 null key，多 null value | 需要保持插入顺序和按序遍历 |
+| **ConcurrentHashMap** | 数组 + 链表/红黑树 | 无序 | ✅ | 不允许 null key / value | 高并发 |
 
 ### HashMap
 

@@ -255,31 +255,31 @@ IPage<T> page(IPage<T> page, Wrapper<T> queryWrapper);
 
 Wrapper 就是用来封装 SQL 语句的工具类，本质上就是**提供了一种面向对象的方式去拼接 SQL 的条件语句和更新语句**，而省略了在 XML 文件编写的过程
 
-| **构造器类**            | **特点**                              |
+| **构造器类** | **特点** |
 | ----------------------- | ------------------------------------- |
-| QueryWrapper\<T>        | 构建查询条件，支持链式调用            |
-| UpdateWrapper\<T>       | 构建更新条件，支持链式调用和 set 更新 |
-| LambdaUpdateWrapper\<T> | 更新条件构造器，字段使用**方法引用**  |
-| LambdaQueryWrapper\<T>  | 查询条件构造器，字段使用**方法引用**  |
-| AbstractWrapper         | 基础类，一般不直接使用                |
+| **QueryWrapper\<T>** | 构建查询条件，支持链式调用 |
+| **UpdateWrapper\<T>** | 构建更新条件，支持链式调用和 set 更新 |
+| **LambdaUpdateWrapper\<T>** | 更新条件构造器，字段使用**方法引用** |
+| **LambdaQueryWrapper\<T>** | 查询条件构造器，字段使用**方法引用** |
+| **AbstractWrapper** | 基础类，一般不直接使用 |
 
 ### 条件方法
 
-| **方法**                    | **作用**             |
+| **方法** | **作用** |
 | --------------------------- | -------------------- |
-| eq                          | 等于（=）            |
-| ne                          | 不等于（<>）         |
-| gt                          | 大于（>）            |
-| ge                          | 大于等于（>=）       |
-| lt                          | 小于（<）            |
-| le                          | 小于等于（<=）       |
-| between                     | BETWEEN 范围查询     |
-| like / likeLeft / likeRight | 模糊查询             |
-| in / notIn                  | IN 查询              |
-| isNull / isNotNull          | 判断 NULL            |
-| orderByAsc / orderByDesc    | 排序                 |
-| set                         | 设置某个字段为固定值 |
-| setSql                      | 设置某个字段为计算值 |
+| **eq** | 等于（=） |
+| **ne** | 不等于（<>） |
+| **gt** | 大于（>） |
+| **ge** | 大于等于（>=） |
+| **lt** | 小于（<） |
+| **le** | 小于等于（<=） |
+| **between** | BETWEEN 范围查询 |
+| **like / likeLeft / likeRight** | 模糊查询 |
+| **in / notIn** | IN 查询 |
+| **isNull / isNotNull** | 判断 NULL |
+| **orderByAsc / orderByDesc** | 排序 |
+| **set** | 设置某个字段为固定值 |
+| **setSql** | 设置某个字段为计算值 |
 
 ### 使用
 

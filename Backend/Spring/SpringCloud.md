@@ -113,17 +113,17 @@ SpringCloud 是一个基于 Spring 的微服务治理框架，帮助开发者快
 - **SpringBoot 负责开发单个微服务**
 - **SpringCloud 负责协调多个微服务**
 
-| 核心功能       | 意义                                     | 工具                               |
+| **核心功能** | **意义** | **工具** |
 | -------------- | ---------------------------------------- | ---------------------------------- |
-| 服务注册与发现 | 动态管理服务实例，实现服务自动注册与发现 | Nacos、Eureka、Consul、Zookeeper   |
-| 配置中心       | 集中化配置管理，支持动态刷新             | Spring Cloud Config、Nacos、Apollo |
-| 服务调用       | 多实例间的服务请求，简化 HTTP 调用       | OpenFeign、RestTemplate            |
-| 负载均衡       | 多实例请求分流，提高可用性和吞吐量       | Spring Cloud LoadBalancer、Nginx   |
-| 熔断降级与限流 | 防止服务雪崩，提升系统容错性             | Resilience4j、Sentinel             |
-| 网关           | 提供统一入口，负责路由、认证、限流等     | Spring Cloud Gateway、Kong         |
-| 消息驱动       | 解耦服务、支持异步通信和削峰填谷         | Spring Cloud Stream                |
-| 链路追踪       | 追踪请求链路，辅助监控与故障排查         | Spring Cloud Sleuth                |
-| 监控           | 监控微服务运行，进行健康检查和指标采集   | Spring Boot Actuator、Prometheus   |
+| **服务注册与发现** | 动态管理服务实例，实现服务自动注册与发现 | Nacos、Eureka、Consul、Zookeeper |
+| **配置中心** | 集中化配置管理，支持动态刷新 | Spring Cloud Config、Nacos、Apollo |
+| **服务调用** | 多实例间的服务请求，简化 HTTP 调用 | OpenFeign、RestTemplate |
+| **负载均衡** | 多实例请求分流，提高可用性和吞吐量 | Spring Cloud LoadBalancer、Nginx |
+| **熔断降级与限流** | 防止服务雪崩，提升系统容错性 | Resilience4j、Sentinel |
+| **网关** | 提供统一入口，负责路由、认证、限流等 | Spring Cloud Gateway、Kong |
+| **消息驱动** | 解耦服务、支持异步通信和削峰填谷 | Spring Cloud Stream |
+| **链路追踪** | 追踪请求链路，辅助监控与故障排查 | Spring Cloud Sleuth |
+| **监控** | 监控微服务运行，进行健康检查和指标采集 | Spring Boot Actuator、Prometheus |
 
 > 除了用 Spring Cloud 内建的能力，还可以使用外部扩充工具
 
@@ -431,12 +431,12 @@ public void discover() {
 
 #### 配置隔离
 
-| 对比     | 命名空间 Namespace           | 分组 Group                         |
+| **对比** | **命名空间 Namespace** | **分组 Group** |
 | -------- | ---------------------------- | ---------------------------------- |
-| 定位     | 最大维度的隔离               | 命名空间内部的逻辑分类             |
-| 默认值   | public                       | DEFAULT_GROUP                      |
-| 限制     | 一个应用只能关联一个命名空间 | 一个应用可以同时加载多个分组的配置 |
-| 主要用途 | 区分环境：生产、开发、测试   | 区分模块：商品、用户、订单         |
+| **定位** | 最大维度的隔离 | 命名空间内部的逻辑分类 |
+| **默认值** | public | DEFAULT_GROUP |
+| **限制** | 一个应用只能关联一个命名空间 | 一个应用可以同时加载多个分组的配置 |
+| **主要用途** | 区分环境：生产、开发、测试 | 区分模块：商品、用户、订单 |
 
 #### 配置监听
 
@@ -980,15 +980,15 @@ public interface Predicate<ServerWebExchange> {
 
 #### 内置断言工厂
 
-| 断言项目    | 断言名称               | 断言值类型                      | 举例                                             |
+| **断言项目** | **断言名称** | **断言值类型** | **举例** |
 | ----------- | ---------------------- | ------------------------------- | ------------------------------------------------ |
-| 请求路径    | Path                   | List\<String> 或 String         | - Path=/product/**                               |
-| 请求域名    | Host                   | List\<String> 或 String         | - Host=**.dasi.com                               |
-| 请求方法    | Method                 | List\<HttpMethod> 或 HttpMethod | - Method=GET,POST                                |
-| 请求参数    | Query                  | Tuple<String,String>            | - Query=version,v1                               |
-| 请求头      | Header                 | Tuple<String,String>            | - Header=number,\d+                              |
-| 请求 cookie | Cookie                 | Tuple<String,String>            | - Cookie=sessionId, abc123                       |
-| 请求时间    | After、Between、Before | ZonedDateTime                   | - After=2025-09-15T10:00:00+08:00[Asia/Shanghai] |
+| **请求路径** | Path | List\<String> 或 String | - Path=/product/** |
+| **请求域名** | Host | List\<String> 或 String | - Host=**.dasi.com |
+| **请求方法** | Method | List\<HttpMethod> 或 HttpMethod | - Method=GET,POST |
+| **请求参数** | Query | Tuple<String,String> | - Query=version,v1 |
+| **请求头** | Header | Tuple<String,String> | - Header=number,\d+ |
+| **请求 cookie** | Cookie | Tuple<String,String> | - Cookie=sessionId, abc123 |
+| **请求时间** | After、Between、Before | ZonedDateTime | - After=2025-09-15T10:00:00+08:00[Asia/Shanghai] |
 
 #### 自定义断言工厂
 
@@ -1055,12 +1055,12 @@ public interface GatewayFilter extends ShortcutConfigurable {
 
 #### 内置过滤器工厂
 
-| 过滤器作用            | 过滤器名称        | 配置参数           | 举例                                                 |
+| **过滤器作用** | **过滤器名称** | **配置参数** | **举例** |
 | --------------------- | ----------------- | ------------------ | ---------------------------------------------------- |
-| 给请求头添加参数      | AddRequestHeader  | name, value        | - AddRequestHeader=X-Request-Id,123                  |
-| 给响应头添加参数      | AddResponseHeader | name, value        | - AddResponseHeader=token,abc                        |
-| 去掉请求路径的前 N 段 | StripPrefix       | num                | - StripPrefix=1                                      |
-| 使用正则重写路径      | RewritePath       | regex, replacement | \- RewritePath=/old/(?\<segment>.*), /new/${segment} |
+| **给请求头添加参数** | AddRequestHeader | name, value | - AddRequestHeader=X-Request-Id,123 |
+| **给响应头添加参数** | AddResponseHeader | name, value | - AddResponseHeader=token,abc |
+| **去掉请求路径的前 N 段** | StripPrefix | num | - StripPrefix=1 |
+| **使用正则重写路径** | RewritePath | regex, replacement | \- RewritePath=/old/(?\<segment>.*), /new/${segment} |
 
 #### 自定义过滤器工厂
 
@@ -1157,12 +1157,12 @@ public class TokenGatewayFilterFactory extends AbstractGatewayFilterFactory<Toke
 
 ### 事务模式
 
-| 模式     | AT                             | XA                             |
+| **模式** | **AT** | **XA** |
 | -------- | ------------------------------ | ------------------------------ |
-| 提交时机 | 第一阶段立马提交               | 第一阶段不提交                 |
-| 一致性   | 最终一致性                     | 强一致性                       |
-| 回滚实现 | 依赖业务数据库中的 undo_log 表 | 依赖数据库系统自身的 undo 日志 |
-| 2PC 实现 | 由 Seata 在应用层模拟实现      | 数据库内置的 XA 协议实现       |
+| **提交时机** | 第一阶段立马提交 | 第一阶段不提交 |
+| **一致性** | 最终一致性 | 强一致性 |
+| **回滚实现** | 依赖业务数据库中的 undo_log 表 | 依赖数据库系统自身的 undo 日志 |
+| **2PC 实现** | 由 Seata 在应用层模拟实现 | 数据库内置的 XA 协议实现 |
 
 ### 使用方式
 

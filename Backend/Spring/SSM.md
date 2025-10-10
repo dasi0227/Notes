@@ -53,13 +53,13 @@ Root Ioc 容器作为父容器可以调用 Web IoC 子容器
 
 配置文件
 
-| 名称              | 功能                                                         |
+| **名称** | **功能** |
 | ----------------- | ------------------------------------------------------------ |
-| DataSourceConfig  | 读取 jdbc 属性文件、配置 Druid 数据源                        |
-| MapperJavaConfig  | 注册并配置 SqlSessionFactoryBean、扫描 Mapper 接口           |
-| ServiceJavaConfig | 扫描 @Service，配置事务管理器                                |
-| WebJavaConfig     | 配置视图解析器、消息转换器、参数解析器、拦截器和 CORS 等；扫描 @Controller |
-| SSMConfig         | 创建两个容器并关联，注册 DispatcherServlet                   |
+| **DataSourceConfig** | 读取 jdbc 属性文件、配置 Druid 数据源 |
+| **MapperJavaConfig** | 注册并配置 SqlSessionFactoryBean、扫描 Mapper 接口 |
+| **ServiceJavaConfig** | 扫描 @Service，配置事务管理器 |
+| **WebJavaConfig** | 配置视图解析器、消息转换器、参数解析器、拦截器和 CORS 等；扫描 @Controller |
+| **SSMConfig** | 创建两个容器并关联，注册 DispatcherServlet |
 
 <img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/SpringMVC202508111418553.png" alt="image-20250811141808492" style="zoom:50%;"  />
 

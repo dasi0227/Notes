@@ -141,30 +141,30 @@ Redis（Remote Dictionary Server）是一个开源的内存数据结构存储系
 
 【数据库与服务器】
 
-| 命令               | 功能                                  | 返回值                                  |
+| **命令** | **功能** | **返回值** |
 | ------------------ | ------------------------------------- | --------------------------------------- |
-| **dbsize**         | 获取当前数据库中 key 的数量           | key 数量                                |
-| **flushdb**        | 删除当前数据库的所有 key              | "OK"                                    |
-| **flushall**       | 删除所有数据库的所有 key              | "OK"                                    |
-| **time**           | 返回当前服务器时间                    | UNIX 时间戳和微秒数                     |
-| **info**           | 获取 Redis 服务器的各种信息和统计数值 | 多行字符串，每行都是 `field:value` 形式 |
-| **select** dbindex | 切换到指定数据库                      | "OK"                                    |
-| **ping**           | 查看服务是否运行                      | PONG                                    |
+| **dbsize** | 获取当前数据库中 key 的数量 | key 数量 |
+| **flushdb** | 删除当前数据库的所有 key | "OK" |
+| **flushall** | 删除所有数据库的所有 key | "OK" |
+| **time** | 返回当前服务器时间 | UNIX 时间戳和微秒数 |
+| **info** | 获取 Redis 服务器的各种信息和统计数值 | 多行字符串，每行都是 `field:value` 形式 |
+| **select** dbindex** | 切换到指定数据库 | "OK" |
+| **ping** | 查看服务是否运行 | PONG |
 
 【Key】
 
-| 命令                    | 功能                                                | 返回值                 |
+| **命令** | **功能** | **返回值** |
 | ----------------------- | --------------------------------------------------- | ---------------------- |
-| **KEYS** pattern        | 查找所有匹配给定模式 pattern 的 key                 | key 数组               |
-| **TYPE** key            | 查看 key 对应数据的类型                             | 类型名称               |
-| **RENAME** key newkey   | 用于修改 key 的名字为 newkey                        | "OK"                   |
-| **EXIST** key [keys...] | 判断指定单个或多个 key 是否存在                     | 存在个数               |
-| **DEL** key [keys...]   | 删除指定单个或多个 key 的数据                       | 删除个数               |
-| **DUMP** key            | 获取 key 对应 value 的序列化值                      | 多行字符串             |
-| **TTL** key             | 查看 key 还有多少秒过期                             | -1 永不过期；-2 不存在 |
-| **PERSIST** key         | 设置 key 永不过期                                   | 1 成功；0 失败         |
-| **EXPIRE** key          | 给 key 设置过期时间（-1 是永不过期，-2 是已经过期） | 1 成功；0 失败         |
-| **MOVE** key dbindex    | 将当前数据库的 key 移动到指定数据库                 | 1 成功；0 失败         |
+| **KEYS** pattern** | 查找所有匹配给定模式 pattern 的 key | key 数组 |
+| **TYPE** key** | 查看 key 对应数据的类型 | 类型名称 |
+| **RENAME** key newkey** | 用于修改 key 的名字为 newkey | "OK" |
+| **EXIST** key [keys...]** | 判断指定单个或多个 key 是否存在 | 存在个数 |
+| **DEL** key [keys...]** | 删除指定单个或多个 key 的数据 | 删除个数 |
+| **DUMP** key** | 获取 key 对应 value 的序列化值 | 多行字符串 |
+| **TTL** key** | 查看 key 还有多少秒过期 | -1 永不过期；-2 不存在 |
+| **PERSIST** key** | 设置 key 永不过期 | 1 成功；0 失败 |
+| **EXPIRE** key** | 给 key 设置过期时间（-1 是永不过期，-2 是已经过期） | 1 成功；0 失败 |
+| **MOVE** key dbindex** | 将当前数据库的 key 移动到指定数据库 | 1 成功；0 失败 |
 
 
 
@@ -178,20 +178,20 @@ Redis（Remote Dictionary Server）是一个开源的内存数据结构存储系
 
 实践：短信验证码缓存、抖音短视频播放量统计
 
-| 命令                              | 功能                                 |
+| **命令** | **功能** |
 | --------------------------------- | ------------------------------------ |
-| **SET** key value                 | 设置指定 key 的值                    |
-| **SETRANGE** key offset value     | 从 offset 开始用 value 覆盖 key 的值 |
-| **MSET** key value [key value...] | 设置所有给定 key 的值                |
-| **GET** key                       | 获取指定 key 的 value                |
-| **GETRANGE** key start end        | 获取从 start 到 end 的 value 子串    |
-| **MGET** key [key...]             | 获取所有给定 key 的值                |
-| **STRLEN** key                    | 返回 key 所储存的字符串值的长度      |
-| **APPEND** key str                | 将 str 加到 key 原来的 value 末尾    |
-| **INCR** key                      | 将 key 存储的 value 加 1             |
-| **INCRBY** key increment          | 将 key 存储的 value 加 increment     |
-| **DECR** key                      | 将 key 存储的 value 减 1             |
-| **DECRBY** key decrement          | 将 key 存储的 value 减 decrement     |
+| **SET** key value** | 设置指定 key 的值 |
+| **SETRANGE** key offset value** | 从 offset 开始用 value 覆盖 key 的值 |
+| **MSET** key value [key value...]** | 设置所有给定 key 的值 |
+| **GET** key** | 获取指定 key 的 value |
+| **GETRANGE** key start end** | 获取从 start 到 end 的 value 子串 |
+| **MGET** key [key...]** | 获取所有给定 key 的值 |
+| **STRLEN** key** | 返回 key 所储存的字符串值的长度 |
+| **APPEND** key str** | 将 str 加到 key 原来的 value 末尾 |
+| **INCR** key** | 将 key 存储的 value 加 1 |
+| **INCRBY** key increment** | 将 key 存储的 value 加 increment |
+| **DECR** key** | 将 key 存储的 value 减 1 |
+| **DECRBY** key decrement** | 将 key 存储的 value 减 decrement |
 
 ### List
 
@@ -201,18 +201,18 @@ Redis（Remote Dictionary Server）是一个开源的内存数据结构存储系
 
 实践：微信的消息队列、美团外卖的订单队列
 
-| 命令                                            | 功能                                                  |
+| **命令** | **功能** |
 | ----------------------------------------------- | ----------------------------------------------------- |
-| **LSET** key index element                      | 通过索引设置列表元素的值                              |
-| **LINDEX** key index                            | 通过索引获取列表中的元素                              |
-| **LRANGE** key start stop                       | 获取列表指定范围内的元素                              |
-| **LINSERT** key **BEFORE\|AFTER** pivot element | 把 element 插入到列表 key 中参考值 pivot 的前面或后面 |
-| **LTRIM** key start stop                        | 裁剪从 start 到 stop 的列表                           |
-| **LREM** key count element                      | 从列表 key 中删除前 count 个值等于 element 的元素     |
-| **LPUSH** key element [element...]              | 将一个或多个值插入到列表头部                          |
-| **RPUSH** key element [element...]              | 将一个或多个值插入到列表尾部                          |
-| **LPOP** key                                    | 移出并获取列表的第一个元素                            |
-| **RPOP** key                                    | 移出并获取列表的最后一个元素                          |
+| **LSET** key index element** | 通过索引设置列表元素的值 |
+| **LINDEX** key index** | 通过索引获取列表中的元素 |
+| **LRANGE** key start stop** | 获取列表指定范围内的元素 |
+| **LINSERT** key **BEFORE\** | AFTER** pivot element | 把 element 插入到列表 key 中参考值 pivot 的前面或后面 |
+| **LTRIM** key start stop** | 裁剪从 start 到 stop 的列表 |
+| **LREM** key count element** | 从列表 key 中删除前 count 个值等于 element 的元素 |
+| **LPUSH** key element [element...]** | 将一个或多个值插入到列表头部 |
+| **RPUSH** key element [element...]** | 将一个或多个值插入到列表尾部 |
+| **LPOP** key** | 移出并获取列表的第一个元素 |
+| **RPOP** key** | 移出并获取列表的最后一个元素 |
 
 ### Hash
 
@@ -222,17 +222,17 @@ Redis（Remote Dictionary Server）是一个开源的内存数据结构存储系
 
 产品：CF 操作配置记录、淘宝商品详情页信息
 
-| 命令                                       | 功能                                    |
+| **命令** | **功能** |
 | ------------------------------------------ | --------------------------------------- |
-| **HSET** key field value [field value ...] | 为哈希表的 field 字段赋值 value         |
-| **HGET** key field                         | 获取哈希表 field 字段的值               |
-| **HGETALL** key                            | 获取哈希表所有 field 和 value           |
-| **HKEYS** key                              | 获取哈希表所有 field                    |
-| **HVALS** key                              | 获取哈希表所有 value                    |
-| **HLEN** key                               | 获取哈希表的字段数量                    |
-| **HEXISTS** key field                      | 判断哈希表 field 字段是否存在           |
-| **HINCRBY** key field increment            | 为哈希表的 field 字段加上增量 increment |
-| **HDEL** key field [field ...]             | 删除哈希表一个或多个指定字段            |
+| **HSET** key field value [field value ...]** | 为哈希表的 field 字段赋值 value |
+| **HGET** key field** | 获取哈希表 field 字段的值 |
+| **HGETALL** key** | 获取哈希表所有 field 和 value |
+| **HKEYS** key** | 获取哈希表所有 field |
+| **HVALS** key** | 获取哈希表所有 value |
+| **HLEN** key** | 获取哈希表的字段数量 |
+| **HEXISTS** key field** | 判断哈希表 field 字段是否存在 |
+| **HINCRBY** key field increment** | 为哈希表的 field 字段加上增量 increment |
+| **HDEL** key field [field ...]** | 删除哈希表一个或多个指定字段 |
 
 ### Set
 
@@ -242,18 +242,18 @@ Redis（Remote Dictionary Server）是一个开源的内存数据结构存储系
 
 实践：QQ 共同好友、豆瓣兴趣标签集合
 
-| 命令                                | 功能                                    |
+| **命令** | **功能** |
 | :---------------------------------- | :-------------------------------------- |
-| **SADD** key member [member ...]    | 向集合添加一个或多个成员                |
-| **SREM** key member [member ...]    | 删除集合中一个或多个成员                |
-| **SINTER** key [key ...]            | 取集合的交集                            |
-| **SUNION** key [key ...]            | 取集合的并集                            |
-| **SDIFF** key [key ...]             | 取集合的差集                            |
-| **SCARD** key                       | 获取集合的成员数量                      |
-| **SMEMBERS** key                    | 获取集合的所有成员                      |
-| **SISMEMBER** key member            | 判断 member 是否是集合的成员            |
-| **SMOVE** source destination member | 将 member 从 source 移动到  destination |
-| **SPOP** key                        | 移除并随机获取一个成员                  |
+| **SADD** key member [member ...]** | 向集合添加一个或多个成员 |
+| **SREM** key member [member ...]** | 删除集合中一个或多个成员 |
+| **SINTER** key [key ...]** | 取集合的交集 |
+| **SUNION** key [key ...]** | 取集合的并集 |
+| **SDIFF** key [key ...]** | 取集合的差集 |
+| **SCARD** key** | 获取集合的成员数量 |
+| **SMEMBERS** key** | 获取集合的所有成员 |
+| **SISMEMBER** key member** | 判断 member 是否是集合的成员 |
+| **SMOVE** source destination member** | 将 member 从 source 移动到  destination |
+| **SPOP** key** | 移除并随机获取一个成员 |
 
 ### ZSet
 
@@ -263,20 +263,20 @@ Redis（Remote Dictionary Server）是一个开源的内存数据结构存储系
 
 实践：网易云音乐热歌榜、王者荣耀巅峰排行榜、微博热搜榜、12306 候补购票
 
-| 命令                                         | 功能                                     |
+| **命令** | **功能** |
 | :------------------------------------------- | :--------------------------------------- |
-| **ZADD** key score member [score member ...] | 将一个或多个成员及其分数加入到有序集合中 |
-| **ZREM** key member [member ...]             | 将一个或多个成员从有序集合中移除         |
-| **ZINCRBY** key increment member             | 将成员的分数加上增量                     |
-| **ZCARD** key                                | 获取有序集的成员个数                     |
-| **ZSCORE** key member                        | 获取成员的分数                           |
-| **ZCOUNT** key min max                       | 获取分数在指定区间内的成员个数           |
-| **ZRANK** key member [WITHSCORE]             | 获取成员从小到大的排名                   |
-| **ZREVRANK** key member [WITHSCORE]          | 获取成员从大到小的排名                   |
-| **ZRANGE** key start stop [WITHSCORE]        | 从小到大获取指定排名区间的成员           |
-| **ZRANGEBYSCORE** key min man [WITHSCORE]    | 从小到大获取指定分数区间的成员           |
-| **ZREVRANGE** key start stop [WITHSCORE]     | 从大到小获取指定排名区间的成员           |
-| **ZREVRANGEBYSCORE** key min man [WITHSCORE] | 从大到小获取指定分数区间的成员           |
+| **ZADD** key score member [score member ...]** | 将一个或多个成员及其分数加入到有序集合中 |
+| **ZREM** key member [member ...]** | 将一个或多个成员从有序集合中移除 |
+| **ZINCRBY** key increment member** | 将成员的分数加上增量 |
+| **ZCARD** key** | 获取有序集的成员个数 |
+| **ZSCORE** key member** | 获取成员的分数 |
+| **ZCOUNT** key min max** | 获取分数在指定区间内的成员个数 |
+| **ZRANK** key member [WITHSCORE]** | 获取成员从小到大的排名 |
+| **ZREVRANK** key member [WITHSCORE]** | 获取成员从大到小的排名 |
+| **ZRANGE** key start stop [WITHSCORE]** | 从小到大获取指定排名区间的成员 |
+| **ZRANGEBYSCORE** key min man [WITHSCORE]** | 从小到大获取指定分数区间的成员 |
+| **ZREVRANGE** key start stop [WITHSCORE]** | 从大到小获取指定排名区间的成员 |
+| **ZREVRANGEBYSCORE** key min man [WITHSCORE]** | 从大到小获取指定分数区间的成员 |
 
 ### BitMap
 
@@ -286,14 +286,14 @@ Redis（Remote Dictionary Server）是一个开源的内存数据结构存储系
 
 实践：小红书用户在线状态、贴吧连续签到统计、B 站视频是否观看
 
-| **命令**                                | **功能**                                           |
+| **命令** | **功能** |
 | --------------------------------------- | -------------------------------------------------- |
-| **SETBIT** key offset value             | 将位图第 offset 位设置为 value                     |
-| **GETBIT** key offset                   | 获取位图的第 offset 位的值                         |
-| **STRLEN** key                          | 获取位图占据的字节长度                             |
-| **BITCOUNT** key [start end]            | 统计位图指定区间内值为 1 的 bit 数                 |
-| **BITPOS** key bit [start end]          | 查找位图指定区间内第一个值为 bit 的位的偏移量      |
-| **BITOP** operation destkey key [key …] | 对一个或多个 BitMap 执行按位操作（AND/OR/XOR/NOT） |
+| **SETBIT** key offset value** | 将位图第 offset 位设置为 value |
+| **GETBIT** key offset** | 获取位图的第 offset 位的值 |
+| **STRLEN** key** | 获取位图占据的字节长度 |
+| **BITCOUNT** key [start end]** | 统计位图指定区间内值为 1 的 bit 数 |
+| **BITPOS** key bit [start end]** | 查找位图指定区间内第一个值为 bit 的位的偏移量 |
+| **BITOP** operation destkey key [key …]** | 对一个或多个 BitMap 执行按位操作（AND/OR/XOR/NOT） |
 
 ### HyperLogLog
 
@@ -303,11 +303,11 @@ Redis（Remote Dictionary Server）是一个开源的内存数据结构存储系
 
 实践：淘宝的日活用户数、微博话题的浏览量
 
-| **命令**                                      | **功能**                                         |
+| **命令** | **功能** |
 | --------------------------------------------- | ------------------------------------------------ |
-| **PFMERGE** destkey sourcekey [sourcekey ...] | 将多个 HyperLogLog 合并到一个新的 HyperLogLog 中 |
-| **PFADD** key element [element...]            | 将所有元素添加到 HyperLogLog 中                  |
-| **PFCOUNT** key [key...]                      | 返回给定集合（并集）的基数估计值                 |
+| **PFMERGE** destkey sourcekey [sourcekey ...]** | 将多个 HyperLogLog 合并到一个新的 HyperLogLog 中 |
+| **PFADD** key element [element...]** | 将所有元素添加到 HyperLogLog 中 |
+| **PFCOUNT** key [key...]** | 返回给定集合（并集）的基数估计值 |
 
 ### GEO
 
@@ -317,14 +317,14 @@ Redis（Remote Dictionary Server）是一个开源的内存数据结构存储系
 
 实践：美团的附近餐馆、滴滴出行的附近司机
 
-| **命令**                                                     | **功能**                                         |
+| **命令** | **功能** |
 | ------------------------------------------------------------ | ------------------------------------------------ |
-| **GEOADD** key longitude latitude member [longitude latitude member ...] | 将给定经纬度的位置成员加入到集合                 |
-| **GEOPOS** key member [member ...]                           | 获取成员的经纬度信息                             |
-| **GEOHASH** key member [member ...]                          | 获取经纬度的 hash 映射表示                       |
-| **GEODIST** key member1 member2                              | 获取两个给定位置之间的距离（指定单位）           |
-| **GEORADIUS** key longitude latitude radius                  | 获取以给定经纬度为中心，在方 radius 内的所有成员 |
-| **GEORADIUSBYMEMBER** key member radius                      | 获取以成员为中心，在方 radius 内的所有成员       |
+| **GEOADD** key longitude latitude member [longitude latitude member ...]** | 将给定经纬度的位置成员加入到集合 |
+| **GEOPOS** key member [member ...]** | 获取成员的经纬度信息 |
+| **GEOHASH** key member [member ...]** | 获取经纬度的 hash 映射表示 |
+| **GEODIST** key member1 member2** | 获取两个给定位置之间的距离（指定单位） |
+| **GEORADIUS** key longitude latitude radius** | 获取以给定经纬度为中心，在方 radius 内的所有成员 |
+| **GEORADIUSBYMEMBER** key member radius** | 获取以成员为中心，在方 radius 内的所有成员 |
 
 ### Stream
 
@@ -334,22 +334,22 @@ Redis（Remote Dictionary Server）是一个开源的内存数据结构存储系
 
 实践：爱奇艺的弹幕系统、饿了么外卖订单系统
 
-| **命令**                                                     | **功能**                                                     |
+| **命令** | **功能** |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| **XADD** key ID field value [field value …]                  | 向流中追加一条消息（ID 为 * 表示主键由 redis 自动生成）       |
-| **XLEN** key                                                 | 获取流中的消息数量                                           |
-| **XRANGE** key start end [COUNT count]                       | 按 ID 正序获取消息（-/+ 表示最大和最小）                     |
-| **XREVRANGE** key end start [COUNT count]                    | 按 ID 倒序获取消息（-/+ 表示最大和最小）                     |
-| **XDEL** key id [id …]                                       | 删除指定 ID 的消息                                           |
-| **XTRIM** key MAXLEN count                                   | 截取 ID 大的 count 条消息                                    |
-| **XTRIM** key MINID id                                       | 截取比 ID 小的消息                                           |
-| **XREAD** [COUNT count] [BLOCK ms] **STREAMS** key [key …] ID [ID …] | 从一个或多个流中（阻塞）读取（指定数量）消息                 |
-| **XGROUP CREATE** key group id                               | 创建消费组，从指定 ID 开始消费（$ 表示最后一条消息）         |
-| **XGROUP** DESTROY key group                                 | 删除指定消费组                                               |
-| **XINFO** GROUPS mystream                                    | 获取消费组信息                                               |
-| **XREADGROUP GROUP** group consumer [COUNT count] [BLOCK ms] **STREAMS** key [key …] ID [ID …] | 使用消费组 group 中的消费者 consumer 来消费消息（ID 用 > 表示读取下一个未被消费的消息） |
-| **XPENDING** key group [start end count [consumer]]          | 查看消费组中待确认的消息                                     |
-| **XACK** key group id [id …]                                 | 确认消息已被成功处理，标记为已消费                           |
+| **XADD** key ID field value [field value …]** | 向流中追加一条消息（ID 为 * 表示主键由 redis 自动生成） |
+| **XLEN** key** | 获取流中的消息数量 |
+| **XRANGE** key start end [COUNT count]** | 按 ID 正序获取消息（-/+ 表示最大和最小） |
+| **XREVRANGE** key end start [COUNT count]** | 按 ID 倒序获取消息（-/+ 表示最大和最小） |
+| **XDEL** key id [id …]** | 删除指定 ID 的消息 |
+| **XTRIM** key MAXLEN count** | 截取 ID 大的 count 条消息 |
+| **XTRIM** key MINID id** | 截取比 ID 小的消息 |
+| **XREAD** [COUNT count] [BLOCK ms] **STREAMS** key [key …] ID [ID …]** | 从一个或多个流中（阻塞）读取（指定数量）消息 |
+| **XGROUP CREATE** key group id** | 创建消费组，从指定 ID 开始消费（$ 表示最后一条消息） |
+| **XGROUP** DESTROY key group** | 删除指定消费组 |
+| **XINFO** GROUPS mystream** | 获取消费组信息 |
+| **XREADGROUP GROUP** group consumer [COUNT count] [BLOCK ms] **STREAMS** key [key …] ID [ID …]** | 使用消费组 group 中的消费者 consumer 来消费消息（ID 用 > 表示读取下一个未被消费的消息） |
+| **XPENDING** key group [start end count [consumer]]** | 查看消费组中待确认的消息 |
+| **XACK** key group id [id …]** | 确认消息已被成功处理，标记为已消费 |
 
 
 
@@ -468,14 +468,14 @@ AOF（Append Only File）会把所有**写命令**记录到一个 **appendonly.a
 
 事务是一组按顺序执行的命令集合，这些命令会被 Redis 一次性且串行地执行，执行过程中不会被其他命令插入
 
-| **特性**             | **MySQL 事务**                                   | **Redis 事务**                                               |
+| **特性** | **MySQL 事务** | **Redis 事务** |
 | -------------------- | ------------------------------------------------ | ------------------------------------------------------------ |
-| 原子性 (Atomicity)   | 支持完整的回滚，保证要么全部执行，要么全部不执行 | 不支持回滚，执行错误不会撤销，只能保证一组命令按顺序执行     |
-| 一致性 (Consistency) | 严格保证数据一致性                               | 通过 WATCH 实现乐观锁，保证事务期间 key 没被修改，否则事务失败 |
-| 隔离性 (Isolation)   | 可以设置不同的隔离级别                           | 事务内的命令在 EXEC 之前不会执行，而一旦执行不会被打断       |
-| 持久性 (Durability)  | InnoDB 日志（redo/undo）确保提交的数据不会丢失   | 依赖于 RDB/AOF，事务本身不提供持久性保证                     |
-| 错误处理             | 可以用 ROLLBACK 命令撤销事务命令                 | 只能用 DISCARD 丢弃事务还没执行的命令                        |
-| 适用场景             | 金融、订单、库存，追求强一致性                   | 排行榜、抢票，追求高性能和低延迟                             |
+| **原子性 (Atomicity)** | 支持完整的回滚，保证要么全部执行，要么全部不执行 | 不支持回滚，执行错误不会撤销，只能保证一组命令按顺序执行 |
+| **一致性 (Consistency)** | 严格保证数据一致性 | 通过 WATCH 实现乐观锁，保证事务期间 key 没被修改，否则事务失败 |
+| **隔离性 (Isolation)** | 可以设置不同的隔离级别 | 事务内的命令在 EXEC 之前不会执行，而一旦执行不会被打断 |
+| **持久性 (Durability)** | InnoDB 日志（redo/undo）确保提交的数据不会丢失 | 依赖于 RDB/AOF，事务本身不提供持久性保证 |
+| **错误处理** | 可以用 ROLLBACK 命令撤销事务命令 | 只能用 DISCARD 丢弃事务还没执行的命令 |
+| **适用场景** | 金融、订单、库存，追求强一致性 | 排行榜、抢票，追求高性能和低延迟 |
 
 ### 命令
 
@@ -487,10 +487,10 @@ AOF（Append Only File）会把所有**写命令**记录到一个 **appendonly.a
 
 ### 错误处理
 
-| 错误类型     | 处理                                     | 理解                               | 例子       |
+| **错误类型** | **处理** | **理解** | **例子** |
 | ------------ | ---------------------------------------- | ---------------------------------- | ---------- |
-| 入队阶段错误 | 整个事务内的命令都会被放弃               | 编译期错误，如命令不存在、语法错误 | SET k1     |
-| 执行阶段错误 | 只有错误的命令会失败，其他命令仍然会执行 | 运行期错误，如命令与数据结构不对应 | INCR email |
+| **入队阶段错误** | 整个事务内的命令都会被放弃 | 编译期错误，如命令不存在、语法错误 | SET k1 |
+| **执行阶段错误** | 只有错误的命令会失败，其他命令仍然会执行 | 运行期错误，如命令与数据结构不对应 | INCR email |
 
 
 
@@ -529,13 +529,13 @@ cat batch.txt | redis-cli -a password --pipe
 
 ### 批量执行区分
 
-| 特性     | 管道                                                     | 事务                                                       | 命令                                               |
+| **特性** | **管道** | **事务** | **命令** |
 | -------- | -------------------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------- |
-| 定义     | 一次性发送多条命令到 Redis，并一次性接收命令结果         | 把多条命令打包，顺序执行并保证不被打断                     | Redis 内置支持的一次性操作多个 key 的命令          |
-| 目的     | 提高性能，减少 RTT、I/O 开销                             | 保证逻辑一致性，控制并发冲突                               | 简化操作逻辑                                       |
-| 错误处理 | 某条命令失败不影响其他命令，本质上还是一条一条命令的执行 | 入队时报错会导致整个事务取消，执行时错误只会影响错误的命令 | 命令层面执行，某些子操作可能失败但不会影响其他 key |
-| 事务属性 | 没有原子性                                               | 批量原子性                                                 | 命令原子性                                         |
-| 典型用法 | 追求性能：批量写入、批量查询、大数据初始化               | 追求一致：扣库存、转账、订单生成                           | 追求方便：批量设置缓存、批量删除数据               |
+| **定义** | 一次性发送多条命令到 Redis，并一次性接收命令结果 | 把多条命令打包，顺序执行并保证不被打断 | Redis 内置支持的一次性操作多个 key 的命令 |
+| **目的** | 提高性能，减少 RTT、I/O 开销 | 保证逻辑一致性，控制并发冲突 | 简化操作逻辑 |
+| **错误处理** | 某条命令失败不影响其他命令，本质上还是一条一条命令的执行 | 入队时报错会导致整个事务取消，执行时错误只会影响错误的命令 | 命令层面执行，某些子操作可能失败但不会影响其他 key |
+| **事务属性** | 没有原子性 | 批量原子性 | 命令原子性 |
+| **典型用法** | 追求性能：批量写入、批量查询、大数据初始化 | 追求一致：扣库存、转账、订单生成 | 追求方便：批量设置缓存、批量删除数据 |
 
 
 
@@ -576,10 +576,10 @@ cat batch.txt | redis-cli -a password --pipe
 
 ### 命令
 
-| 命令                                    | 功能                                       |
+| **命令** | **功能** |
 | --------------------------------------- | ------------------------------------------ |
-| **REPLICAOF <master_ip> <master_port>** | 设置当前 Redis 实例为某个 Master 的 Slave  |
-| **REPLICAOF NO ONE**                    | 取消复制关系，恢复当前 Redis 实例为 Master |
+| **REPLICAOF <master_ip> <master_port>** | 设置当前 Redis 实例为某个 Master 的 Slave |
+| **REPLICAOF NO ONE** | 取消复制关系，恢复当前 Redis 实例为 Master |
 
 ### 工作流程
 
@@ -723,11 +723,11 @@ Redis Cluster 定义了 **16384 个哈希槽**（编号 0–16383），假设 Ma
 
 ### 哈希分区策略
 
-| 策略                | 原理                                                         | 优点                       | 缺点                                  |
+| **策略** | **原理** | **优点** | **缺点** |
 | ------------------- | ------------------------------------------------------------ | -------------------------- | ------------------------------------- |
-| hash(key) mod nodes | 直接将哈希值对节点数取余，余数就是节点编号                   | 实现最简单                 | 节点一旦变化，所有 key 都要被重新分配 |
-| hash(key) mod slots | 先将哈希值对槽数取余，余数就是槽位编号，再映射到节点编号     | 兼顾均匀性和可扩展性       | 需要多一步槽位到节点的映射            |
-| consistent hash     | 把哈希空间组成一个环，节点和 key 都会映射到环上，key 属于按顺时针查找最近的节点 | 节点增减时只影响附近的 key | 无法保证均衡性                        |
+| **hash(key) mod nodes** | 直接将哈希值对节点数取余，余数就是节点编号 | 实现最简单 | 节点一旦变化，所有 key 都要被重新分配 |
+| **hash(key) mod slots** | 先将哈希值对槽数取余，余数就是槽位编号，再映射到节点编号 | 兼顾均匀性和可扩展性 | 需要多一步槽位到节点的映射 |
+| **consistent hash** | 把哈希空间组成一个环，节点和 key 都会映射到环上，key 属于按顺时针查找最近的节点 | 节点增减时只影响附近的 key | 无法保证均衡性 |
 
 ### Gossip 协议
 
@@ -768,48 +768,48 @@ appendonly yes
 
 #### 命令行工具
 
-| 命令                                                         | 功能                                                         |
+| **命令** | **功能** |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| redis-cli **-c** -p port                                     | -c 会开启集群模式，当操作落在其他节点的槽，会自动重定向到其他节点，不需要手动 exit 和重连接，否则会抛出 `(error) MOVED` 错误 |
-| redis-cli --cluster **create** ip\:port … [**–cluster-replicas n**] | 创建集群，一次性添加多个节点，通过 n 指定每个 Master 对应多少个 Slave |
-| redis-cli --cluster check ip\:port                           | 检查集群整体状态                                             |
-| redis-cli --cluster **rebalance** ip:port                    | 自动均衡所有 Master 的槽分布                                 |
-| redis-cli --cluster **reshard** ip\:port                     | 将槽重新分配给其他节点，ip:port 是任意一个已存在集群中的节点即可，提示步骤为：<br />1. 输入迁移的槽数量<br />2. 输入迁移对象的节点 ID<br />3. 输入从哪些节点迁出槽<br />4. 输入 yes 开始迁移 |
-| redis-cli --cluster **add-node** ip\:port ip\:port [--cluster-slave] | 加节点到集群之中，默认是 Master，Slave 需要添加额外参数，第二个 ip\:port 是已经存在的节点作为“引荐人”提供集群入口 |
-| redis-cli --cluster **del-node** ip\:port node-id            | 从集群之中删节点，如果是 Master 需要先把槽分配出去，Slave 可以直接删 |
+| **redis-cli **-c** -p port** | -c 会开启集群模式，当操作落在其他节点的槽，会自动重定向到其他节点，不需要手动 exit 和重连接，否则会抛出 `(error) MOVED` 错误 |
+| **redis-cli --cluster **create** ip\:port … [**–cluster-replicas n**]** | 创建集群，一次性添加多个节点，通过 n 指定每个 Master 对应多少个 Slave |
+| **redis-cli --cluster check ip\:port** | 检查集群整体状态 |
+| **redis-cli --cluster **rebalance** ip:port** | 自动均衡所有 Master 的槽分布 |
+| **redis-cli --cluster **reshard** ip\:port** | 将槽重新分配给其他节点，ip:port 是任意一个已存在集群中的节点即可，提示步骤为：<br />1. 输入迁移的槽数量<br />2. 输入迁移对象的节点 ID<br />3. 输入从哪些节点迁出槽<br />4. 输入 yes 开始迁移 |
+| **redis-cli --cluster **add-node** ip\:port ip\:port [--cluster-slave]** | 加节点到集群之中，默认是 Master，Slave 需要添加额外参数，第二个 ip\:port 是已经存在的节点作为“引荐人”提供集群入口 |
+| **redis-cli --cluster **del-node** ip\:port node-id** | 从集群之中删节点，如果是 Master 需要先把槽分配出去，Slave 可以直接删 |
 
 #### 集群管理
 
-| 命令                             | 功能                                                    |
+| **命令** | **功能** |
 | -------------------------------- | ------------------------------------------------------- |
-| **CLUSTER INFO**                 | 查看集群整体状态（槽数量、节点数量、轮次...）           |
-| **CLUSTER NODES**                | 查看所有节点的详细信息（ID、角色、槽范围、连接状态）    |
-| **CLUSTER SLOTS**                | 查看槽分配情况（槽区间属于哪个 Master 和其 Slave）      |
-| **CLUSTER KEYSLOT** key          | 查看 key 属于哪个槽号（key 不需要存在，只是查询哈希值） |
-| **CLUSTER COUNTKEYSINSLOT** slot | 查询 slot 已经存了多少个 key                            |
-| **CLUSTER GETKEYSINSLOT** count  | 查询 slot 中 count 个 key                               |
+| **CLUSTER INFO** | 查看集群整体状态（槽数量、节点数量、轮次...） |
+| **CLUSTER NODES** | 查看所有节点的详细信息（ID、角色、槽范围、连接状态） |
+| **CLUSTER SLOTS** | 查看槽分配情况（槽区间属于哪个 Master 和其 Slave） |
+| **CLUSTER KEYSLOT** key** | 查看 key 属于哪个槽号（key 不需要存在，只是查询哈希值） |
+| **CLUSTER COUNTKEYSINSLOT** slot** | 查询 slot 已经存了多少个 key |
+| **CLUSTER GETKEYSINSLOT** count** | 查询 slot 中 count 个 key |
 
 #### 节点管理
 
-| 命令                          | 功能                                                         |
+| **命令** | **功能** |
 | ----------------------------- | ------------------------------------------------------------ |
-| **CLUSTER MEET** ip port      | 手动让一个新节点与当前节点建立联系，从而加入集群（但此时没有任何角色） |
-| **CLUSTER FORGET** node-id    | 手动让一个节点从集群中脱离                                   |
-| **CLUSTER REPLICATE** node-id | 把当前节点设置为某个 Master 的 Slave                         |
-| **CLUSTER RESET**             | 重置节点信息                                                 |
-| **CLUSTER FAILOVER**          | 强制让某个 Slave 执行主从切换，提升为 Master                 |
-| **CLUSTER SAVECONFIG**        | 强制保存集群配置到 nodes.conf                                |
-| **CLUSTER MYID**              | 查看当前节点的唯一 ID                                        |
+| **CLUSTER MEET** ip port** | 手动让一个新节点与当前节点建立联系，从而加入集群（但此时没有任何角色） |
+| **CLUSTER FORGET** node-id** | 手动让一个节点从集群中脱离 |
+| **CLUSTER REPLICATE** node-id** | 把当前节点设置为某个 Master 的 Slave |
+| **CLUSTER RESET** | 重置节点信息 |
+| **CLUSTER FAILOVER** | 强制让某个 Slave 执行主从切换，提升为 Master |
+| **CLUSTER SAVECONFIG** | 强制保存集群配置到 nodes.conf |
+| **CLUSTER MYID** | 查看当前节点的唯一 ID |
 
 #### 槽管理
 
-| 命令                                           | 功能                                                         |
+| **命令** | **功能** |
 | ---------------------------------------------- | ------------------------------------------------------------ |
-| **CLUSTER ADDSLOTS** slot                      | 给当前节点分配槽（只能是 Master）                            |
-| **CLUSTER DELSLOTS** slot                      | 删除当前节点的槽（只能是 Master，槽会处于悬空状态，必须手动重新分配） |
-| **CLUSTER SETSLOT** slot **NODE** node-id      | 把某个槽指派给指定节点（只能是 Master）                      |
-| **CLUSTER SETSLOT** slot **IMPORTING** node-id | 让当前节点从另一个节点导入槽（成对使用）                     |
-| **CLUSTER SETSLOT** slot **MIGRATING** node-id | 让当前节点向另一个节点导出槽（成对使用）                     |
+| **CLUSTER ADDSLOTS** slot** | 给当前节点分配槽（只能是 Master） |
+| **CLUSTER DELSLOTS** slot** | 删除当前节点的槽（只能是 Master，槽会处于悬空状态，必须手动重新分配） |
+| **CLUSTER SETSLOT** slot **NODE** node-id** | 把某个槽指派给指定节点（只能是 Master） |
+| **CLUSTER SETSLOT** slot **IMPORTING** node-id** | 让当前节点从另一个节点导入槽（成对使用） |
+| **CLUSTER SETSLOT** slot **MIGRATING** node-id** | 让当前节点向另一个节点导出槽（成对使用） |
 
 
 
@@ -819,13 +819,13 @@ appendonly yes
 
 RedisTemplate 是 Spring Data Redis 提供一个操作 Redis 的工具类，**它把 Redis 的各种命令封装成 Java 方法**，从而可以用面向对象的方式操作 Redis，内部调用 Jedis 或 Lettuce
 
-| 对比       | Jedis                    | Lettuce                        |
+| **对比** | **Jedis** | **Lettuce** |
 | ---------- | ------------------------ | ------------------------------ |
-| I/O 模型   | 阻塞                     | 基于 Netty，非阻塞             |
-| 线程安全性 | 非线程安全，需要连接池   | 线程安全，可多线程复用一个连接 |
-| 连接管理   | 依赖 commons-pool2       | 默认单连接，支持连接池，可复用 |
-| 调用方式   | 只支持同步               | 同步 / 异步 / 响应式           |
-| 性能       | 中等，连接池可能成为瓶颈 | 高，适合高并发                 |
+| **I/O 模型** | 阻塞 | 基于 Netty，非阻塞 |
+| **线程安全性** | 非线程安全，需要连接池 | 线程安全，可多线程复用一个连接 |
+| **连接管理** | 依赖 commons-pool2 | 默认单连接，支持连接池，可复用 |
+| **调用方式** | 只支持同步 | 同步 / 异步 / 响应式 |
+| **性能** | 中等，连接池可能成为瓶颈 | 高，适合高并发 |
 
 Lettuce 是 Redis 真正的客户端，因为 **Redis 本质上是客户端-服务端的 TCP 通信**，RedisTemplate 在底层使用 Lettuce 发送命令请求和返回数据响应
 
@@ -1181,12 +1181,12 @@ Canal 是阿里巴巴开源的 MySQL binlog 增量订阅 & 消费组件，核心
 
 ### 统计类型
 
-| 类型     | 定义                                                   | 场景                   | 指标 |
+| **类型** | **定义** | **场景** | **指标** |
 | -------- | ------------------------------------------------------ | ---------------------- | ---- |
-| 聚合统计 | 对数据进行求和、计数、平均值、最大值、最小值等归约操作 | 总交易额、平均交易额   | PV   |
-| 排序统计 | 对一组数据按某个指标排序                               | 热搜榜、热卖榜、打赏榜 | TopN |
-| 二值统计 | 对数据进行二分类                                       | 签到打卡、每日登陆     | UV   |
-| 基数统计 | 统计不同元素的个数                                     | 浏览量、用户数         | DAU  |
+| **聚合统计** | 对数据进行求和、计数、平均值、最大值、最小值等归约操作 | 总交易额、平均交易额 | PV |
+| **排序统计** | 对一组数据按某个指标排序 | 热搜榜、热卖榜、打赏榜 | TopN |
+| **二值统计** | 对数据进行二分类 | 签到打卡、每日登陆 | UV |
+| **基数统计** | 统计不同元素的个数 | 浏览量、用户数 | DAU |
 
 ### HyperLogLog
 
@@ -1270,11 +1270,11 @@ Bloom Filter 是一种概率型数据结构，底层是一个长度为 m 的 Bit
 
 需要在 Github 下载 RedisBloom 模块，然后在配置文件中导入 `loadmodule xxx.so`
 
-| 命令                       | 功能                                                      |
+| **命令** | **功能** |
 | -------------------------- | --------------------------------------------------------- |
-| BF.RESERVE key rate amount | 创建一个名为 key 的布隆过滤器，并事先指定误判率和元素数量 |
-| BF.ADD key value           | 加入元素                                                  |
-| BF.EXISTS key value        | 检查元素是否存在                                          |
+| **BF.RESERVE key rate amount** | 创建一个名为 key 的布隆过滤器，并事先指定误判率和元素数量 |
+| **BF.ADD key value** | 加入元素 |
+| **BF.EXISTS key value** | 检查元素是否存在 |
 
 
 
@@ -1351,13 +1351,13 @@ EVALSHA sha1 numkeys key [key ...] arg [arg ...]
 
 分布式锁的要求
 
-| 特性     | 定义                                                 | 否则会导致的问题                               |
+| **特性** | **定义** | **否则会导致的问题** |
 | -------- | ---------------------------------------------------- | ---------------------------------------------- |
-| 互斥性   | 同一时间只有一个客户端获得锁                         | 并发冲突，数据不一致                           |
-| 防死锁   | 锁最终必须被释放                                     | 所有客户端阻塞，资源永远不可访问               |
-| 解锁安全 | 只有持有锁的客户端才能释放锁                         | 锁彻底失去意义，任何人都能释放别人的锁         |
-| 可重入   | 持有锁的客户端可以再次获取锁，不会被自己阻塞         | 同一个业务流程内部多次调用会被卡死             |
-| 可续期   | 在锁快要过期且业务还没执行完毕时，自动延长锁的有效期 | 锁提前释放，其他线程插入进来，导致并发安全失效 |
+| **互斥性** | 同一时间只有一个客户端获得锁 | 并发冲突，数据不一致 |
+| **防死锁** | 锁最终必须被释放 | 所有客户端阻塞，资源永远不可访问 |
+| **解锁安全** | 只有持有锁的客户端才能释放锁 | 锁彻底失去意义，任何人都能释放别人的锁 |
+| **可重入** | 持有锁的客户端可以再次获取锁，不会被自己阻塞 | 同一个业务流程内部多次调用会被卡死 |
+| **可续期** | 在锁快要过期且业务还没执行完毕时，自动延长锁的有效期 | 锁提前释放，其他线程插入进来，导致并发安全失效 |
 
 ### 测试框架
 
@@ -1459,10 +1459,10 @@ private String Sale() {
 - **超卖**：同一个商品卖给了两个客户
 - **少卖**：库存扣减与实际请求数量完全不一致
 
-| 方法          | 使用方式                                                     | 特点                                               |
+| **方法** | **使用方式** | **特点** |
 | ------------- | ------------------------------------------------------------ | -------------------------------------------------- |
-| synchronized  | 关键字修饰方法或代码块，进入时自动加锁，退出时自动释放       | 简单，但是粒度较粗，无法中断和设置超时，灵活性不足 |
-| ReentrantLock | 获取 ReentrantLock 对象 lock，显式调用 lock() 和 unlock() 函数 | 更加灵活，可重入，但需要手动管理                   |
+| **synchronized** | 关键字修饰方法或代码块，进入时自动加锁，退出时自动释放 | 简单，但是粒度较粗，无法中断和设置超时，灵活性不足 |
+| **ReentrantLock** | 获取 ReentrantLock 对象 lock，显式调用 lock() 和 unlock() 函数 | 更加灵活，可重入，但需要手动管理 |
 
 ```java
 private final Lock reentrantLock = new ReentrantLock();
@@ -1654,15 +1654,15 @@ public class RedisLock implements Lock {
 
 Redisson 是一个基于 Redis 的分布式工具框架，是 Redis 的 Java 客户端之一，提供了很多**分布式可重用组件**，包括分布式锁、限流器、计数器等
 
-| 类型                    | 功能                                                  | 适用                       |
+| **类型** | **功能** | **适用** |
 | ----------------------- | ----------------------------------------------------- | -------------------------- |
-| RLock（可重入锁）       | 类似 ReentrantLock，同一线程可多次加锁                | 单机（实例/集群）          |
-| RedLock（红锁）         | 基于多个独立 Redis 节点，需多数节点成功               | 跨机房                     |
-| FairLock（公平锁）      | 保证获取锁的顺序与请求顺序一致                        | 排队任务调度               |
-| ReadWriteLock（读写锁） | 提供读写分离，多线程可同时读，但写时独占              | 配置中心                   |
-| MultiLock（联锁）       | 将多个 RLock 绑定成一个整体，必须全部加锁成功才算成功 | 多资源使用                 |
-| Semaphore（信号量）     | 控制同时访问某资源的线程数量                          | 限流、连接池               |
-| CountDownLatch（闭锁）  | 等待其他线程完成后再继续执行                          | 并行任务汇总、任务依赖控制 |
+| **RLock（可重入锁）** | 类似 ReentrantLock，同一线程可多次加锁 | 单机（实例/集群） |
+| **RedLock（红锁）** | 基于多个独立 Redis 节点，需多数节点成功 | 跨机房 |
+| **FairLock（公平锁）** | 保证获取锁的顺序与请求顺序一致 | 排队任务调度 |
+| **ReadWriteLock（读写锁）** | 提供读写分离，多线程可同时读，但写时独占 | 配置中心 |
+| **MultiLock（联锁）** | 将多个 RLock 绑定成一个整体，必须全部加锁成功才算成功 | 多资源使用 |
+| **Semaphore（信号量）** | 控制同时访问某资源的线程数量 | 限流、连接池 |
+| **CountDownLatch（闭锁）** | 等待其他线程完成后再继续执行 | 并行任务汇总、任务依赖控制 |
 
 ```java
 public String saleByRedLock() {
@@ -1692,29 +1692,29 @@ public String saleByRedLock() {
 
 **请求查询的数据不在缓存也不在数据库，但是请求会一直绕过缓存打到数据库上，高并发下可能会压垮数据库**
 
-| 方案       | 说明                                                         | 缺陷                                     |
+| **方案** | **说明** | **缺陷** |
 | ---------- | ------------------------------------------------------------ | ---------------------------------------- |
-| 布隆过滤器 | 加入存在的 key 到布隆过滤器中，查询前先判断 key 是否可能存在 | 存在误判，而且不支持删除                 |
-| 缓存空对象 | 将查询结果为空的数据也写入缓存，赋予一个特殊值 null 并设置短 TTL | 可能导致缓存中存在大量无效数据，占用空间 |
+| **布隆过滤器** | 加入存在的 key 到布隆过滤器中，查询前先判断 key 是否可能存在 | 存在误判，而且不支持删除 |
+| **缓存空对象** | 将查询结果为空的数据也写入缓存，赋予一个特殊值 null 并设置短 TTL | 可能导致缓存中存在大量无效数据，占用空间 |
 
 ### 击穿 Breakdown
 
 **某个热点 HotKey 在失效的瞬间，大量并发请求同时打到数据库导致崩溃**
 
-| 方案              | 说明                                             | 缺陷                                     |
+| **方案** | **说明** | **缺陷** |
 | ----------------- | ------------------------------------------------ | ---------------------------------------- |
-| 热点 key 永不过期 | 物理上不设置过期，由应用管理层控制逻辑过期       | 可能导致缓存和数据库不一致               |
-| 定期刷新          | 设置触发器，在 TTL 到期前提前异步刷新缓存        | 需要合理设置刷新频率                     |
-| 分布式锁          | 只放一个请求去 DB 加载，其他请求原地等待缓存刷新 | 延迟增加，锁机制复杂，可能会造成额外问题 |
+| **热点 key 永不过期** | 物理上不设置过期，由应用管理层控制逻辑过期 | 可能导致缓存和数据库不一致 |
+| **定期刷新** | 设置触发器，在 TTL 到期前提前异步刷新缓存 | 需要合理设置刷新频率 |
+| **分布式锁** | 只放一个请求去 DB 加载，其他请求原地等待缓存刷新 | 延迟增加，锁机制复杂，可能会造成额外问题 |
 
 ### 雪崩 Avalanche
 
 **大量 key 在同一时间集中失效，或者 Redis 集群整体宕机，导致请求洪峰直接打到数据库导致崩溃**
 
-| 方案     | 说明                                    | 缺陷                                  |
+| **方案** | **说明** | **缺陷** |
 | -------- | --------------------------------------- | ------------------------------------- |
-| 随机过期 | 设置 TTL 时加上随机值，错峰过期         | 对 TTL 失去控制，而且仍有概率发生雪崩 |
-| 多级缓存 | 本地缓存（Guava） + 第三方缓存（Redis） | 增加开发和运维复杂度                  |
+| **随机过期** | 设置 TTL 时加上随机值，错峰过期 | 对 TTL 失去控制，而且仍有概率发生雪崩 |
+| **多级缓存** | 本地缓存（Guava） + 第三方缓存（Redis） | 增加开发和运维复杂度 |
 
 ### 限流 Rate Limiting
 
@@ -1747,30 +1747,30 @@ public String saleByRedLock() {
 - 从 Redis 角度看自己使用的内存**只包括实际存储数据、元信息和运行时开销**
 - 从操作系统角度看 Redis 使用的内存除了上述的内容，还包括**内存碎片、缓冲区、临时数据结构**等，往往会比前者大，被称为**常驻集大小（RSS，Resident Set Size）**
 
-| 命令                    | 功能                                                         |
+| **命令** | **功能** |
 | ----------------------- | ------------------------------------------------------------ |
-| **INFO MEMORY**         | 查看内存信息，关键字段有<br />- **used_memory_human**：Redis 认为自己正在使用的总内存<br />- **maxmemory_human**：Redis 认为自己可以使用的内存<br />- **used_memory_rss_human**：操作系统实际分配的内存<br />- **mem_fragmentation_ratio**：内存碎片率 |
-| **MEMORY DOCTOR**       | 内存健康诊断报告，比如内存不够使用、内存碎片过多             |
-| **MEMORY MALLOC-STATS** | 内存分配器的底层统计（操作系统层面）                         |
-| **MEMORY PURGE**        | 强制清理脏页，把内存还给 OS                                  |
-| **MEMORY STATS**        | 全面内存统计（JSON 格式）                                    |
-| **MEMORY USAGE key**    | 返回当前 key 及其 value 所占用的内存字节数                   |
+| **INFO MEMORY** | 查看内存信息，关键字段有<br />- **used_memory_human**：Redis 认为自己正在使用的总内存<br />- **maxmemory_human**：Redis 认为自己可以使用的内存<br />- **used_memory_rss_human**：操作系统实际分配的内存<br />- **mem_fragmentation_ratio**：内存碎片率 |
+| **MEMORY DOCTOR** | 内存健康诊断报告，比如内存不够使用、内存碎片过多 |
+| **MEMORY MALLOC-STATS** | 内存分配器的底层统计（操作系统层面） |
+| **MEMORY PURGE** | 强制清理脏页，把内存还给 OS |
+| **MEMORY STATS** | 全面内存统计（JSON 格式） |
+| **MEMORY USAGE key** | 返回当前 key 及其 value 所占用的内存字节数 |
 
 ### 删除策略
 
-| 策略               | 定义                                         | 优点         | 缺点                                         |
+| **策略** | **定义** | **优点** | **缺点** |
 | ------------------ | -------------------------------------------- | ------------ | -------------------------------------------- |
-| 立即删除 immediate | key 一过期就立刻删除                         | 拿时间换空间 | 会阻塞主线程，**对处理器压力最大**           |
-| 惰性删除 lazy      | 只有访问的时候发现过期才删除，并返回 null    | 拿空间换时间 | 如果没有被访问则不会删除，**对内存压力最大** |
-| 定期删除 periodic  | 周期性地随机抽取一些 key，检查是否过期并删除 | 两者中和     | 需要确定删除的**数量、时长和频率**           |
+| **立即删除 immediate** | key 一过期就立刻删除 | 拿时间换空间 | 会阻塞主线程，**对处理器压力最大** |
+| **惰性删除 lazy** | 只有访问的时候发现过期才删除，并返回 null | 拿空间换时间 | 如果没有被访问则不会删除，**对内存压力最大** |
+| **定期删除 periodic** | 周期性地随机抽取一些 key，检查是否过期并删除 | 两者中和 | 需要确定删除的**数量、时长和频率** |
 
 ### 淘汰策略
 
-| 策略 | LRU, Least Recently Used          | LFU, Least Frequently Used        | TTL                             | Random                   |
+| **策略** | **LRU, Least Recently Used** | **LFU, Least Frequently Used** | **TTL** | **Random** |
 | ---- | --------------------------------- | --------------------------------- | ------------------------------- | ------------------------ |
-| 定义 | 淘汰使用最久的 key                | 淘汰使用最少的 key                | 淘汰存活时间最短的 key          | 随机淘汰 key             |
-| 实现 | 给每个 key 维护一个**访问时间戳** | 给每个 key 维护一个**访问计数器** | 给每个 key 维护一个**过期时间** | 调用哈希表的随机采样函数 |
-| 性质 | 适合短期热点数据                  | 适合长期热点数据                  | 和业务更贴合                    | 最简单                   |
+| **定义** | 淘汰使用最久的 key | 淘汰使用最少的 key | 淘汰存活时间最短的 key | 随机淘汰 key |
+| **实现** | 给每个 key 维护一个**访问时间戳** | 给每个 key 维护一个**访问计数器** | 给每个 key 维护一个**过期时间** | 调用哈希表的随机采样函数 |
+| **性质** | 适合短期热点数据 | 适合长期热点数据 | 和业务更贴合 | 最简单 |
 
 > 存在三个版本：noeviction（不做任何处理）、volatile（针对有过期时间的 key）、allkeys（针对所有的 key）
 
@@ -1804,13 +1804,13 @@ I/O 的多路复用指的是**只用一个线程就可以管理成千上万个�
 
 #### Unix 的 I/O 模型
 
-| 模型         | 定义                                                         | 性质                                 |
+| **模型** | **定义** | **性质** |
 | ------------ | ------------------------------------------------------------ | ------------------------------------ |
-| 阻塞 I/O     | 如果数据没就绪，read() 会一直阻塞，直到数据到达并复制到用户缓冲区 | 最简单，但是效率最低                 |
-| 非阻塞 I/O   | 如果数据没就绪，read() 会立刻返回 EAGIAN，应用程序需要不断轮询检查数据是否就绪 | CPU 消耗高                           |
-| I/O 多路复用 | 使用系统调用检查套接字/文件描述符，只有可读的才会去 read()   | 能处理大量连接                       |
-| 信号驱动 I/O | 当数据就绪时，内核主动通过信号通知应用程序，再由应用程序调用 read() | 信号机制的复杂度非常高，信号可能丢失 |
-| 异步 I/O     | 应用程序向内核发起读请求，内核完成 read 工作后通知应用程序直接使用 | 效率最高，但是 Linux 不适用          |
+| **阻塞 I/O** | 如果数据没就绪，read() 会一直阻塞，直到数据到达并复制到用户缓冲区 | 最简单，但是效率最低 |
+| **非阻塞 I/O** | 如果数据没就绪，read() 会立刻返回 EAGIAN，应用程序需要不断轮询检查数据是否就绪 | CPU 消耗高 |
+| **I/O 多路复用** | 使用系统调用检查套接字/文件描述符，只有可读的才会去 read() | 能处理大量连接 |
+| **信号驱动 I/O** | 当数据就绪时，内核主动通过信号通知应用程序，再由应用程序调用 read() | 信号机制的复杂度非常高，信号可能丢失 |
+| **异步 I/O** | 应用程序向内核发起读请求，内核完成 read 工作后通知应用程序直接使用 | 效率最高，但是 Linux 不适用 |
 
 ![9b445b475903dd017e4fc72489a00668](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202508310028138.png)
 
@@ -1870,10 +1870,10 @@ while (!stop) {
 
 【实现对比】
 
-| **特性**        | **select**                                 | **poll**                                   | **epoll**                                    |
+| **特性** | **select** | **poll** | **epoll** |
 | --------------- | ------------------------------------------ | ------------------------------------------ | -------------------------------------------- |
-| **数据结构**    | 位图                                       | 数组                                       | 红黑树                                       |
-| **最大连接数**  | 1024/2048                                  | 无上限                                     | 无上限                                       |
-| **最大支持 fd** | 1024/2048                                  | 65535                                      | 65535                                        |
-| **fd 拷贝**     | 每次调用都要把 fd 集合从用户态拷贝到内核态 | 每次调用都要把 fd 集合从用户态拷贝到内核态 | 提前调用 epoll_ctl 拷贝，epoll_wait 不再拷贝 |
-| **工作效率**    | O(n) ，每次都要遍历所有 fd                 | O(n) ，每次都要遍历所有 fd                 | O(1) ，直接获取回调到就绪队列的所有 fd       |
+| **数据结构** | 位图 | 数组 | 红黑树 |
+| **最大连接数** | 1024/2048 | 无上限 | 无上限 |
+| **最大支持 fd** | 1024/2048 | 65535 | 65535 |
+| **fd 拷贝** | 每次调用都要把 fd 集合从用户态拷贝到内核态 | 每次调用都要把 fd 集合从用户态拷贝到内核态 | 提前调用 epoll_ctl 拷贝，epoll_wait 不再拷贝 |
+| **工作效率** | O(n) ，每次都要遍历所有 fd | O(n) ，每次都要遍历所有 fd | O(1) ，直接获取回调到就绪队列的所有 fd |

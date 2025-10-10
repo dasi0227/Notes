@@ -334,12 +334,12 @@ JDK 1.7 利用了堆的永久代来存储类的元数据，而 JDK 1.8 转移到
 
 ### 引用类型
 
-| 类型   | 回收时机                     | 类型             | 典型用途                          |
+| **类型** | **回收时机** | **类型** | **典型用途** |
 | ------ | ---------------------------- | ---------------- | --------------------------------- |
-| 强引用 | GC 永远不会回收              | new Object()     | 普通对象，业务逻辑中使用          |
-| 软引用 | 只有在内存不足时 GC 才会回收 | SoftReference    | 缓存                              |
-| 弱引用 | 只要执行 GC 就会回收         | WeakReference    | ThreadLocal 和 WeakHashMap 的 key |
-| 虚引用 | 只要执行 GC 就会回收         | PhantomReference | 跟踪对象回收、释放堆外内存        |
+| **强引用** | GC 永远不会回收 | new Object() | 普通对象，业务逻辑中使用 |
+| **软引用** | 只有在内存不足时 GC 才会回收 | SoftReference | 缓存 |
+| **弱引用** | 只要执行 GC 就会回收 | WeakReference | ThreadLocal 和 WeakHashMap 的 key |
+| **虚引用** | 只要执行 GC 就会回收 | PhantomReference | 跟踪对象回收、释放堆外内存 |
 
 需要注意的是，虽然虚引用和弱引用的回收时机是一样的，但是虚引用的含义是跟没有引用一样，因为无法通过虚引用来获取实例对象，而且它必须关联一个 ReferenceQueue 对象，**当 GC 回收对象时发现有虚引用，会把该引用对象本身放入 ReferenceQueue 中**，程序员可以利用这个机制进行一些额外处理，不过**无法阻止和延迟回收**
 
@@ -482,18 +482,18 @@ ClassFile {
 
 `cp_info constant_pool[]`：常量池实际上是一个表结构，最多可以存 constant_pool_count - 1 个常量池项，占用 2 字节，其中**有效常量值的索引值从 1 开始，索引 0 专门表示“没有引用任何常量”**，每一个常量池项都是 `cp_info` 元素，由 **tag + info** 组成
 
-| tag               | info                   |
+| **tag** | **info** |
 | ----------------- | ---------------------- |
-| 1（Utf8）         | UTF-8 编码的字符串     |
-| 3（Integer）      | int 字面量             |
-| 4（Float）        | float 字面量           |
-| 5（Long）         | long 字面量            |
-| 6（Double）       | double 字面量          |
-| 7（Class）        | 类或接口的符号引用     |
-| 8（String）       | 字符串类型字面量       |
-| 9（FieldRef）     | 字段的符号引用         |
-| 10（MethodRef）   | 方法的符号引用         |
-| 12（NameAndType） | 字段或方法的名字和类型 |
+| **1（Utf8）** | UTF-8 编码的字符串 |
+| **3（Integer）** | int 字面量 |
+| **4（Float）** | float 字面量 |
+| **5（Long）** | long 字面量 |
+| **6（Double）** | double 字面量 |
+| **7（Class）** | 类或接口的符号引用 |
+| **8（String）** | 字符串类型字面量 |
+| **9（FieldRef）** | 字段的符号引用 |
+| **10（MethodRef）** | 方法的符号引用 |
+| **12（NameAndType）** | 字段或方法的名字和类型 |
 
 ```text
 // String name = "dasi";
@@ -551,27 +551,27 @@ $15 = Utf8               (Ljava/lang/String;Ljava/lang/Integer;)V
 
 #### 访问标志对照表
 
-| **标志名**           | **十六进制值** | 类 (Class) | **字段 (Field)** | **方法 (Method)** | **含义**                                           |
+| **标志名** | **十六进制值** | **类 (Class)** | **字段 (Field)** | **方法 (Method)** | **含义** |
 | -------------------- | -------------- | ---------- | ---------------- | ----------------- | -------------------------------------------------- |
-| **ACC_PUBLIC**       | 0x0001         | ✅          | ✅                | ✅                 | public 可见性                                      |
-| **ACC_PRIVATE**      | 0x0002         | ❌          | ✅                | ✅                 | private 可见性                                     |
-| **ACC_PROTECTED**    | 0x0004         | ❌          | ✅                | ✅                 | protected 可见性                                   |
-| **ACC_STATIC**       | 0x0008         | ❌          | ✅                | ✅                 | static 修饰符                                      |
-| **ACC_FINAL**        | 0x0010         | ✅          | ✅                | ✅                 | final 修饰符（类不可继承/字段不可变/方法不可覆盖） |
-| **ACC_SUPER**        | 0x0020         | ✅          | ❌                | ❌                 | 使用新的 invokespecial 语义（历史遗留）            |
-| **ACC_SYNCHRONIZED** | 0x0020         | ❌          | ❌                | ✅                 | 方法同步（monitorenter/monitorexit）               |
-| **ACC_VOLATILE**     | 0x0040         | ❌          | ✅                | ❌                 | 字段的 volatile 语义                               |
-| **ACC_BRIDGE**       | 0x0040         | ❌          | ❌                | ✅                 | 编译器生成的桥接方法（泛型擦除时使用）             |
-| **ACC_TRANSIENT**    | 0x0080         | ❌          | ✅                | ❌                 | 字段的 transient 修饰符（序列化时忽略）            |
-| **ACC_VARARGS**      | 0x0080         | ❌          | ❌                | ✅                 | 方法是可变参数（varargs）                          |
-| **ACC_NATIVE**       | 0x0100         | ❌          | ❌                | ✅                 | 方法是 native 方法（JNI）                          |
-| **ACC_INTERFACE**    | 0x0200         | ✅          | ❌                | ❌                 | 声明这是一个接口                                   |
-| **ACC_ABSTRACT**     | 0x0400         | ✅          | ❌                | ✅                 | 抽象类 / 抽象方法                                  |
-| **ACC_STRICT**       | 0x0800         | ❌          | ❌                | ✅                 | strictfp 修饰符（严格浮点语义）                    |
-| **ACC_SYNTHETIC**    | 0x1000         | ✅          | ✅                | ✅                 | 编译器自动生成，不出现在源码中                     |
-| **ACC_ANNOTATION**   | 0x2000         | ✅          | ❌                | ❌                 | 声明这是一个注解类型                               |
-| **ACC_ENUM**         | 0x4000         | ✅          | ✅                | ❌                 | 声明这是一个枚举类型/枚举字段                      |
-| **ACC_MODULE**       | 0x8000         | ✅          | ❌                | ❌                 | 声明这是一个模块（module-info）                    |
+| **ACC_PUBLIC** | 0x0001 | ✅ | ✅ | ✅ | public 可见性 |
+| **ACC_PRIVATE** | 0x0002 | ❌ | ✅ | ✅ | private 可见性 |
+| **ACC_PROTECTED** | 0x0004 | ❌ | ✅ | ✅ | protected 可见性 |
+| **ACC_STATIC** | 0x0008 | ❌ | ✅ | ✅ | static 修饰符 |
+| **ACC_FINAL** | 0x0010 | ✅ | ✅ | ✅ | final 修饰符（类不可继承/字段不可变/方法不可覆盖） |
+| **ACC_SUPER** | 0x0020 | ✅ | ❌ | ❌ | 使用新的 invokespecial 语义（历史遗留） |
+| **ACC_SYNCHRONIZED** | 0x0020 | ❌ | ❌ | ✅ | 方法同步（monitorenter/monitorexit） |
+| **ACC_VOLATILE** | 0x0040 | ❌ | ✅ | ❌ | 字段的 volatile 语义 |
+| **ACC_BRIDGE** | 0x0040 | ❌ | ❌ | ✅ | 编译器生成的桥接方法（泛型擦除时使用） |
+| **ACC_TRANSIENT** | 0x0080 | ❌ | ✅ | ❌ | 字段的 transient 修饰符（序列化时忽略） |
+| **ACC_VARARGS** | 0x0080 | ❌ | ❌ | ✅ | 方法是可变参数（varargs） |
+| **ACC_NATIVE** | 0x0100 | ❌ | ❌ | ✅ | 方法是 native 方法（JNI） |
+| **ACC_INTERFACE** | 0x0200 | ✅ | ❌ | ❌ | 声明这是一个接口 |
+| **ACC_ABSTRACT** | 0x0400 | ✅ | ❌ | ✅ | 抽象类 / 抽象方法 |
+| **ACC_STRICT** | 0x0800 | ❌ | ❌ | ✅ | strictfp 修饰符（严格浮点语义） |
+| **ACC_SYNTHETIC** | 0x1000 | ✅ | ✅ | ✅ | 编译器自动生成，不出现在源码中 |
+| **ACC_ANNOTATION** | 0x2000 | ✅ | ❌ | ❌ | 声明这是一个注解类型 |
+| **ACC_ENUM** | 0x4000 | ✅ | ✅ | ❌ | 声明这是一个枚举类型/枚举字段 |
+| **ACC_MODULE** | 0x8000 | ✅ | ❌ | ❌ | 声明这是一个模块（module-info） |
 
 ### 类加载过程
 
@@ -713,12 +713,12 @@ protected Class<?> findClass(String name) throws ClassNotFoundException {
 
 **如果要打破双亲委派模型，就必须重写 loadClass 方法**。而 Tomcat 作为一个 Web 容器，要同时运行多个应用，需要确保每个 WebApp 都有自己单独的类加载器，而且同一个类名在不同应用中可以共存。因此 Tomcat 在 JVM 内置类加载器（Bootstrap、Ext、App）之外，又增加了自己的类加载器层次，来实现 **多应用隔离**和**共享机制**
 
-| 类加载器                | 加载目录                       | 作用范围                            |                                |
+| **类加载器** | **加载目录** | **作用范围** |
 | ----------------------- | ------------------------------ | ----------------------------------- | ------------------------------ |
-| **CommonClassLoader**   | Tomcat/common/*                | 所有 Web 应用和 Tomcat 内部都能访问 | 公共依赖库，应用和容器共享     |
-| **CatalinaClassLoader** | Tomcat/server/*                | 仅 Tomcat 内部使用                  | 应用不可见，专供容器使用       |
-| **SharedClassLoader**   | Tomcat/shared/*                | 所有 Web 应用共享，Tomcat 内部不用  | 多应用共享依赖                 |
-| **WebAppClassLoader**   | Tomcat/webapps/{app}/WEB-INF/* | 仅当前 Web 应用可见                 | 打破双亲委派，支持隔离与热部署 |
+| **CommonClassLoader** | Tomcat/common/* | 所有 Web 应用和 Tomcat 内部都能访问 | 公共依赖库，应用和容器共享 |
+| **CatalinaClassLoader** | Tomcat/server/* | 仅 Tomcat 内部使用 | 应用不可见，专供容器使用 |
+| **SharedClassLoader** | Tomcat/shared/* | 所有 Web 应用共享，Tomcat 内部不用 | 多应用共享依赖 |
+| **WebAppClassLoader** | Tomcat/webapps/{app}/WEB-INF/* | 仅当前 Web 应用可见 | 打破双亲委派，支持隔离与热部署 |
 
 ![image-20250918171525201](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509181715264.png)
 
@@ -728,50 +728,50 @@ protected Class<?> findClass(String name) throws ClassNotFoundException {
 
 ### 内存相关
 
-| **参数**                              | **作用**                          |
+| **参数** | **作用** |
 | ------------------------------------- | --------------------------------- |
-| -Xms\<size>[unit]                     | 设置 JVM 初始堆大小               |
-| -Xmx\<size>[unit]                     | 设置 JVM 最大堆大小               |
-| -Xss\<size>[unit]                     | 设置线程的虚拟机栈大小            |
-| -Xmn\<size>[unit]                     | 设置新生代固定大小                |
-| -XX:NewSize=\<size>[unit]             | 设置新生代初始大小                |
-| -XX:MaxNewSize=\<size>[unit]          | 设置新生代最大大小                |
-| -XX:SurvivorRatio=\<ratio>            | 设置 Eden:Survivor 的内存大小比例 |
-| -XX:NewRatio=\<ratio>                 | 设置 Old:Young 的内存大小比例     |
-| -XX:MaxTenuringThreshold=\<threshold> | 设置新生代晋升为老年代的年龄阈值  |
-| -XX:MetaspaceSize                     | 设置元空间初始大小                |
-| -XX:MaxMetaspaceSize                  | 设置元空间最大大小                |
-| -XX:MaxDirectMemorySize               | 设置直接内存大小                  |
+| **-Xms\<size>[unit]** | 设置 JVM 初始堆大小 |
+| **-Xmx\<size>[unit]** | 设置 JVM 最大堆大小 |
+| **-Xss\<size>[unit]** | 设置线程的虚拟机栈大小 |
+| **-Xmn\<size>[unit]** | 设置新生代固定大小 |
+| **-XX:NewSize=\<size>[unit]** | 设置新生代初始大小 |
+| **-XX:MaxNewSize=\<size>[unit]** | 设置新生代最大大小 |
+| **-XX:SurvivorRatio=\<ratio>** | 设置 Eden:Survivor 的内存大小比例 |
+| **-XX:NewRatio=\<ratio>** | 设置 Old:Young 的内存大小比例 |
+| **-XX:MaxTenuringThreshold=\<threshold>** | 设置新生代晋升为老年代的年龄阈值 |
+| **-XX:MetaspaceSize** | 设置元空间初始大小 |
+| **-XX:MaxMetaspaceSize** | 设置元空间最大大小 |
+| **-XX:MaxDirectMemorySize** | 设置直接内存大小 |
 
 ### 垃圾回收器相关
 
-| **参数**                | **作用**             |
+| **参数** | **作用** |
 | ----------------------- | -------------------- |
-| -XX:+UseSerialGC        | 使用 Serial 收集器   |
-| -XX:+UseParallelGC      | 使用 Parallel 收集器 |
-| -XX:+UseConcMarkSweepGC | 使用 CMS 收集器      |
-| -XX:+UseG1GC            | 使用 G1 收集器       |
-| -XX:+UseZGC             | 使用 ZGC             |
+| **-XX:+UseSerialGC** | 使用 Serial 收集器 |
+| **-XX:+UseParallelGC** | 使用 Parallel 收集器 |
+| **-XX:+UseConcMarkSweepGC** | 使用 CMS 收集器 |
+| **-XX:+UseG1GC** | 使用 G1 收集器 |
+| **-XX:+UseZGC** | 使用 ZGC |
 
 ### GC 日志相关
 
-| **参数**                           | **作用**                   |
+| **参数** | **作用** |
 | ---------------------------------- | -------------------------- |
-| -XX:+PrintGC                       | 打印 GC 简要日志           |
-| -XX:+PrintGCDetails                | 打印 GC 详细日志           |
-| -XX:+PrintGCDateStamps             | 打印 GC 日志时间戳         |
-| -Xloggc:\<path>                    | 指定 GC 日志文件的输出路径 |
-| -XX:+PrintTenuringDistribution     | 打印对象年龄分布情况       |
-| -XX:+PrintReferenceGC              | 打印各种引用对象的处理情况 |
-| -XX:+PrintGCApplicationStoppedTime | 打印 GC 导致应用停顿的时间 |
+| **-XX:+PrintGC** | 打印 GC 简要日志 |
+| **-XX:+PrintGCDetails** | 打印 GC 详细日志 |
+| **-XX:+PrintGCDateStamps** | 打印 GC 日志时间戳 |
+| **-Xloggc:\<path>** | 指定 GC 日志文件的输出路径 |
+| **-XX:+PrintTenuringDistribution** | 打印对象年龄分布情况 |
+| **-XX:+PrintReferenceGC** | 打印各种引用对象的处理情况 |
+| **-XX:+PrintGCApplicationStoppedTime** | 打印 GC 导致应用停顿的时间 |
 
 ### 性能调优相关
 
-| **参数**                        | **作用**                           |
+| **参数** | **作用** |
 | ------------------------------- | ---------------------------------- |
-| -XX:+HeapDumpOnOutOfMemoryError | 开启 OOM 时导出堆转储文件          |
-| -XX:HeapDumpPath=\<path>        | 指定 OOM 堆转储文件路径            |
-| -XX:+UseGCOverheadLimit         | 开启检查 GC 时间过多但回收效果太差 |
-| -XX:+PrintFlagsFinal            | 打印所有 JVM 参数及最终值          |
-| -XX:+PrintCommandLineFlags      | 打印显式和隐式使用的参数           |
-| -XX:+DisableExplicitGC          | 禁止 System.gc()                   |
+| **-XX:+HeapDumpOnOutOfMemoryError** | 开启 OOM 时导出堆转储文件 |
+| **-XX:HeapDumpPath=\<path>** | 指定 OOM 堆转储文件路径 |
+| **-XX:+UseGCOverheadLimit** | 开启检查 GC 时间过多但回收效果太差 |
+| **-XX:+PrintFlagsFinal** | 打印所有 JVM 参数及最终值 |
+| **-XX:+PrintCommandLineFlags** | 打印显式和隐式使用的参数 |
+| **-XX:+DisableExplicitGC** | 禁止 System.gc() |

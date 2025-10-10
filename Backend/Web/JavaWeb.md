@@ -375,13 +375,13 @@ public interface Servlet {
 
 ### ServletConfig 和 ServletContext
 
-| 项目         | ServletConfig                           | ServletContext                                           |
+| **项目** | **ServletConfig** | **ServletContext** |
 | ------------ | --------------------------------------- | -------------------------------------------------------- |
-| 作用对象     | 单个 Servlet 的初始化配置               | 整个 Web 应用的全局共享信息                              |
-| 生命周期     | Servlet 创建时存在，Servlet 销毁时消失   | 应用启动时存在，应用停止时销毁                           |
-| 创建者       | 容器在实例化 Servlet 时创建             | 容器在启动 Web 应用时就创建                              |
-| 数据内容     | 只有属于某个 Servlet 的 init-param 参数 | 整个项目（应用）范围内共享的资源、参数                   |
-| 通常用来干嘛 | 给单个 Servlet 配一些启动参数           | 共享全局资源，比如全站路径、全局配置信息、项目级别的数据 |
+| **作用对象** | 单个 Servlet 的初始化配置 | 整个 Web 应用的全局共享信息 |
+| **生命周期** | Servlet 创建时存在，Servlet 销毁时消失 | 应用启动时存在，应用停止时销毁 |
+| **创建者** | 容器在实例化 Servlet 时创建 | 容器在启动 Web 应用时就创建 |
+| **数据内容** | 只有属于某个 Servlet 的 init-param 参数 | 整个项目（应用）范围内共享的资源、参数 |
+| **通常用来干嘛** | 给单个 Servlet 配一些启动参数 | 共享全局资源，比如全站路径、全局配置信息、项目级别的数据 |
 
 在 web.xml 的 \<servlet> 标签中添加 \<init-param> 标签来配置 ServletConfig
 
@@ -652,11 +652,11 @@ HttpSession API
 - Object getAttribute(String name)：获取属性
 - void removeAttribute(String name)：删除属性
 
-| 域对象            | 生命周期       | 接口               | 常用                                             |
+| **域对象** | **生命周期** | **接口** | **常用** |
 | ----------------- | -------------- | ------------------ | ------------------------------------------------ |
-| 请求域（Request） | 一次 HTTP 请求 | HttpServletRequest | 多级转发间共享参数，存储本次服务要用到的临时数据 |
-| 会话域（Session） | 一个客户端会话 | HttpSession        | 多请求间共享参数，存储登陆用户信息、购物车信息   |
-| 应用域（Context） | 一个 Web 应用  | ServletContext     | 多路径间共享参数，存储全局配置                   |
+| **请求域（Request）** | 一次 HTTP 请求 | HttpServletRequest | 多级转发间共享参数，存储本次服务要用到的临时数据 |
+| **会话域（Session）** | 一个客户端会话 | HttpSession | 多请求间共享参数，存储登陆用户信息、购物车信息 |
+| **应用域（Context）** | 一个 Web 应用 | ServletContext | 多路径间共享参数，存储全局配置 |
 
 ### 类事件
 

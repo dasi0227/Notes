@@ -69,13 +69,13 @@
 - **用户线程**：由用户空间程序管理和调度的线程，可以实现与内核线程一对一、一对多、多对一的映射关系
 - **Java 线程**：是 JVM 提供的抽象，**通过 Thread 对象封装了对内核线程的使用**，开发者只需要操作 Thread API，不需要和底层 OS API 打交道
 
-| 区别     | 进程                                                 | 线程                                                   |
+| **区别** | **进程** | **线程** |
 | -------- | ---------------------------------------------------- | ------------------------------------------------------ |
-| 定义     | 程序在操作系统中的一次运行实例，是资源分配的基本单位 | 进程中的一个执行流，是 CPU 调度的基本单位              |
-| 内存空间 | 拥有独立的地址空间和资源                             | 共享所在进程的地址空间和资源，但有独立的栈和程序计数器 |
-| 开销     | 创建、切换开销大，需要操作系统分配和回收资源         | 创建、切换开销小，主要是寄存器和栈的切换               |
-| 通信     | 进程间通信需要通过系统调用                           | 线程间通信可以直接读写共享内存                         |
-| 独立性   | 一个进程崩溃通常不影响其他进程                       | 一个线程崩溃可能导致整个进程崩溃                       |
+| **定义** | 程序在操作系统中的一次运行实例，是资源分配的基本单位 | 进程中的一个执行流，是 CPU 调度的基本单位 |
+| **内存空间** | 拥有独立的地址空间和资源 | 共享所在进程的地址空间和资源，但有独立的栈和程序计数器 |
+| **开销** | 创建、切换开销大，需要操作系统分配和回收资源 | 创建、切换开销小，主要是寄存器和栈的切换 |
+| **通信** | 进程间通信需要通过系统调用 | 线程间通信可以直接读写共享内存 |
+| **独立性** | 一个进程崩溃通常不影响其他进程 | 一个线程崩溃可能导致整个进程崩溃 |
 
 ### 创建线程
 
@@ -127,18 +127,18 @@
 
 ### Thread API
 
-| 方法                         | 说明                                                         |
+| **方法** | **说明** |
 | ---------------------------- | ------------------------------------------------------------ |
-| setName(String name)         | 设置/获取线程名称                                            |
-| setDaemon(boolean on)        | 设置线程是否为守护线程                                       |
-| setPriority(int newPriority) | 设置线程优先级                                               |
-| start()                      | 启动线程，底层会调用 run()                                   |
-| run()                        | 线程执行逻辑，需要重写                                       |
-| join()                       | 必须等待该线程执行完毕                                       |
-| join(long millis)            | 等待该线程执行完毕，但超时后会返回                           |
-| sleep(long millis)           | 休眠线程，释放 CPU 但不会释放锁                              |
-| yield()                      | 提示调度器当前线程可以让出 CPU，但不保证                     |
-| interrupt()                  | 中断线程，设置中断标志，线程会抛出 InterruptedException 异常 |
+| **setName(String name)** | 设置/获取线程名称 |
+| **setDaemon(boolean on)** | 设置线程是否为守护线程 |
+| **setPriority(int newPriority)** | 设置线程优先级 |
+| **start()** | 启动线程，底层会调用 run() |
+| **run()** | 线程执行逻辑，需要重写 |
+| **join()** | 必须等待该线程执行完毕 |
+| **join(long millis)** | 等待该线程执行完毕，但超时后会返回 |
+| **sleep(long millis)** | 休眠线程，释放 CPU 但不会释放锁 |
+| **yield()** | 提示调度器当前线程可以让出 CPU，但不保证 |
+| **interrupt()** | 中断线程，设置中断标志，线程会抛出 InterruptedException 异常 |
 
 > 直接手动调用 Thread 对象的 run 方法仅仅只是像调用普通对象的方法一样，不会创建线程
 
@@ -329,11 +329,11 @@ synchronized 是 Java 提供的一种**互斥锁机制**，核心思想是**同�
 
 ### 升级机制
 
-| **锁状态**   | **条件/触发场景**          | **Mark Word**           | **实现机制**                                          | **特点**                            |
+| **锁状态** | **条件/触发场景** | **Mark Word** | **实现机制** | **特点** |
 | ------------ | -------------------------- | ----------------------- | ----------------------------------------------------- | ----------------------------------- |
-| **偏向锁**   | 只有一个线程反复进入同步块 | 线程 ID                 | 在对象头记录线程 ID，再次进入无需 CAS                 | 几乎零开销，适合单线程反复访问      |
-| **轻量级锁** | 多个线程交替进入           | 指向 Lock Record 的指针 | 使用 CAS 将对象头替换为指向当前线程栈中的 Lock Record | 线程自旋尝试获取锁，不会立刻阻塞    |
-| **重量级锁** | 多个线程同时竞争           | 指向 Monitor 对象的指针 | 依赖操作系统的互斥量                                  | 有阻塞和唤醒，涉及用户态/内核态切换 |
+| **偏向锁** | 只有一个线程反复进入同步块 | 线程 ID | 在对象头记录线程 ID，再次进入无需 CAS | 几乎零开销，适合单线程反复访问 |
+| **轻量级锁** | 多个线程交替进入 | 指向 Lock Record 的指针 | 使用 CAS 将对象头替换为指向当前线程栈中的 Lock Record | 线程自旋尝试获取锁，不会立刻阻塞 |
+| **重量级锁** | 多个线程同时竞争 | 指向 Monitor 对象的指针 | 依赖操作系统的互斥量 | 有阻塞和唤醒，涉及用户态/内核态切换 |
 
 ### 使用方法
 
@@ -386,20 +386,20 @@ synchronized 是 Java 提供的一种**互斥锁机制**，核心思想是**同�
 - **JNI（Java Native Interface）**：是 Java 定义的一套接口规范/协议，**JVM 通过 JNI 把 native 方法映射到对应的 C/C++ 函数上**，规定了函数名、参数、返回值的对接方式
 - C 函数：在 HotSpot 源码中实现的 C/C++ 方法，是 native 方法的真正实现
 
-| **方法**                                                     | **说明**                                                     |
+| **方法** | **说明** |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| allocateMemory(long size)                                    | 像 C 的 malloc，分配堆外的直接内存                           |
-| freeMemory(long address)                                     | 像 C 的 free，释放堆外的直接内存                             |
-| putInt(long address, int value)                              | 向指定的内存地址写入整型数据                                 |
-| getInt(long address)                                         | 从指定的内存地址读取整型数据                                 |
-| allocateInstance(Class<?> c)                                 | 绕过构造函数直接创建对象（不执行构造方法）                   |
-| objectFieldOffset(Field f)                                   | 获取对象字段的偏移量，用于定位对象内存中的字段               |
-| compareAndSwapInt(Object o, long offset, int expected, int update) | 原子地比较并交换整型字段                                     |
-| compareAndSwapLong(Object o, long offset, long expected, long update) | 原子地比较并交换长整型字段                                   |
-| compareAndSwapObject(Object o, long offset, Object expected, Object x) | 原子地比较并交换对象引用                                     |
-| loadFence()                                                  | 保证该屏障之前的所有读操作一定先于之后的读操作，且之后的读从主内存获取 |
-| storeFence()                                                 | 保证该屏障之前的所有写操作一定先于之后的写操作，且之前的写立即刷到主内存 |
-| fullFence()                                                  | 既约束读又约束写，相当于 loadFence + storeFence              |
+| **allocateMemory(long size)** | 像 C 的 malloc，分配堆外的直接内存 |
+| **freeMemory(long address)** | 像 C 的 free，释放堆外的直接内存 |
+| **putInt(long address, int value)** | 向指定的内存地址写入整型数据 |
+| **getInt(long address)** | 从指定的内存地址读取整型数据 |
+| **allocateInstance(Class<?> c)** | 绕过构造函数直接创建对象（不执行构造方法） |
+| **objectFieldOffset(Field f)** | 获取对象字段的偏移量，用于定位对象内存中的字段 |
+| **compareAndSwapInt(Object o, long offset, int expected, int update)** | 原子地比较并交换整型字段 |
+| **compareAndSwapLong(Object o, long offset, long expected, long update)** | 原子地比较并交换长整型字段 |
+| **compareAndSwapObject(Object o, long offset, Object expected, Object x)** | 原子地比较并交换对象引用 |
+| **loadFence()** | 保证该屏障之前的所有读操作一定先于之后的读操作，且之后的读从主内存获取 |
+| **storeFence()** | 保证该屏障之前的所有写操作一定先于之后的写操作，且之前的写立即刷到主内存 |
+| **fullFence()** | 既约束读又约束写，相当于 loadFence + storeFence |
 
 ### 原理
 
@@ -410,11 +410,11 @@ synchronized 是 Java 提供的一种**互斥锁机制**，核心思想是**同�
 
 ### 问题
 
-| 问题                     | 描述                                                         | 解决                                                         |
+| **问题** | **描述** | **解决** |
 | ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ABA 问题                 | 如果值经过一系列更改后又恢复到初始值，CAS 无法检测到值中间有没有被修改过，它只关心值是否相等 | 给变量加上版本号或者时间戳                                   |
-| 自旋开销大               | 如果 CAS 不成功将会一直循环执行直到成功，如果竞争激烈，就会消耗大量 CPU | 在失败次数过多时退让，结束自旋                               |
-| 只能保证一个变量的原子性 | 如果需要对多个变量同时更新，CAS 无法保证一致性               | 用 AtomicReference 把多个变量封装成一个对象，通过一次 CAS 更新 |
+| **ABA 问题** | 如果值经过一系列更改后又恢复到初始值，CAS 无法检测到值中间有没有被修改过，它只关心值是否相等 | 给变量加上版本号或者时间戳 |
+| **自旋开销大** | 如果 CAS 不成功将会一直循环执行直到成功，如果竞争激烈，就会消耗大量 CPU | 在失败次数过多时退让，结束自旋 |
+| **只能保证一个变量的原子性** | 如果需要对多个变量同时更新，CAS 无法保证一致性 | 用 AtomicReference 把多个变量封装成一个对象，通过一次 CAS 更新 |
 
 
 
@@ -483,12 +483,12 @@ class BoundedBuffer<T> {
 
 Atomic 是 JUC 提供的**数值更新工具**，能在并发环境下保证线程安全和操作原子性，底层都是基于 **CAS + volatile** 实现
 
-| **类别**             | **代表类**                                                   |
+| **类别** | **代表类** |
 | -------------------- | ------------------------------------------------------------ |
-| 原子更新基本数据类型 | AtomicInteger、AtomicLong、AtomicBoolean                     |
-| 原子更新数组中的元素 | AtomicIntegerArray、AtomicLongArray                          |
-| 原子更新对象引用     | AtomicReference、AtomicStampedReference、AtomicMarkableReference |
-| 原子更新某个类的字段 | AtomicIntegerFieldUpdater、AtomicLongFieldUpdater            |
+| **原子更新基本数据类型** | AtomicInteger、AtomicLong、AtomicBoolean |
+| **原子更新数组中的元素** | AtomicIntegerArray、AtomicLongArray |
+| **原子更新对象引用** | AtomicReference、AtomicStampedReference、AtomicMarkableReference |
+| **原子更新某个类的字段** | AtomicIntegerFieldUpdater、AtomicLongFieldUpdater |
 
 ### Future
 
@@ -535,13 +535,13 @@ CompletableFuture 是 Java8 提供的对 Future 的增强版，不仅能支持�
 
 #### 创建任务
 
-| **方法**                  | **说明**                           |
+| **方法** | **说明** |
 | ------------------------- | ---------------------------------- |
-| runAsync(Runnable)        | 创建无返回值的异步任务             |
-| supplyAsync(Supplier\<T>) | 创建有返回值的异步任务             |
-| get()                     | 阻塞等待结果，会抛出受检异常       |
-| getNow(T valueIfAbsent)   | 立即获取结果，如果没有则返回默认值 |
-| join()                    | 阻塞等待结果，会抛出非受检异常     |
+| **runAsync(Runnable)** | 创建无返回值的异步任务 |
+| **supplyAsync(Supplier\<T>)** | 创建有返回值的异步任务 |
+| **get()** | 阻塞等待结果，会抛出受检异常 |
+| **getNow(T valueIfAbsent)** | 立即获取结果，如果没有则返回默认值 |
+| **join()** | 阻塞等待结果，会抛出非受检异常 |
 
 ```java
 CompletableFuture<Void> runFuture = CompletableFuture.runAsync(() -> {
@@ -558,11 +558,11 @@ String result = supplyFuture.get();
 
 #### 链式调用
 
-| **方法**                 | **说明**                                 |
+| **方法** | **说明** |
 | ------------------------ | ---------------------------------------- |
-| thenApply(Function<T,R>) | 获取上一步任务的返回值，并且返回新值     |
-| thenAccept(Consumer\<T>) | 获取上一步任务的返回值，但不返回新值     |
-| thenRun(Runnable)        | 不获取上一步任务的返回值，并且不返回新值 |
+| **thenApply(Function<T,R>)** | 获取上一步任务的返回值，并且返回新值 |
+| **thenAccept(Consumer\<T>)** | 获取上一步任务的返回值，但不返回新值 |
+| **thenRun(Runnable)** | 不获取上一步任务的返回值，并且不返回新值 |
 
 ```java
 CompletableFuture.supplyAsync(() -> "Hello")
@@ -573,12 +573,12 @@ CompletableFuture.supplyAsync(() -> "Hello")
 
 #### 组合任务
 
-| **方法**                                      | **说明**                           |
+| **方法** | **说明** |
 | --------------------------------------------- | ---------------------------------- |
-| thenCombine(CompletionStage, BiFunction)      | 合并两个任务的结果                 |
-| thenCompose(Function<T, CompletionStage\<R>>) | 把上一步的结果作为下一步的输入任务 |
-| allOf(...)                                    | 等待多个任务全部完成，没有返回值   |
-| anyOf(...)                                    | 等待任意一个任务完成，有返回值     |
+| **thenCombine(CompletionStage, BiFunction)** | 合并两个任务的结果 |
+| **thenCompose(Function<T, CompletionStage\<R>>)** | 把上一步的结果作为下一步的输入任务 |
+| **allOf(...)** | 等待多个任务全部完成，没有返回值 |
+| **anyOf(...)** | 等待任意一个任务完成，有返回值 |
 
 ```java
 CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(() -> "任务 1");
@@ -599,10 +599,10 @@ any.thenAccept(r -> System.out.println("最快完成：" + r));
 
 #### 结果处理
 
-| **方法**                              | **说明**             |
+| **方法** | **说明** |
 | ------------------------------------- | -------------------- |
-| exceptionally(Function<Throwable, T>) | 出现异常时返回默认值 |
-| handle(BiFunction<T, Throwable, R>    | 处理正常结果或异常   |
+| **exceptionally(Function<Throwable, T>)** | 出现异常时返回默认值 |
+| **handle(BiFunction<T, Throwable, R>** | 处理正常结果或异常 |
 
 ```java
 cf.exceptionally(e -> "兜底值")
@@ -629,12 +629,12 @@ cf.handle((result, exception) -> {
 
 #### 提交任务
 
-| **方法**  | **参数类型**        | **返回值**       | **特点**               | **场景**           |
+| **方法** | **参数类型** | **返回值** | **特点** | **场景** |
 | --------- | ------------------- | ---------------- | ---------------------- | ------------------ |
-| execute   | Runnable            | void             | 无结果、无异常感知     | 只关心执行         |
-| submit    | Runnable / Callable | Future\<T>       | 可获取结果、异常、取消 | 需要结果和控制感知 |
-| invokeAll | 批量 Callable       | List<Future\<T>> | 阻塞，等所有任务完成   | 批量任务并行       |
-| invokeAny | 批量 Callable       | T                | 阻塞，最快任务返回     | 竞速执行任务       |
+| **execute** | Runnable | void | 无结果、无异常感知 | 只关心执行 |
+| **submit** | Runnable / Callable | Future\<T> | 可获取结果、异常、取消 | 需要结果和控制感知 |
+| **invokeAll** | 批量 Callable | List<Future\<T>> | 阻塞，等所有任务完成 | 批量任务并行 |
+| **invokeAny** | 批量 Callable | T | 阻塞，最快任务返回 | 竞速执行任务 |
 
 #### 任务流程
 

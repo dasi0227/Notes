@@ -398,17 +398,17 @@ UserService userService = context.getBean(UserService.class);
 
 BeanFactory 是 Spring 最核心的 IoC 容器接口，实践中常用他的继承类 **ApplicationContext**
 
-| **方法**                                                     | **作用**                                                   |
+| **方法** | **作用** |
 | ------------------------------------------------------------ | ---------------------------------------------------------- |
-| \<T> T getBean(Class\<T> requiredType)                       | 按类型获取 Bean                                            |
-| \<T> T getBean(String name, Class\<T> requiredType)          | 按名称 + 类型获取 Bean                                     |
-| Object getBean(String name)                                  | 按名称获取 Bean，会执行类型转换                            |
-| Object getBean(String name, Object... args)                  | 按名称获取 Bean，并传入创建时需要的参数                    |
-| boolean containsBean(String name)                            | 判断容器中是否存在指定名称的 Bean                          |
-| boolean isSingleton(String name)                             | 判断指定 Bean 是否为单例                                   |
-| boolean isPrototype(String name)                             | 判断指定 Bean 是否为原型（每次获取都创建新实例）           |
-| boolean isTypeMatch(String name, ResolvableType typeToMatch) | 判断 Bean 类型是否匹配给定类型，用于按名称获取 Bean 的场景 |
-| Class<?> getType(String name)                                | 获取指定 Bean 的类型                                       |
+| **\<T> T getBean(Class\<T> requiredType)** | 按类型获取 Bean |
+| **\<T> T getBean(String name, Class\<T> requiredType)** | 按名称 + 类型获取 Bean |
+| **Object getBean(String name)** | 按名称获取 Bean，会执行类型转换 |
+| **Object getBean(String name, Object... args)** | 按名称获取 Bean，并传入创建时需要的参数 |
+| **boolean containsBean(String name)** | 判断容器中是否存在指定名称的 Bean |
+| **boolean isSingleton(String name)** | 判断指定 Bean 是否为单例 |
+| **boolean isPrototype(String name)** | 判断指定 Bean 是否为原型（每次获取都创建新实例） |
+| **boolean isTypeMatch(String name, ResolvableType typeToMatch)** | 判断 Bean 类型是否匹配给定类型，用于按名称获取 Bean 的场景 |
+| **Class<?> getType(String name)** | 获取指定 Bean 的类型 |
 
 #### IoC 的流程
 
@@ -954,14 +954,14 @@ Resource 接口是 **Spring 对外部资源访问的统一抽象**，无论资�
 
 ### 实现类
 
-| 实现类                 | **应用场景**                                      |
+| **实现类** | **应用场景** |
 | ---------------------- | ------------------------------------------------- |
-| ClassPathResource      | 读取类路径资源（JAR 包或编译目录中的文件）        |
-| FileSystemResource     | 直接访问磁盘文件或目录                            |
-| UrlResource            | 访问 HTTP、FTP、本地 file: 协议等 URL             |
-| ServletContextResource | Web 应用中通过 ServletContext 读取 WEB-INF 等资源 |
-| InputStreamResource    | 把已有的 InputStream 包装成 Resource              |
-| ByteArrayResource      | 把内存数据包装成 Resource                         |
+| **ClassPathResource** | 读取类路径资源（JAR 包或编译目录中的文件） |
+| **FileSystemResource** | 直接访问磁盘文件或目录 |
+| **UrlResource** | 访问 HTTP、FTP、本地 file: 协议等 URL |
+| **ServletContextResource** | Web 应用中通过 ServletContext 读取 WEB-INF 等资源 |
+| **InputStreamResource** | 把已有的 InputStream 包装成 Resource |
+| **ByteArrayResource** | 把内存数据包装成 Resource |
 
 ### ResourceLoader
 
@@ -1102,30 +1102,30 @@ System.out.println(result.getFieldError("age").getDefaultMessage());
 
 Spring 提供了一些常见的校验注解，用在实体类字段、方法参数上，配合校验器自动检查数据是否合法
 
-| **注解**                           | **含义**                                              |
+| **注解** | **含义** |
 | ---------------------------------- | ----------------------------------------------------- |
-| @Null                              | 必须为 null                                           |
-| @NotNull                           | 不能为 null，但可以是空字符串                         |
-| @NotEmpty                          | 字符串/集合/数组/Map 非 null 且长度 > 0               |
-| @NotBlank                          | 字符串非 null，trim() 后长度 > 0                      |
-| @AssertTrue                        | 必须为 true                                           |
-| @AssertFalse                       | 必须为 false                                          |
-| @Min(value)                        | 数值 ≥ value                                          |
-| @Max(value)                        | 数值 ≤ value                                          |
-| @Range(min, max)                   | 数值在 [min, max] 范围内                              |
-| @Positive                          | 数值 > 0                                              |
-| @PositiveOrZero                    | 数值 ≥ 0                                              |
-| @Negative                          | 数值 < 0                                              |
-| @NegativeOrZero                    | 数值 ≤ 0                                              |
-| @Size(min, max)                    | 字符串/集合/数组/Map 长度或元素个数在 [min, max] 范围 |
-| @Length(min, max)                  | 字符串长度在 [min, max] 范围                          |
-| @Pattern(regexp)                   | 字符串匹配指定正则                                    |
-| @Email                             | 字符串须符合邮箱格式                                  |
-| @URL(protocol, host, port, regexp) | 字符串符合 URL 格式，可指定协议等                     |
-| @Past                              | 必须在当前时间之前                                    |
-| @PastOrPresent                     | 必须在当前或之前                                      |
-| @Future                            | 必须在当前时间之后                                    |
-| @FutureOrPresent                   | 必须在当前或之后                                      |
+| **@Null** | 必须为 null |
+| **@NotNull** | 不能为 null，但可以是空字符串 |
+| **@NotEmpty** | 字符串/集合/数组/Map 非 null 且长度 > 0 |
+| **@NotBlank** | 字符串非 null，trim() 后长度 > 0 |
+| **@AssertTrue** | 必须为 true |
+| **@AssertFalse** | 必须为 false |
+| **@Min(value)** | 数值 ≥ value |
+| **@Max(value)** | 数值 ≤ value |
+| **@Range(min, max)** | 数值在 [min, max] 范围内 |
+| **@Positive** | 数值 > 0 |
+| **@PositiveOrZero** | 数值 ≥ 0 |
+| **@Negative** | 数值 < 0 |
+| **@NegativeOrZero** | 数值 ≤ 0 |
+| **@Size(min, max)** | 字符串/集合/数组/Map 长度或元素个数在 [min, max] 范围 |
+| **@Length(min, max)** | 字符串长度在 [min, max] 范围 |
+| **@Pattern(regexp)** | 字符串匹配指定正则 |
+| **@Email** | 字符串须符合邮箱格式 |
+| **@URL(protocol, host, port, regexp)** | 字符串符合 URL 格式，可指定协议等 |
+| **@Past** | 必须在当前时间之前 |
+| **@PastOrPresent** | 必须在当前或之前 |
+| **@Future** | 必须在当前时间之后 |
+| **@FutureOrPresent** | 必须在当前或之后 |
 
 
 
@@ -1285,27 +1285,27 @@ pom 全程 Project Object Model（项目对象模型），在这里面负责规�
 
 【核心标签】
 
-| 标签         | 作用                                 |
+| **标签** | **作用** |
 | ------------ | ------------------------------------ |
-| project      | 最外层标签，必须存在                 |
-| modelVersion | 固定写 4.0.0                         |
-| groupId      | 项目所属的组织或公司标识             |
-| artifactId   | 项目唯一标识符                       |
-| version      | 项目的版本号                         |
-| packaging    | 打包类型                             |
-| properties   | 定义全局变量，统一管理版本号、编码等 |
-| dependencies | 声明项目依赖的库列表                 |
-| build        | 构建配置区，包含插件、资源目录等     |
-| plugins      | 声明构建过程中使用的插件             |
+| **project** | 最外层标签，必须存在 |
+| **modelVersion** | 固定写 4.0.0 |
+| **groupId** | 项目所属的组织或公司标识 |
+| **artifactId** | 项目唯一标识符 |
+| **version** | 项目的版本号 |
+| **packaging** | 打包类型 |
+| **properties** | 定义全局变量，统一管理版本号、编码等 |
+| **dependencies** | 声明项目依赖的库列表 |
+| **build** | 构建配置区，包含插件、资源目录等 |
+| **plugins** | 声明构建过程中使用的插件 |
 
 【依赖库的基本子标签】
 
-| 标签       | 作用                                                         |
+| **标签** | **作用** |
 | :--------- | ------------------------------------------------------------ |
-| groupId    | 组织/公司/项目的域名                                         |
-| artifactId | 具体的库或插件名称                                           |
-| version    | 使用的版本号                                                 |
-| scope      | 依赖项的生命周期和使用范围（compile、provided、runtime、test） |
+| **groupId** | 组织/公司/项目的域名 |
+| **artifactId** | 具体的库或插件名称 |
+| **version** | 使用的版本号 |
+| **scope** | 依赖项的生命周期和使用范围（compile、provided、runtime、test） |
 
 ```xml
 <project>

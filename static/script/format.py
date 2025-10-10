@@ -112,6 +112,11 @@ def format_space(file: Path):
 
     file.write_text(text, encoding="utf-8")
 
+def format_bold(file: Path):
+    text = file.read_text(encoding="utf-8")
+    text = re.sub(r"\*{3,}(.*?)\*{3,}", r"**\1**", text)
+    file.write_text(text, encoding="utf-8")
+
 def format_table(file: Path):
     """
     规范化 Markdown 表格：
@@ -166,15 +171,18 @@ def format_table(file: Path):
     # 写回文件
     file.write_text("\n".join(new_lines), encoding="utf-8")
 
+
+
 if __name__ == "__main__":
     curr_dir = os.path.dirname(os.path.abspath(__file__))
-    # root_dir = os.path.abspath(os.path.join(curr_dir, "../../"))
-    root_dir = "./"
+    root_dir = os.path.abspath(os.path.join(curr_dir, "../../"))
+    # root_dir = "./"
     for file in Path(root_dir).rglob("*.md"):
         format_heading(file)
         format_list(file)
         format_space(file)
         format_table(file)
+        format_bold(file)
         if file.name.lower() == "readme.md":
             continue
         insert_toc(file)

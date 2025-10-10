@@ -71,12 +71,12 @@ SpringMVC：是 Spring Framework 提供的一个基于 MVC 模式的 Web 框架
 - 核心组件是 **DispatcherServlet**，本质上是一个继承自 HttpServlet 并实现 Servlet 接口的类，自动部署到了容器之中，任何请求到服务端都会先进入 DispatcherServlet
 - 核心工作是**将请求映射到 Controller，并将 Model 渲染为 View 返回**
 
-| 角色     | 传统                            | SpringMVC                                  |
+| **角色** | **传统** | **SpringMVC** |
 | -------- | ------------------------------- | ------------------------------------------ |
-| 请求接收 | HttpServlet                     | DispatcherServlet                          |
-| 路由分发 | 手写 if/else 或 switch 判断 URL | HandlerMapping 自动匹配 Controller 方法    |
-| 参数获取 | request.getParameter()          | 自动绑定到方法参数                         |
-| 响应输出 | response.getWriter()            | 返回视图名 + 数据，自动渲染页面或返回 JSON |
+| **请求接收** | HttpServlet | DispatcherServlet |
+| **路由分发** | 手写 if/else 或 switch 判断 URL | HandlerMapping 自动匹配 Controller 方法 |
+| **参数获取** | request.getParameter() | 自动绑定到方法参数 |
+| **响应输出** | response.getWriter() | 返回视图名 + 数据，自动渲染页面或返回 JSON |
 
 ### 流程
 
@@ -101,10 +101,10 @@ SpringMVC：是 Spring Framework 提供的一个基于 MVC 模式的 Web 框架
 - 数据：从后端传过来的真实数据，可以是字符串、数值和对象
 - 渲染：用数据替换模板中的占位符，生成最终的输出文件
 
-| 类型           | 定义                                          | 优点                                       | 例子           |
+| **类型** | **定义** | **优点** | **例子** |
 | -------------- | --------------------------------------------- | ------------------------------------------ | -------------- |
-| 服务端模版引擎 | 在后端把数据渲染成 HTML，直接返回给浏览器展示 | 首屏加载快、对 SEO 友好                    | Themeleaf、JSP |
-| 客户端模版引擎 | 将数据交给前端，由前端进行渲染展示            | 页面交互灵活，局部刷新不必整个页面重新加载 | Vue、React     |
+| **服务端模版引擎** | 在后端把数据渲染成 HTML，直接返回给浏览器展示 | 首屏加载快、对 SEO 友好 | Themeleaf、JSP |
+| **客户端模版引擎** | 将数据交给前端，由前端进行渲染展示 | 页面交互灵活，局部刷新不必整个页面重新加载 | Vue、React |
 
 
 
@@ -171,12 +171,12 @@ springMVC.xml 是 SpringMVC 框架的**核心配置文件**，位于 `resources/
 
 ### Ant 风格路径
 
-| **符号** | **含义**                | **示例**                                                     |
+| **符号** | **含义** | **示例** |
 | -------- | ----------------------- | ------------------------------------------------------------ |
-| ?        | 匹配**任意单个字符**    | /user/?? 匹配 /user/ab、/user/x1                             |
-| *        | 匹配 **0 个或多个字符** | /app/*.html 匹配 /app/index.html、/app/.html                 |
-| **       | 匹配 **0 个或多个目录** | /a/** 匹配 /a/、/a/x、/a/x/y/z；<br />/**/a 匹配 /a、/x/a、/x/y/z/a |
-| {var}    | 匹配并捕获路径段到变量  | /user/{id}/order 匹配 /user/42/order                         |
+| **?** | 匹配**任意单个字符** | /user/?? 匹配 /user/ab、/user/x1 |
+| **** | 匹配 **0 个或多个字符** | /app/*.html 匹配 /app/index.html、/app/.html |
+| **** | 匹配 **0 个或多个目录** | /a/** 匹配 /a/、/a/x、/a/x/y/z；<br />/**/a 匹配 /a、/x/a、/x/y/z/a |
+| **{var}** | 匹配并捕获路径段到变量 | /user/{id}/order 匹配 /user/42/order |
 
 ### 使用方法
 
@@ -541,11 +541,11 @@ public String testUp(@RequestParam("photo") MultipartFile photo, HttpSession ses
 
 **HandlerInterceptor 是位于 DispatcherServlet 与 Controller 之间的组件**，用来对请求进行预处理和后处理
 
-| **方法**          | **调用时机**                  | **作用**                               |
+| **方法** | **调用时机** | **作用** |
 | ----------------- | ----------------------------- | -------------------------------------- |
-| preHandle()       | Controller 执行前             | 返回 true 继续执行；false 直接中断请求 |
-| postHandle()      | Controller 执行后，视图渲染前 | 可修改 ModelAndView                    |
-| afterCompletion() | 视图渲染后                    | 清理资源、记录日志、异常处理           |
+| **preHandle()** | Controller 执行前 | 返回 true 继续执行；false 直接中断请求 |
+| **postHandle()** | Controller 执行后，视图渲染前 | 可修改 ModelAndView |
+| **afterCompletion()** | 视图渲染后 | 清理资源、记录日志、异常处理 |
 
 ```java
 public interface HandlerInterceptor {

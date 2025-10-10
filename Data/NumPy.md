@@ -47,15 +47,15 @@ NumPy 的数组实际上是一个 ndarray 对象，用于存放同类型元素�
 
 ndarray 作为对象，具有很多内部属性，这里列出一些常用的属性
 
-|属性|说明|
-|-|-|
-|ndarray.ndim|数组的维度/秩/轴数|
-|ndarray.shape|数组的形状，即数组在每个轴上的大小|
-|ndarray.size|数组的元素个数，即每个轴上的大小的累乘|
-|ndarray.dtype|数组元素的数据类型|
-|ndarray.itemsize|每个元素的字节大小|
-|ndarray.flags|包含内存布局的信息|
-|ndarray.T|数组的转置属性，返回轴顺序的反转结果|
+| **属性** | **说明** |
+| - | - |
+| **ndarray.ndim** | 数组的维度/秩/轴数 |
+| **ndarray.shape** | 数组的形状，即数组在每个轴上的大小 |
+| **ndarray.size** | 数组的元素个数，即每个轴上的大小的累乘 |
+| **ndarray.dtype** | 数组元素的数据类型 |
+| **ndarray.itemsize** | 每个元素的字节大小 |
+| **ndarray.flags** | 包含内存布局的信息 |
+| **ndarray.T** | 数组的转置属性，返回轴顺序的反转结果 |
 
 ### 1.3 数据类型
 
@@ -80,20 +80,20 @@ print(student['marks']) # -> [50.0 75.0]
 
 ### 1.4 创建数组
 
-|方式|说明|例子|
-|-|-|-|
-|`np.array(object)`|从 array-like 对象创建数组|`np.array([1, 2, 3])` -> [1 2 3]|
-|`np.asarray(object)`|从 array-like 对象创建数组，但是视图而不是副本|`np.asarray([4, 5, 6])` -> [4 5 6]|
-|`np.zeros(shape)`|创建所有元素为 0 的数组|`np.zeros((2, 3))` -> \[[0. 0. 0.] [0. 0. 0.]]|
-|`np.zeros_like(ndarray)`|创建与给定数组具有相同形状的数组但是值都为 0 的数组|`np.zeros_like(np.array([[1, 2], [3, 4]]))` -> \[[0 0] [0 0]]|
-|`np.ones_like(ndarray)`|创建与给定数组具有相同形状的数组但是值都为 1 的数组|`np.ones_like(np.array([[1, 2], [3, 4]]))` -> \[[1 1] [1 1]]|
-|`np.ones(shape)`|创建所有元素为 1 的数组|`np.ones((2, 2))` -> \[[1. 1.] [1. 1.]]|
-|`np.eye(shape)`|创建对角线为 1，其余为 0 的单位数组|`np.eye(3)` -> \[[1. 0. 0.] [0. 1. 0.] [0. 0. 1.]]|
-|`np.empty(shape)`|创建未初始化的数组，值是随机的|`np.empty((2, 2))` -> 输出未初始化数组|
-|`np.arange(begin, end, step)`|创建等间隔数组|`np.arange(0, 10, 2)` -> [0 2 4 6 8]|
-|`np.linspace(begin, end, num)`|创建给定区间和数量的等差数组|`np.linspace(0, 1, 5)` -> [0.   0.25 0.5  0.75 1.  ]|
-|`np.logspace(begin, end, num)`|创建给定区间和数量的等比数组|`np.logspace(0, 2, 3)` -> [  1.  10. 100.]|
-|`np.full(shape, value)`|创建指定值填充的数组|`np.full((2, 3), 7)` -> \[[7 7 7] [7 7 7]]|
+| **方式** | **说明** | **例子** |
+| - | - | - |
+| **`np.array(object)`** | 从 array-like 对象创建数组 | `np.array([1, 2, 3])` -> [1 2 3] |
+| **`np.asarray(object)`** | 从 array-like 对象创建数组，但是视图而不是副本 | `np.asarray([4, 5, 6])` -> [4 5 6] |
+| **`np.zeros(shape)`** | 创建所有元素为 0 的数组 | `np.zeros((2, 3))` -> \[[0. 0. 0.] [0. 0. 0.]] |
+| **`np.zeros_like(ndarray)`** | 创建与给定数组具有相同形状的数组但是值都为 0 的数组 | `np.zeros_like(np.array([[1, 2], [3, 4]]))` -> \[[0 0] [0 0]] |
+| **`np.ones_like(ndarray)`** | 创建与给定数组具有相同形状的数组但是值都为 1 的数组 | `np.ones_like(np.array([[1, 2], [3, 4]]))` -> \[[1 1] [1 1]] |
+| **`np.ones(shape)`** | 创建所有元素为 1 的数组 | `np.ones((2, 2))` -> \[[1. 1.] [1. 1.]] |
+| **`np.eye(shape)`** | 创建对角线为 1，其余为 0 的单位数组 | `np.eye(3)` -> \[[1. 0. 0.] [0. 1. 0.] [0. 0. 1.]] |
+| **`np.empty(shape)`** | 创建未初始化的数组，值是随机的 | `np.empty((2, 2))` -> 输出未初始化数组 |
+| **`np.arange(begin, end, step)`** | 创建等间隔数组 | `np.arange(0, 10, 2)` -> [0 2 4 6 8] |
+| **`np.linspace(begin, end, num)`** | 创建给定区间和数量的等差数组 | `np.linspace(0, 1, 5)` -> [0.   0.25 0.5  0.75 1.  ] |
+| **`np.logspace(begin, end, num)`** | 创建给定区间和数量的等比数组 | `np.logspace(0, 2, 3)` -> [  1.  10. 100.] |
+| **`np.full(shape, value)`** | 创建指定值填充的数组 | `np.full((2, 3), 7)` -> \[[7 7 7] [7 7 7]] |
 
 > 注意上面所有函数都可以传入参数 `dtype` 来指定数据类型
 
@@ -199,11 +199,11 @@ for x in np.nditer(a, order='F'):
 
 ### 2.5 修改数组形状
 
-|函数|说明|
-|-|-|
-|`np.reshpae(ndarray, shape)`|传入一个元组表示每个轴上的大小，在不改变数据的条件下修改形状，但必须保持修改前后的数组大小一致，返回的是视图|
-|`np.ravel(ndarray)`|返回数组的一份试图，并将数组展平成一维数组，原始数组会受到影响|
-|`ndarray.flatten()`|返回数组的一份拷贝，并将数组展平成一维数组，原始数组不会受到影响|
+| **函数** | **说明** |
+| - | - |
+| **`np.reshpae(ndarray, shape)`** | 传入一个元组表示每个轴上的大小，在不改变数据的条件下修改形状，但必须保持修改前后的数组大小一致，返回的是视图 |
+| **`np.ravel(ndarray)`** | 返回数组的一份试图，并将数组展平成一维数组，原始数组会受到影响 |
+| **`ndarray.flatten()`** | 返回数组的一份拷贝，并将数组展平成一维数组，原始数组不会受到影响 |
 
 ```python
 a = np.array([[1,2],[3,4]])
@@ -213,11 +213,11 @@ print(np.ravel(a))           # -> [1 2 3 4]
 
 ### 2.6 翻转数组
 
-|函数|说明|
-|-|-|
-|`np.transpose(ndarray, axes)`|传入新轴顺序来指定目标排列，注意不能传递重复的轴|
-|`np.rollaxis(ndarray, axis, index)`|将指定轴滚动到目标位置，其它轴的位置相应调整|
-|`np.swapaxe(ndarray, axis1, axis2)`|交换数组中两个指定的轴，返回新的数组|
+| **函数** | **说明** |
+| - | - |
+| **`np.transpose(ndarray, axes)`** | 传入新轴顺序来指定目标排列，注意不能传递重复的轴 |
+| **`np.rollaxis(ndarray, axis, index)`** | 将指定轴滚动到目标位置，其它轴的位置相应调整 |
+| **`np.swapaxe(ndarray, axis1, axis2)`** | 交换数组中两个指定的轴，返回新的数组 |
 
 ```python
 a = np.arange(24).reshape((2, 3, 4))
@@ -251,11 +251,11 @@ print(np.swapaxes(a, 0, 1))       # 将轴 1 和轴 0 互换
 
 ### 2.7 修改数组维度
 
-|函数|说明|
-|-|-|
-|`np.broadcast_to(ndarray, shape)`|将数组中大小为 1 的维度广播到指定形状|
-|`np.expand_dims(ndarray, axis)`|在指定位置插入新的轴|
-|`np.squeeze(ndarray, axis)`|删除数组中大小为 1 的维度|
+| **函数** | **说明** |
+| - | - |
+| **`np.broadcast_to(ndarray, shape)`** | 将数组中大小为 1 的维度广播到指定形状 |
+| **`np.expand_dims(ndarray, axis)`** | 在指定位置插入新的轴 |
+| **`np.squeeze(ndarray, axis)`** | 删除数组中大小为 1 的维度 |
 
 ```python
 a = np.array([1, 2, 3])
@@ -268,12 +268,12 @@ print(np.squeeze(a))              # -> [1 2 3]
 
 ### 2.8 连接数组
 
-|函数|说明|
-|-|-|
-|`np.concatenate((a1, a2,...), axes)`|连接沿着指定轴的数组|
-|`np.stack((a1, a2,...), axes)`|沿着新的轴加入数组|
-|`np.vstack((a1, a2,...))`|沿着第 0 轴的方向竖直堆叠|
-|`np.hstack((a1, a2,...))`|沿着第 1 轴的方向水平堆叠|
+| **函数** | **说明** |
+| - | - |
+| **`np.concatenate((a1, a2,...), axes)`** | 连接沿着指定轴的数组 |
+| **`np.stack((a1, a2,...), axes)`** | 沿着新的轴加入数组 |
+| **`np.vstack((a1, a2,...))`** | 沿着第 0 轴的方向竖直堆叠 |
+| **`np.hstack((a1, a2,...))`** | 沿着第 1 轴的方向水平堆叠 |
 
 ```python
 a = np.array([[1, 2], [3, 4]])
@@ -287,11 +287,11 @@ print(np.hstack((a,b)))               # -> [[1 2 5 6] [3 4 7 8]]
 
 ### 2.9 分割数组
 
-|函数|说明|
-|-|-|
-|`np.split(ndarray, num, axis)`|将一个数组沿着指定轴分割为多个子数组|
-|`np.vsplit(ndarray, num)`|将一个数组沿着第 0 轴分割为多个子数组|
-|`np.hsplit(ndarray, num)`|将一个数组沿着第 1 轴分割为多个子数组|
+| **函数** | **说明** |
+| - | - |
+| **`np.split(ndarray, num, axis)`** | 将一个数组沿着指定轴分割为多个子数组 |
+| **`np.vsplit(ndarray, num)`** | 将一个数组沿着第 0 轴分割为多个子数组 |
+| **`np.hsplit(ndarray, num)`** | 将一个数组沿着第 1 轴分割为多个子数组 |
 
 ```python
 a = np.arange(16).reshape((4, 4))
@@ -361,97 +361,97 @@ print(np.unique(a, return_counts=True)[1])
 
 ### 3.1 字符串运算
 
-| 函数 | 说明 |
+| **函数** | **说明** |
 | --- | --- |
-| `np.char.add(a, b)` | 对两个字符串数组逐元素连接 |
-| `np.char.multiply(a, n)` | 将字符串重复 n 次 |
-| `np.char.center(a, width, fillchar=' ')` | 将字符串居中，并用指定字符填充至给定宽度 |
-| `np.char.capitalize(a)` | 将字符串首字母大写，其余字母小写 |
-| `np.char.title(a)` | 将字符串中每个单词的首字母大写 |
-| `np.char.lower(a)` | 将字符串转换为小写 |
-| `np.char.upper(a)` | 将字符串转换为大写 |
-| `np.char.strip(a, chars)` | 删除字符串首尾处的指定字符，默认删除空格 |
-| `np.char.split(a, sep)` | 按指定分隔符拆分字符串 |
-| `np.char.find(a, sub)` | 查找子字符串首次出现的位置 |
-| `np.char.replace(a, old, new)` | 将字符串中的子串替换为新字符串 |
+| **`np.char.add(a, b)`** | 对两个字符串数组逐元素连接 |
+| **`np.char.multiply(a, n)`** | 将字符串重复 n 次 |
+| **`np.char.center(a, width, fillchar=' ')`** | 将字符串居中，并用指定字符填充至给定宽度 |
+| **`np.char.capitalize(a)`** | 将字符串首字母大写，其余字母小写 |
+| **`np.char.title(a)`** | 将字符串中每个单词的首字母大写 |
+| **`np.char.lower(a)`** | 将字符串转换为小写 |
+| **`np.char.upper(a)`** | 将字符串转换为大写 |
+| **`np.char.strip(a, chars)`** | 删除字符串首尾处的指定字符，默认删除空格 |
+| **`np.char.split(a, sep)`** | 按指定分隔符拆分字符串 |
+| **`np.char.find(a, sub)`** | 查找子字符串首次出现的位置 |
+| **`np.char.replace(a, old, new)`** | 将字符串中的子串替换为新字符串 |
 
 ### 3.2 数学运算
 
-| 函数 | 说明 |
+| **函数** | **说明** |
 | --- | --- |
-| `np.add(x, y)` | 逐元素相加 |
-| `np.subtract(x, y)` | 逐元素相减 |
-| `np.multiply(x, y)` | 逐元素相乘 |
-| `np.divide(x, y)` | 逐元素相除 |
-| `np.power(x, y)` | 逐元素求幂（x 的 y 次方） |
-| `np.sqrt(x)` | 逐元素开平方 |
-| `np.exp(x)` | 逐元素计算指数函数 e^x |
-| `np.log(x)` | 逐元素计算自然对数 |
-| `np.sin(x)` | 逐元素计算正弦 |
-| `np.cos(x)` | 逐元素计算余弦 |
-| `np.tan(x)` | 逐元素计算正切 |
-| `np.abs(x)` | 逐元素取绝对值 |
-| `np.floor(x)` | 逐元素向下取整 |
-| `np.ceil(x)` | 逐元素向上取整 |
+| **`np.add(x, y)`** | 逐元素相加 |
+| **`np.subtract(x, y)`** | 逐元素相减 |
+| **`np.multiply(x, y)`** | 逐元素相乘 |
+| **`np.divide(x, y)`** | 逐元素相除 |
+| **`np.power(x, y)`** | 逐元素求幂（x 的 y 次方） |
+| **`np.sqrt(x)`** | 逐元素开平方 |
+| **`np.exp(x)`** | 逐元素计算指数函数 e^x |
+| **`np.log(x)`** | 逐元素计算自然对数 |
+| **`np.sin(x)`** | 逐元素计算正弦 |
+| **`np.cos(x)`** | 逐元素计算余弦 |
+| **`np.tan(x)`** | 逐元素计算正切 |
+| **`np.abs(x)`** | 逐元素取绝对值 |
+| **`np.floor(x)`** | 逐元素向下取整 |
+| **`np.ceil(x)`** | 逐元素向上取整 |
 
 ### 3.3 统计运算
 
-| 函数 | 说明 |
+| **函数** | **说明** |
 | --- | --- |
-| `np.sum(a, axis)` | 返回数组所有元素的和 |
-| `np.mean(a, axis)` | 返回数组元素的均值 |
-| `np.median(a, axis)` | 返回数组元素的中位数 |
-| `np.std(a, axis)` | 返回数组元素的标准差 |
-| `np.var(a, axis)` | 返回数组元素的方差 |
-| `np.min(a, axis)` | 返回数组中的最小值 |
-| `np.max(a, axis)` | 返回数组中的最大值 |
-| `np.ptp(a, axis)` | 返回数组的极差，即最大值和最小值之差 |
-| `np.percentile(a, q, axis)` | 返回数组中位于 q 百分位数处的值（q 为 0～100 的数字） |
-| `np.quantile(a, q, axis)` | 返回数组中位于 q 分位数处的值（q 在 0～1 之间） |
-| `np.cumsum(a, axis)` | 返回数组的累积和 |
-| `np.cumprod(a, axis)` | 返回数组的累积乘积 |
-| `np.average(a, axis, weights)` | 计算数组按照给定权重的加权平均值 |
-| `np.sort(a, axis, kind, order)` | 返回输入数组的排序副本 |
+| **`np.sum(a, axis)`** | 返回数组所有元素的和 |
+| **`np.mean(a, axis)`** | 返回数组元素的均值 |
+| **`np.median(a, axis)`** | 返回数组元素的中位数 |
+| **`np.std(a, axis)`** | 返回数组元素的标准差 |
+| **`np.var(a, axis)`** | 返回数组元素的方差 |
+| **`np.min(a, axis)`** | 返回数组中的最小值 |
+| **`np.max(a, axis)`** | 返回数组中的最大值 |
+| **`np.ptp(a, axis)`** | 返回数组的极差，即最大值和最小值之差 |
+| **`np.percentile(a, q, axis)`** | 返回数组中位于 q 百分位数处的值（q 为 0～100 的数字） |
+| **`np.quantile(a, q, axis)`** | 返回数组中位于 q 分位数处的值（q 在 0～1 之间） |
+| **`np.cumsum(a, axis)`** | 返回数组的累积和 |
+| **`np.cumprod(a, axis)`** | 返回数组的累积乘积 |
+| **`np.average(a, axis, weights)`** | 计算数组按照给定权重的加权平均值 |
+| **`np.sort(a, axis, kind, order)`** | 返回输入数组的排序副本 |
 
 ### 3.4 线性代数运算
 
-| 函数 | 说明 |
+| **函数** | **说明** |
 | --- | --- |
-| `np.dot(a, b)` | 计算向量内积或矩阵乘法；当 a 和 b 为一维时，返回向量内积；当其中一个或两个是二维及以上时，执行矩阵乘法 |
-| `np.vdot(a, b)`           | 对两个数组执行向量点积。先将输入数组展平为一维（对于复数数组，会对第一个数组取共轭），然后计算对应元素乘积的和。 |
-| `np.inner(a, b)`          | 计算两个数组的内积。对于一维数组，效果与向量内积相同；对于多维数组，内积是对最后一个轴与倒数第二个轴进行乘积后求和。 |
-| `np.matmul(a, b)` | 矩阵乘法，与 `@` 操作符等效 |
-| `np.linalg.inv(a)` | 计算方阵 a 的逆矩阵 |
-| `np.linalg.det(a)` | 计算方阵 a 的行列式 |
-| `np.linalg.eig(a)` | 计算方阵 a 的特征值和特征向量，返回元组 (w, v)，其中 w 为特征值，v 为特征向量组成的矩阵 |
-| `np.linalg.solve(a, b)` | 解线性方程组 Ax = b，其中 a 为系数矩阵，b 为常数向量或矩阵 |
-| `np.linalg.norm(a, ord=None)` | 计算向量或矩阵的范数；ord 参数可指定范数类型，如 L2 范数（默认）、L1 范数、无穷范数等 |
+| **`np.dot(a, b)`** | 计算向量内积或矩阵乘法；当 a 和 b 为一维时，返回向量内积；当其中一个或两个是二维及以上时，执行矩阵乘法 |
+| **`np.vdot(a, b)`** | 对两个数组执行向量点积。先将输入数组展平为一维（对于复数数组，会对第一个数组取共轭），然后计算对应元素乘积的和。 |
+| **`np.inner(a, b)`** | 计算两个数组的内积。对于一维数组，效果与向量内积相同；对于多维数组，内积是对最后一个轴与倒数第二个轴进行乘积后求和。 |
+| **`np.matmul(a, b)`** | 矩阵乘法，与 `@` 操作符等效 |
+| **`np.linalg.inv(a)`** | 计算方阵 a 的逆矩阵 |
+| **`np.linalg.det(a)`** | 计算方阵 a 的行列式 |
+| **`np.linalg.eig(a)`** | 计算方阵 a 的特征值和特征向量，返回元组 (w, v)，其中 w 为特征值，v 为特征向量组成的矩阵 |
+| **`np.linalg.solve(a, b)`** | 解线性方程组 Ax = b，其中 a 为系数矩阵，b 为常数向量或矩阵 |
+| **`np.linalg.norm(a, ord=None)`** | 计算向量或矩阵的范数；ord 参数可指定范数类型，如 L2 范数（默认）、L1 范数、无穷范数等 |
 
 
 ### 3.4 条件筛选运算
 
-| 函数 | 说明 |
+| **函数** | **说明** |
 | --- | --- |
-| `np.argsort(a, axis, kind, order)` | 返回的是数组值从小到大的索引值 |
-| `np.argmin(a, axis)` | 返回数组中的最小值的索引 |
-| `np.argmax(a, axis)` | 返回数组中的最大值的索引 |
-| `np.nonzero(a, axis)` | 返回数组中非零元素的索引 |
-| `np.where(condition)` | 返回数组中满足条件的索引 |
-| `np.extract(condition, a)` | 从 arr 中提取出满足条件的元素，返回一维数组 |
+| **`np.argsort(a, axis, kind, order)`** | 返回的是数组值从小到大的索引值 |
+| **`np.argmin(a, axis)`** | 返回数组中的最小值的索引 |
+| **`np.argmax(a, axis)`** | 返回数组中的最大值的索引 |
+| **`np.nonzero(a, axis)`** | 返回数组中非零元素的索引 |
+| **`np.where(condition)`** | 返回数组中满足条件的索引 |
+| **`np.extract(condition, a)`** | 从 arr 中提取出满足条件的元素，返回一维数组 |
 
 
 
 ## 4. 随机模块
 
-| 函数 | 说明 |
+| **函数** | **说明** |
 | --- | --- |
-| `np.random.rand(d0, d1, ...)` | 生成 [0,1) 之间均匀分布的随机浮点数数组，参数为数组各维度的大小 |
-| `np.random.randn(d0, d1, ...)` | 生成标准正态分布（均值为 0，标准差为 1）的随机数数组，参数为数组各维度的大小 |
-| `np.random.normal(loc, scale, shape)` | 生成服从给定均值和标准差的正态分布/高斯分布的随机数，shape 指定输出数组的形状 |
-| `np.random.randint(low, high, shape)` | 从 [low, high) 区间内生成随机整数，shape 指定输出数组的形状 |
-| `np.random.choice(a, shape, replace=True, p=None)` | 从一维数组 a 中随机抽取样本，shape 为输出样本的数量，replace 控制是否可重复抽样，p 为每个元素的概率分布 |
-| `np.random.shuffle(x)` | 原地随机打乱数组 x 的顺序（仅适用于一维或多维数组的第一个轴） |
-| `np.random.permutation(x)` | 返回 [0, x) 的随机排列 |
+| **`np.random.rand(d0, d1, ...)`** | 生成 [0,1) 之间均匀分布的随机浮点数数组，参数为数组各维度的大小 |
+| **`np.random.randn(d0, d1, ...)`** | 生成标准正态分布（均值为 0，标准差为 1）的随机数数组，参数为数组各维度的大小 |
+| **`np.random.normal(loc, scale, shape)`** | 生成服从给定均值和标准差的正态分布/高斯分布的随机数，shape 指定输出数组的形状 |
+| **`np.random.randint(low, high, shape)`** | 从 [low, high) 区间内生成随机整数，shape 指定输出数组的形状 |
+| **`np.random.choice(a, shape, replace=True, p=None)`** | 从一维数组 a 中随机抽取样本，shape 为输出样本的数量，replace 控制是否可重复抽样，p 为每个元素的概率分布 |
+| **`np.random.shuffle(x)`** | 原地随机打乱数组 x 的顺序（仅适用于一维或多维数组的第一个轴） |
+| **`np.random.permutation(x)`** | 返回 [0, x) 的随机排列 |
 
 
 

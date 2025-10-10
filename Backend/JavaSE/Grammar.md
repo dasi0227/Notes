@@ -91,18 +91,18 @@ package com.example.myapp;
 
 常见的包
 
-| 包名            | 用途说明                                                     |
+| **包名** | **用途说明** |
 | --------------- | ------------------------------------------------------------ |
-| `java.lang`     | 核心类库，自动导入，如 `String`、`Object`、`Math`、`System`  |
-| `java.util`     | 工具类和集合框架，如 `List`、`Map`、`Date`、`Collections`    |
-| `java.io`       | 输入输出流，文件读写相关                                     |
-| `java.nio`      | NIO（New IO），支持缓冲区、通道，适合高性能 IO               |
-| `java.net`      | 网络编程，支持 `URL`、`Socket` 等                            |
-| `java.time`     | 日期和时间 API（Java 8+），如 `LocalDate`、`Instant`         |
-| `java.math`     | 高精度数学运算，如 `BigDecimal`、`BigInteger`                |
-| `java.sql`      | JDBC 数据库访问相关接口                                      |
-| `java.security` | 加密与安全机制，如 `MessageDigest`、`KeyStore`               |
-| `javax.*`       | Java 扩展库，如 `javax.servlet`（Web）、`javax.swing`（GUI） |
+| **`java.lang`** | 核心类库，自动导入，如 `String`、`Object`、`Math`、`System` |
+| **`java.util`** | 工具类和集合框架，如 `List`、`Map`、`Date`、`Collections` |
+| **`java.io`** | 输入输出流，文件读写相关 |
+| **`java.nio`** | NIO（New IO），支持缓冲区、通道，适合高性能 IO |
+| **`java.net`** | 网络编程，支持 `URL`、`Socket` 等 |
+| **`java.time`** | 日期和时间 API（Java 8+），如 `LocalDate`、`Instant` |
+| **`java.math`** | 高精度数学运算，如 `BigDecimal`、`BigInteger` |
+| **`java.sql`** | JDBC 数据库访问相关接口 |
+| **`java.security`** | 加密与安全机制，如 `MessageDigest`、`KeyStore` |
+| **`javax.*`** | Java 扩展库，如 `javax.servlet`（Web）、`javax.swing`（GUI） |
 
 ### Annotation
 
