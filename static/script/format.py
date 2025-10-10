@@ -112,14 +112,69 @@ def format_space(file: Path):
 
     file.write_text(text, encoding="utf-8")
 
+def format_table(file: Path):
+    """
+    规范化 Markdown 表格：
+    - 第一行（表头）每列加粗
+    - 每行的第一列加粗
+    - 保证竖线 | 对齐，不多空格
+    - 支持整篇文件多张表格
+    """
+    lines = file.read_text(encoding="utf-8").splitlines()
+    new_lines = []
+    n = len(lines)
+    i = 0
+
+    while i < n:
+        line = lines[i]
+
+        # 判断是否进入表格块
+        if line.strip().startswith("|") and line.strip().endswith("|"):
+            table_block = []
+            # 收集整个表格
+            while i < n and lines[i].strip().startswith("|") and lines[i].strip().endswith("|"):
+                table_block.append(lines[i])
+                i += 1
+
+            # === 对整张表格进行格式化 ===
+            for idx, row in enumerate(table_block):
+                parts = [p.strip() for p in row.strip().split("|") if p.strip() != ""]
+
+                # 第二行如果是分隔行 | ---- | ---- | 跳过处理
+                if all(set(p) <= {"-", ":"} for p in parts):
+                    new_lines.append("| " + " | ".join(parts) + " |")
+                    continue
+
+                if idx == 0:
+                    # 第一行 → 每列都加粗
+                    parts = [f"**{p}**" for p in parts]
+                else:
+                    # 其他行 → 仅第一列加粗
+                    if parts:
+                        parts[0] = f"**{parts[0]}**"
+
+                new_line = "| " + " | ".join(parts) + " |"
+                new_lines.append(new_line)
+
+            # 继续外层循环（不要忘了 continue）
+            continue
+        else:
+            # 非表格行
+            new_lines.append(line)
+            i += 1
+
+    # 写回文件
+    file.write_text("\n".join(new_lines), encoding="utf-8")
+
 if __name__ == "__main__":
     curr_dir = os.path.dirname(os.path.abspath(__file__))
-    root_dir = os.path.abspath(os.path.join(curr_dir, "../../"))
-    # root_dir = "./"
+    # root_dir = os.path.abspath(os.path.join(curr_dir, "../../"))
+    root_dir = "./"
     for file in Path(root_dir).rglob("*.md"):
         format_heading(file)
         format_list(file)
         format_space(file)
+        format_table(file)
         if file.name.lower() == "readme.md":
             continue
         insert_toc(file)
