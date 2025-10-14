@@ -64,6 +64,10 @@
 - [高性能](Theory/Performance.md)：待学习...
 - [高可用](Theory/Availability.md)：待学习...
 
+### 🧠 算法
+
+- [树](Algorithm/Tree.md)：
+
 ### ⚙️ DevOps
 
 - [Docker](DevOps/Docker.md)：待学习...

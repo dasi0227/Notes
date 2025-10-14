@@ -992,8 +992,6 @@ final Node<K,V> getNode(int hash, Object key) {
 
 ##### resize 方法
 
-
-
 ```java
 final Node<K,V>[] resize() {
     Node<K,V>[] oldTab = table;             // 原数组
