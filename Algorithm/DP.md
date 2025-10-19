@@ -197,6 +197,8 @@ class Solution {
 dp\[i][j] 表示在开区间 (i, j) 内，戳破所有气球能获得的最大金币数
 
 【转移方程】
+
+撒
 $$
 dp[i][j] = \max_{i < k < j}\big( dp[i][k] + dp[k][j] + arr[i] \times arr[k] \times arr[j] \big)
 $$
