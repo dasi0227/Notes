@@ -2,6 +2,29 @@
 
 
 
+   * [快速排序](#快速排序)
+      * [二向划分](#二向划分)
+      * [三向划分](#三向划分)
+      * [快速选择](#快速选择)
+   * [链表排序](#链表排序)
+      * [原地排序](#原地排序)
+      * [归并排序](#归并排序)
+   * [快慢指针](#快慢指针)
+      * [链表中点](#链表中点)
+      * [环检测](#环检测)
+   * [双指针](#双指针)
+      * [反转链表](#反转链表)
+      * [反转单词](#反转单词)
+   * [特殊数据结构](#特殊数据结构)
+      * [有序链表：LRU](#有序链表lru)
+      * [并查集：最小连通数](#并查集最小连通数)
+      * [堆：TopK](#堆topk)
+      * [单调队列：滑动窗口](#单调队列滑动窗口)
+   * [找出消失数字](#找出消失数字)
+   * [字符串解码](#字符串解码)
+
+
+
 ## 快速排序
 
 ### 二向划分
@@ -372,7 +395,7 @@ class Solution {
 
 ## 特殊数据结构
 
-### LRU
+### 有序链表：LRU
 
 LRU 需要配合 Map 和 LinkedList 实现，Map 负责检查是否命中缓存，而 LinkedList 负责维护最近关系
 
@@ -464,7 +487,7 @@ class LRUCache {
 }
 ```
 
-### 并查集
+### 并查集：最小连通数
 
 如果最直观的实现并查集，那么是为每个元素维护一个集合 Set，组成一个列表 List\<Set>，然后每遇到两个符合题意的元素，就从列表中取出这两个元素所在的集合，做一次并集操作再放回。
 
@@ -479,7 +502,7 @@ class LRUCache {
 - 合并：为了让查找操作更快，树的高度越小越好，因此对于两颗树，应该让小树挂在到大树的根节点下，这样**只有小部分节点查找时需要多一步，而大部分节点查找步数不变**
 
 ```java
-class UnionFind {吃一下
+class UnionFind {
     Map<Integer, Integer> parent = new HashMap<>();
     Map<Integer, Integer> size = new HashMap<>();
   
@@ -527,7 +550,7 @@ class UnionFind {吃一下
 }
 ```
 
-### TopK
+### 堆：TopK
 
 当我们需要找最大的 K 个元素时，实际上可以维护一个大小为 K 的最小堆（注意不是最大堆），当有新元素需要进来时，只需要比较堆头元素和新元素
 
@@ -602,6 +625,49 @@ public class MinHeap {
 }
 ```
 
+### 单调队列：滑动窗口
+
+滑动窗口可以用一个双端队列来维护元素索引，每次窗口滑动，都将最左边的元素索引出队，将当前元素索引入队。如果要统计每次滑动窗口的最大值，那么就需要让这个队列保持单调递减，这样队首就是最大元素的索引，而只需要 O(1) 时间就可以获取最大值。特别需要注意的是：
+
+- 每次获取最大值前，都必须先检查当前队首元素索引会不会出队
+- 每次加入当前值的索引，都需要将队内所有小于当前值的元素索引出队，**因为他们不但比当前值早入队，还比当前值小，因此之后永远都不可能作为队首元素**，可以直接移除
+
+```java
+public class SlidingWindow {
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        if (nums == null || nums.length == 0 || k <= 0) {
+            return new int[0];
+        }
+
+        int n = nums.length;
+        int[] res = new int[n - k + 1];
+        Deque<Integer> dq = new ArrayDeque<>();
+
+        for (int i = 0; i < n; i++) {
+            // 1. 检查队首元素是否需要出队（离开滑动窗口）
+            if (!dq.isEmpty() && dq.peekFirst() <= i - k) {
+                dq.pollFirst();
+            }
+
+            // 2. 删除不会再用到的元素
+            while (!dq.isEmpty() && nums[dq.peekLast()] <= nums[i]) {
+                dq.pollLast();
+            }
+
+            // 3. 加入当前元素
+            dq.addLast(i);
+
+            // 4. 当窗口形成后记录最大值
+            if (i >= k - 1) {
+                res[i - k + 1] = nums[dq.peekFirst()];
+            }
+        }
+
+        return res;
+    }
+}
+```
+
 
 
 ## 找出消失数字
@@ -611,10 +677,10 @@ public class MinHeap {
 注意：要求时间复杂度 O(n)，空间复杂度 O(1)
 ```
 
-这道题目的关键点就在于，值是 [1, n]，索引是 [0, n-1]，所以如果 value 存在，则把 value - 1当作索引，令 nums[value] 的值为负数，那么最后只要 nums[index] > 0，则该 index 就是没有出现在 nums 中的数字
+这道题目的关键点就在于，值是 [1, n]，索引是 [0, n-1]，所以如果 value 存在，则把 value - 1 当作索引，令 nums[value] 的值为负数，那么最后只要 nums[index] > 0，则该 index 就是没有出现在 nums 中的数字
 
 1. 令 value = abs(nums[i])
-2. 如果 nums[value] 是正数，则把其nums[value]
+2. 如果 nums[value] 是正数，则把其 nums[value]
 3. 如果 nums[value] 是负数，说明之前已经记录过
 
 ```java
@@ -663,19 +729,14 @@ class Solution {
 
     - 找到 str = `2[a2[b2[c]]]`
     - 找到 substr1 = `a2[b2[c]]`
-
     - 找到 substr2 = `b2[c]`
-
     - 找到 substr3 = `c`
 
 2. 向上
 
     - 得到 substr3 的解析结果为 `c`
-
     - 得到 substr2 的解析结果为 `bcc`
-
     - 得到 substr1 的解析结果为 `abccbcc`
-
     - 得到 str 的解析结果为 `abccbccabccbcc`
 
 实际上，由于递归总是往前走的，我们可以利用一个递增的全局 index 表示当前正在遍历的字符
@@ -726,6 +787,3 @@ class Solution {
     }
 }
 ```
-
-
-
