@@ -20,6 +20,7 @@
       * [并查集：最小连通数](#并查集最小连通数)
       * [堆：TopK](#堆topk)
       * [单调队列：滑动窗口](#单调队列滑动窗口)
+      * [单调栈：双边界容积](#单调栈双边界容积)
    * [找出消失数字](#找出消失数字)
    * [字符串解码](#字符串解码)
 
@@ -664,6 +665,50 @@ public class SlidingWindow {
         }
 
         return res;
+    }
+}
+```
+
+### 单调栈：双边界容积
+
+对于容积，本质上只需要确定宽和高，左右边界的较小者限制了最高水位，底限制了最低水位，最高水位 - 最低水位就是容积的高，而左右边界的差就是容积的宽。可以维护一个单调递减栈，如果发现每个元素值大于栈顶元素值，则当前元素值可以作为右边界，能够处理所有元素值小于等于它的左边界
+
+```java
+/*
+prev1 
+  |       prev2                      					 right
+| **left ----------------------** |
+| **//////// bottom ////////** |
+| **///////////** | ////////// |
+| **///////////** | ////////// |
+ 
+ - h = min(rHeight, lHeight) - bHeight
+ - w = rIndex - lIndex - 1
+*/
+
+class Solution {
+    public int trap(int[] height) {
+        int n = height.length;
+        int ans = 0;
+        Deque<Integer> stack = new ArrayDeque<>();
+
+        for (int i = 0; i < n; i++) {
+            while (!stack.isEmpty() && height[i] > height[stack.peek()]) {
+                int bottom = stack.pop();
+                if (stack.isEmpty()) break;
+
+                int right = i;
+                int left = stack.peek();
+
+                int w = right - left - 1;
+                int h = Math.min(height[left], height[right]) - height[bottom];
+
+                ans += w * h;
+            }
+            stack.push(i);
+        }
+
+        return ans;
     }
 }
 ```

@@ -2,13 +2,20 @@
 
 
 
-   * [目标和](#目标和)
-   * [除法求值](#除法求值)
-   * [括号生成](#括号生成)
+   * [计数 DFS](#计数-dfs)
+      * [加减目标和](#加减目标和)
+   * [构造 DFS](#构造-dfs)
+      * [括号生成](#括号生成)
+      * [全排列](#全排列)
+      * [组合目标和](#组合目标和)
+   * [图 DFS](#图-dfs)
+      * [除法求值](#除法求值)
 
 
 
-## 目标和
+## 计数 DFS
+
+### 加减目标和
 
 【问题描述】
 
@@ -18,17 +25,18 @@
 
 【状态定义】
 
-(index, sum)：index 表示当前深度搜索到的数组位置，sum 表示当前累计的和
+(index, sum)：index 表示当前搜索到的数组下标位置，sum 表示当前累计的和
 
 - 起始状态：(0, 0)
-- 终止状态：(nums.length, target)
+- 接受状态：index == nums.length 且 sum == target，表示所有数字均已选择且刚好满足目标和
+- 剪枝状态：用一张记忆表存储 index 下到达 sum 的路径数量，下次遇到时直接获取
 
 【搜索分支】
 
 对状态 (index, sum)
 
-- 给 nums[i] 加上正号：状态转移为 (i + 1, sum + nums[i])
-- 给 nums[i] 加上负号：状态转移为 (i + 1, sum - nums[i])
+- 给 nums[index] 加上正号：状态转移为 (index + 1, sum + nums[index])
+- 给 nums[index] 加上负号：状态转移为 (index + 1, sum - nums[index])
 
 【代码实现】
 
@@ -41,25 +49,21 @@ class Solution {
     }
 
     private int dfs(int[] nums, int index, int sum, int target) {
-        // 是否接受
+        // 接受
         if (index == nums.length) {
             return sum == target ? 1 : 0;
         }
 
-        // 构造 key
-        String key = index + "," + sum;
-      
       	// 剪枝
+        String key = index + "," + sum;
         if (memo.containsKey(key)) {
             return memo.get(key);
         }
-
-        // 搜索加减分支
+	
         int add = dfs(nums, index + 1, sum + nums[index], target);
         int sub = dfs(nums, index + 1, sum - nums[index], target);
         int total = add + sub;
       
-      	// 记忆
         memo.put(key, total);
         return total;
     }
@@ -68,7 +72,184 @@ class Solution {
 
 
 
-## 除法求值
+## 构造 DFS
+
+### 括号生成
+
+【问题描述】
+
+```text
+给定一个正整数 n 表示生成括号的对数，生成所有可能且有效的括号组合。
+```
+
+【状态定义】
+
+(left, right, path)：left 表示已使用的左括号数量，right 表示已使用的右括号数量，path 表示当前构造的括号字符串
+
+- 起始状态：(0, 0, "")
+- 接受状态：left + right == 2n，表示左右括号均已使用完
+- 剪枝状态：right > left，表示右括号数量超过左括号，不可能合法
+
+【搜索分支】
+
+对状态 (left, right, path)
+
+- 如果 left < n，则可以加入左括号，状态转移为 (left + 1, right, path + "(")
+- 如果 right < left，则可以加入右括号，状态转移为 (left, right + 1, path + ")")
+
+【代码实现】
+
+```java
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> res = new ArrayList<>();
+        StringBuilder path = new StringBuilder();
+        dfs(res, n, 0, 0, path);
+        return res;
+    }
+
+    private void dfs(List<String> res, int n, int left, int right, StringBuilder path) {
+        // 接受
+        if (left + right == 2 * n) {
+            res.add(path.toString());
+            return;
+        }
+      
+        // 剪枝
+        if (right > left) {
+          	return ;
+        }
+      				
+        if (left < n) {
+          	// 转移
+            path.append('(');
+          	// 递归
+            dfs(res, n, left + 1, right, path);
+          	// 回溯
+            path.deleteCharAt(path.length() - 1);
+        }
+     
+        if (right < left) {
+            path.append(')');
+            dfs(res, n, left, right + 1, path);
+            path.deleteCharAt(path.length() - 1);
+        }
+    }
+}
+```
+
+### 全排列
+
+【问题描述】
+
+```text
+给定一个不含重复数字的整数数组 nums，返回所有可能的全排列。
+```
+
+【状态定义】
+
+(numbers, path)：numbers 是当前可以使用的数字，path 是当前已经构成的组合数
+
+- 起始状态：(nums, [])
+- 接受状态：当 numbers == [] 时，即数字都使用完时
+
+【搜索分支】
+
+对当前状态 (number, path)，遍历 number 中的所有数字 num，状态转移为 (number - num, path + num)
+
+【代码实现】
+
+```java
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        boolean[] used = new boolean[nums.length];
+        dfs(nums, used, new ArrayList<>(), ans);
+        return ans;
+    }
+
+    private void dfs(int[] nums, boolean[] used, List<Integer> path, List<List<Integer>> ans) {
+      	// 接受
+        if (path.size() == nums.length) {
+            ans.add(new ArrayList<>(path));
+            return;
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+          	// 剪枝
+            if (used[i]) continue;
+          	// 转移
+            used[i] = true;
+            path.add(nums[i]);
+          	// 递归
+            dfs(nums, used, path, ans);
+          	// 回溯
+            path.remove(path.size() - 1);
+            used[i] = false;
+        }
+    }
+}
+```
+
+### 组合目标和
+
+【问题描述】
+
+```text
+给定一个无重复元素的正整数数组 candidates 和一个目标数 target，找出 candidates 中所有可以使数字和为 target 的组合。同一个数字可以被重复选取。
+```
+
+【状态定义】
+
+(index, target, path)：index 表示当前搜索起点，target 表示当前剩余目标和，path 表示当前组合
+
+- 起始状态：(0, target, [])
+- 接受状态：target == 0，表示当前 path 的和恰好等于目标值
+- 剪枝状态：可以对 candidate 排序，然后按照升序遍历 candidate，如果 target - candidates[i] < 0，表示加上当前的数会溢出，那么加上比它大的数肯定也会溢出
+
+【搜索分支】
+
+对状态 (index, target, path) 和每个 i ∈ [index, n)，状态转移为 (index, target - candidates[index], path + candidates[index])，由于同一个数可以重复使用，因此仍从 index 开始。
+
+【代码实现】
+
+```java
+class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> path = new ArrayList<>();
+        Arrays.sort(candidates);
+        dfs(ans, candidates, target, 0, path);
+        return ans;
+    }
+
+    private void dfs(List<List<Integer>> ans, int[] candidates, int target, int begin, List<Integer> path) {
+        // 接受
+        if (target == 0) {
+            ans.add(new ArrayList<>(path));
+            return;
+        }
+
+        for (int i = begin; i < candidates.length; i++) {
+            // 剪枝
+            if (target - candidates[i] < 0) break;
+
+            // 转移
+            path.add(candidates[i]);
+            // 递归
+            dfs(ans, candidates, target - candidates[i], i, path);
+            // 回溯
+            path.remove(path.size() - 1);
+        }
+    }
+}
+```
+
+
+
+## 图 DFS
+
+### 除法求值
 
 【问题描述】
 
@@ -82,7 +263,7 @@ class Solution {
 (var1, var2, val)：表示当前推导出的关系 var1 / var2 = val
 
 - 起始状态：以 query\[i][0] 作为被除数
-- 终止状态：以 query\[i][1] 作为除数
+- 接受状态：以 query\[i][1] 作为除数
 
 【搜索分支】
 
@@ -142,63 +323,6 @@ class Solution {
     }
 }
 ```
-
-
-
-## 括号生成
-
-【问题描述】
-
-```text
-给定一个正整数 n 表示生成括号的对数，生成所有可能且有效的括号组合。
-```
-
-【状态定义】
-
-(left, right, path)：left 表示已使用的左括号数量，right 表示已使用的右括号数量，path 表示当前构建的括号字符串
-
-- 起始状态：(0, 0, "")
-- 终止状态：(n, n, path)，此时 path 是一个有效的括号组合
-
-【搜索分支】
-
-对当前状态 (left, right, path)
-
-- 如果 left < n，则可以加入左括号，状态转移为 (left + 1, right, path + "(")
-- 如果 right < left，则可以加入右括号，状态转移为 (left, right + 1, path + ")")
-
-【代码实现】
-
-```java
-class Solution {
-    public List<String> generateParenthesis(int n) {
-        List<String> res = new ArrayList<>();
-        dfs(n, 0, 0, "", res);
-        return res;
-    }
-
-    private void dfs(int n, int left, int right, String path, List<String> res) {
-        // 终止状态
-        if (left == n && right == n) {
-            res.add(path);
-            return;
-        }
-
-        // 搜索分支
-        if (left < n) {
-            dfs(n, left + 1, right, path + "(", res); // 加 '('
-        }
-
-        if (right < left) {
-            dfs(n, left, right + 1, path + ")", res); // 加 ')'
-        }
-    }
-}
-```
-
-
-
-
 
 
 
