@@ -3,11 +3,16 @@
 
 
    * [集合](#集合)
-      * [排序](#排序)
-      * [移除元素](#移除元素)
+      * [排序元素](#排序元素)
+      * [移除某个指定元素](#移除某个指定元素)
+      * [移除所有符合条件元素](#移除所有符合条件元素)
+      * [初始化列表](#初始化列表)
+      * [截取子列表](#截取子列表)
    * [数组](#数组)
       * [排序](#排序)
       * [获取最大值](#获取最大值)
+      * [截取子数组](#截取子数组)
+      * [打印数组](#打印数组)
    * [字符串](#字符串)
       * [StringBuffer 的 API](#stringbuffer-的-api)
 
@@ -15,19 +20,45 @@
 
 ## 集合
 
-### 排序
+### 排序元素
 
 ```java
 Collections.sort(list);
 ```
 
-### 移除元素
+### 移除某个指定元素
 
 ```java
 // 如果直接写数字，移除的是索引对应的元素，会返回元素值
 int num = list.remove(2); 
 // 如果显式传递 Integer 对象，会移除第一个相等的值，返回是否删除成功
 boolean success = list.remove(Integer.valueOf(2));
+```
+
+### 移除所有符合条件元素
+
+```java
+list.removeIf(Objects::isNull); // 移除所有 null
+list.removeIf(s -> s.isEmpty()); // 移除所有空字符串
+list.removeIf(x -> x < 0); // 移除所有负数
+list.removeIf(name -> name.length() < 5); // 移除所有长度小于 5 的元素
+```
+
+### 初始化列表
+
+```java
+// 用列表
+List<Integer> list = new ArrayList<>(list2);
+// 用数组
+List<Integer> list = new ArrayList<>(Arrays.asList(arr));
+// 用数据
+List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+```
+
+### 截取子列表
+
+```java
+List<Integer> subList = new ArrayList<>(list.subList(1, 4));
 ```
 
 
@@ -37,11 +68,9 @@ boolean success = list.remove(Integer.valueOf(2));
 ### 排序
 
 ```java
-// 升序排序整个数组
+// 整体排序
 Arrays.sort(arr);
-// 降序排序
-
-// 区间排序，左闭右开
+// 区间排序
 Arrays.sort(arr, fromIndex, toIndex);
 ```
 
@@ -49,6 +78,21 @@ Arrays.sort(arr, fromIndex, toIndex);
 
 ```java
 int max = Arrays.stream(arr).max().getAsInt();
+```
+
+### 截取子数组
+
+```java
+int[] subArr = Arrays.copyOfRange(arr, 1, 4);
+```
+
+### 打印数组
+
+```java
+// 一维数组
+System.out.println(Arrays.toString(arr));
+// 二维数组
+System.out.println(Arrays.deepToString(matrix));
 ```
 
 
@@ -85,8 +129,4 @@ sb.replace(0, 5, "HELLO");
 // 反转
 sb.reverse();
 ```
-
-
-
-
 

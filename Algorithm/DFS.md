@@ -2,20 +2,17 @@
 
 
 
-   * [计数 DFS](#计数-dfs)
-      * [加减目标和](#加减目标和)
-   * [构造 DFS](#构造-dfs)
-      * [括号生成](#括号生成)
-      * [全排列](#全排列)
-      * [组合目标和](#组合目标和)
+   * [加减目标和](#加减目标和)
+   * [括号生成](#括号生成)
+   * [全排列](#全排列)
+   * [组合目标和](#组合目标和)
+   * [正则表达式匹配](#正则表达式匹配)
    * [图 DFS](#图-dfs)
       * [除法求值](#除法求值)
 
 
 
-## 计数 DFS
-
-### 加减目标和
+## 加减目标和
 
 【问题描述】
 
@@ -72,9 +69,7 @@ class Solution {
 
 
 
-## 构造 DFS
-
-### 括号生成
+## 括号生成
 
 【问题描述】
 
@@ -138,7 +133,9 @@ class Solution {
 }
 ```
 
-### 全排列
+
+
+## 全排列
 
 【问题描述】
 
@@ -191,7 +188,9 @@ class Solution {
 }
 ```
 
-### 组合目标和
+
+
+## 组合目标和
 
 【问题描述】
 
@@ -241,6 +240,103 @@ class Solution {
             // 回溯
             path.remove(path.size() - 1);
         }
+    }
+}
+```
+
+
+
+## 正则表达式匹配
+
+【问题描述】
+
+```text
+给定一个字符串 s 和一个模式 p，实现支持 '.' 和 '*' 的正则表达式匹配。
+'.' 匹配任意单个字符；'*' 匹配前一个元素零次或多次。匹配要求覆盖整个字符串，判断是否匹配成功。
+```
+
+【状态定义】
+
+(sIndex, pIndex)：sIndex 表示当前匹配到字符串 s 的位置，pIndex 表示当前匹配到模式串 p 的位置
+
+- 起始状态：(0, 0)
+- 接受状态：pIndex == pLen 且 sIndex == sLen，表示两者同时匹配完成
+- 剪枝状态
+    - pIndex == pLen 且 sIndex < sLen，表示模式串已匹配完而字符串未匹配完，返回 false
+    - sIndex == sLen 且 pIndex < pLen，表示模式串没有匹配完但字符串已经匹配完，模式串剩余必须为 `x*` 的形式，否则无法匹配空串
+    - 先前已经得到 pIndex 和 sIndex 下的匹配情况
+
+
+【搜索分支】
+
+对状态 (sIndex, pIndex)：
+
+- 若下一个字符为 *：
+    - 匹配零次：转移为 (sIndex, pIndex + 2)
+    - 匹配一次：转移为 (sIndex + 1, pIndex)
+- 若下一个字符不是 *：
+    - 当前字符是否匹配：转移为 (sIndex + 1, pIndex + 1)
+    - 当前字符无法匹配：直接得到 false
+
+【代码实现】
+
+```java
+class Solution {
+    Map<String, Boolean> memo = new HashMap<>();
+
+    public boolean isMatch(String s, String p) {
+        return dfs(s, 0, p, 0);
+    }
+
+    private boolean dfs(String s, int sIndex, String p, int pIndex) {
+        int sLen = s.length();
+        int pLen = p.length();
+        String key = sIndex + "," + pIndex;
+        
+        boolean flag;
+
+        // 剪枝：已有记忆
+        if (memo.containsKey(key)) {
+            return memo.get(key);
+        }
+
+        // 剪枝：p 到末尾
+        if (pIndex == pLen) {
+            flag = (sIndex == sLen);
+            memo.put(key, flag);
+            return flag;
+        }
+
+        // 剪枝：s 到末尾
+        if (sIndex == sLen) {
+            for (int k = pIndex; k + 1 < pLen; k += 2) {
+                if (p.charAt(k + 1) != '*') {
+                    memo.put(key, false);
+                    return false;
+                }
+            }
+            flag = ((pLen - pIndex) % 2 == 0);
+            memo.put(key, flag);
+            return flag;
+        }
+
+        // 当前字符是否匹配
+        boolean firstMatch = p.charAt(pIndex) == s.charAt(sIndex) || p.charAt(pIndex) == '.';
+
+        // 下一个字符是否是 '*'
+        boolean hasStar = (pIndex + 1 < pLen && p.charAt(pIndex + 1) == '*');
+
+        // 可以不消耗当前字符，也可以只消耗当前字符
+        if (hasStar) {
+            flag = dfs(s, sIndex, p, pIndex + 2) || (firstMatch && dfs(s, sIndex + 1, p, pIndex));
+        }
+        // 消耗当前字符，递增 1 后递归
+        else {
+            flag = firstMatch && dfs(s, sIndex + 1, p, pIndex + 1);
+        }
+
+        memo.put(key, flag);
+        return flag;
     }
 }
 ```
@@ -323,8 +419,4 @@ class Solution {
     }
 }
 ```
-
-
-
-
 
