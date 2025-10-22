@@ -145,4 +145,3 @@ public boolean hasCycleTopo(List<List<Integer>> graph) {
     return count < n;
 }
 ```
-
