@@ -1,4 +1,4 @@
-# Double Pointer
+# Pointer
 
 
 
@@ -6,6 +6,8 @@
    * [环检测](#环检测)
    * [反转链表](#反转链表)
    * [反转单词](#反转单词)
+   * [无重复字符的最长子串](#无重复字符的最长子串)
+   * [最小覆盖子串](#最小覆盖子串)
 
 
 
@@ -155,3 +157,112 @@ class Solution {
     }
 }
 ```
+
+
+
+## 无重复字符的最长子串
+
+```text
+给定一个字符串 s，请你找出其中不含有重复字符的最长子串的长度。
+```
+
+用一个 left 记录子串的起始位置，right 记录子串的终止位置，用一个 Set 记录当前窗口中的字符。每次向右移动 right，表示窗口右端扩展一个字符。
+
+当遇到重复字符时，说明当前窗口内出现冲突，下一个可能的最长子串一定从重复字符的下一个位置开始。比如对于串 abcdbgh
+
+1. 当 left = 0，right = 3，窗口为 "abcd"，此时最大值为 4
+2. 当 right = 4 时，遇到重复字符 'b'
+3. left 应该移动到 2，即窗口变为 "cdb"，right 保持不变
+4. right 继续遍历直到末尾，窗口为 "cdbgh"，此时最大值为 5
+
+```java
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int n = s.length();
+        if (n <= 1) return n;
+        
+        Set<Character> set = new HashSet<>();
+        int left = 0, right = 0;
+        int ans = 0;
+        
+        while (right < n) {
+            char c = s.charAt(right);
+            
+            // 如果字符已存在，移动左指针直到移除重复字符
+            while (set.contains(c)) {
+                set.remove(s.charAt(left));
+                left++;
+            }
+            
+            set.add(c);
+            ans = Math.max(ans, right - left + 1);
+            right++;
+        }
+        
+        return ans;
+    }
+}
+```
+
+
+
+## 最小覆盖子串
+
+```text
+给你一个字符串 s、一个字符串 t，返回 s 中涵盖 t 所有字符的最小子串。如果不存在则返回空字符串 ""。
+```
+
+撒
+
+```java
+class Solution {
+    public String minWindow(String s, String t) {
+        if (s.length() < t.length()) return "";
+
+        Map<Character, Integer> need = new HashMap<>();
+        for (char c : t.toCharArray()) {
+            need.put(c, need.getOrDefault(c, 0) + 1);
+        }
+
+        int left = 0, right = 0;
+        int valid = 0;
+        int start = 0, minLen = Integer.MAX_VALUE;
+
+        Map<Character, Integer> window = new HashMap<>();
+        while (right < s.length()) {
+            char c = s.charAt(right);
+            
+            if (need.containsKey(c)) {
+                window.put(c, window.getOrDefault(c, 0) + 1);
+                if (window.get(c).equals(need.get(c))) {
+                    valid++;
+                }
+            }
+
+            while (valid == need.size()) {
+                if (right - left + 1 < minLen) {
+                    start = left;
+                    minLen = right - left + 1;
+                }
+
+                char d = s.charAt(left);
+                if (need.containsKey(d)) {
+                    if (window.get(d).equals(need.get(d))) {
+                        valid--;
+                    }
+                    window.put(d, window.get(d) - 1);
+                }
+
+                left++;
+            }
+
+            right++;
+        }
+
+        return minLen == Integer.MAX_VALUE ? "" : s.substring(start, start + minLen);
+    }
+}
+```
+
+
+

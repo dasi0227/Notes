@@ -7,8 +7,9 @@
    * [全排列](#全排列)
    * [组合目标和](#组合目标和)
    * [正则表达式匹配](#正则表达式匹配)
-   * [图 DFS](#图-dfs)
-      * [除法求值](#除法求值)
+   * [幂集](#幂集)
+   * [除法求值](#除法求值)
+   * [单词搜索](#单词搜索)
 
 
 
@@ -343,9 +344,38 @@ class Solution {
 
 
 
-## 图 DFS
+## 幂集
 
-### 除法求值
+【问题描述】
+
+```text
+给你一个整数数组 nums，数组中的元素互不相同，返回该数组所有可能的子集。
+```
+
+【代码实现】
+
+```java
+class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        dfs(ans, nums, 0, new ArrayList<>());
+        return ans;
+    }
+
+    public void dfs(List<List<Integer>> ans, int[] nums, int begin, List<Integer> path) {
+        ans.add(new ArrayList(path));
+        while (begin < nums.length) {
+            path.add(nums[begin]);
+            dfs(ans, nums, ++begin, path);
+            path.remove(path.size() - 1);
+        }
+    }
+}
+```
+
+
+
+## 除法求值
 
 【问题描述】
 
@@ -419,3 +449,74 @@ class Solution {
     }
 }
 ```
+
+
+
+## 单词搜索
+
+【问题描述】
+
+```text
+给定一个二维字符网格 board 和一个字符串 word，判断 word 是否存在于网格中。单词必须按照字母顺序，通过相邻的上下左右单元格连接形成。同一个单元格内的字母不能被重复使用。
+```
+
+【状态定义】
+
+(row, col, index)：row、col 表示当前搜索到网格中的坐标位置，index 表示当前匹配到单词 word 的第 index 个字符。
+
+- 起始状态：(i, j, 0)，i 和 j 是 board 任意位置
+- 接受状态：index == word.length()，表示所有字符已匹配成功
+- 剪枝状态：
+    - row 或 col 超出边界
+    - board\[row][col] != word[index]
+    - 当前格子已被访问过
+
+
+【搜索分支】
+
+对于状态 (row, col, index)
+
+- 上：(row - 1, col, index + 1)
+- 下：(row + 1, col, index + 1)
+- 左：(row, col - 1, index + 1)
+- 右：(row, col + 1, index + 1)
+
+【代码实现】
+
+```java
+class Solution {
+    public boolean exist(char[][] board, String word) {
+        int rows = board.length, cols = board[0].length;
+        boolean[][] visited = new boolean[rows][cols];
+
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                if (dfs(board, word, row, col, 0, visited)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean dfs(char[][] board, String word, int row, int col, int index, boolean[][] visited) {
+        if (index == word.length()) return true;
+        if (row < 0 || row >= board.length || col < 0 || col >= board[0].length) return false;
+        if (visited[row][col]) return false;
+        if (board[row][col] != word.charAt(index)) return false;
+
+        visited[row][col] = true;
+
+        boolean found =
+            dfs(board, word, row + 1, col, index + 1, visited) ||
+            dfs(board, word, row - 1, col, index + 1, visited) ||
+            dfs(board, word, row, col + 1, index + 1, visited) ||
+            dfs(board, word, row, col - 1, index + 1, visited);
+
+        visited[row][col] = false;
+        return found;
+    }
+}
+```
+
+> 不应该先判断合法状态才 dfs，而是把非法状态作为剪枝状态置于最顶层，每次都直接 dfs
