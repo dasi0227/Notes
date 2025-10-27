@@ -2,9 +2,19 @@
 
 
 
+   * [方法论](#方法论)
+      * [DP 定义](#dp-定义)
+      * [核心步骤](#核心步骤)
+      * [类型区别](#类型区别)
    * [线性 DP](#线性-dp)
-      * [打家劫舍](#打家劫舍)
-      * [最大连续乘积](#最大连续乘积)
+      * [最长上升子序列](#最长上升子序列)
+      * [最大子数组和](#最大子数组和)
+      * [最大子数组乘积](#最大子数组乘积)
+      * [环形抢劫](#环形抢劫)
+   * [序列 DP](#序列-dp)
+      * [编辑距离](#编辑距离)
+   * [划分 DP](#划分-dp)
+      * [单词拆分](#单词拆分)
    * [网格 DP](#网格-dp)
       * [最大正方形](#最大正方形)
    * [树形 DP](#树形-dp)
@@ -16,76 +26,155 @@
       * [分割等和子集](#分割等和子集)
       * [零钱兑换](#零钱兑换)
       * [完全平方和](#完全平方和)
-   * [划分 DP](#划分-dp)
-      * [单词拆分](#单词拆分)
    * [状态机 DP](#状态机-dp)
-      * [含冷冻期的股票买卖](#含冷冻期的股票买卖)
+      * [股票买卖](#股票买卖)
+
+
+
+## 方法论
+
+### DP 定义
+
+动态规划是一种算法思想，通过**把复杂的父问题分解成形式相同的子问题**，记录并利用子问题的最优解来反推出父问题的最优解，本质上是利用**空间换时间**，通过 DP Table 记录子问题的最优解，来避免重复计算子问题
+
+- **最优子结构**：父问题可以分解为子问题，并且父问题的最优解可以由子问题的最优解构成
+- **重叠子问题**：不同父问题的分解可能会得到相同子问题，但子问题的最优解不会因为路径不同而变化
+- **无后效性**：求解路径的影响被完全封装在最优解中，因此父问题的最优解仅依赖于子问题的最优解，而与子问题的求解路径无关
+
+### 核心步骤
+
+本质上就是定义状态和构造 DP Table
+
+1. 状态表示：**明确 `dp[i]` 或 `dp[i][j]` 表示什么子问题的最优解**，为状态转移建立条件
+2. 状态初始化：**明确边界条件和平凡状态的最优解**，为状态转移提供起点
+3. 状态转移：**明确当前问题和其子问题之间的关系以及可执行的决策**，从子问题的最优解中构建当前问题的最优解
+4. 答案提取：**明确最终答案的来源**，有时候直接是最终状态，有时候需要聚合不同状态
+
+### 类型区别
+
+| **类型** | **状态含义** | **转移特征** | **经典问题** |
+| --------- | ------------------------------------------------------------ | ---------------------------------------------- | -------------- |
+| **线性 DP** | dp\[i] 表示按顺序遍历到第 i 个元素的最优解 | 依赖于前几个状态 | 最长上升子序列 |
+| **网格 DP** | dp\[i][j] 表示按行序 / 列序遍历到 (i, j) 位置的最优解 | 依赖于当前位置的左方，上方或左上方 | 最小路径和 |
+| **树形 DP** | dp\[u] 表示以节点 u 为根时的最优解 | 依赖于树的子节点 | 打家劫舍 |
+| **区间 DP** | dp\[i][j] 表示区间 [i, j] 的最优解 | 依赖于长度更小的区间 | 矩阵连乘 |
+| **背包 DP** | dp\[i][j] 表示前 i 个物品，容量为 j 时的最优解 | 依赖于“取”或“不取” | 分割等和子集 |
+| **划分 DP** | dp[i] 表示前 i 个元素的最优解 | 依赖于从 0 到 i 的不同划分点 | 单词拆分 |
+| **状态机 DP** | dp\[i][state] 表示第 i 个阶段、状态为 state 的最优解 | 依赖于前一个阶段的不同状态 | 股票买卖 |
+| **双序列 DP** | dp\[i][j] 表示序列 A 的前 i 个元素和序列 B 的前 j 个元素下的最优解 | 依赖于序列 A 的前几个状态和序列 B 的前几个状态 | 编辑距离 |
 
 
 
 ## 线性 DP
 
-### 打家劫舍
+### 最长上升子序列
 
 【问题描述】
 
 ```text
-给定一个代表每个房屋金额的数组 nums，不能偷相邻的两间房，求能偷到的最大金额。
+给定一个整数数组 nums，返回其中最长严格上升子序列的长度。子序列的元素在原数组中可以不连续，但必须保持相对顺序。
 ```
 
 【原理分析】
 
-每个位置的最优结果取决于是否选择当前房屋，若偷当前房屋则不能偷上一个，只能考虑是否偷上上个，而如果不偷当前房屋，则为前一次的最优结果。
+每个元素作为结尾的最长上升子序列长度，只有可能是之前比他小的元素的最长上升子序列长度 + 1。
 
 【状态表示】
 
-dp[i] 表示前 i 个房屋中能偷到的最大金额。
+dp[i] 表示以 nums[i] 结尾的最长上升子序列长度。
 
 【转移方程】
 
 $$
-dp[i] = \max(dp[i-1], dp[i-2] + nums[i])
+dp[i] = \max_{0 \le j < i} 
+\begin{cases}
+dp[j] + 1, & \text{if } nums[j] < nums[i] \\
+1, & \text{otherwise}
+\end{cases}
+$$
+
+
+【代码实现】
+
+```java
+class Solution {
+    public int lengthOfLIS(int[] nums) {
+        int n = nums.length;
+        int[] dp = new int[n];
+        
+        int ans = 1;
+        for (int i = 0; i < n; i++) {
+            dp[i] = 1;
+            for (int j = 0; j < i; j++) {
+                if (nums[j] < nums[i]) {
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
+                }
+            }
+            ans = Math.max(ans, dp[i]);
+        }
+
+        return ans;
+    }
+}
+```
+
+### 最大子数组和
+
+【问题描述】
+
+```text
+给定一个整数数组 nums，找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
+```
+
+【原理分析】
+
+每个元素作为结尾的最大子数组要么是 nums[i] 字节，要么是前一个元素的最大子数组加上当前元素。
+
+【状态表示】
+
+dp[i] 表示以 nums[i] 结尾的最大连续子数组和。
+
+【转移方程】
+
+$$
+dp[i] = max(nums[i], dp[i-1] + nums[i])
 $$
 
 【代码实现】
 
 ```java
 class Solution {
-    public int rob(int[] nums) {
+    public int maxSubArray(int[] nums) {
         int n = nums.length;
-        if (n == 0) return 0;
-        if (n == 1) return nums[0];
-
+        int ans = nums[0];
         int[] dp = new int[n];
         dp[0] = nums[0];
-        dp[1] = Math.max(nums[0], nums[1]);
-        for (int i = 2; i < n; i++) {
-            dp[i] = Math.max(dp[i-1], dp[i-2] + nums[i]);
+
+        for (int i = 1; i < n; i++) {
+            dp[i] = Math.max(nums[i], dp[i-1] + nums[i]);
+            ans = Math.max(ans, dp[i]);
         }
 
-        return dp[n - 1];
+        return ans;
     }
 }
 ```
 
-### 最大连续乘积
+### 最大子数组乘积
 
 【问题描述】
 
 ```text
-给定一个整数数组 nums，求其中乘积最大的连续子数组。
+给定一个整数数组 nums，找出一个连续子数组，使得该子数组内的所有数字的乘积最大，返回这个最大乘积。
 ```
 
 【原理分析】
 
-由于负数会改变大小关系
-
-- 最大值可能由先前得到的最小数乘当前数得到，也有可能由先前得到的最大正数乘当前数得到，或者就是等于当前数；
-- 最小值可能由先前得到的最小数乘当前数得到，也有可能由先前得到的最大数乘当前数得到，或者就是等于当前数。
+负数会改变正负关系，即将最大值变为最小值，最小值变为最大值，而正数不会改变正负关系，最大值只会更大，最小值只会更小。因此在计算最大乘积时，必须同时维护当前位置的最大乘积和最小乘积。
 
 【状态表示】
 
-dp_max[i] 表示以 nums[i] 结尾的连续子数组的最大乘积；而 dp_min[i] 以 nums[i] 结尾的连续子数组的最小乘积。
+maxDp[i] 表示以 nums[i] 结尾的连续子数组的最大乘积；而 minDp[i] 表示 以 nums[i] 结尾的连续子数组的最小乘积。
 
 【转移方程】
 
@@ -104,24 +193,142 @@ $$
 ```java
 class Solution {
     public int maxProduct(int[] nums) {
-        int length = nums.length;
-
-        int max_dp[] = new int[length];
-        int min_dp[] = new int[length];
-
-        max_dp[0] = nums[0];
-        min_dp[0] = nums[0];
-
-        for (int i = 1; i < length; i++) {
-            max_dp[i] = Math.max(max_dp[i - 1] * nums[i], Math.max(nums[i], min_dp[i - 1] * nums[i]));
-            min_dp[i] = Math.min(max_dp[i - 1] * nums[i], Math.min(nums[i], min_dp[i - 1] * nums[i]));
+        int n = nums.length;
+      
+        int[] maxDp = new int[n];
+        int[] minDp = new int[n];
+        maxDp[0] = nums[0];
+        minDp[0] = nums[0];
+      
+        int ans = nums[0];
+        for (int i = 1; i < n; i++) {
+            maxDp[i] = Math.max(nums[i], Math.max(maxDp[i - 1] * nums[i], minDp[i - 1] * nums[i]));
+            minDp[i] = Math.min(nums[i], Math.min(maxDp[i - 1] * nums[i], minDp[i - 1] * nums[i]));
+            ans = Math.max(ans, maxDp[i]);
         }
 
-        int result = max_dp[0];
-        for (int i = 1; i < length; i++) {
-            result = Math.max(result, max_dp[i]);
+        return ans;
+    }
+}
+```
+
+### 环形抢劫
+
+【问题描述】
+
+```text
+给定一个代表每个房屋金额的数组 nums，房屋围成一个圈，不能偷相邻的两间房，求能偷到的最大金额。
+```
+
+【原理分析】
+
+由于房屋首尾相连，偷取第一间房会导致最后一间房无法被偷取，因此可以看作为区间 [1, n-1] 和 [0, n-2] 两种情况。同时若偷当前房屋则不能偷上一个，只能考虑是否偷上上个，而如果不偷当前房屋，则为前上一个的最优结果。
+
+【状态表示】
+
+dp[i] 表示前 i 个房屋中能偷到的最大金额。
+
+【转移方程】
+
+$$
+dp[i] = \max(dp[i-1], dp[i-2] + nums[i])
+$$
+
+【代码实现】
+
+```java
+class Solution {
+    public int rob(int[] nums) {
+        int n = nums.length;
+        if (n == 1) return nums[0];
+        if (n == 2) return Math.max(nums[0], nums[1]);
+
+        int[] dp = new int[n];
+
+        // 不偷首屋
+        dp[1] = nums[1];
+        dp[2] = Math.max(nums[1], nums[2]);
+        for (int i = 3; i < n; i++) {
+            dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
         }
-        return result;
+
+        // 不偷尾屋
+        dp[0] = nums[0];
+        dp[1] = Math.max(nums[0], nums[1]);
+        for (int i = 2; i < n - 1; i++) {
+            dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
+        }
+
+      	// 先计算不偷首屋，这样结果保留在 dp[n-1]，不会被不偷尾屋的情况干扰
+        return Math.max(dp[n-1], dp[n-2]);
+    }
+}
+```
+
+
+
+## 序列 DP
+
+### 编辑距离
+
+【问题描述】
+
+```text
+
+```
+
+【代码实现】
+
+```java
+```
+
+
+
+## 划分 DP
+
+### 单词拆分
+
+【问题描述】
+
+```text
+给定字符串 s 和字典 wordDict，判断 s 能否由字典中单词拼接组成。
+```
+
+【原理分析】
+
+遍历字符串的每个前缀，若存在某个划分点使前段可达且后段在字典中，则整个前缀可达。
+
+【状态表示】
+
+dp[i] 表示 s[0..i-1] 是否能被拆分。
+
+【转移方程】
+
+$$
+dp[i] = \exists j < i,\ dp[j]\ \text{and}\ (s[j..i-1] \in wordDict)
+$$
+
+【代码实现】
+
+```java
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        int len = s.length();
+      	Set<String> dict = new HashSet<>(wordDict);
+        boolean[] dp = new boolean[len + 1];
+        dp[0] = true;
+
+        for (int end2 = 1; end2 <= len; end2++) {
+            for (int end1 = 0; end1 < end2; end1++) {
+                String substr = s.substring(end1, end2);
+                if (dp[end1] && dict.contains(substr)) {
+                    dp[end2] = true;
+                    break;
+                }
+            }
+        }
+
+        return dp[len];
     }
 }
 ```
@@ -211,7 +418,7 @@ dp\[u][0] 表示不偷当前节点的最大值，dp\[u][1] 表示偷当前节点
 
 $$
 \begin{aligned}
-dp[u][0] &= dp[l][2]c+ dp[r][2] \\
+dp[u][0] &= dp[l][2] + dp[r][2] \\
 dp[u][1] &= val + dp[l][0] + dp[r][0] \\
 dp[u][2] &= \max(dp[u][0], dp[u][1])
 \end{aligned}
@@ -507,60 +714,9 @@ class Solution {
 
 
 
-## 划分 DP
-
-### 单词拆分
-
-【问题描述】
-
-```text
-给定字符串 s 和字典 wordDict，判断 s 能否由字典中单词拼接组成。
-```
-
-【原理分析】
-
-遍历字符串的每个前缀，若存在某个划分点使前段可达且后段在字典中，则整个前缀可达。
-
-【状态表示】
-
-dp[i] 表示 s[0..i-1] 是否能被拆分。
-
-【转移方程】
-
-$$
-dp[i] = \exists j < i,\ dp[j]\ \text{and}\ (s[j..i-1] \in wordDict)
-$$
-
-【代码实现】
-
-```java
-class Solution {
-    public boolean wordBreak(String s, List<String> wordDict) {
-        int len = s.length();
-      	Set<String> dict = new HashSet<>(wordDict);
-        boolean[] dp = new boolean[len + 1];
-        dp[0] = true;
-
-        for (int end2 = 1; end2 <= len; end2++) {
-            for (int end1 = 0; end1 < end2; end1++) {
-                String substr = s.substring(end1, end2);
-                if (dp[end1] && dict.contains(substr)) {
-                    dp[end2] = true;
-                    break;
-                }
-            }
-        }
-
-        return dp[len];
-    }
-}
-```
-
-
-
 ## 状态机 DP
 
-### 含冷冻期的股票买卖
+### 股票买卖
 
 【问题描述】
 
