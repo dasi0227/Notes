@@ -1269,7 +1269,7 @@ class Solution {
         t = " " + t;
 
         int[][] dp = new int[tLen + 1][sLen + 1];
-        for (int j = 0; j <= sLen; j++) dp[0][j] = 1; // 空串为 1
+        for (int j = 0; j <= sLen; j++) dp[0][j] = 1;
 
         for (int i = 1; i <= tLen; i++) {
             for (int j = 1; j <= sLen; j++) {
