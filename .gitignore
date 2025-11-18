@@ -66,3 +66,12 @@ vendor/
 .env
 *.local
 *.secret
+
+# Blog 文件
+node_modules/
+Thumbs.db
+db.json
+*.log
+public/
+.deploy*/
+_multiconfig.yml

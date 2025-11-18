@@ -742,7 +742,7 @@ public class ThreadLocal<T> {
 
 ### ThreadLocalMap
 
-ThreadLocal 的底层原理，就是它还定义了一个静态内部类 **ThreadLocalMap**
+ThreadLocal 的底层原理，就是它定义了一个静态内部类 **ThreadLocalMap**
 
 - 每个线程都有一个 ThreadLocalMap 的对象
 

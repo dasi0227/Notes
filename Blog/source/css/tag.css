@@ -1,0 +1,17 @@
+/* 侧栏标签 */
+#aside-content .card-tag-cloud a {
+  border: 1px solid;
+  line-height: 1.5;
+  border-radius: 6px;
+  margin: 3px;
+  padding: 0 5px;
+}
+/* 标签页 */
+.tag-cloud-list a {
+  border: 1px solid;
+  line-height: 1.5;
+  border-radius: 6px;
+  padding: 5px 15px;
+  font-size: 1.8rem;
+  margin: 7px;
+}

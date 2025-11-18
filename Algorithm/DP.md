@@ -191,11 +191,8 @@ maxDp[i] 表示以 nums[i] 结尾的连续子数组的最大乘积；而 minDp[i
 
 $$
 \begin{aligned}
-
-dp\_max[i] &= \max(nums[i],\ dp\_max[i-1] \times nums[i],\ dp\_min[i-1] \times nums[i]) \
-\\
+dp\_max[i] &= \max(nums[i],\ dp\_max[i-1] \times nums[i],\ dp\_min[i-1] \times nums[i]) \\
 dp\_min[i] &= \min(nums[i],\ dp\_max[i-1] \times nums[i],\ dp\_min[i-1] \times nums[i])
-
 \end{aligned}
 $$
 

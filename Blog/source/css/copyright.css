@@ -1,0 +1,18 @@
+#post .post-copyright {
+  background: linear-gradient(45deg, #fddb92 0%, #d1fdff 100%);
+}
+#post .post-copyright__title{
+  font-size:30px;
+}
+#post .post-copyright__type{
+  font-size:20px;
+}
+
+[data-theme="dark"] #post .post-copyright {
+  background: rgb(7 8 10);
+  text-shadow: #bfbeb8 1px 0 4px;
+  border: 1px solid rgb(19 18 18 / 35%);
+}
+[data-theme="dark"] .post-copyright-info {
+  color: #e0e0e4;
+}

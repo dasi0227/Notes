@@ -1,0 +1,75 @@
+- class_name: 友情链接
+  class_desc: 那些人，那些事
+  link_list:
+    - name: Hexo
+      link: https://hexo.io/zh-tw/
+      avatar: https://d33wubrfki0l68.cloudfront.net/6657ba50e702d84afb32fe846bed54fba1a77add/827ae/logo.svg
+      descr: 快速、简单且强大的网志框架
+    - name: 达斯Dasi
+      link: https://dasi.plus/
+      avatar: https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Hexo/avatar.webp
+      descr: 学而不思则罔，思而不学则殆
+
+- class_name: 大佬们的博客
+  class_desc: 借鉴和学习的目标
+  link_list:
+    - name: 张洪Heo
+      link: https://blog.zhheo.com/
+      avatar: https://bu.dusays.com/2022/12/28/63ac2812183aa.png
+      descr: 分享设计与科技生活
+    - name: 安知鱼
+      link: https://blog.anheyu.com/
+      avatar: https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg
+      descr: 生活明朗，万物可爱
+    - name: Akilarの糖果屋
+      link: https://akilar.top/
+      avatar: https://npm.elemecdn.com/akilar-friends@latest/avatar/akilar.top.jpg
+      descr: 欢迎光临糖果屋
+    - name: 花猪
+      link: https://cnhuazhu.top/
+      avatar: https://gcore.jsdelivr.net/gh/CNhuazhu/Image/avatar.jpg
+      descr: 佛系青年
+    - name: June's Blog
+      link: https://blog.june-pj.cn/
+      avatar: https://gitlab.com/June_PJ/PicGo-PJ/raw/main/img/avatar.webp
+      descr: 遇事不决，可问春风
+    - name: Eurkon
+      link: https://blog.eurkon.com
+      avatar: https://blog.eurkon.com/images/user/avatar.jpg
+      descr: 及时当勉励，岁月不待人
+    - name: 小N同学
+      link: https://www.imcharon.com/
+      avatar: https://public.cdn.nesxc.com/avatar.jpg
+      descr: 青石落晚巷，故人未还乡
+    - name: 枫叶
+      link: https://blog.aqcoder.cn
+      avatar: https://blog.aqcoder.cn/img/avatar.png
+      descr: 分享知识，认识世界
+    - name: 小嘉的部落格             
+      link: https://blog.imzjw.cn   
+      avatar: https://npm.elemecdn.com/nanshen/avatar.jpg  
+      descr: 一个爱折腾的Java开发工程师
+    - name: Ariasakaの小窝
+      link: https://blog.yaria.top
+      avatar: https://weavatar.com/avatar/795ce413eb6c7485954b78283ffa3e00
+      descr: 人有悲欢离合 月有阴晴圆缺
+    - name: 小冰博客
+      link: https://zfe.one
+      avatar: https://zfe.space/images/headimage.png
+      descr: 做个有梦想的人！
+    - name: 唐志远
+      link: https://fe32.top/
+      avatar: https://bu.dusays.com/2022/05/02/626f92e193879.jpg
+      descr: 古今之成大事者，不惟有超世之才，亦必有坚忍不拔之志
+    - name: 清羽飞扬
+      link: https://blog.liushen.fun/
+      avatar: https://blog.liushen.fun/info/avatar.ico
+      descr: 柳影曳曳，清酒孤灯，扬笔撒墨，心境如霜
+    - name: 枫叶
+      link: https://blog.aqcoder.cn
+      avatar: https://blog.aqcoder.cn/img/avatar.png
+      descr: 分享知识，认识世界
+    - name: 别院牧志
+      link: https://masantu.com/
+      avatar: https://cdn.jsdelivr.net/gh/masantu/statics/images/imoyao.jpg)
+      descr: 你如今的气质里，藏着你走过的路、读过的书和爱过的人。

@@ -176,13 +176,16 @@ def format_table(file: Path):
 if __name__ == "__main__":
     curr_dir = os.path.dirname(os.path.abspath(__file__))
     root_dir = os.path.abspath(os.path.join(curr_dir, "../../"))
-    # root_dir = "./"
+    blog_dir = os.path.join(root_dir, "Blog")
+    
     for file in Path(root_dir).rglob("*.md"):
+        format_space(file)
         format_heading(file)
         format_list(file)
-        format_space(file)
-        format_table(file)
         format_bold(file)
+        if str(file).startswith(blog_dir):
+            continue
         if file.name.lower() == "readme.md":
             continue
+        format_table(file)
         insert_toc(file)

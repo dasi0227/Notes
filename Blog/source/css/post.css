@@ -1,0 +1,55 @@
+/* 顶部标题 */
+#post-info {
+  text-align: center;
+}
+#post-info>.post-title{
+  font-size: 80px;
+}
+
+/* 顶部图 */
+#page-header.post-bg::before{
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* 内容 */
+#article-container {
+  font-size: 18px;   
+  line-height: 1.8;
+}
+
+/* 各级标题 */
+#article-container > h2 {
+  font-size: 40px;
+}
+#article-container > h3 {
+  font-size: 30px;
+}
+#article-container > h4 {
+  font-size: 20px;
+}
+#article-container > h5 {
+  font-size: 18px;
+}
+
+/* 目录 */
+#card-toc>.toc-content{
+  font-size: 20px;
+}
+#card-toc>.item-headline{
+  font-size: 25px;
+}
+
+/* 表格 */
+table td,table th {
+  border: 1px solid #000; /*内部边框样式*/
+  font-weight: bold; /*加粗*/
+  border: 1px solid #000; /* 设置边框样式、宽度和颜色 */
+  background: rgba(158,188,226,0.2); /*背景色*/
+}
+
+/* 文章图片 */
+#article-container.post-content img{
+  width: 70%;
+  height: auto;
+}

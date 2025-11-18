@@ -1,0 +1,28 @@
+#rightMenu
+  .rightMenu-group.rightMenu-small
+    a.rightMenu-item(href="javascript:window.history.back();")
+      i.fa-solid.fa-arrow-left
+    a.rightMenu-item(href="javascript:window.location.reload();")
+      i.fa-solid.fa-arrow-rotate-right
+    a.rightMenu-item(href="javascript:window.history.forward();")
+      i.fa-solid.fa-arrow-right
+    a.rightMenu-item#menu-radompage(href="javascript:window.location.href = window.location.origin;")
+      i.fa-solid.fa-house
+  .rightMenu-group.rightMenu-line.hide#menu-text
+    a.rightMenu-item(href="javascript:rmf.copySelect();")
+      i.fa-solid.fa-copy
+      span='复制'
+  .rightMenu-group.rightMenu-line
+    a.rightMenu-item(href="javascript:rmf.switchDarkMode();")
+      i.fa-solid.fa-circle-half-stroke
+      span='昼夜切换'
+    a.rightMenu-item(href="javascript:rmf.switchReadMode();")
+      i.fa-solid.fa-book
+      span='阅读模式'
+  .rightMenu-group.rightMenu-line
+    a.rightMenu-item(href="javascript:rmf.scrollToTop();")
+      i.fa-solid.fa-arrow-up
+      span='置顶'
+    a.rightMenu-item(href="javascript:rmf.copyPageUrl();")
+      i.fa-solid.fa-link
+      span='复制链接'

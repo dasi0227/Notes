@@ -1,0 +1,77 @@
+/* 背景颜色 */
+#body-wrap {
+  background: -webkit-linear-gradient(
+    90deg,
+    rgba(247, 149, 51, 0.1) 0,
+    rgba(243, 112, 85, 0.1) 15%,
+    rgba(239, 78, 123, 0.1) 30%,
+    rgba(161, 102, 171, 0.1) 44%,
+    rgba(80, 115, 184, 0.1) 58%,
+    rgba(16, 152, 173, 0.1) 72%,
+    rgba(7, 179, 155, 0.1) 86%,
+    rgba(109, 186, 130, 0.1) 100%
+  );
+  background: linear-gradient(
+    90deg,
+    rgba(247, 149, 51, 0.1) 0,
+    rgba(243, 112, 85, 0.1) 15%,
+    rgba(239, 78, 123, 0.1) 30%,
+    rgba(161, 102, 171, 0.1) 44%,
+    rgba(80, 115, 184, 0.1) 58%,
+    rgba(16, 152, 173, 0.1) 72%,
+    rgba(7, 179, 155, 0.1) 86%,
+    rgba(109, 186, 130, 0.1) 100%
+  );
+}
+/* 背景透明 */
+#aside-content>.card-widget.card-info, /* 侧栏作者介绍组件 */
+#aside-content>.card-widget.card-announcement, /* 侧栏公告组件 */
+#aside-content>.sticky_layout>.card-widget.card-categories, /* 侧栏分类组件 */
+#aside-content>.sticky_layout>.card-widget.card-tags, /* 侧栏标签组件 */
+#aside-content>.sticky_layout>.card-widget.card-webinfo, /* 侧栏统计组件 */
+#card-toc.card-widget, /* 文章页侧栏目录 */
+#recent-posts>.recent-post-item, /* 首页近期文章组件 */
+#archive>.article-sort>.article-sort-item, /* 归档页 */
+#post, /* 文章 */
+#page /* 自创页 */
+{
+  transform: translateZ(0);
+  background: var(--light_bg_color);
+  backdrop-filter: blur(10px); /* 应用高斯模糊效果，可以根据需要调整模糊程度 */
+  -webkit-backdrop-filter: blur(10px); /* 兼容性前缀，适用于一些旧版本的浏览器 */
+}
+
+/* 黑夜模式 */
+[data-theme=dark] #aside-content>.card-widget.card-info,
+[data-theme=dark] #aside-content>.card-widget.card-announcement,
+[data-theme=dark] #aside-content>.sticky_layout>.card-widget.card-categories,
+[data-theme=dark] #aside-content>.sticky_layout>.card-widget.card-tags,
+[data-theme=dark] #aside-content>.sticky_layout>.card-widget.card-webinfo,
+[data-theme=dark] #card-toc.card-widget,
+[data-theme=dark] #recent-posts>.recent-post-item,
+[data-theme=dark] #archive>.article-sort>.article-sort-item,
+[data-theme=dark] #post,
+[data-theme=dark] #page
+{
+  background: var(--dark_bg_color);
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px); 
+}
+
+/* 页脚透明 */
+#footer {
+  background: rgba(255,255,255,0);
+  color: #000;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  backdrop-filter: saturate(100%)
+}
+#footer::before {
+  background: rgba(255,255,255,0)
+}
+#footer #footer-wrap {
+  color: var(--font-color)
+}
+#footer #footer-wrap a {
+  color: var(--font-color)
+}

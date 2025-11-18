@@ -1,0 +1,15 @@
+/* 公共属性（不含 color）*/
+#recent-posts > .recent-post-item > .recent-post-info > .content {
+  opacity: 0.9;
+  line-height: 1.5;
+  transition: all .2s;
+  -webkit-line-clamp: 3;
+  /* color 在下面媒体查询中设置 */
+}
+
+#recent-posts > .recent-post-item:hover .recent-post-info .content {
+  opacity: 1;
+  line-height: 2;
+  transition: all .2s;
+  /* color 在下面媒体查询中设置 */
+}
