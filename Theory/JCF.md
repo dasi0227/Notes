@@ -1330,3 +1330,5 @@ List<Integer> list = Arrays.stream(array).collect(Collectors.toList());
 ```java
 List<Integer> list = List.of(array);
 ```
+
+
