@@ -75,3 +75,4 @@ db.json
 public/
 .deploy*/
 _multiconfig.yml
+*.bkp
