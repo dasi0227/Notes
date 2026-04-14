@@ -68,9 +68,7 @@ public void DFS(List<List<Integer>> graph, int cur, boolean[] visited) {
 
 
 
-## 环检测
-
-### DFS 三色标记法
+## 环检测 - 三色标记法
 
 将 visited 从布尔数组变为整数数组，用 0 表示未访问，1 表示正在访问，2 表示已经访问，如果 DFS 过程中，访问到了标记为 1 的节点，说明存在环
 
@@ -103,7 +101,9 @@ public void findCycleDFS(List<List<Integer>> graph, int cur, int[] visited, List
 }
 ```
 
-### 拓扑排序
+
+
+## 环检测 - 拓扑排序
 
 ```java
 public boolean hasCycleTopo(List<List<Integer>> graph) {
