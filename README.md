@@ -12,10 +12,8 @@
 
 ### ☕️ JavaSE
 
-- [Grammar](Backend/JavaSE/Grammar.md)：初识 Java、package、main、Java 开发流程、基础语法
-- [OOP](Backend/JavaSE/OOP.md)：封装、继承、多态、重载、重写、Object 类、static、codeblock、加载顺序、interface
 - [Class](Backend/JavaSE/Class.md)：Math、Arrays、System、BigDecimal、LocalDateTime、Enum、Exception、Wrapper、StringBuffer、Pattern、Matcher
-- [Collection&Map](Backend/JavaSE/Collection&Map.md)：数组与集合、框架体系、Collection、Map、遍历手段、接口方法
+- [OOP](Backend/JavaSE/OOP.md)：封装、继承、多态、重载、重写、Object 类、static、codeblock、加载顺序、interface
 - [Core](Backend/JavaSE/Core.md)：I/O、泛型、线程、反射、网络、JDBC
 
 ### 🌐 Web
@@ -35,14 +33,14 @@
 - [SSM](Backend/Spring/SSM.md)：依赖整理、全注解配置、编码流程
 - [SpringBoot](Backend/Spring/SpringBoot.md)：pom.xml、application.yml、启动类、读取配置、项目打包、整合 SSM
 - [SpringCloud](Backend/Spring/SpringCloud.md)：单机/集群/分布式架构、微服务定义、Nacos Discovery、Nacos Config、OpenFeign、Sentinel、Gateway、Filter、Seata
-- [SpringSecurity](/Backend/SpringSecurity.md)：待学习...
 
 ### 🛠 Middleware
 
 - [Redis](Backend/Middleware/Redis.md)：缓存、基本命令、九大数据类型、Persistence、Transaction、Pipeline、Replication、Sentinel、Cluster、SpringBoot 集成、BigKey、双写一致性、高级数据结构应用、Lua、分布式锁、三大问题与三大方案、过期策略、底层分析
 - [RabbitMQ](Backend/Middleware/RabbitMQ.md)：消息中间件、体系架构、交互流程、SpringBoot 集成、消息可靠性、延迟消息、优先级队列
-- [Kafka](Backend/Middleware/Kafka.md)：待学习...
 - [Elasticsearch](Backend/Middleware/Elasticsearch.md)：待学习...
+- [Prometheus](DevOps/Prometheus.md)：待学习...
+- [Docker](DevOps/Docker.md)：待学习...
 
 ### 🚀 Projects
 
@@ -60,20 +58,11 @@
 - [操作系统](Theory/OS.md)：内核、用户态和内核态、系统调用、进程、PCB、IPC、进程调度算法、特殊进程、死锁处理、内存分配、虚拟内存、缺页错误、页面置换算法、inode、链接、磁盘调度算法
 - [Linux](Theory/Linux.md)：Linux 内核、Linux 发行版、命令、命令执行过程、环境变量、文件系统、目录结构、文件管理、文本管理、权限管理、用户管理、用户组管理、进程管理、软件包管理、系统信息查询
 - [Shell](Theory/Shell.md)：命令行解释器和脚本、执行方式、内建命令、输入输出机制、变量、数组、运算符、流程控制、函数
-- [分布式](Theory/Distributed.md)：待学习...
-- [高性能](Theory/Performance.md)：待学习...
-- [高可用](Theory/Availability.md)：待学习...
 
 ### 🧠 算法
 
 - [动态规划](Algorithm/DP.md)：线性、划分、网格、树形、区间、背包、状态机、双序列
 - [深度优先搜索 / 回溯](Algorithm/DFS.md)：线性、划分、网格、树形、区间、背包、状态机、双序列
-
-### ⚙️ DevOps
-
-- [Docker](DevOps/Docker.md)：待学习...
-- [Kubernetes](DevOps/Kubernetes.md)：待学习...
-- [Prometheus](DevOps/Prometheus.md)：待学习...
 
 ### 📊 Data Analysis
 
@@ -223,18 +212,16 @@
 - [x] 11.19-12.20：【LuckyDraw】
 - [x] 01.10-03.10：【MiniAgent】
 
-15. 面试复习
 
-- [ ] 
 
 ## About me
 
-💻 Major: [Computer Science](https://cse.sysu.edu.cn/)  
-
-📦 Repo：[Github](https://github.com/dasi0227/Notes) ｜ [Gitee](https://gitee.com/dasi0227/Notes)
-
-📮 Email: [dasi0227@qq.com](mailto:dasi0227@qq.com)
+📦 Repo：[Github](https://github.com/dasi0227/Notes)
 
 🌐 Blog: [dasi.plus](https://dasi.plus)
 
 🧑‍💻 CSDN：[dasi0227](https://blog.csdn.net/m0_74766888)
+
+📮 Email: [dasi0227@qq.com](mailto:dasi0227@qq.com)
+
+💻 Major: [Computer Science](https://cse.sysu.edu.cn/)  
