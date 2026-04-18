@@ -1,29 +1,25 @@
 # SSM
 
-
-
-   * [概念](#概念)
-      * [整合](#整合)
-      * [容器](#容器)
-   * [依赖](#依赖)
-      * [SpringFramework](#springframework)
-      * [SpringMVC](#springmvc)
-      * [MyBatis](#mybatis)
-      * [开发辅助](#开发辅助)
-      * [pom.xml](#pomxml)
-   * [配置类](#配置类)
-      * [DataSourceConfig](#datasourceconfig)
-      * [MapperJavaConfig](#mapperjavaconfig)
-      * [ServiceJavaConfig](#servicejavaconfig)
-      * [WebJavaConfig](#webjavaconfig)
-      * [SSMConfig](#ssmconfig)
-   * [SSM 实践（查询为例）](#ssm-实践查询为例)
-      * [1. 编写封装类](#1-编写封装类)
-      * [2. 编写控制层](#2-编写控制层)
-      * [3. 编写业务层](#3-编写业务层)
-      * [4. 编写持久层](#4-编写持久层)
-
-
+* [概念](#概念)
+   * [整合](#整合)
+   * [容器](#容器)
+* [依赖](#依赖)
+   * [SpringFramework](#springframework)
+   * [SpringMVC](#springmvc)
+   * [MyBatis](#mybatis)
+   * [开发辅助](#开发辅助)
+   * [pom.xml](#pomxml)
+* [配置类](#配置类)
+   * [DataSourceConfig](#datasourceconfig)
+   * [MapperJavaConfig](#mapperjavaconfig)
+   * [ServiceJavaConfig](#servicejavaconfig)
+   * [WebJavaConfig](#webjavaconfig)
+   * [SSMConfig](#ssmconfig)
+* [SSM 实践（查询为例）](#ssm-实践查询为例)
+   * [1. 编写封装类](#1-编写封装类)
+   * [2. 编写控制层](#2-编写控制层)
+   * [3. 编写业务层](#3-编写业务层)
+   * [4. 编写持久层](#4-编写持久层)
 
 ## 概念
 
@@ -54,7 +50,7 @@ Root Ioc 容器作为父容器可以调用 Web IoC 子容器
 配置文件
 
 | **名称** | **功能** |
-| ----------------- | ------------------------------------------------------------ |
+| --- | --- |
 | **DataSourceConfig** | 读取 jdbc 属性文件、配置 Druid 数据源 |
 | **MapperJavaConfig** | 注册并配置 SqlSessionFactoryBean、扫描 Mapper 接口 |
 | **ServiceJavaConfig** | 扫描 @Service，配置事务管理器 |

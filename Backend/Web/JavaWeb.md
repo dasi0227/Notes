@@ -1,51 +1,47 @@
 # JavaWeb
 
-
-
+* [概述](#概述)
+   * [定义](#定义)
+   * [Web 容器](#web-容器)
+   * [应用程序的生命周期](#应用程序的生命周期)
+   * [几个 J](#几个-j)
+   * [MVC 架构模式](#mvc-架构模式)
+* [HTTP](#http)
+   * [HTTP 版本](#http-版本)
+   * [HTTP 报文](#http-报文)
+* [Tomcat](#tomcat)
+   * [根目录结构](#根目录结构)
+   * [应用目录结构](#应用目录结构)
+   * [开发流程](#开发流程)
+   * [服务流程](#服务流程)
+* [路径配置](#路径配置)
+   * [**url-pattern**](#url-pattern)
+   * [**@WebServlet**](#webservlet)
+* [Servlet](#servlet)
+   * [定义](#定义)
+   * [生命周期](#生命周期)
+   * [DefaultServlet](#defaultservlet)
+   * [HttpServlet](#httpservlet)
+   * [ServletConfig 和 ServletContext](#servletconfig-和-servletcontext)
+* [请求和响应](#请求和响应)
+   * [HttpServletRequest](#httpservletrequest)
+   * [HttpServletResponse](#httpservletresponse)
+   * [请求转发](#请求转发)
+   * [响应重定向](#响应重定向)
+   * [乱码问题](#乱码问题)
+   * [路径问题](#路径问题)
+* [Session](#session)
+   * [定义](#定义)
+   * [Cookie](#cookie)
+   * [HttpSession](#httpsession)
+* [Listener](#listener)
+   * [域对象](#域对象)
+   * [类事件](#类事件)
+   * [监听器](#监听器)
+* [Filter](#filter)
    * [概述](#概述)
-      * [定义](#定义)
-      * [Web 容器](#web-容器)
-      * [应用程序的生命周期](#应用程序的生命周期)
-      * [几个 J](#几个-j)
-      * [MVC 架构模式](#mvc-架构模式)
-   * [HTTP](#http)
-      * [HTTP 版本](#http-版本)
-      * [HTTP 报文](#http-报文)
-   * [Tomcat](#tomcat)
-      * [根目录结构](#根目录结构)
-      * [应用目录结构](#应用目录结构)
-      * [开发流程](#开发流程)
-      * [服务流程](#服务流程)
-   * [路径配置](#路径配置)
-      * [**url-pattern**](#url-pattern)
-      * [**@WebServlet**](#webservlet)
-   * [Servlet](#servlet)
-      * [定义](#定义)
-      * [生命周期](#生命周期)
-      * [DefaultServlet](#defaultservlet)
-      * [HttpServlet](#httpservlet)
-      * [ServletConfig 和 ServletContext](#servletconfig-和-servletcontext)
-   * [请求和响应](#请求和响应)
-      * [HttpServletRequest](#httpservletrequest)
-      * [HttpServletResponse](#httpservletresponse)
-      * [请求转发](#请求转发)
-      * [响应重定向](#响应重定向)
-      * [乱码问题](#乱码问题)
-      * [路径问题](#路径问题)
-   * [Session](#session)
-      * [定义](#定义)
-      * [Cookie](#cookie)
-      * [HttpSession](#httpsession)
-   * [Listener](#listener)
-      * [域对象](#域对象)
-      * [类事件](#类事件)
-      * [监听器](#监听器)
-   * [Filter](#filter)
-      * [概述](#概述)
-      * [配置过滤器](#配置过滤器)
-      * [doFilter](#dofilter)
-
-
+   * [配置过滤器](#配置过滤器)
+   * [doFilter](#dofilter)
 
 ## 概述
 
@@ -77,21 +73,21 @@
 
 ### 应用程序的生命周期
 
-- **开发（develop）**：人敲键盘写代码的过程
-- **构建（build）**：把源代码编译、打包成可执行应用的过程，比如将 .java 编译成 .class，并和网页资源、依赖库一起打包进 .war 文件
-- **部署（deploy）**：把构建好的应用包放到服务器上运行，让其他用户通过网络访问到
-- **测试（test）**：检查应用是否按照预期工作，找出 BUG，验证功能正确性的过程
-- **运维（operate）**：应用上线后的运行维护工作，包括服务器管理、监控、日志分析、备份恢复、故障排查等
+- 开发（develop）：人敲键盘写代码的过程
+- 构建（build）：把源代码编译、打包成可执行应用的过程，比如将 .java 编译成 .class，并和网页资源、依赖库一起打包进 .war 文件
+- 部署（deploy）：把构建好的应用包放到服务器上运行，让其他用户通过网络访问到
+- 测试（test）：检查应用是否按照预期工作，找出 BUG，验证功能正确性的过程
+- 运维（operate）：应用上线后的运行维护工作，包括服务器管理、监控、日志分析、备份恢复、故障排查等
 
 ### 几个 J
 
-- **JRE（Java Runtime Environment）**：Java 运行环境，包含 JVM 和 JCL 以及其他配套资源
+- JRE（Java Runtime Environment）：Java 运行环境，包含 JVM 和 JCL 以及其他配套资源
 - **JVM（Java Virtual Machine**）：Java 虚拟机，负责把 Java 字节码（.class 文件）翻译成操作系统能执行的指令
-- **JCL（Java Class Libraries）**：Java 类库，具备一大堆预定义好的 Java 类，提供开发中最基础的功能
-- **JDK（Java Development Kit）**：Java 开发工具包，是写、编译、调试 Java 程序的一整套工具合集
-- **JDB（Java Debugger）**：Java 调试工具，用来在命令行下调试 Java 程序，比如设置断点、单步执行、查看变量值
-- **JAR（Java Archive）**：Java 归档包，把多个 .class 文件和资源文件打包成一个文件，方便部署、传输
-- **JSP（JavaServer Pages）**：Java 服务器页面技术，让开发者能在 HTML 网页中直接嵌入 Java 代码或表达式，从而用来动态生成网页内容
+- JCL（Java Class Libraries）：Java 类库，具备一大堆预定义好的 Java 类，提供开发中最基础的功能
+- JDK（Java Development Kit）：Java 开发工具包，是写、编译、调试 Java 程序的一整套工具合集
+- JDB（Java Debugger）：Java 调试工具，用来在命令行下调试 Java 程序，比如设置断点、单步执行、查看变量值
+- JAR（Java Archive）：Java 归档包，把多个 .class 文件和资源文件打包成一个文件，方便部署、传输
+- JSP（JavaServer Pages）：Java 服务器页面技术，让开发者能在 HTML 网页中直接嵌入 Java 代码或表达式，从而用来动态生成网页内容
 
 ### MVC 架构模式
 
@@ -376,7 +372,7 @@ public interface Servlet {
 ### ServletConfig 和 ServletContext
 
 | **项目** | **ServletConfig** | **ServletContext** |
-| ------------ | --------------------------------------- | -------------------------------------------------------- |
+| --- | --- | --- |
 | **作用对象** | 单个 Servlet 的初始化配置 | 整个 Web 应用的全局共享信息 |
 | **生命周期** | Servlet 创建时存在，Servlet 销毁时消失 | 应用启动时存在，应用停止时销毁 |
 | **创建者** | 容器在实例化 Servlet 时创建 | 容器在启动 Web 应用时就创建 |
@@ -653,10 +649,10 @@ HttpSession API
 - void removeAttribute(String name)：删除属性
 
 | **域对象** | **生命周期** | **接口** | **常用** |
-| ----------------- | -------------- | ------------------ | ------------------------------------------------ |
-| **请求域（Request）** | 一次 HTTP 请求 | HttpServletRequest | 多级转发间共享参数，存储本次服务要用到的临时数据 |
-| **会话域（Session）** | 一个客户端会话 | HttpSession | 多请求间共享参数，存储登陆用户信息、购物车信息 |
-| **应用域（Context）** | 一个 Web 应用 | ServletContext | 多路径间共享参数，存储全局配置 |
+| --- | --- | --- | --- |
+| 请求域（Request） | 一次 HTTP 请求 | HttpServletRequest | 多级转发间共享参数，存储本次服务要用到的临时数据 |
+| 会话域（Session） | 一个客户端会话 | HttpSession | 多请求间共享参数，存储登陆用户信息、购物车信息 |
+| 应用域（Context） | 一个 Web 应用 | ServletContext | 多路径间共享参数，存储全局配置 |
 
 ### 类事件
 

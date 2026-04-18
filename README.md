@@ -38,37 +38,37 @@
 
 - [Redis](Backend/Middleware/Redis.md)：缓存、基本命令、九大数据类型、Persistence、Transaction、Pipeline、Replication、Sentinel、Cluster、SpringBoot 集成、BigKey、双写一致性、高级数据结构应用、Lua、分布式锁、三大问题与三大方案、过期策略、底层分析
 - [RabbitMQ](Backend/Middleware/RabbitMQ.md)：消息中间件、体系架构、交互流程、SpringBoot 集成、消息可靠性、延迟消息、优先级队列
-- [Elasticsearch](Backend/Middleware/Elasticsearch.md)：待学习...
-- [Prometheus](DevOps/Prometheus.md)：待学习...
-- [Docker](DevOps/Docker.md)：待学习...
+- Elasticsearch：待学习...
+- Prometheus：待学习...
+- Docker：待学习...
 
 ### 🚀 Projects
 
-- [苍穹外卖](Backend/Project/苍穹外卖.md)：项目设计、代码设计、DTO 和 VO、业务处理、Nginx、RESTful、PageHelper、SLF4J、JWT、Swagger、OSS、@AutoFill、@ExceptionHandler、HttpClient、SpringCache、SpringTask、WebSocket、ECharts、POI
-- [黑马点评](Backend/Project/黑马点评.md)：Nginx 代理、令牌拦截器、序号生成器、防穿透、防击穿、防竞争、滚动分页、位置查询、签到记录、访问统计
+- [苍穹外卖](Project/苍穹外卖.md)：项目设计、代码设计、DTO 和 VO、业务处理、Nginx、RESTful、PageHelper、SLF4J、JWT、Swagger、OSS、@AutoFill、@ExceptionHandler、HttpClient、SpringCache、SpringTask、WebSocket、ECharts、POI
+- [黑马点评](Project/黑马点评.md)：Nginx 代理、令牌拦截器、序号生成器、防穿透、防击穿、防竞争、滚动分页、位置查询、签到记录、访问统计
 
 ### 📚 八股
 
-- [JVM](Theory/JVM.md)：JDK、JRE、JVM、内存布局、栈、堆、元空间、新生代、老年代、直接内存、对象内存、对象创建过程、垃圾回收、存活判定、GC 算法、垃圾收集器、类文件、类加载过程、类加载器、JVM 参数
-- [JUC](Theory/JUC.md)：进程与线程、Thread API、Monitor、生命周期、多线程、JMM、线程安全、deadlock、consistency、volatile、synchronized、CAS、JUC、ReentrantLock、Atomic、Future、CompletableFuture、ThreadPoolExecutor、ThreadLocal、AQS
-- [JCF](Theory/JCF.md)：比较器、Collection、stream、iterator、List、ArrayList、LinkedList、Set、Queue、BlockingQueue、Map、HashMap、ConcurrentHashMap、集合使用规范
-- [MySQL](Theory/MySQL.md)：基本概念、层级架构、字段类型、日志、事务、锁、MVCC、索引、存储结构、性能优化、SQL 优化
-- [设计模式](Theory/DesignMode.md)：SOLID 原则、设计模式、工厂、单例、代理、观察者、适配器、装饰器、责任链、策略、状态
-- [计算机网络](Theory/Network.md)：OSI 七层模型、HTTP、DNS、TCP、IP、NAT、ARP、网关、访问 URL 全流程
-- [操作系统](Theory/OS.md)：内核、用户态和内核态、系统调用、进程、PCB、IPC、进程调度算法、特殊进程、死锁处理、内存分配、虚拟内存、缺页错误、页面置换算法、inode、链接、磁盘调度算法
-- [Linux](Theory/Linux.md)：Linux 内核、Linux 发行版、命令、命令执行过程、环境变量、文件系统、目录结构、文件管理、文本管理、权限管理、用户管理、用户组管理、进程管理、软件包管理、系统信息查询
-- [Shell](Theory/Shell.md)：命令行解释器和脚本、执行方式、内建命令、输入输出机制、变量、数组、运算符、流程控制、函数
+- [JVM](Backend/Theory/JVM.md)：JDK、JRE、JVM、内存布局、栈、堆、元空间、新生代、老年代、直接内存、对象内存、对象创建过程、垃圾回收、存活判定、GC 算法、垃圾收集器、类文件、类加载过程、类加载器、JVM 参数
+- [JUC](Backend/Theory/JUC.md)：进程与线程、Thread API、Monitor、生命周期、多线程、JMM、线程安全、deadlock、consistency、volatile、synchronized、CAS、JUC、ReentrantLock、Atomic、Future、CompletableFuture、ThreadPoolExecutor、ThreadLocal、AQS
+- [JCF](Backend/Theory/JCF.md)：比较器、Collection、stream、iterator、List、ArrayList、LinkedList、Set、Queue、BlockingQueue、Map、HashMap、ConcurrentHashMap、集合使用规范
+- [MySQL](Backend/Theory/MySQL.md)：基本概念、层级架构、字段类型、日志、事务、锁、MVCC、索引、存储结构、性能优化、SQL 优化
+- [设计模式](Backend/Theory/DesignMode.md)：SOLID 原则、设计模式、工厂、单例、代理、观察者、适配器、装饰器、责任链、策略、状态
+- [计算机网络](Backend/Theory/Network.md)：OSI 七层模型、HTTP、DNS、TCP、IP、NAT、ARP、网关、访问 URL 全流程
+- [操作系统](Backend/Theory/OS.md)：内核、用户态和内核态、系统调用、进程、PCB、IPC、进程调度算法、特殊进程、死锁处理、内存分配、虚拟内存、缺页错误、页面置换算法、inode、链接、磁盘调度算法
+- [Linux](Backend/Theory/Linux.md)：Linux 内核、Linux 发行版、命令、命令执行过程、环境变量、文件系统、目录结构、文件管理、文本管理、权限管理、用户管理、用户组管理、进程管理、软件包管理、系统信息查询
+- [Shell](Backend/Theory/Shell.md)：命令行解释器和脚本、执行方式、内建命令、输入输出机制、变量、数组、运算符、流程控制、函数
 
 ### 🧠 算法
 
-- [动态规划](Algorithm/DP.md)：线性、划分、网格、树形、区间、背包、状态机、双序列
-- [深度优先搜索 / 回溯](Algorithm/DFS.md)：线性、划分、网格、树形、区间、背包、状态机、双序列
+- [动态规划](Algorithm/动态规划.md)：线性、划分、网格、树形、区间、背包、状态机、双序列
+- [深度优先搜索 / 回溯](Algorithm/深度优先搜索.md)：线性、划分、网格、树形、区间、背包、状态机、双序列
 
 ### 📊 Data Analysis
 
-- [NumPy](Data/NumPy.md)：属性、数据类型、切片、索引、广播、迭代、修改形状、翻转、连接、分割、添加删除、字符串运算、数学运算、统计运算、线性代数运算、条件筛选运算
-- [Pandas](Data/Pandas.md)：Series、DataFrame、CSV 操作、JSON 操作、数据清洗、缺失值处理、重复值处理、异常值处理、替换值处理、数据预处理、格式转换、数值处理、类别处理、数据抽样、排序、聚合、透视、时间序列分析、性能优化
-- [Matplotlib](Data/Matplotlib.md)：plot、subplot、scatter、bar、barh、pie、hist、im
+- [NumPy](Draft/Data/NumPy.md)：属性、数据类型、切片、索引、广播、迭代、修改形状、翻转、连接、分割、添加删除、字符串运算、数学运算、统计运算、线性代数运算、条件筛选运算
+- [Pandas](Draft/Data/Pandas.md)：Series、DataFrame、CSV 操作、JSON 操作、数据清洗、缺失值处理、重复值处理、异常值处理、替换值处理、数据预处理、格式转换、数值处理、类别处理、数据抽样、排序、聚合、透视、时间序列分析、性能优化
+- [Matplotlib](Draft/Data/Matplotlib.md)：plot、subplot、scatter、bar、barh、pie、hist、im
 
 
 

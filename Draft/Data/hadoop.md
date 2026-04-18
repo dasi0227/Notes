@@ -1,23 +1,19 @@
 # Hadoop
 
-
-
-   * [Hadoop 概念](#hadoop-概念)
-   * [Hadoop 组成](#hadoop-组成)
-      * [HDFS](#hdfs)
-      * [Yarn](#yarn)
-      * [MapReduce](#mapreduce)
-      * [关系/整体流程](#关系整体流程)
-   * [大数据技术生态体系](#大数据技术生态体系)
-      * [数据来源层（Source）](#数据来源层source)
-      * [数据传输层（Ingestion）](#数据传输层ingestion)
-      * [数据存储层（Storage）](#数据存储层storage)
-      * [资源管理层](#资源管理层)
-      * [数据计算层](#数据计算层)
-      * [任务调度层](#任务调度层)
-      * [业务模型层](#业务模型层)
-
-
+* [Hadoop 概念](#hadoop-概念)
+* [Hadoop 组成](#hadoop-组成)
+   * [HDFS](#hdfs)
+   * [Yarn](#yarn)
+   * [MapReduce](#mapreduce)
+   * [关系/整体流程](#关系整体流程)
+* [大数据技术生态体系](#大数据技术生态体系)
+   * [数据来源层（Source）](#数据来源层source)
+   * [数据传输层（Ingestion）](#数据传输层ingestion)
+   * [数据存储层（Storage）](#数据存储层storage)
+   * [资源管理层](#资源管理层)
+   * [数据计算层](#数据计算层)
+   * [任务调度层](#任务调度层)
+   * [业务模型层](#业务模型层)
 
 ## Hadoop 概念
 

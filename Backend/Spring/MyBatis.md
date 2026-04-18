@@ -1,52 +1,48 @@
 # MyBatis
 
-
-
-   * [概述](#概述)
-   * [Mapper](#mapper)
-      * [定义](#定义)
-      * [映射流程](#映射流程)
-      * [iBatis](#ibatis)
-   * [基本使用](#基本使用)
-      * [mybatis-config.xml](#mybatis-configxml)
-         * [environments](#environments)
-         * [mappers](#mappers)
-         * [settings](#settings)
-      * [传递值](#传递值)
-         * [方式](#方式)
-         * [类型](#类型)
-      * [返回值](#返回值)
-         * [默认别名](#默认别名)
-         * [类型别名](#类型别名)
-         * [字段别名](#字段别名)
-         * [集合类型](#集合类型)
-         * [获取自增长主键](#获取自增长主键)
-         * [selectKey 标签](#selectkey-标签)
-   * [多表映射](#多表映射)
-      * [定义](#定义)
-      * [一对一映射](#一对一映射)
-      * [一对多映射](#一对多映射)
-      * [自动映射](#自动映射)
-   * [动态语句](#动态语句)
-      * [\<if>](#if)
-      * [\<where>](#where)
-      * [\<set>](#set)
-      * [\<choose>](#choose)
-      * [\<sql>](#sql)
-   * [批量执行](#批量执行)
-      * [Executor](#executor)
-      * [\<foreach>](#foreach)
-   * [分页机制](#分页机制)
-      * [MySQL 实现](#mysql-实现)
-      * [PageHelper 插件实现](#pagehelper-插件实现)
-
-
+* [概述](#概述)
+* [Mapper](#mapper)
+   * [定义](#定义)
+   * [映射流程](#映射流程)
+   * [iBatis](#ibatis)
+* [基本使用](#基本使用)
+   * [mybatis-config.xml](#mybatis-configxml)
+      * [environments](#environments)
+      * [mappers](#mappers)
+      * [settings](#settings)
+   * [传递值](#传递值)
+      * [方式](#方式)
+      * [类型](#类型)
+   * [返回值](#返回值)
+      * [默认别名](#默认别名)
+      * [类型别名](#类型别名)
+      * [字段别名](#字段别名)
+      * [集合类型](#集合类型)
+      * [获取自增长主键](#获取自增长主键)
+      * [selectKey 标签](#selectkey-标签)
+* [多表映射](#多表映射)
+   * [定义](#定义)
+   * [一对一映射](#一对一映射)
+   * [一对多映射](#一对多映射)
+   * [自动映射](#自动映射)
+* [动态语句](#动态语句)
+   * [\<if>](#if)
+   * [\<where>](#where)
+   * [\<set>](#set)
+   * [\<choose>](#choose)
+   * [\<sql>](#sql)
+* [批量执行](#批量执行)
+   * [Executor](#executor)
+   * [\<foreach>](#foreach)
+* [分页机制](#分页机制)
+   * [MySQL 实现](#mysql-实现)
+   * [PageHelper 插件实现](#pagehelper-插件实现)
 
 ## 概述
 
 **ORM**（Object-Relational Mapping，对象关系映射）：是一种程序设计思想，目标是**把面向对象编程中的对象和关系型数据库中表建立自动映射关系，使得程序员可以像操作对象一样操作数据库**
 
-**MyBatis** 是  Java 中专门负责持久层的框架，是 ORM 的一种实现方式，主要作用是**把 Java 方法与数据库的 SQL 语句**进行映射
+**MyBatis** 是 Java 中专门负责持久层的框架，是 ORM 的一种实现方式，主要作用是**把 Java 方法与数据库的 SQL 语句**进行映射
 
 - **半自动 ORM**：程序员手写 SQL，MaBatis 负责把 SQL 的结果自动封装为 Java 对象
 - **代码分离**：SQL 可以写到 XML 映射文件和注解之中，使其与 Java 代码完全分离
@@ -54,7 +50,7 @@
 - **动态 SQL**：可以使用标签，根据条件在运行时拼接 SQL 语句
 
 | **对比** | **JDBC** | **MyBatis** | **Hibernate** |
-| -------- | ---------------------------------- | --------------------------------------- | --------------------------------------- |
+| --- | --- | --- | --- |
 | **本质** | 直接利用 JDBC 的 API | 半自动 ORM 框架 | 全自动 ORM 框架 |
 | **SQL 编写** | 手写 SQL + 手动拼接参数 | 支持动态 SQL，参数动态绑定 | 框架生成 SQL |
 | **特征** | 灵活度最高，但开发效率低、代码量大 | 保留 SQL 灵活性，并减少了 JDBC 重复劳动 | 开发效率高，但性能低、对 SQL 极其不敏感 |
@@ -206,7 +202,7 @@ User user = userMapper.getUser(1);
 通过 `<setting name="..." value="..." />` 控制 MyBatis 的缓存策略、延迟加载、执行期类型等核心特性，一次性全局生效，所有映射器都会遵循
 
 | **name** | **value** | **意义** |
-| ------------------------ | ----- | ------------------------------------------------------------ |
+| --- | --- | --- |
 | **mapUnderscoreToCamelCase** | false | 是否自动将数据库下划线命名映射为驼峰命名，如 emp_name → empName |
 | **cacheEnabled** | true | 是否开启全局二级缓存 |
 | **lazyLoadingEnabled** | false | 是否启用延迟加载，即关联对象在真的用到时才查询 |
@@ -219,7 +215,7 @@ User user = userMapper.getUser(1);
 #### 方式
 
 | **对比** | **#{}** | **${}** |
-| -------- | ---------------------- | --------------------------- |
+| --- | --- | --- |
 | **替换方式** | 占位符 ? | 字符串拼接 |
 | **性质** | 安全、可以自动类型转换 | 有 SQL 注入风险、统一字符串 |
 | **场景** | 传递值 | 传递表名、列名等 SQL 结构 |
@@ -516,7 +512,7 @@ public interface EmpMapper {
 需要在 mybatis.config.xml 的 settings 中开启 **autoMappingBehavior**，但是无论是单层还是嵌套，**都需要有 \<id> 标签**
 
 | **值** | **含义** | **场景** |
-| ------- | ------------------------------------------ | ------------------------------------------------ |
+| --- | --- | --- |
 | **NONE** | 禁用自动映射，必须写 \<resultMap> | 名称不一致，或者不满足驼峰式，需要自定义 |
 | **PARTIAL** | 只映射单层列，且没有在 \<resultMap> 中出现 | 不适用于嵌套映射，比如 association 和 collection |
 | **FULL** | 映射所有列，即使在 \<resultMap> 中出现 | 适用于名称完全对应的情况 |
@@ -764,12 +760,9 @@ SELECT * FROM [tableName] ORDER BY [colKey] LIMIT [rowOffset] [rowNum]
 ```
 
 1. 创建 PageHelper 对象，并且指定 pageNum 和 pageSize
-
     - rowOffset = (pageNum - 1) * pageSize
     - rowNum = pageSize
-
 2. 创建 PageInfo 对象，构造函数中传入结果列表对象
-
     - getPages() / getTotal()：获取总页数和总行数
     - getPageNum() / getPageSize() / getSize()：获取当前页码、页大小、当前页大小（末尾页通常小于预先设置的页大小，页码从 1 开始）
     - getStartRow() / getEndRow()：获取第一条 / 最后一条记录的行号（从 1 开始）

@@ -1,191 +1,386 @@
+from __future__ import annotations
+
+import argparse
 import re
-import os
 from pathlib import Path
+from typing import Iterable
 
-empty_line_in_md = ["", "", ""]
 
-def insert_toc(file: Path):
-    """
-    在第一个一级标题和第一个二级标题之间插入 TOC
-    """
-    lines = file.read_text(encoding="utf-8").splitlines()
+DEFAULT_BLACKLIST = ("Blog",)
+MARKDOWN_SUFFIXES = {".md", ".markdown"}
+INLINE_CODE_RE = re.compile(r"(`+)([^`]*?)\1")
+MARKDOWN_LINK_RE = re.compile(r"(!?\[[^\]]*\]\([^)]+\))")
+FENCE_RE = re.compile(r"^\s*(```+|~~~+)")
+LIST_ITEM_RE = re.compile(r"^\s*(?:[-*+]|\d+\.)\s+")
+HEADING_RE = re.compile(r"^(#{1,6})[ \t]*(.*?)[ \t]*$")
 
-    # --- 生成 TOC ---
-    toc = []
-    pattern = re.compile(r"^(#{2,6})\s+(.*)")
-    for line in lines:
-        match = pattern.match(line)
-        if match:
-            level = len(match.group(1)) - 1
-            title = match.group(2).strip()
-            anchor = re.sub(r"[^\w\s-]", "", title).lower()
-            anchor = re.sub(r"\s+", "-", anchor)
-            toc.append(f"{'   ' * level}* [{title}](#{anchor})")
-    toc_text = "\n".join(toc)
+# 仅匹配“中文术语（English / Acronym）”这类容易被 GitHub 错误渲染的整段加粗
+BROKEN_BOLD_RE = re.compile(
+    r"(?<!\*)\*\*"
+    r"([\u4e00-\u9fffA-Za-z0-9/\-+&· ]+（[A-Za-z0-9][A-Za-z0-9 ,./:+\-&]*）)"
+    r"\*\*(?!\*)"
+)
 
-    # --- 插入 TOC ---
-    first_h1_idx, first_h2_idx = None, None
-    for i, line in enumerate(lines):
-        if line.startswith("# "):
-            first_h1_idx = i
-        elif line.startswith("## "):
-            first_h2_idx = i
-            break
+CJK_RE = r"[\u3400-\u4dbf\u4e00-\u9fff]"
+ASCII_RE = r"[A-Za-z0-9]"
 
-    if first_h1_idx is None or first_h2_idx is None:
-        print(f"插入 TOC 失败：{file}")
-        return
-    
-    new_lines = (
-        lines[:first_h1_idx + 1]
-        + empty_line_in_md
-        + toc_text.splitlines()
-        + empty_line_in_md
-        + lines[first_h2_idx:]
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Normalize markdown notes.")
+    parser.add_argument(
+        "--root",
+        type=Path,
+        default=Path(__file__).resolve().parents[2],
+        help="Root directory to scan.",
     )
-    file.write_text("\n".join(new_lines), encoding="utf-8")
+    parser.add_argument(
+        "--blacklist",
+        nargs="*",
+        default=list(DEFAULT_BLACKLIST),
+        help="Directory names to skip. Defaults to Blog.",
+    )
+    parser.add_argument(
+        "--include-readme",
+        action="store_true",
+        help="Format README.md as a normal markdown file.",
+    )
+    parser.add_argument(
+        "paths",
+        nargs="*",
+        type=Path,
+        help="Optional markdown files to process.",
+    )
+    return parser.parse_args()
 
-def format_heading(file: Path):
-    """
-    规范化标题
-    """
-    lines = file.read_text(encoding="utf-8").splitlines()
-    
-    new_lines = []
-    for line in lines:
-        # 确保所有标题 # 和标题内容之间有空格
-        match = re.match(r"^(#+)\s*(.*)", line)
-        if match:
-            line = f"{match.group(1)} {match.group(2)}"
 
-        # 确保所有二级标题之前严格只有一个空行
-        if line.startswith("## ") and new_lines:
-            while new_lines and new_lines[-1].strip() == "":
-                new_lines.pop()
-            new_lines.extend(empty_line_in_md)
+def should_skip(path: Path, root: Path, blacklist: set[str], include_readme: bool) -> bool:
+    if path.suffix.lower() not in MARKDOWN_SUFFIXES:
+        return True
 
-        new_lines.append(line)
+    relative = path.relative_to(root)
+    if any(part in blacklist for part in relative.parts):
+        return True
 
-    file.write_text("\n".join(new_lines), encoding="utf-8")
+    if not include_readme and path.name.lower() == "readme.md":
+        return True
 
-def format_list(file: Path):
-    """
-    规范化两个列表项之间没有多余的空行
-    """
-    lines = file.read_text(encoding="utf-8").splitlines()
-    
+    return False
+
+
+def iter_markdown_files(root: Path, blacklist: set[str], include_readme: bool) -> Iterable[Path]:
+    for path in sorted(root.rglob("*")):
+        if path.is_file() and not should_skip(path, root, blacklist, include_readme):
+            yield path
+
+
+def normalize_input_paths(
+    root: Path,
+    paths: list[Path],
+    blacklist: set[str],
+    include_readme: bool,
+) -> list[Path]:
+    normalized: list[Path] = []
+    seen: set[Path] = set()
+    for raw_path in paths:
+        path = raw_path if raw_path.is_absolute() else (root / raw_path)
+        path = path.resolve()
+        if not path.is_file():
+            continue
+        if should_skip(path, root, blacklist, include_readme):
+            continue
+        if path in seen:
+            continue
+        normalized.append(path)
+        seen.add(path)
+    return sorted(normalized)
+
+
+def transform_outside_protected_spans(text: str, transform) -> str:
+    parts: list[str] = []
+    last_end = 0
+    protected = re.compile(
+        f"{INLINE_CODE_RE.pattern}|{MARKDOWN_LINK_RE.pattern}"
+    )
+    for match in protected.finditer(text):
+        parts.append(transform(text[last_end:match.start()]))
+        parts.append(match.group(0))
+        last_end = match.end()
+    parts.append(transform(text[last_end:]))
+    return "".join(parts)
+
+
+def normalize_cjk_ascii_spacing(segment: str) -> str:
+    segment = re.sub(fr"({CJK_RE})\s+({ASCII_RE})", r"\1 \2", segment)
+    segment = re.sub(fr"({ASCII_RE})\s+({CJK_RE})", r"\1 \2", segment)
+    segment = re.sub(fr"({CJK_RE})({ASCII_RE})", r"\1 \2", segment)
+    segment = re.sub(fr"({ASCII_RE})({CJK_RE})", r"\1 \2", segment)
+    return segment
+
+
+def normalize_line_content(line: str) -> str:
+    line = BROKEN_BOLD_RE.sub(r"\1", line)
+    return transform_outside_protected_spans(line, normalize_cjk_ascii_spacing)
+
+
+def format_heading_line(line: str) -> str:
+    match = HEADING_RE.match(line)
+    if not match:
+        return line
+
+    hashes, content = match.groups()
+    if not content:
+        return hashes
+    return f"{hashes} {content.strip()}"
+
+
+def count_table_cells(line: str) -> int:
+    stripped = line.strip()
+    if stripped.startswith("|"):
+        stripped = stripped[1:]
+    if stripped.endswith("|"):
+        stripped = stripped[:-1]
+    return len([cell for cell in stripped.split("|")])
+
+
+def split_table_cells(line: str) -> list[str]:
+    stripped = line.strip()
+    if stripped.startswith("|"):
+        stripped = stripped[1:]
+    if stripped.endswith("|"):
+        stripped = stripped[:-1]
+
+    cells: list[str] = []
+    current: list[str] = []
+    escaped = False
+    for char in stripped:
+        if escaped:
+            current.append(char)
+            escaped = False
+            continue
+
+        if char == "\\":
+            current.append(char)
+            escaped = True
+            continue
+
+        if char == "|":
+            cells.append("".join(current).strip())
+            current = []
+            continue
+
+        current.append(char)
+
+    cells.append("".join(current).strip())
+    return cells
+
+
+def is_separator_row(cells: list[str]) -> bool:
+    return bool(cells) and all(re.fullmatch(r":?-+:?", cell) for cell in cells)
+
+
+def pad_cells(cells: list[str], target: int) -> list[str]:
+    if len(cells) < target:
+        return cells + [""] * (target - len(cells))
+    return cells[:target]
+
+
+def format_separator(cells: list[str], target: int) -> str:
+    normalized = []
+    for cell in pad_cells(cells, target):
+        marker = cell.strip()
+        if not marker:
+            normalized.append("---")
+        elif marker.startswith(":") and marker.endswith(":"):
+            normalized.append(":---:")
+        elif marker.startswith(":"):
+            normalized.append(":---")
+        elif marker.endswith(":"):
+            normalized.append("---:")
+        else:
+            normalized.append("---")
+    return "| " + " | ".join(normalized) + " |"
+
+
+def format_table_block(block: list[str]) -> list[str]:
+    rows = [split_table_cells(line) for line in block]
+    data_rows = [row for row in rows if not is_separator_row(row)]
+    if not data_rows:
+        return block
+
+    target_cols = max(len(row) for row in data_rows)
+    has_separator = any(is_separator_row(row) for row in rows)
+    formatted: list[str] = []
+
+    separator_written = False
+    for index, row in enumerate(rows):
+        if is_separator_row(row):
+            if not separator_written:
+                formatted.append(format_separator(row, target_cols))
+                separator_written = True
+            continue
+
+        current = pad_cells(row, target_cols)
+        formatted.append("| " + " | ".join(current) + " |")
+
+        if index == 0 and not has_separator:
+            formatted.append("| " + " | ".join(["---"] * target_cols) + " |")
+            separator_written = True
+
+    return formatted
+
+
+def format_table_blocks(lines: list[str]) -> list[str]:
+    result: list[str] = []
+    in_fence = False
     i = 0
-    new_lines = []
-    n = len(lines)
 
-    while i < n:
-        new_lines.append(lines[i])
-        
-        # 当前行是列表
-        if lines[i].lstrip().startswith("- "):
+    while i < len(lines):
+        line = lines[i]
+        if FENCE_RE.match(line):
+            in_fence = not in_fence
+            result.append(line)
+            i += 1
+            continue
+
+        if in_fence:
+            result.append(line)
+            i += 1
+            continue
+
+        if line.count("|") >= 2:
+            block: list[str] = []
+            while i < len(lines):
+                current = lines[i]
+                if FENCE_RE.match(current) or current.count("|") < 2 or not current.strip():
+                    break
+                block.append(current)
+                i += 1
+
+            if len(block) >= 2 and any(is_separator_row(split_table_cells(row)) for row in block[:3]):
+                result.extend(format_table_block(block))
+                continue
+
+            result.extend(block)
+            continue
+
+        result.append(line)
+        i += 1
+
+    return result
+
+
+def log_change(change_type: str, path: Path, root: Path) -> None:
+    try:
+        display_path = path.relative_to(root)
+    except ValueError:
+        display_path = path
+    print(f"【{change_type}】{display_path}")
+
+
+def collapse_blank_lines_between_list_items(lines: list[str]) -> list[str]:
+    result: list[str] = []
+    in_fence = False
+    i = 0
+
+    while i < len(lines):
+        line = lines[i]
+        if FENCE_RE.match(line):
+            in_fence = not in_fence
+            result.append(line)
+            i += 1
+            continue
+
+        if in_fence:
+            result.append(line)
+            i += 1
+            continue
+
+        result.append(line)
+        if LIST_ITEM_RE.match(line):
             j = i + 1
-            count = 0
-            # 检测后面的空行
-            while j < n and lines[j].strip() == "":
-                count += 1
+            while j < len(lines) and lines[j].strip() == "":
                 j += 1
-            # 下一个非空行也是列表
-            if j < n and lines[j].lstrip().startswith("- ") and count != 0:
-                print(f"{file}: 第 {i} 列表行和第 {j} 列表行有 {count} 个空行，已压缩为 0 行")
+            if j > i + 1 and j < len(lines) and LIST_ITEM_RE.match(lines[j]):
                 i = j
                 continue
         i += 1
 
-    file.write_text("\n".join(new_lines), encoding="utf-8")
+    return result
 
-def format_space(file: Path):
-    """
-    规范化中文字符与非中文字符间的空格
-    """
-    text = file.read_text(encoding="utf-8")
 
-    # 1. 中文在左，英文或数字在右 -> 加空格
-    text = re.sub(r"([\u4e00-\u9fff])([`A-Za-z0-9])", r"\1 \2", text)
+def format_file(path: Path, root: Path) -> bool:
+    original = path.read_text(encoding="utf-8")
+    lines = original.splitlines()
 
-    # 2. 英文或数字在左，中文在右 -> 加空格
-    text = re.sub(r"([`A-Za-z0-9])([\u4e00-\u9fff])", r"\1 \2", text)
-
-    file.write_text(text, encoding="utf-8")
-
-def format_bold(file: Path):
-    text = file.read_text(encoding="utf-8")
-    text = re.sub(r"\*{3,}(.*?)\*{3,}", r"**\1**", text)
-    file.write_text(text, encoding="utf-8")
-
-def format_table(file: Path):
-    """
-    规范化 Markdown 表格：
-    - 第一行（表头）每列加粗
-    - 每行的第一列加粗
-    - 保证竖线 | 对齐，不多空格
-    - 支持整篇文件多张表格
-    """
-    lines = file.read_text(encoding="utf-8").splitlines()
-    new_lines = []
-    n = len(lines)
-    i = 0
-
-    while i < n:
-        line = lines[i]
-
-        # 判断是否进入表格块
-        if line.strip().startswith("|") and line.strip().endswith("|"):
-            table_block = []
-            # 收集整个表格
-            while i < n and lines[i].strip().startswith("|") and lines[i].strip().endswith("|"):
-                table_block.append(lines[i])
-                i += 1
-
-            # === 对整张表格进行格式化 ===
-            for idx, row in enumerate(table_block):
-                parts = [p.strip() for p in row.strip().split("|") if p.strip() != ""]
-
-                # 第二行如果是分隔行 | ---- | ---- | 跳过处理
-                if all(set(p) <= {"-", ":"} for p in parts):
-                    new_lines.append("| " + " | ".join(parts) + " |")
-                    continue
-
-                if idx == 0:
-                    # 第一行 → 每列都加粗
-                    parts = [f"**{p}**" for p in parts]
-                else:
-                    # 其他行 → 仅第一列加粗
-                    if parts:
-                        parts[0] = f"**{parts[0]}**"
-
-                new_line = "| " + " | ".join(parts) + " |"
-                new_lines.append(new_line)
-
-            # 继续外层循环（不要忘了 continue）
+    processed: list[str] = []
+    in_fence = False
+    heading_changed = False
+    spacing_changed = False
+    bold_changed = False
+    for line in lines:
+        if FENCE_RE.match(line):
+            in_fence = not in_fence
+            processed.append(line)
             continue
-        else:
-            # 非表格行
-            new_lines.append(line)
-            i += 1
 
-    # 写回文件
-    file.write_text("\n".join(new_lines), encoding="utf-8")
+        if in_fence:
+            processed.append(line)
+            continue
 
+        normalized_line = normalize_line_content(line)
+        if normalized_line != line:
+            if BROKEN_BOLD_RE.sub(r"\1", line) != line:
+                bold_changed = True
+            if normalized_line != line:
+                spacing_changed = True
+
+        formatted_heading = format_heading_line(normalized_line)
+        if formatted_heading != normalized_line:
+            heading_changed = True
+        processed.append(formatted_heading)
+
+    list_formatted = collapse_blank_lines_between_list_items(processed)
+    list_changed = list_formatted != processed
+
+    table_formatted = format_table_blocks(list_formatted)
+    table_changed = table_formatted != list_formatted
+
+    processed = table_formatted
+
+    text = "\n".join(processed)
+    if original.endswith("\n"):
+        text += "\n"
+
+    if text != original:
+        path.write_text(text, encoding="utf-8")
+        if heading_changed:
+            log_change("标题", path, root)
+        if spacing_changed:
+            log_change("空格", path, root)
+        if list_changed:
+            log_change("列表", path, root)
+        if bold_changed:
+            log_change("加粗", path, root)
+        if table_changed:
+            log_change("表格", path, root)
+        return True
+    return False
+
+
+def main() -> None:
+    args = parse_args()
+    root = args.root.resolve()
+    blacklist = {item.strip("/") for item in args.blacklist if item.strip("/")}
+    target_paths = normalize_input_paths(root, args.paths, blacklist, args.include_readme)
+    files = target_paths if target_paths else list(iter_markdown_files(root, blacklist, args.include_readme))
+
+    changed = 0
+    for path in files:
+        if format_file(path, root):
+            changed += 1
+
+    print(f"Formatted {changed} files.")
 
 
 if __name__ == "__main__":
-    curr_dir = os.path.dirname(os.path.abspath(__file__))
-    root_dir = os.path.abspath(os.path.join(curr_dir, "../../"))
-    blog_dir = os.path.join(root_dir, "Blog")
-    
-    for file in Path(root_dir).rglob("*.md"):
-        format_space(file)
-        format_heading(file)
-        format_list(file)
-        format_bold(file)
-        if str(file).startswith(blog_dir):
-            continue
-        if file.name.lower() == "readme.md":
-            continue
-        format_table(file)
-        insert_toc(file)
+    main()

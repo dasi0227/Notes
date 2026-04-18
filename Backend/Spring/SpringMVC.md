@@ -1,58 +1,53 @@
 # SpringMVC
 
-
-
-   * [概述](#概述)
-      * [Servlet 与 MVC](#servlet-与-mvc)
-      * [流程](#流程)
-      * [模版引擎](#模版引擎)
-   * [配置文件](#配置文件)
-      * [web.xml](#webxml)
-      * [springMVC.xml](#springmvcxml)
-      * [开发流程](#开发流程)
-   * [@RequestMapping](#requestmapping)
-      * [Ant 风格路径](#ant-风格路径)
-      * [使用方法](#使用方法)
-   * [获取请求信息](#获取请求信息)
-      * [HttpServletRequest](#httpservletrequest)
-      * [@RequestParam / @RequestHeader](#requestparam-requestheader)
-      * [注入对象](#注入对象)
-   * [请求域内共享数据](#请求域内共享数据)
-      * [HttpServletRequest](#httpservletrequest)
-      * [ModerAndView](#moderandview)
-      * [Model](#model)
-      * [Map](#map)
-      * [HttpSession](#httpsession)
-      * [ServletContext](#servletcontext)
-   * [视图映射](#视图映射)
-      * [ThymeleafView](#thymeleafview)
-      * [InternalResourceView](#internalresourceview)
-      * [RedirectView](#redirectview)
-      * [mvc:view-controller](#mvcview-controller)
-      * [](#)
-   * [RESTful](#restful)
-      * [核心思想](#核心思想)
-      * [PUT / DELETE](#put-delete)
-   * [数据的读入与写出](#数据的读入与写出)
-      * [读入](#读入)
-      * [写出](#写出)
-   * [文件的下载和上传](#文件的下载和上传)
-      * [下载](#下载)
-      * [上传](#上传)
-   * [拦截器](#拦截器)
-      * [概念](#概念)
-      * [执行流程](#执行流程)
-      * [在 springMVC.xml 注册拦截器](#在-springmvcxml-注册拦截器)
-   * [异常处理器](#异常处理器)
-      * [概念](#概念)
-      * [执行流程](#执行流程)
-      * [基于 XML 注册异常处理器](#基于-xml-注册异常处理器)
-   * [注解配置](#注解配置)
-      * [原理](#原理)
-      * [WebInit](#webinit)
-      * [WebConfig](#webconfig)
-
-
+* [概述](#概述)
+   * [Servlet 与 MVC](#servlet-与-mvc)
+   * [流程](#流程)
+   * [模版引擎](#模版引擎)
+* [配置文件](#配置文件)
+   * [web.xml](#webxml)
+   * [springMVC.xml](#springmvcxml)
+   * [开发流程](#开发流程)
+* [@RequestMapping](#requestmapping)
+   * [Ant 风格路径](#ant-风格路径)
+   * [使用方法](#使用方法)
+* [获取请求信息](#获取请求信息)
+   * [HttpServletRequest](#httpservletrequest)
+   * [@RequestParam / @RequestHeader](#requestparam-requestheader)
+   * [注入对象](#注入对象)
+* [请求域内共享数据](#请求域内共享数据)
+   * [HttpServletRequest](#httpservletrequest)
+   * [ModerAndView](#moderandview)
+   * [Model](#model)
+   * [Map](#map)
+   * [HttpSession](#httpsession)
+   * [ServletContext](#servletcontext)
+* [视图映射](#视图映射)
+   * [ThymeleafView](#thymeleafview)
+   * [InternalResourceView](#internalresourceview)
+   * [RedirectView](#redirectview)
+   * [mvc:view-controller](#mvcview-controller)
+* [RESTful](#restful)
+   * [核心思想](#核心思想)
+   * [PUT / DELETE](#put-delete)
+* [数据的读入与写出](#数据的读入与写出)
+   * [读入](#读入)
+   * [写出](#写出)
+* [文件的下载和上传](#文件的下载和上传)
+   * [下载](#下载)
+   * [上传](#上传)
+* [拦截器](#拦截器)
+   * [概念](#概念)
+   * [执行流程](#执行流程)
+   * [在 springMVC.xml 注册拦截器](#在-springmvcxml-注册拦截器)
+* [异常处理器](#异常处理器)
+   * [概念](#概念)
+   * [执行流程](#执行流程)
+   * [基于 XML 注册异常处理器](#基于-xml-注册异常处理器)
+* [注解配置](#注解配置)
+   * [原理](#原理)
+   * [WebInit](#webinit)
+   * [WebConfig](#webconfig)
 
 ## 概述
 
@@ -72,7 +67,7 @@ SpringMVC：是 Spring Framework 提供的一个基于 MVC 模式的 Web 框架
 - 核心工作是**将请求映射到 Controller，并将 Model 渲染为 View 返回**
 
 | **角色** | **传统** | **SpringMVC** |
-| -------- | ------------------------------- | ------------------------------------------ |
+| --- | --- | --- |
 | **请求接收** | HttpServlet | DispatcherServlet |
 | **路由分发** | 手写 if/else 或 switch 判断 URL | HandlerMapping 自动匹配 Controller 方法 |
 | **参数获取** | request.getParameter() | 自动绑定到方法参数 |
@@ -102,7 +97,7 @@ SpringMVC：是 Spring Framework 提供的一个基于 MVC 模式的 Web 框架
 - 渲染：用数据替换模板中的占位符，生成最终的输出文件
 
 | **类型** | **定义** | **优点** | **例子** |
-| -------------- | --------------------------------------------- | ------------------------------------------ | -------------- |
+| --- | --- | --- | --- |
 | **服务端模版引擎** | 在后端把数据渲染成 HTML，直接返回给浏览器展示 | 首屏加载快、对 SEO 友好 | Themeleaf、JSP |
 | **客户端模版引擎** | 将数据交给前端，由前端进行渲染展示 | 页面交互灵活，局部刷新不必整个页面重新加载 | Vue、React |
 
@@ -172,7 +167,7 @@ springMVC.xml 是 SpringMVC 框架的**核心配置文件**，位于 `resources/
 ### Ant 风格路径
 
 | **符号** | **含义** | **示例** |
-| -------- | ----------------------- | ------------------------------------------------------------ |
+| --- | --- | --- |
 | **?** | 匹配**任意单个字符** | /user/?? 匹配 /user/ab、/user/x1 |
 | **** | 匹配 **0 个或多个字符** | /app/*.html 匹配 /app/index.html、/app/.html |
 | **** | 匹配 **0 个或多个目录** | /a/** 匹配 /a/、/a/x、/a/x/y/z；<br />/**/a 匹配 /a、/x/a、/x/y/z/a |
@@ -384,7 +379,7 @@ public String testRedirect() {
 <mvc:view-controller path="/index" view-name="index" />
 ```
 
-### 
+###
 
 
 
@@ -542,7 +537,7 @@ public String testUp(@RequestParam("photo") MultipartFile photo, HttpSession ses
 **HandlerInterceptor 是位于 DispatcherServlet 与 Controller 之间的组件**，用来对请求进行预处理和后处理
 
 | **方法** | **调用时机** | **作用** |
-| ----------------- | ----------------------------- | -------------------------------------- |
+| --- | --- | --- |
 | **preHandle()** | Controller 执行前 | 返回 true 继续执行；false 直接中断请求 |
 | **postHandle()** | Controller 执行后，视图渲染前 | 可修改 ModelAndView |
 | **afterCompletion()** | 视图渲染后 | 清理资源、记录日志、异常处理 |

@@ -1,86 +1,82 @@
 # Java 虚拟机
 
-
-
-   * [概念](#概念)
-      * [JDK（Java Development Kit）](#jdkjava-development-kit)
-      * [JRE（Java Runtime Environment）](#jrejava-runtime-environment)
-      * [JVM（Java Virtual Machine）](#jvmjava-virtual-machine)
-      * [关系](#关系)
-      * [HotSpot](#hotspot)
-   * [内存](#内存)
-      * [进程内存布局](#进程内存布局)
-      * [栈 Stack](#栈-stack)
-         * [内存布局](#内存布局)
-         * [虚拟机栈 / 本地方法栈](#虚拟机栈-本地方法栈)
-         * [程序计数器](#程序计数器)
-         * [StackOverflowError](#stackoverflowerror)
-      * [堆 Heap](#堆-heap)
-         * [内存布局](#内存布局)
-         * [新生代](#新生代)
-         * [老年代](#老年代)
-         * [OutOfMemoryError](#outofmemoryerror)
-      * [元空间 Metaspace](#元空间-metaspace)
-         * [内存布局](#内存布局)
-         * [永久代和元空间](#永久代和元空间)
-      * [直接内存](#直接内存)
-      * [对象内存](#对象内存)
-         * [内存布局](#内存布局)
-         * [对象的方法调用](#对象的方法调用)
-      * [对象创建全过程](#对象创建全过程)
-         * [1️⃣ 类加载检查](#1-类加载检查)
-         * [2️⃣ 内存分配](#2-内存分配)
-         * [3️⃣ 内存初始化零值](#3-内存初始化零值)
-         * [4️⃣ 执行 init 方法](#4-执行-init-方法)
-   * [垃圾回收](#垃圾回收)
-      * [Java 的内存管理特性](#java-的内存管理特性)
-      * [GC 定义](#gc-定义)
-      * [存活判定](#存活判定)
-         * [引用计数法](#引用计数法)
-         * [可达性分析法](#可达性分析法)
-         * [无用的类](#无用的类)
-      * [引用类型](#引用类型)
-      * [垃圾收集算法](#垃圾收集算法)
-         * [标记清除](#标记清除)
-         * [标记压缩](#标记压缩)
-         * [标记复制](#标记复制)
-         * [分代收集](#分代收集)
-      * [垃圾收集器](#垃圾收集器)
-         * [Serial](#serial)
-         * [ParNew](#parnew)
-         * [Parallel Scavenge](#parallel-scavenge)
-         * [CMS](#cms)
-         * [G1](#g1)
-         * [ZGC](#zgc)
-   * [类加载](#类加载)
-      * [类文件](#类文件)
-         * [结构](#结构)
-         * [魔数](#魔数)
-         * [版本号](#版本号)
-         * [常量池](#常量池)
-         * [类头信息](#类头信息)
-         * [类体信息](#类体信息)
-         * [属性信息](#属性信息)
-         * [访问标志对照表](#访问标志对照表)
-      * [类加载过程](#类加载过程)
-         * [1️⃣ 加载](#1-加载)
-         * [2️⃣ 链接](#2-链接)
-         * [3️⃣ 初始化](#3-初始化)
-      * [类加载器](#类加载器)
+* [概念](#概念)
+   * [JDK（Java Development Kit）](#jdkjava-development-kit)
+   * [JRE（Java Runtime Environment）](#jrejava-runtime-environment)
+   * [JVM（Java Virtual Machine）](#jvmjava-virtual-machine)
+   * [关系](#关系)
+   * [HotSpot](#hotspot)
+* [内存](#内存)
+   * [进程内存布局](#进程内存布局)
+   * [栈 Stack](#栈-stack)
+      * [内存布局](#内存布局)
+      * [虚拟机栈 / 本地方法栈](#虚拟机栈-本地方法栈)
+      * [程序计数器](#程序计数器)
+      * [StackOverflowError](#stackoverflowerror)
+   * [堆 Heap](#堆-heap)
+      * [内存布局](#内存布局)
+      * [新生代](#新生代)
+      * [老年代](#老年代)
+      * [OutOfMemoryError](#outofmemoryerror)
+   * [元空间 Metaspace](#元空间-metaspace)
+      * [内存布局](#内存布局)
+      * [永久代和元空间](#永久代和元空间)
+   * [直接内存](#直接内存)
+   * [对象内存](#对象内存)
+      * [内存布局](#内存布局)
+      * [对象的方法调用](#对象的方法调用)
+   * [对象创建全过程](#对象创建全过程)
+      * [1️⃣ 类加载检查](#1-类加载检查)
+      * [2️⃣ 内存分配](#2-内存分配)
+      * [3️⃣ 内存初始化零值](#3-内存初始化零值)
+      * [4️⃣ 执行 init 方法](#4-执行-init-方法)
+* [垃圾回收](#垃圾回收)
+   * [Java 的内存管理特性](#java-的内存管理特性)
+   * [GC 定义](#gc-定义)
+   * [存活判定](#存活判定)
+      * [引用计数法](#引用计数法)
+      * [可达性分析法](#可达性分析法)
+      * [无用的类](#无用的类)
+   * [引用类型](#引用类型)
+   * [垃圾收集算法](#垃圾收集算法)
+      * [标记清除](#标记清除)
+      * [标记压缩](#标记压缩)
+      * [标记复制](#标记复制)
+      * [分代收集](#分代收集)
+   * [垃圾收集器](#垃圾收集器)
+      * [Serial](#serial)
+      * [ParNew](#parnew)
+      * [Parallel Scavenge](#parallel-scavenge)
+      * [CMS](#cms)
+      * [G1](#g1)
+      * [ZGC](#zgc)
+* [类加载](#类加载)
+   * [类文件](#类文件)
+      * [结构](#结构)
+      * [魔数](#魔数)
+      * [版本号](#版本号)
+      * [常量池](#常量池)
+      * [类头信息](#类头信息)
+      * [类体信息](#类体信息)
+      * [属性信息](#属性信息)
+      * [访问标志对照表](#访问标志对照表)
+   * [类加载过程](#类加载过程)
+      * [1️⃣ 加载](#1-加载)
+      * [2️⃣ 链接](#2-链接)
+      * [3️⃣ 初始化](#3-初始化)
+   * [类加载器](#类加载器)
+      * [定义](#定义)
+      * [内置](#内置)
+      * [双亲委派模型](#双亲委派模型)
          * [定义](#定义)
-         * [内置](#内置)
-         * [双亲委派模型](#双亲委派模型)
-            * [定义](#定义)
-            * [loadClass](#loadclass)
-            * [findClass](#findclass)
-            * [Tomcat](#tomcat)
-   * [参数总结](#参数总结)
-      * [内存相关](#内存相关)
-      * [垃圾回收器相关](#垃圾回收器相关)
-      * [GC 日志相关](#gc-日志相关)
-      * [性能调优相关](#性能调优相关)
-
-
+         * [loadClass](#loadclass)
+         * [findClass](#findclass)
+         * [Tomcat](#tomcat)
+* [参数总结](#参数总结)
+   * [内存相关](#内存相关)
+   * [垃圾回收器相关](#垃圾回收器相关)
+   * [GC 日志相关](#gc-日志相关)
+   * [性能调优相关](#性能调优相关)
 
 ## 概念
 
@@ -100,7 +96,7 @@
 - java.base：包含 lang、util、io、nio 等，是 Java 程序的核心依赖类
 - java.sql：提供数据库连接和 SQL 操作的标准接口
 
-### JVM（Java Virtual Machine） 
+### JVM（Java Virtual Machine）
 
 是用于运行 Java 字节码（.class 文件）的虚拟机，通过封装底层硬件平台的差异，使得 Java 程序可以在不同平台运行
 
@@ -225,8 +221,8 @@ JDK 1.7 利用了堆的永久代来存储类的元数据，而 JDK 1.8 转移到
 
 这部分内存是 Java 程序**直接向操作系统申请的本地内存**，并不是虚拟机运行时数据区的一部分，也不是虚拟机规范中定义的内存区域
 
-- **NIO（Non-Blocking I/O）**：通过 ByteBuffer.allocateDirect() 分配的堆外内存，通过 DirectByteBuffer 对象引用和操作堆外内存，常用于高性能 I/O，减少一次堆到缓冲区的复制
-- **JNI（Java Native Interface）**：本地方法可以直接通过 JNI 调用 C/C++ 代码申请和使用堆外内存
+- NIO（Non-Blocking I/O）：通过 ByteBuffer.allocateDirect() 分配的堆外内存，通过 DirectByteBuffer 对象引用和操作堆外内存，常用于高性能 I/O，减少一次堆到缓冲区的复制
+- JNI（Java Native Interface）：本地方法可以直接通过 JNI 调用 C/C++ 代码申请和使用堆外内存
 
 ### 对象内存
 
@@ -234,11 +230,11 @@ JDK 1.7 利用了堆的永久代来存储类的元数据，而 JDK 1.8 转移到
 
 在 HotSpot 虚拟机中，一个对象在堆由三部分组成
 
-- **对象头（Header）**：存储对象的元信息
-    - **标记字段（Mark Word）**：存储对象运行时数据，如哈希码、GC 分代年龄、锁状态标识、锁指针等，会随着程序进行而动态改变
-    - **类型指针（Class Pointer）**：指向在元空间中当前对象对应的类元信息，使得虚拟机可以确定对象的类
-- **实例数据（Instance Data）**：存储对象的有效信息，即在程序中所定义的各种类型的字段内容
-- **对齐填充（Padding）**：HotSpot 要求对象大小必须是 8 字节的整数倍，因此可能需要一部分空闲区域来对齐
+- 对象头（Header）：存储对象的元信息
+    - 标记字段（Mark Word）：存储对象运行时数据，如哈希码、GC 分代年龄、锁状态标识、锁指针等，会随着程序进行而动态改变
+    - 类型指针（Class Pointer）：指向在元空间中当前对象对应的类元信息，使得虚拟机可以确定对象的类
+- 实例数据（Instance Data）：存储对象的有效信息，即在程序中所定义的各种类型的字段内容
+- 对齐填充（Padding）：HotSpot 要求对象大小必须是 8 字节的整数倍，因此可能需要一部分空闲区域来对齐
 
 <img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509171802873.png" alt="image-20250917180240778" style="zoom:50%;" />
 
@@ -268,8 +264,8 @@ JDK 1.7 利用了堆的永久代来存储类的元数据，而 JDK 1.8 转移到
 
 内存分配存在一个问题，即多个线程都在请求创建对象，此时需要确保并发安全
 
-- **CAS（Compare And Swap）**：一种乐观锁的实现方式，在分配内存前会比较分界指针是否等于预期值，如果不相等则会重新尝试分配内存，直到成功为止
-- **TLAB（Thread Local Allocation Buffer）**：虚拟机先为每个线程在堆中分配一小块私有的 Eden 区，又称为 TLAB，线程优先在各自的 TLAB 中分配内存给对象，如果 TLAB 不足，再退回到公共 Eden 区使用 CAS
+- CAS（Compare And Swap）：一种乐观锁的实现方式，在分配内存前会比较分界指针是否等于预期值，如果不相等则会重新尝试分配内存，直到成功为止
+- TLAB（Thread Local Allocation Buffer）：虚拟机先为每个线程在堆中分配一小块私有的 Eden 区，又称为 TLAB，线程优先在各自的 TLAB 中分配内存给对象，如果 TLAB 不足，再退回到公共 Eden 区使用 CAS
 
 #### 3️⃣ 内存初始化零值
 
@@ -335,7 +331,7 @@ JDK 1.7 利用了堆的永久代来存储类的元数据，而 JDK 1.8 转移到
 ### 引用类型
 
 | **类型** | **回收时机** | **类型** | **典型用途** |
-| ------ | ---------------------------- | ---------------- | --------------------------------- |
+| --- | --- | --- | --- |
 | **强引用** | GC 永远不会回收 | new Object() | 普通对象，业务逻辑中使用 |
 | **软引用** | 只有在内存不足时 GC 才会回收 | SoftReference | 缓存 |
 | **弱引用** | 只要执行 GC 就会回收 | WeakReference | ThreadLocal 和 WeakHashMap 的 key |
@@ -483,17 +479,17 @@ ClassFile {
 `cp_info constant_pool[]`：常量池实际上是一个表结构，最多可以存 constant_pool_count - 1 个常量池项，占用 2 字节，其中**有效常量值的索引值从 1 开始，索引 0 专门表示“没有引用任何常量”**，每一个常量池项都是 `cp_info` 元素，由 **tag + info** 组成
 
 | **tag** | **info** |
-| ----------------- | ---------------------- |
-| **1（Utf8）** | UTF-8 编码的字符串 |
-| **3（Integer）** | int 字面量 |
-| **4（Float）** | float 字面量 |
-| **5（Long）** | long 字面量 |
-| **6（Double）** | double 字面量 |
-| **7（Class）** | 类或接口的符号引用 |
-| **8（String）** | 字符串类型字面量 |
-| **9（FieldRef）** | 字段的符号引用 |
-| **10（MethodRef）** | 方法的符号引用 |
-| **12（NameAndType）** | 字段或方法的名字和类型 |
+| --- | --- |
+| 1（Utf8） | UTF-8 编码的字符串 |
+| 3（Integer） | int 字面量 |
+| 4（Float） | float 字面量 |
+| 5（Long） | long 字面量 |
+| 6（Double） | double 字面量 |
+| 7（Class） | 类或接口的符号引用 |
+| 8（String） | 字符串类型字面量 |
+| 9（FieldRef） | 字段的符号引用 |
+| 10（MethodRef） | 方法的符号引用 |
+| 12（NameAndType） | 字段或方法的名字和类型 |
 
 ```text
 // String name = "dasi";
@@ -524,7 +520,7 @@ $15 = Utf8               (Ljava/lang/String;Ljava/lang/Integer;)V
 
 - `access_flags`：占用 2 字节，每一位表示一个布尔属性，用来描述类的修饰符标志信息
 - `this_class`：占用 2 字节，是常量池的索引，指向常量池中的 Class 项，再通过 info 指向 Utf8 项，得到当前类的全限定名
-- `super_class`：占用 2 字节，指向常量池中的  Class 项，再通过 info 指向 Utf8 项，得到父类的全限定名
+- `super_class`：占用 2 字节，指向常量池中的 Class 项，再通过 info 指向 Utf8 项，得到父类的全限定名
 - `interfaces_count`：占用 2 字节，存储类实现的接口数量
 - `interfaces`：是一张表，**每个元素都是常量池索引**，占用 2 字节，指向常量池中的 Class 项，再通过 info 指向 Utf8 项，得到接口的全限定名
 
@@ -552,7 +548,7 @@ $15 = Utf8               (Ljava/lang/String;Ljava/lang/Integer;)V
 #### 访问标志对照表
 
 | **标志名** | **十六进制值** | **类 (Class)** | **字段 (Field)** | **方法 (Method)** | **含义** |
-| -------------------- | -------------- | ---------- | ---------------- | ----------------- | -------------------------------------------------- |
+| --- | --- | --- | --- | --- | --- |
 | **ACC_PUBLIC** | 0x0001 | ✅ | ✅ | ✅ | public 可见性 |
 | **ACC_PRIVATE** | 0x0002 | ❌ | ✅ | ✅ | private 可见性 |
 | **ACC_PROTECTED** | 0x0004 | ❌ | ✅ | ✅ | protected 可见性 |
@@ -713,8 +709,8 @@ protected Class<?> findClass(String name) throws ClassNotFoundException {
 
 **如果要打破双亲委派模型，就必须重写 loadClass 方法**。而 Tomcat 作为一个 Web 容器，要同时运行多个应用，需要确保每个 WebApp 都有自己单独的类加载器，而且同一个类名在不同应用中可以共存。因此 Tomcat 在 JVM 内置类加载器（Bootstrap、Ext、App）之外，又增加了自己的类加载器层次，来实现 **多应用隔离**和**共享机制**
 
-| **类加载器** | **加载目录** | **作用范围** |
-| ----------------------- | ------------------------------ | ----------------------------------- | ------------------------------ |
+| **类加载器** | **加载目录** | **作用范围** | **说明** |
+| --- | --- | --- | --- |
 | **CommonClassLoader** | Tomcat/common/* | 所有 Web 应用和 Tomcat 内部都能访问 | 公共依赖库，应用和容器共享 |
 | **CatalinaClassLoader** | Tomcat/server/* | 仅 Tomcat 内部使用 | 应用不可见，专供容器使用 |
 | **SharedClassLoader** | Tomcat/shared/* | 所有 Web 应用共享，Tomcat 内部不用 | 多应用共享依赖 |
@@ -729,7 +725,7 @@ protected Class<?> findClass(String name) throws ClassNotFoundException {
 ### 内存相关
 
 | **参数** | **作用** |
-| ------------------------------------- | --------------------------------- |
+| --- | --- |
 | **-Xms\<size>[unit]** | 设置 JVM 初始堆大小 |
 | **-Xmx\<size>[unit]** | 设置 JVM 最大堆大小 |
 | **-Xss\<size>[unit]** | 设置线程的虚拟机栈大小 |
@@ -746,7 +742,7 @@ protected Class<?> findClass(String name) throws ClassNotFoundException {
 ### 垃圾回收器相关
 
 | **参数** | **作用** |
-| ----------------------- | -------------------- |
+| --- | --- |
 | **-XX:+UseSerialGC** | 使用 Serial 收集器 |
 | **-XX:+UseParallelGC** | 使用 Parallel 收集器 |
 | **-XX:+UseConcMarkSweepGC** | 使用 CMS 收集器 |
@@ -756,7 +752,7 @@ protected Class<?> findClass(String name) throws ClassNotFoundException {
 ### GC 日志相关
 
 | **参数** | **作用** |
-| ---------------------------------- | -------------------------- |
+| --- | --- |
 | **-XX:+PrintGC** | 打印 GC 简要日志 |
 | **-XX:+PrintGCDetails** | 打印 GC 详细日志 |
 | **-XX:+PrintGCDateStamps** | 打印 GC 日志时间戳 |
@@ -768,7 +764,7 @@ protected Class<?> findClass(String name) throws ClassNotFoundException {
 ### 性能调优相关
 
 | **参数** | **作用** |
-| ------------------------------- | ---------------------------------- |
+| --- | --- |
 | **-XX:+HeapDumpOnOutOfMemoryError** | 开启 OOM 时导出堆转储文件 |
 | **-XX:HeapDumpPath=\<path>** | 指定 OOM 堆转储文件路径 |
 | **-XX:+UseGCOverheadLimit** | 开启检查 GC 时间过多但回收效果太差 |

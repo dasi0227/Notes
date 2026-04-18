@@ -1,56 +1,52 @@
 # Core
 
-
-
-   * [I/O](#io)
-      * [stream](#stream)
-      * [File](#file)
-      * [FileInputStream](#fileinputstream)
-      * [FileOutputStream](#fileoutputstream)
-      * [FileReader](#filereader)
-      * [FileWriter](#filewriter)
-   * [泛型](#泛型)
-      * [定义](#定义)
-      * [常用符号](#常用符号)
-      * [边界指定](#边界指定)
-      * [注意](#注意)
-   * [线程](#线程)
-      * [定义](#定义)
-      * [流程](#流程)
-      * [线程状态](#线程状态)
-      * [用户线程和守护线程](#用户线程和守护线程)
-      * [常见方法](#常见方法)
-      * [Runnable 和 Thread](#runnable-和-thread)
-      * [线程终止](#线程终止)
-      * [同步机制](#同步机制)
-   * [反射](#反射)
-      * [定义](#定义)
-      * [流程](#流程)
-      * [ClassLoader](#classloader)
-      * [Class](#class)
-      * [Field/Method/Constructor](#fieldmethodconstructor)
-      * [通过反射创建对象](#通过反射创建对象)
-   * [网络](#网络)
-      * [基础知识](#基础知识)
-      * [传输层协议](#传输层协议)
-      * [InetAddress](#inetaddress)
-      * [Socket](#socket)
-      * [DatagramSocket](#datagramsocket)
-      * [DatagramPackage](#datagrampackage)
-   * [JDBC](#jdbc)
-      * [概述](#概述)
-      * [建立连接的方式](#建立连接的方式)
-      * [Connection](#connection)
-      * [ResultSet](#resultset)
-      * [Statement](#statement)
-      * [SQL 注入](#sql-注入)
-      * [PreparedStatement](#preparedstatement)
-      * [事务](#事务)
-      * [批处理](#批处理)
-      * [连接池](#连接池)
-      * [DBUtils](#dbutils)
-
-
+* [I/O](#io)
+   * [stream](#stream)
+   * [File](#file)
+   * [FileInputStream](#fileinputstream)
+   * [FileOutputStream](#fileoutputstream)
+   * [FileReader](#filereader)
+   * [FileWriter](#filewriter)
+* [泛型](#泛型)
+   * [定义](#定义)
+   * [常用符号](#常用符号)
+   * [边界指定](#边界指定)
+   * [注意](#注意)
+* [线程](#线程)
+   * [定义](#定义)
+   * [流程](#流程)
+   * [线程状态](#线程状态)
+   * [用户线程和守护线程](#用户线程和守护线程)
+   * [常见方法](#常见方法)
+   * [Runnable 和 Thread](#runnable-和-thread)
+   * [线程终止](#线程终止)
+   * [同步机制](#同步机制)
+* [反射](#反射)
+   * [定义](#定义)
+   * [流程](#流程)
+   * [ClassLoader](#classloader)
+   * [Class](#class)
+   * [Field/Method/Constructor](#fieldmethodconstructor)
+   * [通过反射创建对象](#通过反射创建对象)
+* [网络](#网络)
+   * [基础知识](#基础知识)
+   * [传输层协议](#传输层协议)
+   * [InetAddress](#inetaddress)
+   * [Socket](#socket)
+   * [DatagramSocket](#datagramsocket)
+   * [DatagramPackage](#datagrampackage)
+* [JDBC](#jdbc)
+   * [概述](#概述)
+   * [建立连接的方式](#建立连接的方式)
+   * [Connection](#connection)
+   * [ResultSet](#resultset)
+   * [Statement](#statement)
+   * [SQL 注入](#sql-注入)
+   * [PreparedStatement](#preparedstatement)
+   * [事务](#事务)
+   * [批处理](#批处理)
+   * [连接池](#连接池)
+   * [DBUtils](#dbutils)
 
 ## I/O
 
@@ -160,7 +156,7 @@ Java 泛型是一种参数化类型机制，可以在类、接口、方法中定
 ### 常用符号
 
 | **符号** | **含义** |
-| ---- | --------------------- |
+| --- | --- |
 | **T** | Type，任意类型 |
 | **E** | Element，集合元素类型 |
 | **K** | Key，键 |
@@ -550,7 +546,7 @@ public class instanceDemo {
 ### 传输层协议
 
 | **特性** | **TCP** | **UDP** |
-| -------- | -------------------------------------------------- | ------------------------------------------ |
+| --- | --- | --- |
 | **传输模式** | 面向连接：通信前需建立三次握手 | 无连接：无需握手，直接发送 |
 | **可靠性** | 提供可靠传输：丢包重传、校验、确认与超时重发 | 不保证可靠：不重传，不确认 |
 | **数据顺序** | 保证按发送顺序到达 | 无顺序保证：包可能乱序或丢失 |
