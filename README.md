@@ -1,12 +1,8 @@
 # README
 
-
-
 ## Overview
 
 个人学习笔记仓库，主要涵盖 **Java 基础、Web 开发、Spring 框架、八股、数据、运维** 等主题。
-
-
 
 ## Contents
 
@@ -40,12 +36,12 @@
 - [RabbitMQ](Backend/Middleware/RabbitMQ.md)：消息中间件、体系架构、交互流程、SpringBoot 集成、消息可靠性、延迟消息、优先级队列
 - Elasticsearch：待学习...
 - Prometheus：待学习...
-- Docker：待学习...
 
 ### 🚀 Projects
 
 - [苍穹外卖](Project/苍穹外卖.md)：项目设计、代码设计、DTO 和 VO、业务处理、Nginx、RESTful、PageHelper、SLF4J、JWT、Swagger、OSS、@AutoFill、@ExceptionHandler、HttpClient、SpringCache、SpringTask、WebSocket、ECharts、POI
 - [黑马点评](Project/黑马点评.md)：Nginx 代理、令牌拦截器、序号生成器、防穿透、防击穿、防竞争、滚动分页、位置查询、签到记录、访问统计
+- [幸运抽奖](Project/幸运抽奖.md)：
 
 ### 📚 八股
 
@@ -69,8 +65,6 @@
 - [NumPy](Draft/Data/NumPy.md)：属性、数据类型、切片、索引、广播、迭代、修改形状、翻转、连接、分割、添加删除、字符串运算、数学运算、统计运算、线性代数运算、条件筛选运算
 - [Pandas](Draft/Data/Pandas.md)：Series、DataFrame、CSV 操作、JSON 操作、数据清洗、缺失值处理、重复值处理、异常值处理、替换值处理、数据预处理、格式转换、数值处理、类别处理、数据抽样、排序、聚合、透视、时间序列分析、性能优化
 - [Matplotlib](Draft/Data/Matplotlib.md)：plot、subplot、scatter、bar、barh、pie、hist、im
-
-
 
 ## Timeline
 
@@ -212,7 +206,9 @@
 - [x] 11.19-12.20：【LuckyDraw】
 - [x] 01.10-03.10：【MiniAgent】
 
+15. 面试复习
 
+- [x] 03.10-05.01：【MessageCenter】
 
 ## About me
 

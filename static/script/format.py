@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Iterable
 
 
-DEFAULT_BLACKLIST = ("Blog",)
+DEFAULT_BLACKLIST = ("Blog", "Draft")
 MARKDOWN_SUFFIXES = {".md", ".markdown"}
 INLINE_CODE_RE = re.compile(r"(`+)([^`]*?)\1")
 MARKDOWN_LINK_RE = re.compile(r"(!?\[[^\]]*\]\([^)]+\))")
@@ -37,7 +37,7 @@ def parse_args() -> argparse.Namespace:
         "--blacklist",
         nargs="*",
         default=list(DEFAULT_BLACKLIST),
-        help="Directory names to skip. Defaults to Blog.",
+        help="Directory names to skip. Defaults to Blog and Draft.",
     )
     parser.add_argument(
         "--include-readme",
