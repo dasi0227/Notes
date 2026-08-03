@@ -405,3 +405,6 @@ Cache 雪崩是什么？如何解决？
 	5. 当有客户端发送数据时，内核会把 client socket 加入就绪队列，唤醒 Redis 线程处理 
 	6. Redis 会从 client socket 调用 read 读取命令执行，然后调用 write 将结果写回 client socket
 ```
+
+## JCF
+
