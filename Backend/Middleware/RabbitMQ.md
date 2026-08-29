@@ -51,9 +51,9 @@
 - **填谷**：在低并发场景下，MQ 可以处理积压的请求，利用闲置资源，提高整体吞吐率
 - **可靠**：MQ 提供持久化和确认机制，保证消息不丢失不重复
 
-![image-20250831111316501](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202508311113566.png)
+![image-20250831111316501](./attachments/image/202508311113566_0cc104.png)
 
-![image-20250831111713832](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202508311117880.png)
+![image-20250831111713832](./attachments/image/202508311117880_5be939.png)
 
 ### 消息中间件
 
@@ -114,7 +114,7 @@ docker run \
     - **Queue**：消息队列（收件箱，可以存储多个收件人的信）
 - **Consumer**：接收并解析消息（收信人）
 
-![image-20250831113739240](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202508311137314.png)
+![image-20250831113739240](./attachments/image/202508311137314_699524.png)
 
 ### 交互流程
 

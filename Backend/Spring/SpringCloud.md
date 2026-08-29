@@ -72,7 +72,7 @@
 - 轻量级：适合并发量低、用户量小的应用，如个人博客和团队管理系统
 - 垂直扩展（scale up）：只能通过升级硬件来提升性能，效果是有上限的
 
-![image-20250910170951117](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509101709253.png)
+![image-20250910170951117](./attachments/image/202509101709253_b516c4.png)
 
 > MySQL 和 Redis 也可以分布在不同的服务器上，但本质上都是只有一台
 
@@ -85,7 +85,7 @@
 - 实现复杂：需要确保节点间的数据一致性
 - 水平扩展（scale out）：可以通过增加节点来提升性能
 
-![image-20250910173918261](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509101739320.png)
+![image-20250910173918261](./attachments/image/202509101739320_55be9b.png)
 
 ### 分布式架构（Distributed）
 
@@ -96,7 +96,7 @@
 - 多语言支持：不同模块和服务可以选择最合适的语言来实现，如算法和大模型通过 Python，控制和硬件通过 C++，Web 和业务通过 Java，它们之间通过 RPC 进行交互
 - 实现复杂：需要解决**集中配置、服务通信、数据一致、分布式事务、链路追踪**等问题
 
-![image-20250910222537110](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509102225172.png)
+![image-20250910222537110](./attachments/image/202509102225172_2c604c.png)
 
 
 
@@ -301,7 +301,7 @@ SpringCloudDemo
 
 4. 在服务台查看服务列表：这里开启了两个服务，其中每个服务有两个实例
 
-![image-20250914153009864](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509141530984.png)
+![image-20250914153009864](./attachments/image/202509141530984_77ec34.png)
 
 #### 服务发现
 
@@ -383,7 +383,7 @@ public void discover() {
 
 2. 在 nacos 创建配置，首先选定命名空间，然后点击创建配置，最后指定 data id、group、type 以及具体内容
 
-    ![image-20250914172625277](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509141726425.png)
+    ![image-20250914172625277](./attachments/image/202509141726425_2d4b38.png)
 
 3. 配置 application.yml
     - `spring.config.import`：指定加载的配置文件，使用 `nacos:` 前缀表示从 Nacos 获取，文件位置格式为 `<Data ID>?group=<Group Name>`
@@ -724,7 +724,7 @@ public class FeignConfig {
 - **预热**：从一个较低阈值直接升高到较高阈值
 - **排队等待**：强制保证请求按照阈值匀速通过，超过速率的请求会排队等待，如果排队时间超过了最大等待时间会返回失败
 
-![afdf72691ecc30aff79b1fdcc01d75f1](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509151609016.png)
+![afdf72691ecc30aff79b1fdcc01d75f1](./attachments/image/202509151609016_80e2e6.png)
 
 ### 熔断降级
 
@@ -753,7 +753,7 @@ public class FeignConfig {
 >
 > 单机少 + 限流多 → 针对特殊参数更宽松 → 充值用户
 
-![2aeb0d271b3ec250e692ad9e433f7252](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509151609521.png)
+![2aeb0d271b3ec250e692ad9e433f7252](./attachments/image/202509151609521_8c118b.png)
 
 ### 授权
 
@@ -805,9 +805,9 @@ public class SentinelConfig {
 
 **异常处理指的是针对不同规则触发时的兜底机制**，上述讲的五个规则都对应一个异常类 FlowException、ParamFlowException，DegradeException，AuthorityException，SystemBlockException，而它们都继承于 **BlockException**
 
-![image-20250911175920296](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509111759002.png)
+![image-20250911175920296](./attachments/image/202509111759002_b9bf7f.png)
 
-![image-20250912101507678](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509121015382.png)
+![image-20250912101507678](./attachments/image/202509121015382_94c9e0.png)
 
 #### blockHandler
 
@@ -1131,7 +1131,7 @@ public class TokenGatewayFilterFactory extends AbstractGatewayFilterFactory<Toke
 - 事务协调者（Transaction Coordinator, TC）：维护全局事务的状态，协调所有分支事务的提交和回滚
 - 资源管理器（Resource Manager, RM）：向 TC 注册分支事务，执行分支事务，汇报分支事务的执行状态，并根据 TC 指令执行提交和回滚
 
-![img](https://seata.apache.org/zh-cn/assets/images/solution-1bdadb80e54074aa3088372c17f0244b.png)
+![img](./attachments/image/solution-1bdadb80e54074aa3088372c17f0244b_614430.png)
 
 ### 二阶段提交协议 2PC
 

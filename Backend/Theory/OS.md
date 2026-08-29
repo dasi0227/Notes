@@ -48,7 +48,7 @@
 - **隔离**：不同进程之间互不干扰，保证安全
 - **共享**：让多个应用程序能够公平高效地使用资源
 
-<img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202510011945701.png" alt="image-20251001194553633" style="zoom:50%;" />
+<img src="./attachments/image/202510011945701_1f6d34.png" alt="image-20251001194553633" style="zoom:50%;" />
 
 **内核（Kernel）是操作系统的核心部分，常驻于内存，负责直接管理 CPU、内存、I/O**
 
@@ -167,7 +167,7 @@ CPU 可以从用户态切换到内核态
 - **阻塞 WAITING**：等待某一事件/等待某资源可用/等待某 IO 执行完毕
 - **结束 TERMINATED**：刚刚退出或者被杀死，正在回收资源
 
-<img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202510030012666.png" alt="image-20251003001235002" style="zoom:50%;" />
+<img src="./attachments/image/202510030012666_19ba69.png" alt="image-20251003001235002" style="zoom:50%;" />
 
 ### 调度算法
 
@@ -245,7 +245,7 @@ CPU 可以从用户态切换到内核态
 - 单实例资源：一定死锁
 - 多实例资源：可能死锁
 
-![image-20251004150556006](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202510041505084.png)
+![image-20251004150556006](./attachments/image/202510041505084_d7ffab.png)
 
 检测到死锁发生时，需要解除死锁，让系统恢复到正常情况
 
@@ -267,13 +267,13 @@ CPU 可以从用户态切换到内核态
 
 内部碎片：分配内存比所需内存多出的空间片段，被进程占有却没有被进程使用
 
-<img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202510041529784.png" alt="image-20251004152907703" style="zoom:50%;" />
+<img src="./attachments/image/202510041529784_793a8d.png" alt="image-20251004152907703" style="zoom:50%;" />
 
 #### 连续内存分配
 
 固定分区：把内存提前划分为若干固定大小的分区，每个进程固定装入一个分区，没有外部碎片但是内部碎片很严重
 
-![image-20251004155248028](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202510041552091.png)
+![image-20251004155248028](./attachments/image/202510041552091_42f8de.png)
 
 动态分区：每次根据算法划分一块内存（通常为 2 的幂），回收后合并相邻的空闲区，有外部碎片，缓解了内部碎片
 
@@ -283,17 +283,17 @@ CPU 可以从用户态切换到内核态
 | 最佳适应（Best Fit） | 找最小的能满足要求的空闲块 | 内部碎片最少 | 外部碎片最多，速度最慢 |
 | 最差适应（Worst Fit） | 找最大的空闲块 | 外部碎片最少 | 内部碎片最多 |
 
-![image-20251004154614410](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202510041546482.png)
+![image-20251004154614410](./attachments/image/202510041546482_b7a8cc.png)
 
 #### 非连续内存分配
 
 段式管理：把程序按逻辑单位（如代码段、数据段、栈段、库、堆等）划分为若干可变长度的段，每个段有基址和长度，地址由 **<段号, 段内偏移>** 表示
 
-<img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202510041550765.png" alt="image-20251004155035693" style="zoom:50%;" />
+<img src="./attachments/image/202510041550765_37a5c5.png" alt="image-20251004155035693" style="zoom:50%;" />
 
 页式管理：把虚拟地址空间和物理地址空间按相同固定大小的页划分，地址由 **<页号, 页内偏移>** 表示
 
-![image-20251004155050112](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202510041550180.png)
+![image-20251004155050112](./attachments/image/202510041550180_79dbbf.png)
 
 ### 虚拟内存
 
@@ -307,7 +307,7 @@ CPU 可以从用户态切换到内核态
 - **共享内存**：虽然虚拟内存相互独立，但多个进程可以将部分虚拟页映射到同一物理页，实现高效的 IPC
 - **页面置换**：当物理内存不足时，操作系统会根据算法将旧页面换出到磁盘，为新页面腾出空间，实现“无限”内存
 
-<img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202510041620883.png" alt="image-20251004162030794" style="zoom:50%;" />
+<img src="./attachments/image/202510041620883_820339.png" alt="image-20251004162030794" style="zoom:50%;" />
 
 #### 页表
 
@@ -342,7 +342,7 @@ CPU 可以从用户态切换到内核态
 - 高 20 位：作为页号
 - 低 12 位：作为页内数据的字节偏移
 
-<img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202510041727080.png" alt="image-20251004172745013" style="zoom:50%;" />
+<img src="./attachments/image/202510041727080_6232ff.png" alt="image-20251004172745013" style="zoom:50%;" />
 
 #### 二级页表
 
@@ -359,7 +359,7 @@ CPU 可以从用户态切换到内核态
 - 前 10 位作为页目录号，中间 10 位作为页表号，后 12 位作为页内偏移量
 - 对于单页访问：单级页表需要 4MB，二级页表只需要 4KB + 4KB = 8KB
 
-![image-20251004222300606](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202510042223686.png)
+![image-20251004222300606](./attachments/image/202510042223686_0af7c5.png)
 
 ### 缺页管理
 
@@ -371,7 +371,7 @@ CPU 可以从用户态切换到内核态
 - 软性页缺失：缺页的页表项标记为不存在，但该页仍在内存中，需要从内存重新建立映射关系
 - 无效页缺失：虚拟地址无效或越界，找不到缺页的页表项
 
-<img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202510090935225.png" alt="image-20251009093534589" style="zoom:50%;" />
+<img src="./attachments/image/202510090935225_61e47b.png" alt="image-20251009093534589" style="zoom:50%;" />
 
 #### 页面置换算法
 
@@ -399,7 +399,7 @@ CPU 可以从用户态切换到内核态
 - 页表也是位于内存之中的，每次访问一个数据，先要去内存访问多级页表，再去内存访问数据，一共需要进行至少两次内存访问，而借助 TLB 只需要一次内存访问数据
 - 页面被换出或页表被修改时，必须使相关的 TLB 条目失效或更新，否则会产生陈旧映射导致访问错误
 
-<img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202510090947084.png" alt="image-20251009094742979" style="zoom:50%;" />
+<img src="./attachments/image/202510090947084_db6e8c.png" alt="image-20251009094742979" style="zoom:50%;" />
 
 
 
@@ -458,7 +458,7 @@ CPU 可以从用户态切换到内核态
 - 旋转延迟：适中，等待目标扇区转到磁头下的时间
 - 传输时间：最快，实际读写数据的时间
 
-<img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202510091116268.png" alt="image-20251009111628171" style="zoom:50%;" />
+<img src="./attachments/image/202510091116268_474c5a.png" alt="image-20251009111628171" style="zoom:50%;" />
 
 | **磁盘调度算法** | **选择** | **优点** | **缺点** |
 | --- | --- | --- | --- |

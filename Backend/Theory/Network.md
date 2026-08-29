@@ -64,7 +64,7 @@ OSI 七层模型的粒度过细，实际上更多采用的是 TCP/IP 四层模�
 3. 网际层：负责路由选择和逻辑寻址
 4. 网络接口层：负责底层的数据传输
 
-![d5eec4dc32893dbad3587dd14cd7554d](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509290942466.png)
+![d5eec4dc32893dbad3587dd14cd7554d](./attachments/image/202509290942466_766d39.png)
 
 ### 意义
 
@@ -304,7 +304,7 @@ DNS 服务器：实际上我们根本就无法通过域名来访问目标服务�
 
 > 由于根域名服务器的数量很少而且并不是均匀分布，显然不可能处理全球每秒几十亿的 QPS，实际上本地 DNS 服务器缓存了大量顶级域名服务器和权威域名服务器的 IP 地址，绝大部分请求都会直接跳过根域名服务器，甚至还会跳过顶级域名服务器
 
-<img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509292227404.png" alt="image-20250929222756294" style="zoom:50%;" />
+<img src="./attachments/image/202509292227404_536187.png" alt="image-20250929222756294" style="zoom:50%;" />
 
 ### DNS 记录
 
@@ -369,7 +369,7 @@ DNS 劫持（Hijacking）指的是在 DNS 解析链路中被恶意篡改，使�
 
 > 第一次握手和第二次握手生成的序列号 x, y 是随机的
 
-![image-20250930092837451](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509300928072.png)
+![image-20250930092837451](./attachments/image/202509300928072_c9a703.png)
 
 ### 四次挥手
 
@@ -381,7 +381,7 @@ DNS 劫持（Hijacking）指的是在 DNS 解析链路中被恶意篡改，使�
 
 > 这里的确认号为 - 不代表没有意义，而是它与四次挥手没有关系
 
-![image-20250930101244093](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509301012195.png)
+![image-20250930101244093](./attachments/image/202509301012195_ad0b42.png)
 
 WAIT 状态分析
 
@@ -403,7 +403,7 @@ WAIT 状态分析
     - **send_ack = recv_seq + n**：期望接收的下一字节编号 = 当前接收的起始字节编号 + 当前接收的有效载荷字节数量，需要注意的是**从 recv_seq 开始的 n 个字节是到 recv_seq + n - 1**
     - **send_seq = recv_ack**：这只是非常理想，即不出现任何乱序和错误的情况，实际上序列号完全取决于发送方维护的窗口值，**跟 ack 没有一点关系**
 
-![image-20250930115549534](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509301155652.png)
+![image-20250930115549534](./attachments/image/202509301155652_090dda.png)
 
 ### 可靠性
 
@@ -432,7 +432,7 @@ rwnd 的值很简单，自己的接收缓冲区剩多少就是多少，但是 cw
 
 > **MSS（Maximum Segment Size, 最大报文段长度）**：是 cwnd 的数值单位，**表示报文段中能携带的最大应用层数据长度，不包括 TCP/IP 头部**。通常来说以太网的最大传输单元是 1500 字节，而 IP 头部和 TCP 头部各占 20 字节，所以 MSS 一般是 **1460** 字节
 
-![7e73b59156ea260355233f9ff0b7b5df](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509301502222.png)
+![7e73b59156ea260355233f9ff0b7b5df](./attachments/image/202509301502222_d16c8e.png)
 
 
 
@@ -511,7 +511,7 @@ rwnd 的值很简单，自己的接收缓冲区剩多少就是多少，但是 cw
 - 安全：NAT 向 WAN 屏蔽了 LAN，外部只能看到路由器的公网 IP，看不到真实的内网 IP
 - 灵活：内网地址可以随机规划和更改，完全不影响公网通信；公网地址也可以随机更换，完全不需要通告内网
 
-![image-20251001145820870](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202510011458017.png) 
+![image-20251001145820870](./attachments/image/202510011458017_5b93cf.png) 
 
 
 

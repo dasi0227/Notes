@@ -69,7 +69,7 @@
 
 ## 层级架构
 
-![image-20250924161001518](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509241610627.png)
+![image-20250924161001518](./attachments/image/202509241610627_32d381.png)
 
 ### 客户层
 
@@ -315,13 +315,13 @@ SHOW GLOBAL STATUS LIKE 'Innodb_undo%';
 
 脏读（Dirty Read）：一个事务读到另一个事务**未提交**的数据，导致**读取数据的内容是错误的**
 
-![image-20250925101724757](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509251017403.png)
+![image-20250925101724757](./attachments/image/202509251017403_2f7d75.png)
 
-不可重复读（Non-repeatable Read）：一个事务读到另一个事务**已提交更新**的同一行，导致**前后读取的内容不一致**![image-20250925102216755](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509251022806.png)
+不可重复读（Non-repeatable Read）：一个事务读到另一个事务**已提交更新**的同一行，导致**前后读取的内容不一致**![image-20250925102216755](./attachments/image/202509251022806_29ba03.png)
 
 幻读（Phantom Read）：一个事务读到另一个事务**已提交插入/删除**的同一行，导致**前后读取的结果集行数不一致**
 
-![image-20250925102923218](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509251029293.png)
+![image-20250925102923218](./attachments/image/202509251029293_e71dc0.png)
 
 ### 事务隔离级别
 
@@ -468,7 +468,7 @@ CREATE INDEX idx_name ON student(age, name);
 - 如果只看 name：Jason, Mark, Micky, Dasi, David, Alice, Even, Ivy, Bob 是字母无序的 
 - 如果相同 age 下再看 name：1【Jason, Mark】, 3【Dasi, David】是字母有序的
 
-![image-20250926094729925](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509260947060.png)
+![image-20250926094729925](./attachments/image/202509260947060_a54786.png)
 
 **索引下推（Index Condition Pushdown, ICP**）：只适用于组合辅助索引的范围查找，在根据索引定位候选行时，会直接应用部分 WHERE 过滤条件，而不是提交到 Server 层过滤
 
@@ -488,7 +488,7 @@ SELECT * FROM student WHERE age = 1 AND name = 'M%';
 | **B Tree** | 严格平衡的 m 阶树，节点既存 key 又存 data，数据分布在各层节点 | O(log n) | O(log n + k)，中序遍历 | 频繁分裂/合并 |
 | **B+Tree** | 严格平衡的 m 阶树，内部节点只存 key，叶子节点存 key+data，叶子节点之间用链表连接 | 单值查找快，范围查询性能极佳 | O(log n + k)，链表遍历 | 少量分裂/合并 |
 
-![image-20250926091948902](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509260919016.png)
+![image-20250926091948902](./attachments/image/202509260919016_a39b1c.png)
 
 ### 索引失效
 
@@ -538,7 +538,7 @@ SELECT * FROM student WHERE age = 1 AND name = 'M%';
 3. 页（Page）：默认大小是 16 KB，InnoDB 会以页为单位管理磁盘
 4. 行（Row）：存放一条记录
 
-![image-20250926160032087](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509261600208.png)
+![image-20250926160032087](./attachments/image/202509261600208_772a21.png)
 
 ### COMPACT 行
 
@@ -560,13 +560,13 @@ SELECT * FROM student WHERE age = 1 AND name = 'M%';
     - 辅助索引的叶子节点：存索引列的值和主键值
     - 内部节点：存索引列的值和子页指针
 
-![image-20250926163603474](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509261636544.png)
+![image-20250926163603474](./attachments/image/202509261636544_4576f4.png)
 
 ### B+ 树结构
 
 在 InnoDB 中，**每个节点都是一个数据页**
 
-![af5a02904fe8568d7119ae25d1b1385a](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509261649219.png)
+![af5a02904fe8568d7119ae25d1b1385a](./attachments/image/202509261649219_516731.png)
 
 
 
@@ -607,7 +607,7 @@ EXPLAIN 展示了 MySQL 通过查询优化器对语句进行分析，找出最�
     - **强制主库**：代理层面，让关键业务（更新频繁、最新数据）走主库而不走从库
     - **延迟读取**：客户端层面，先检测从库的延迟情况，如果超过阈值，则等待若干秒后再读
 
-<img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509261100299.png" alt="image-20250926110033121" style="zoom:50%;" />
+<img src="./attachments/image/202509261100299_cb3a7e.png" alt="image-20250926110033121" style="zoom:50%;" />
 
 ### 分库分表
 

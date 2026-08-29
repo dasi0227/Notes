@@ -157,7 +157,7 @@
 - **TIMED_WAITING**：超时等待状态，线程等待固定的时间后自动回到可运行状态
 - **TERMINATED**：终止状态，线程已经运行完毕
 
-![image-20250919170056048](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509191700107.png)
+![image-20250919170056048](./attachments/image/202509191700107_120204.png)
 
 
 
@@ -183,7 +183,7 @@ Java Memory Model 是为了实现 JVM 跨平台而定义的一组关于多线程
 - 主内存：所有线程的共享变量的存储区域
 - 工作内存/本地内存：每个线程私有的存储区域，并保存了主内存中共享变量的副本
 
-<img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509191559210.png" alt="image-20250919155931157" style="zoom:50%;" />
+<img src="./attachments/image/202509191559210_32ace2.png" alt="image-20250919155931157" style="zoom:50%;" />
 
 ### 线程安全
 
@@ -527,7 +527,7 @@ System.out.println("结果: " + future.get());
 
 CompletableFuture 是 Java8 提供的对 Future 的增强版，不仅能支持异步处理，还支持**链式调用、组合任务、异常处理**
 
-![](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509211604605.png)
+![](./attachments/image/202509211604605_c2d572.png)
 
 #### 创建任务
 
@@ -797,7 +797,7 @@ ThreadLocal 的底层原理，就是它定义了一个静态内部类 **ThreadLo
     }
     ```
 
-<img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509220007745.png" alt="e34489aadc8912cbf4dd5e5bcd4b68f6" style="zoom:50%;" />
+<img src="./attachments/image/202509220007745_e6bf87.png" alt="e34489aadc8912cbf4dd5e5bcd4b68f6" style="zoom:50%;" />
 
 ### InheritableThreadLocal
 

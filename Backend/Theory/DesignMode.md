@@ -169,7 +169,7 @@ class UserRepository {
 - **类数量膨胀**：每增加一种产品就需要增加对应工厂类，代码量上升
 - **简单工厂不符合开闭原则**：新增产品必须修改工厂代码
 
-<img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509282353467.png" alt="image-20250928235339380" style="zoom:50%;" />
+<img src="./attachments/image/202509282353467_79d034.png" alt="image-20250928235339380" style="zoom:50%;" />
 
 ### 简单工厂
 
@@ -374,7 +374,7 @@ public enum Singleton {
 - **系统的复杂性增加**：引入额外适配层，阅读和维护难度变高
 - **滥用风险**：过度使用可能掩盖系统真正的设计问题
 
-![image-20250929084401500](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509290844625.png)
+![image-20250929084401500](./attachments/image/202509290844625_817854.png)
 
 ### 类适配器
 
@@ -452,7 +452,7 @@ class PlayerAdapter implements MediaPlayer {
 - **类数量增多**：需要额外代理类，结构变复杂
 - **调试困难**：排查问题时容易混淆真实对象和代理对象
 
-![image-20250929084428510](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509290844682.png)
+![image-20250929084428510](./attachments/image/202509290844682_d9ecbb.png)
 
 ### 静态代理
 
@@ -567,7 +567,7 @@ public class Client {
 - **性能问题**：观察者数量过多时，通知链可能影响系统响应速度
 - **循环依赖风险**：观察者之间可能形成通知环路
 
-![image-20250929084453081](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509290844181.png)
+![image-20250929084453081](./attachments/image/202509290844181_6853e5.png)
 
 ```java
 // 主题接口
@@ -626,7 +626,7 @@ class ConcreteObserver implements Observer {
 - **类数量增多**：每种增强都要实现一个装饰类
 - **顺序敏感**：装饰器的叠加顺序可能影响最终结果
 
-![image-20250929084528301](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509290845379.png)
+![image-20250929084528301](./attachments/image/202509290845379_c59325.png)
 
 ```java
 // 接口，需要被实现/装饰
@@ -723,7 +723,7 @@ public class Client {
 - **无处理者风险**：如果没有合适的处理者，请求可能被丢弃
 - **调试不便**：链条过长时，很难追踪到底哪个节点处理了请求
 
-![image-20250929084954406](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509290849597.png)
+![image-20250929084954406](./attachments/image/202509290849597_d902d9.png)
 
 ```java
 // 抽象处理器
@@ -790,7 +790,7 @@ public class Client {
 - **客户端知晓性强**：调用方必须知道有哪些策略，并选择合适的策略
 - **类数量增多**：每种策略都是独立类，系统膨胀
 
-![image-20250929085509093](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509290855270.png)
+![image-20250929085509093](./attachments/image/202509290855270_e4d284.png)
 
 ```java
 interface PaymentStrategy. {
@@ -854,7 +854,7 @@ public class Client {
 
 > 可以发现，策略模式和状态模式很像，但状态模式的状态之间是会自动切换的，而策略模式的策略之间必须由人为手动改变
 
-![image-20250929090026488](https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/202509290900667.png)
+![image-20250929090026488](./attachments/image/202509290900667_095dc9.png)
 
 ```java
 interface State {

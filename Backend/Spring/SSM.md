@@ -38,14 +38,14 @@ SSM 顾名思义指的是 Java Web 开发中的三大经典框架的整合，目
 - Root 容器：管理 Service 和 Mapper
 - Web 容器：管理 Controller
 
-<img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/SpringMVC202508111357083.png" alt="image-20250811135706947" style="zoom: 50%;" />
+<img src="./attachments/image/SpringMVC202508111357083_24a9f1.png" alt="image-20250811135706947" style="zoom: 50%;" />
 
 Root Ioc 容器作为父容器可以调用 Web IoC 子容器
 
 - 父容器的 Bean 子容器可以访问，但是子容器的 Bean 父容器不能访问
 - 调用方向为：Controller → Service → Mapper
 
-<img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/SpringMVC202508111401486.png" alt="image-20250811140115437" style="zoom:50%;" />
+<img src="./attachments/image/SpringMVC202508111401486_9af1b1.png" alt="image-20250811140115437" style="zoom:50%;" />
 
 配置文件
 
@@ -57,7 +57,7 @@ Root Ioc 容器作为父容器可以调用 Web IoC 子容器
 | **WebJavaConfig** | 配置视图解析器、消息转换器、参数解析器、拦截器和 CORS 等；扫描 @Controller |
 | **SSMConfig** | 创建两个容器并关联，注册 DispatcherServlet |
 
-<img src="https://dasi-blog.oss-cn-guangzhou.aliyuncs.com/Java/SpringMVC202508111418553.png" alt="image-20250811141808492" style="zoom:50%;"  />
+<img src="./attachments/image/SpringMVC202508111418553_658600.png" alt="image-20250811141808492" style="zoom:50%;"  />
 
 
 
