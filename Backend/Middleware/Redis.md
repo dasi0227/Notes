@@ -420,7 +420,7 @@ AOF（Append Only File）会把所有**写命令**记录到一个 **appendonly.a
 4. 随着时间推移，AOF 文件会越来越大，一定程度下 Redis 会触发 AOF 重写，使用等价但体积更小的命令来替换原来的 AOF 文件
 5. 当 Redis 重启的时候，会加载 AOF 文件，顺序执行写命令恢复数据
 
-![image-20250824172004958](./attachments/image/SpringMVC202508241720454_c7f384.png)
+![image-20250824172004958](./attachments/image/20250824_1720454.png)
 
 【配置】
 
@@ -511,7 +511,7 @@ Redis 是一种**基于客户端-服务端和请求-响应的 TCP 服务**
 - 无论多少条命令都只需要一次 RTT
 - 大大提升吞吐量，Redis 服务端可以按顺序连续处理请求，效率更高
 
-![5cf333bd-6679-4bc9-8c23-93e5c8ab2983](./attachments/image/SpringMVC202508271625537_2e949f.png)
+![5cf333bd-6679-4bc9-8c23-93e5c8ab2983](./attachments/image/20250827_1625537.png)
 
 ```bash
 cat batch.txt | redis-cli -a password --pipe
@@ -545,7 +545,7 @@ cat batch.txt | redis-cli -a password --pipe
 - Master 和 Slave 是相对的，**所有节点在一开始都是 Master**，同步请求后才会变成 Slave
 - **一个节点可以同时作为 Master 和 Slave**，形成链式关系，但数据会始终同步自最前 o 的 Master
 
-<img src="./attachments/image/SpringMVC202508271625637_02a3bf.png" alt="04f28596-3eac-4659-b605-c60ea7f836d1" style="zoom:33%;" />
+<img src="./attachments/image/20250827_1625637.png" alt="04f28596-3eac-4659-b605-c60ea7f836d1" style="zoom:33%;" />
 
 ### 节点信息
 
@@ -606,7 +606,7 @@ cat batch.txt | redis-cli -a password --pipe
 - **通知**：可以把故障情况和转移情况通知到客户端，并且会自动更新客户端保存的 Master 地址
 - **恢复**：当原来的 Master 恢复上线时，哨兵会将它自动降级为 Slave 并重新加入主从复制结构
 
-<img src="./attachments/image/SpringMVC202508271624414_b98225.png" alt="78c46ac2-694d-4c01-be14-fa1b4db140b8" style="zoom:33%;" />
+<img src="./attachments/image/20250827_1624414.png" alt="78c46ac2-694d-4c01-be14-fa1b4db140b8" style="zoom:33%;" />
 
 ### 配置
 
@@ -696,7 +696,7 @@ Redis 集群是官方提供的**分布式部署方案**
 - **分片是真实的物理分区，哈希槽是虚拟的逻辑分区**
 - **槽分配给分片，分片负责多个槽**
 
-![6224a5021340a8c79df5c0eb1e33f6dc](./attachments/image/202508271629527_305af8.png)
+![6224a5021340a8c79df5c0eb1e33f6dc](./attachments/image/20250827_1629527.png)
 
 Redis Cluster 定义了 **16384 个哈希槽**（编号 0–16383），假设 Master1 管理槽 0–5460，Master2 管理槽 5461–10922，Master3 管理槽 10923–16383，那么键 "name" 经过哈希后得到 slot=7365，检查得到槽位在 Master2，那么就会把这个命令发到 Master2 执行
 
@@ -705,7 +705,7 @@ Redis Cluster 定义了 **16384 个哈希槽**（编号 0–16383），假设 Ma
 - 16384 可以很平均地把 key 打散，负载均衡效果好
 - 槽数太少迁移不灵活，槽数太多会增加内存和通信开销，16384 是实践验证的最佳平衡点
 
-<img src="./attachments/image/SpringMVC202508262258956_0dd38b.png" alt="image-20250826225856274" style="zoom:33%;" />
+<img src="./attachments/image/20250826_2258956.png" alt="image-20250826225856274" style="zoom:33%;" />
 
 ### 优势
 
@@ -1012,7 +1012,7 @@ SCAN / HSCAN / SSCAN / ZSCAN key cursor [pattern] [count]
 - 先更新缓存，再更新数据库（❌）：如果更新数据库失败了，那么会出现脏数据，而且原则上是缓存追求与数据库一致，而不是数据库追求与缓存一致
 - 先删除缓存，再更新数据库（❌）：存在空窗期，此时不仅缓存 miss，所有请求直接打到数据库，并且读到的还是脏数据
 
-![image-20250827220756743](./attachments/image/202508272207378_47d0aa.png)
+![image-20250827220756743](./attachments/image/20250827_2207378.png)
 
 ### Canal
 
@@ -1166,7 +1166,7 @@ Canal 是阿里巴巴开源的 MySQL binlog 增量订阅 & 消费组件，核心
     }
     ```
 
-![212f49eedbee598b89f60d171142b1b4](./attachments/image/202508272315399_8bbe7f.png)
+![212f49eedbee598b89f60d171142b1b4](./attachments/image/20250827_2315399.png)
 
 
 
@@ -1420,7 +1420,7 @@ spring:
 
 【JMeter 配置】
 
-![image-20250829090523209](./attachments/image/202508290905917_42b043.png)
+![image-20250829090523209](./attachments/image/20250829_0905917.png)
 
 业务方法
 
@@ -1483,7 +1483,7 @@ public String saleByLocalLock() {
 - value：需要设置为唯一 id 值，用于在删除 key 的时候判断是否是自己加的锁，因为当业务时间大于过期时间时，锁会被自动释放
 - Lua：应该将判断 key 的 value 是否与自己一致和删除 key 的命令合并为一个原子操作，否则高并发下仍然会有窗口期导致键被删除
 
-![8409dd37450b315876775dff8188c6a4](./attachments/image/202508291005070_093774.png)
+![8409dd37450b315876775dff8188c6a4](./attachments/image/20250829_1005070.png)
 
 ```java
 public String saleBySimpleRedisLock() {
@@ -1780,7 +1780,7 @@ Redis 底层不是直接使用 C 语言原生的字符串、数组、链表等�
 
 **核心操作（命令解析+命令执行）都是由一个线程完成**，避免了多线程带来的锁竞争、数据不一致和上下问切换开销，而且在现代 CPU 和内存架构下，单线程足以支撑十万级的 QPS。但实际上，对于整个 Redis 服务是多线程的，主要有**网络 I/O、持久化、惰性删除、内存碎片整理、集群管理**等
 
-![9360babd7ae3e5534688174b6855f8af](./attachments/image/202508302356345_2d66c3.png)
+![9360babd7ae3e5534688174b6855f8af](./attachments/image/20250830_2356345.png)
 
 ### 3. I/O 多路复用
 
@@ -1804,7 +1804,7 @@ I/O 的多路复用指的是**只用一个线程就可以管理成千上万个�
 | **信号驱动 I/O** | 当数据就绪时，内核主动通过信号通知应用程序，再由应用程序调用 read() | 信号机制的复杂度非常高，信号可能丢失 |
 | **异步 I/O** | 应用程序向内核发起读请求，内核完成 read 工作后通知应用程序直接使用 | 效率最高，但是 Linux 不适用 |
 
-![9b445b475903dd017e4fc72489a00668](./attachments/image/202508310028138_0741cc.png)
+![9b445b475903dd017e4fc72489a00668](./attachments/image/20250831_0028138.png)
 
 #### epoll
 

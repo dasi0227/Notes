@@ -429,7 +429,7 @@ Revision 中实现 Evaluate / Critique 来产生的 Feedback 的方式可以有�
 
 Loop Engineering 就是在此基础上进一步抽象出来的工程思想，它关注的不再是某一种固定 Pattern，而是**如何设计 Agent 的循环，确保任务能够在有限的时间和有限的预算内持续迭代，并最终收敛到可靠正确的完成状态**。换句话说，就是**让 Agent 重复执行某个工作周期，直到满足某个 Stop Condition**。
 
-![](./attachments/image/20260827200450.png)
+![](./attachments/image/20260827_200450.png)
 
 ## Runtime Engineering
 

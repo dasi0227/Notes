@@ -458,7 +458,7 @@ Spring AOP 是通过代理模式来实现的，也就是代理对象的增强逻
 - **RealSubject**：实现接口，完成核心业务逻辑
 - **Proxy**：实现接口，并持有 RealSubject 的引用，可以在调用方法前后加上**附加逻辑**
 
-![image-20250809123457855](./attachments/image/SpringMVC202508091234948_9c0ced.png)
+![image-20250809123457855](./attachments/image/20250809_1234948.png)
 
 #### JDK 动态代理
 

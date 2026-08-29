@@ -422,7 +422,7 @@ DOM（Document Obejct Model）将 HTML/XML 文档抽象为一棵可编程的节�
 - 文本节点（text）：元素内的纯文本内容以及元素标签之间的空白字符（空格、制表符、换行符）
 - 注释节点（comment）：对应 HTML 注释 \<!-- 注释内容 -->
 
-![img.png](./attachments/image/202509160853060_d23c0d.png)
+![img.png](./attachments/image/20250916_0853060.png)
 
 ### 获取元素
 

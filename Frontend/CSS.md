@@ -302,7 +302,7 @@ font-family：用于指定文本的字体序列，浏览器会按顺序尝试使
 3. 边框（border）：包裹住内容和内边距的框线，通过属性 `border、border-width、border-style、border-color` 控制
 4. 外边距（margin）：当前元素与相邻元素之间的距离，通过属性 `margin、margin-top、margin-right、margin-bottom、margin-left` 控制
 
-![image-20250916094457330](./attachments/image/202509160944429_7b45b8.png)
+![image-20250916094457330](./attachments/image/20250916_0944429.png)
 
 ### 大小设置
 

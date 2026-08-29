@@ -63,7 +63,7 @@
 
 ### 类关系图
 
-![918bdc2b0fd7be877965381ac34bbec0](./attachments/image/202509221449411_f3f35f.png)
+![918bdc2b0fd7be877965381ac34bbec0](./attachments/image/20250922_1449411.png)
 
 ### 比较器
 
@@ -809,7 +809,7 @@ static class Node<K,V> implements Map.Entry<K,V> {
 - **length >= TREEIFY_THRESHOLD && capacity < MIN_TREEIFY_CAPACITY：扩容 resize，把所有元素重新分配到新桶中**
 - **length >= TREEIFY_THRESHOLD && capacity >= MIN_TREEIFY_CAPACITY：树化 treeify，只把该桶的 Node 转换为 TreeNode**
 
-![image-20250923114637792](./attachments/image/202509231146853_d44e8e.png)
+![image-20250923114637792](./attachments/image/20250923_1146853.png)
 
 #### 计算原理
 

@@ -105,7 +105,7 @@
 
 ### 关系
 
-<img src="./attachments/image/202509162330784_abf2f8.png" alt="image-20250916233051698" style="zoom: 50%;" />
+<img src="./attachments/image/20250916_2330784.png" alt="image-20250916233051698" style="zoom: 50%;" />
 
 ### HotSpot
 
@@ -121,7 +121,7 @@ JVM 内存：由 JVM 管理的内存，是预先设置好初始值和最大值�
 
 本地内存：由进程管理的内存，是从操作系统动态分配的内存，主要有元空间和直接内存
 
-<img src="./attachments/image/202509162331896_bb3bd7.png" alt="image-20250916233140809" style="zoom: 50%;" />
+<img src="./attachments/image/20250916_2331896.png" alt="image-20250916233140809" style="zoom: 50%;" />
 
 
 
@@ -131,7 +131,7 @@ JVM 内存：由 JVM 管理的内存，是预先设置好初始值和最大值�
 
 这里的栈指的是一个线程所占据的内存空间，线程是 JVM 中执行代码的最小单位，每个线程都有自己的执行上下文和内存空间，同时也与其他线程共享堆和本地内存
 
-<img src="./attachments/image/202509162332105_018b52.png" alt="image-20250916233237006" style="zoom:50%;" />
+<img src="./attachments/image/20250916_2332105.png" alt="image-20250916233237006" style="zoom:50%;" />
 
 #### 虚拟机栈 / 本地方法栈
 
@@ -146,7 +146,7 @@ JVM 内存：由 JVM 管理的内存，是预先设置好初始值和最大值�
 
 本地方法栈和虚拟机栈发挥的结构和作用类似，只不过虚拟机栈是为虚拟机执行 Java 方法，而本地方法栈是为虚拟机执行 Native 方法
 
-<img src="./attachments/image/202509162340065_590145.png" alt="image-20250916234039981" style="zoom:50%;" />
+<img src="./attachments/image/20250916_2340065.png" alt="image-20250916234039981" style="zoom:50%;" />
 
 #### 程序计数器
 
@@ -169,7 +169,7 @@ JVM 内存：由 JVM 管理的内存，是预先设置好初始值和最大值�
 
 在 JVM 中，**堆存放所有对象实例和数组，被所有线程共享**，线程通过对象引用来访问堆上的实例数据，同时堆也是垃圾回收器的主要作用对象
 
-<img src="./attachments/image/202509171145360_404e4a.png" alt="image-20250917114525262" style="zoom:50%;" />
+<img src="./attachments/image/20250917_1145360.png" alt="image-20250917114525262" style="zoom:50%;" />
 
 #### 新生代
 
@@ -206,7 +206,7 @@ Metaspace 是存放类元数据的堆外内存区域
 - 方法元信息（说明书）：字节码属性、注解、异常声明、调试信息等
 - 运行时常量池（符号表）：编译期常量、符号引用、解析缓存等
 
-<img src="./attachments/image/202509171640862_d8e223.png" alt="image-20250917164051759" style="zoom:50%;" />
+<img src="./attachments/image/20250917_1640862.png" alt="image-20250917164051759" style="zoom:50%;" />
 
 #### 永久代和元空间
 
@@ -236,7 +236,7 @@ JDK 1.7 利用了堆的永久代来存储类的元数据，而 JDK 1.8 转移到
 - 实例数据（Instance Data）：存储对象的有效信息，即在程序中所定义的各种类型的字段内容
 - 对齐填充（Padding）：HotSpot 要求对象大小必须是 8 字节的整数倍，因此可能需要一部分空闲区域来对齐
 
-<img src="./attachments/image/202509171802873_9df910.png" alt="image-20250917180240778" style="zoom:50%;" />
+<img src="./attachments/image/20250917_1802873.png" alt="image-20250917180240778" style="zoom:50%;" />
 
 #### 对象的方法调用
 
@@ -245,7 +245,7 @@ JDK 1.7 利用了堆的永久代来存储类的元数据，而 JDK 1.8 转移到
 3. 在类元信息中找到方法表，根据方法索引定位到方法入口
 4. 方法指向方法元信息中的字节码，由解释器逐条执行
 
-<img src="./attachments/image/202509171901713_125205.png" style="zoom: 50%;" />
+<img src="./attachments/image/20250917_1901713.png" style="zoom: 50%;" />
 
 ### 对象创建全过程
 
@@ -348,7 +348,7 @@ JDK 1.7 利用了堆的永久代来存储类的元数据，而 JDK 1.8 转移到
 - 标记和清除的效率都很低下
 - 直接清除会留下大量不连续的内存碎片
 
-![image-20250918103409087](./attachments/image/202509181034154_ada3c6.png)
+![image-20250918103409087](./attachments/image/20250918_1034154.png)
 
 #### 标记压缩
 
@@ -357,7 +357,7 @@ JDK 1.7 利用了堆的永久代来存储类的元数据，而 JDK 1.8 转移到
 - 不会存在内存碎片
 - 移动对象的开销很大
 
-![image-20250918103438138](./attachments/image/202509181034211_09c3e8.png)
+![image-20250918103438138](./attachments/image/20250918_1034211.png)
 
 #### 标记复制
 
@@ -367,7 +367,7 @@ JDK 1.7 利用了堆的永久代来存储类的元数据，而 JDK 1.8 转移到
 - 内存需要之前的两倍
 - 如果存活对象数量很大，复制效率会很低
 
-![image-20250918103451393](./attachments/image/202509181034453_8a5f6c.png)
+![image-20250918103451393](./attachments/image/20250918_1034453.png)
 
 #### 分代收集
 
@@ -459,7 +459,7 @@ ClassFile {
 }
 ```
 
-![e72fb8df7a7cc8ae16e81bb39ea0faaa](./attachments/image/202509181059298_15a726.png)
+![e72fb8df7a7cc8ae16e81bb39ea0faaa](./attachments/image/20250918_1059298.png)
 
 #### 魔数
 
@@ -716,7 +716,7 @@ protected Class<?> findClass(String name) throws ClassNotFoundException {
 | **SharedClassLoader** | Tomcat/shared/* | 所有 Web 应用共享，Tomcat 内部不用 | 多应用共享依赖 |
 | **WebAppClassLoader** | Tomcat/webapps/{app}/WEB-INF/* | 仅当前 Web 应用可见 | 打破双亲委派，支持隔离与热部署 |
 
-![image-20250918171525201](./attachments/image/202509181715264_49a75b.png)
+![image-20250918171525201](./attachments/image/20250918_1715264.png)
 
 
 
